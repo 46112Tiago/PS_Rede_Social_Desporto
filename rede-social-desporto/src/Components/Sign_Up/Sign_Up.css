@@ -1,0 +1,34 @@
+form {
+    margin: 50px;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+  }
+
+.halfForm {
+    height: 300px;
+    width: 350px;
+    display: inline-block;
+}
+
+.inputText {
+    border: none  ;
+    background: transparent;
+    outline: none;
+  }
+
+#subBtn {
+    width: 100px;
+    height: 30px;
+    color: whitesmoke;
+    background-color:rgb(28, 44, 44) ;
+    border-radius: 25px;
+}
+
+#logInBtn {
+    margin-left: 15px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background-color: white;
+}
