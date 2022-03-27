@@ -13,7 +13,7 @@ class SignUp extends React.Component {
   
     render() {
       return (
-        <div class='formContainer'>
+        <div className='formContainer'>
               <div className='item' id='imageItem'>
                 <div id='text'>
                   <h1 id='textH1'>Bem vindo ao FieldMe!</h1> 
