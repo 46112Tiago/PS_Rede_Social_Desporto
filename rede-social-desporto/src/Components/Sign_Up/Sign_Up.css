@@ -1,34 +1,80 @@
-form {
-    margin: 50px;
-    padding: 5px;
-    width: 100%;
-    height: 100%;
-  }
+body {
+  background-color: rgb(82, 72, 72);
+}
 
-.halfForm {
-    height: 300px;
-    width: 350px;
-    display: inline-block;
+.formContainer {
+  margin-top: 6.5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.item {
+  width: 300px;
+  height: 400px;
+  background-color: whitesmoke;
+}
+
+#imageItem {
+  /**/
+  background-image: url('/public/assets/images/sports_image2_1.png');
+  background-size: cover;
+  opacity: 1;
+  color:white;
+  align-items: center;
+  display: flex;
+}
+
+#text {
+  height: 100%;
+  background-color: black;
+  text-align:center;
+  opacity: 0.75;
+}
+
+#textH1 {
+  margin-top: 35%;
+}
+
+#formItem {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .inputText {
-    border: none  ;
-    background: transparent;
-    outline: none;
-  }
+  border: none  ;
+  background: transparent;
+  outline: none;
+}
 
 #subBtn {
-    width: 100px;
-    height: 30px;
-    color: whitesmoke;
-    background-color:rgb(28, 44, 44) ;
-    border-radius: 25px;
+  width: 100px;
+  height: 30px;
+  color: whitesmoke;
+  background-color:rgb(28, 44, 44) ;
+  border-radius: 25px;
+  margin-left: 5%;
+}
+
+#subBtn:hover {
+  color: rgb(189, 184, 184);
+  background-color: rgb(63, 94, 94);
+  cursor: pointer;
 }
 
 #logInBtn {
-    margin-left: 15px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    background-color: white;
+  margin-left: 10px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  background-color: transparent;
 }
+
+#logInBtn:hover {
+  cursor: pointer;
+  color: rgb(3, 123, 221);
+}
+
+
+

@@ -9,57 +9,50 @@ class SignUp extends React.Component {
       this.email = {value: ''};
       this.password = {value: ''};
       this.rePassword = {value: ''};
-
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    handleChange(event) {
-      this.setName({value: event.target.value});
-    }
-  
-    handleSubmit(event) {
-      alert('O formulário foi submetido com sucesso');
-      event.preventDefault();
     }
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit} method="POST" >
-            <div className='halfForm'>
-                <img src='/assets/images/sports_image.png' alt='sports image'/>
-            </div>
-            <div  className='halfForm'>
-                <label>Primeiro nome:</label>
-                <br/>
-                <input className='inputText' type="text" value={this.name.value} onChange={this.handleChange} placeholder='Nome' required/>
-                <hr/>
+        <div class='formContainer'>
+              <div className='item' id='imageItem'>
+                <div id='text'>
+                  <h1 id='textH1'>Bem vindo ao FieldMe!</h1> 
+                  <h2>Está preparado para se tornar um atleta ?</h2>
+                </div>
+              </div>
+              <div  className='item' id='formItem'>
+                  <form /*onSubmit*/ method="POST" >
+                    <label className='labels'>Primeiro nome:</label>
+                    <br/>
+                    <input className='inputText' type="text" placeholder='Nome' required/>
+                    <hr/>
 
-                <label>Apelido:</label>
-                <br/>
-                <input className='inputText' type="text" value={this.lastname.value} onChange={this.handleChange} placeholder='Apelido' required/>
-                <hr/>
+                    <label>Apelido:</label>
+                    <br/>
+                    <input className='inputText' type="text" placeholder='Apelido' required/>
+                    <hr/>
 
-                <label>Email:</label>
-                <br/>
-                <input className='inputText' type="email" value={this.email.value} onChange={this.handleChange} placeholder='Email' required/>
-                <hr/>
+                    <label>Email:</label>
+                    <br/>
+                    <input className='inputText' type="email" placeholder='Email' required/>
+                    <hr/>
 
-                <label>Password:</label>
-                <br/>
-                <input className='inputText' type="password" value={this.password.value} onChange={this.handleChange} placeholder='Password' required/>
-                <hr/>
+                    <label>Password:</label>
+                    <br/>
+                    <input className='inputText' type="password" placeholder='Password' required/>
+                    <hr/>
 
-                <label>Repita a password:</label>
-                <br/>
-                <input className='inputText' type="password" value={this.rePassword.value} onChange={this.handleChange} placeholder='Repita a Password' required/>
-                <hr/>
+                    <label>Repita a password:</label>
+                    <br/>
+                    <input className='inputText' type="password" placeholder='Repita a Password' required/>
+                    <hr/>
 
-                <br/>  
-                <input id='subBtn' type="submit" value="Inscrever" />
-                <button id='logInBtn'> Já possui conta </button>
-            </div>
-        </form>
+                    <br/>  
+                    <input id='subBtn' type="submit" value="Inscrever" />
+                    <button id='logInBtn'> Já possui conta </button>
+                  </form>
+              </div>
+        </div>
       );
     }
   }
