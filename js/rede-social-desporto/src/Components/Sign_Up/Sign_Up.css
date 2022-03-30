@@ -18,7 +18,7 @@ body {
 
 #imageItem {
   /**/
-  background-image: url('/public/assets/images/sports_image2_1.png');
+  background-image: url('./images/sports_image2_1.png');
   background-size: cover;
   opacity: 1;
   color:white;

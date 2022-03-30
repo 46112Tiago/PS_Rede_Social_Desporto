@@ -1,3 +1,4 @@
+import React from "react";
 import './Navigation.css'
 
 function Navigation()  {
@@ -5,12 +6,12 @@ function Navigation()  {
         
         <>
           <div className="topnav">
-            <a className="leftSide" href="#home">Home</a>
+            <a className="leftSide" href="/">Home</a>
             <a className="leftSide" href="#map">Map</a>
             <a className="leftSide" href="#events">Events</a>
             <a className="leftSide" href="#about">About</a>
             <a className="rightSide" href="#logIn">LogIn</a>
-            <a className="rightSide" href="#signUp">Sign Up</a>
+            <a className="rightSide" href="/signUp">Sign Up</a>
           </div>
         </>
         

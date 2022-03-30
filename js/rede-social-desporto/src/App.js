@@ -1,7 +1,12 @@
 import './App.css';
 import Navigation from './Components/Navigation/Navigation.js';
 import React,{Component} from "react";
-import logo from "./logo.svg";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
+import SignUp from './Components/Sign_Up/Sign_Up';
 
 
 class App extends Component {
@@ -21,12 +26,18 @@ class App extends Component {
   }
 
   render(){
-    return(<div className="App">       
-        <Navigation/>
-        <p className="App-intro">{this.state.apiResponse}</p>
-       
-        
-      </div>
+    return(
+      <Router>
+        <div className="App">       
+          <Navigation/>
+          
+          <Routes>
+
+            <Route path='/signUp' element={<SignUp></SignUp>}></Route>
+
+          </Routes>
+        </div>
+      </Router>
       );
   };
 } export default App;
