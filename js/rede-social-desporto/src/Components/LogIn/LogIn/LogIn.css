@@ -1,0 +1,17 @@
+.formContainer {
+    margin-bottom: 100px;
+}
+
+#formLogin {
+    padding-left: 10px;
+}
+
+.textArea {
+    display: block;
+    margin-top: 10px;
+}
+
+.btn {
+    margin-top: 50px;
+    color: inherit;
+}
