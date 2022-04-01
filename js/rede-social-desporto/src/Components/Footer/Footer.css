@@ -1,0 +1,24 @@
+/* Add a black background color to the top navigation */
+.footer {
+    background-color: #333;
+    overflow: hidden;
+    color: whitesmoke;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+#right {
+    float: right;
+    padding-right: 20px;
+}
+
+.github {
+    color: black;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.linkedin {
+    color: rgb(69, 69, 216);
+}

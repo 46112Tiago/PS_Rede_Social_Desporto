@@ -1,0 +1,54 @@
+.parallax {
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#map {
+    background-image: url('./images/padel.jpg');
+}
+
+#events {
+    background-image: url('./images/football.webp');
+}
+
+#register {
+    background-image: url('./images/basketball-ring.jpg');
+}
+
+.right_float {
+    float: right;
+    background-color: rgba(250, 235, 215, 0.2);
+    text-align: center;
+    vertical-align: middle;
+    margin-top:100px ;
+    padding: 10px;
+}
+
+.left_float {
+    float: left;
+    background-color: rgba(250, 235, 215, 0.2);
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 100px;
+    padding: 10px;
+}
+
+.icons {
+    color: black;
+    cursor: pointer;
+}
+
+#mapIcon:hover {
+    color: rgb(40, 119, 8);
+}
+
+#basketball:hover {
+    color: orange;
+}
+
+#football:hover {
+    color: gray;
+}

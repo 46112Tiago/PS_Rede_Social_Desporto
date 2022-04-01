@@ -49,7 +49,7 @@ class SignUp extends React.Component {
 
                     <br/>  
                     <input id='subBtn' type="submit" value="Inscrever" />
-                    <button id='logInBtn'> Já possui conta </button>
+                    <a id='logInBtn' href='../logIn'> Já possui conta </a>
                   </form>
               </div>
         </div>

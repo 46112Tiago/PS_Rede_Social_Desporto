@@ -1,29 +1,22 @@
 import './App.css';
-import Navigation from './Components/Navigation/Navigation.js';
 import React,{Component} from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
+
+import Navigation from './Components/Navigation/Navigation';
+import Footer from './Components/Footer/Footer';
+import Home from './Components/Home/Home';
+import Map from './Components/Map/Map';
+import Events from './Components/Events/Events';
 import SignUp from './Components/Sign_Up/Sign_Up';
+import LogIn from './Components/LogIn/LogIn';
+
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { apiResponse: '' };
-  }
-  
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
-       .then(res => res.text())
-       .then(res => this.setState({ apiResponse: res })).catch(err => err);
-  }
-  
-  componentDidMount() {
-    this.callAPI();
-  }
 
   render(){
     return(
@@ -32,10 +25,16 @@ class App extends Component {
           <Navigation/>
           
           <Routes>
-
+            <Route path='/' element={<Home></Home>}></Route>
+            <Route path='/map' element={<Map></Map>}></Route>
+            <Route path='/events' element={<Events></Events>}></Route>
             <Route path='/signUp' element={<SignUp></SignUp>}></Route>
+            <Route path='/logIn' element={<LogIn></LogIn>}></Route>
+
 
           </Routes>
+
+          <Footer/>
         </div>
       </Router>
       );

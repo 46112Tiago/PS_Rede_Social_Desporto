@@ -8,6 +8,7 @@ body {
   justify-content: center;
   align-items: center;
   align-content: center;
+  margin-bottom: 100px;
 }
 
 .item {
@@ -65,10 +66,7 @@ body {
 
 #logInBtn {
   margin-left: 10px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  background-color: transparent;
+  color: black;
 }
 
 #logInBtn:hover {
