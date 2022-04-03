@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Navigation from './Components/Navigation/Navigation';
+import NavLog from './Components/Navigation/NavLog';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import Map from './Components/Map/Map';
@@ -22,7 +23,7 @@ class App extends Component {
     return(
       <Router>
         <div className="App">       
-          <Navigation/>
+          <NavLog></NavLog>
           
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>

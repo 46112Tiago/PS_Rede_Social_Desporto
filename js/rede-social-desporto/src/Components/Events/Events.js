@@ -19,6 +19,8 @@ class Events extends React.Component {
                     <p className='inline' id='data'><FaCalendarDay></FaCalendarDay> 01/04/2022</p>  
                     <p className='inline' id='modalidade'><FaRunning></FaRunning> Modalidade</p>
                     <p className='inline'><FaUserCheck></FaUserCheck> 8 / 30</p>
+                    <br/>
+                    <button className='eventsBtn'>Participar</button>
                 </div>
 
             </div>
@@ -33,6 +35,8 @@ class Events extends React.Component {
                     <p className='inline' id='data'><FaCalendarDay></FaCalendarDay> 01/04/2022</p>  
                     <p className='inline' id='modalidade'><FaRunning></FaRunning> Modalidade</p>
                     <p className='inline'><FaUserCheck></FaUserCheck> 8 / 30</p>
+                    <br/>
+                    <button className='eventsBtn'>Participar</button>
                 </div>
             </div>
             <div className='container'>
@@ -46,6 +50,8 @@ class Events extends React.Component {
                     <p className='inline' id='data'><FaCalendarDay></FaCalendarDay> 01/04/2022</p>  
                     <p className='inline' id='modalidade'><FaRunning></FaRunning> Modalidade</p>
                     <p className='inline'><FaUserCheck></FaUserCheck> 8 / 30</p>
+                    <br/>
+                    <button className='eventsBtn'>Participar</button>
                 </div>
             </div>
             <div className='container'>
@@ -59,6 +65,8 @@ class Events extends React.Component {
                     <p className='inline' id='data'><FaCalendarDay></FaCalendarDay> 01/04/2022</p>  
                     <p className='inline' id='modalidade'><FaRunning></FaRunning> Modalidade</p>
                     <p className='inline'><FaUserCheck></FaUserCheck> 8 / 30</p>
+                    <br/>
+                    <button className='eventsBtn'>Participar</button>
                 </div>            
             </div>
         </div>
