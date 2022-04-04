@@ -1,6 +1,8 @@
 import React from "react";
 import './NavLog.css'
-import { FaSortDown } from 'react-icons/fa';
+import { FaSortDown, FaUserAlt } from 'react-icons/fa';
+import { RiSettings5Fill } from 'react-icons/ri';
+import { FiLogOut } from 'react-icons/fi';
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
@@ -29,9 +31,9 @@ class NavLog extends React.Component {
             <div className="dropdown">
                 <button class="dropbtn " onClick={myFunction}><FaSortDown className="rightSide"></FaSortDown></button>
                 <div class="dropdown-content" id="myDropdown">
-                    <a href="#">Perfil</a>
-                    <a href="#">Definições</a>
-                    <a href="#">LogOut</a>
+                    <a href="#"><FaUserAlt></FaUserAlt> Perfil</a>
+                    <a href="#"><RiSettings5Fill></RiSettings5Fill> Definições</a>
+                    <a href="#"><FiLogOut></FiLogOut> LogOut</a>
                 </div>
             </div> 
         </div>

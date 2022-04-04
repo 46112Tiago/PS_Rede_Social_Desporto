@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import Navigation from './Components/Navigation/Navigation';
+import SearchBar from './Components/SearchBar/SearchBar';
 import NavLog from './Components/Navigation/NavLog';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
@@ -24,7 +25,7 @@ class App extends Component {
       <Router>
         <div className="App">       
           <NavLog></NavLog>
-          
+          <SearchBar></SearchBar>
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/map' element={<Map></Map>}></Route>

@@ -1,0 +1,38 @@
+#searchBar {
+    background-color: #333;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
+
+.searchBarItem {
+    margin-bottom: 15px;
+    border: none;
+    padding: 7px;
+    color: rgb(171, 163, 163);
+    background-color: white;
+}
+
+#searchBtn {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+#searchBtn:active {
+    background-color: gray;
+    color: whitesmoke;
+}
+
+#searchBarTxt {
+    width: 300px;
+}
+
+#cancelBtn {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;    
+}
+
+#cancelBtn:active {
+    background-color: gray;
+    color: whitesmoke;
+}

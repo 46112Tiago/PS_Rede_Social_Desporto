@@ -16,7 +16,7 @@
 .dropdown {
   float: right;
   overflow: hidden;
-  margin-right: 120px;
+  direction: rtl;
 }
 
 .dropdown .dropbtn {
@@ -32,7 +32,8 @@
 
 .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
   background-color: #ddd;
-  color: black;}
+  color: black;
+}
 
 .dropdown-content {
   display: none;
