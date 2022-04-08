@@ -1,0 +1,615 @@
+{
+    "openapi" : "3.0.2",
+    "info": {
+        "title": "FieldMe API",
+        "version": "1.0"
+        
+            
+    },
+    "servers": [
+        {
+            "url": "https://localhost:3000"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Signup"
+        },
+        {
+            "name": "Login"
+        },
+        {
+            "name": "Logout"
+        },
+        {
+            "name": "Events"
+        },
+        {
+            "name": "Map"
+        },
+        {
+            "name": "User"
+        }
+
+    ],
+    "paths": {
+        
+        "/signup": {
+            "post": {
+                "tags": ["Signup"],
+                "description": "Register a new account",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "firstName":{
+                                        "type": "string"
+                                    },
+                                    "lastName":{
+                                        "type": "string"
+                                    },
+                                    "birthday":{
+                                        "type": "string"
+                                    }
+                                    ,
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "rePassword":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/login":{
+            "post": {
+            "tags": ["Login"],
+            "description": "Enter in the account",
+            "parameters": [],
+            "requestBody":{
+                "content": {
+                    "application/json":{
+                        "schema":{
+                            "type": "object",
+                            "properties": {
+                                "email":{
+                                    "type": "string"
+                                },
+                                "password":{
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "200": {
+                    "description": "OK"
+                    }
+                }
+            }
+        },
+        "/logout":{
+            "post": {
+                "tags": ["Logout"],
+                "description": "Exit the account",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                        }
+                }
+            }
+        },
+        "/events":{
+            "get":{
+                "tags": ["Events"],
+                "description": "Get all the Events that exist",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "All the events were received",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["Events"],
+                "description": "Create a new event",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The event was added",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/events/{eventsId}":{
+            "delete":{
+                "tags": ["Events"],
+                "parameters": [
+                        {
+                            "name": "eventId",
+                            "in": "path",
+                            "required": true,
+                            "description": "The id of the event to delete",
+                            "schema":{
+                                "type": "integer",
+                                "format": "int64",
+                                "minimum": 0
+                            }
+                        }
+                    ],
+                "responses":{
+                    "200":{
+                        "description": "Delete specified event with success"
+                    }
+                }
+            }
+        },
+        "/map": {
+            "get":{
+                "tags": ["Map"],
+                "description": "Get all markers information",
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "All the markers were adquired with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags":["Map"],
+                "description": "Creates a new marker",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "New marker created with success"
+                    }
+                }
+            }
+        },
+        "/map/{markerId}":{
+            "delete":{
+                "tags":["Map"],
+                "description": "Delete a specified marker",
+                "parameters": [
+                    {
+                        "name": "markerId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the marker to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Marker deleted with success"
+                    }
+                }
+            },
+            "put":{
+                "tags":["Map"],
+                "description": "Edit a specified marker",
+                "parameters": [
+                    {
+                        "name": "markerId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the marker to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Marker deleted with success"
+                    }
+                }
+            }
+        },
+        "/user/{userId}":{
+            "get":{
+                "tags": ["User"],
+                "description": "Gets user information",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in":"path",
+                        "required": true,
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Infromation succesfully received",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "tags": ["User"],
+                "description": "Edit user perfil",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in":"path",
+                        "required": true,
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "Infromation succesfully edited",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags": ["User"],
+                "description": "Delete user account",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in":"path",
+                        "required": true,
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Infromation succesfully deleted"
+                    }
+                }
+            }
+        },
+        "/user/{userId}/search?name=":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all accounts with specified name",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "required": true,
+                        "in": "query",
+                        "schema":{
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{userId}/friends":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all accounts that users is friends with",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["User"],
+                "description": "Add a new user to the friend list",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{userId}/friends/{friendsId}":{
+            "delete":{
+                "tags": ["User"],
+                "description": "Unfriend an account",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "friendsId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{userId}/events":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all the Events that user is sign",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "All the events were received",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["User"],
+                "description": "Create a new event in the user events list",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The event was added",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{userId}/events/{eventsId}":{
+            "delete":{
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the user",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the event to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "200":{
+                        "description": "Delete specified event with success"
+                    }
+                }
+            }
+        }
+    }
+}
