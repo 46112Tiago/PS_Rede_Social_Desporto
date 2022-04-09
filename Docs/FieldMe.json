@@ -35,6 +35,16 @@
     "paths": {
         
         "/signup": {
+            "get":{
+                "tags": ["Signup"],
+                "description": "Get signup page",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": "Signup page"
+                    }
+                }
+            },
             "post": {
                 "tags": ["Signup"],
                 "description": "Register a new account",
@@ -72,37 +82,99 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created"
+                        "description": "Account created",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Account created"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
         "/login":{
+            "get":{
+                "tags": ["Login"],
+                "description": "Get login page",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": "Login page"
+                    }
+                }
+            },
             "post": {
-            "tags": ["Login"],
-            "description": "Enter in the account",
-            "parameters": [],
-            "requestBody":{
-                "content": {
-                    "application/json":{
-                        "schema":{
-                            "type": "object",
-                            "properties": {
-                                "email":{
-                                    "type": "string"
-                                },
-                                "password":{
-                                    "type": "string"
+                "tags": ["Login"],
+                "description": "Enter in the account",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    }
                                 }
                             }
                         }
-                    }
+                    },
+                    "required": true
                 },
-                "required": true
-            },
-            "responses": {
-                "200": {
-                    "description": "OK"
+                "responses": {
+                    "204": {
+                        "description": "OK"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -113,9 +185,20 @@
                 "description": "Exit the account",
                 "parameters": [],
                 "responses": {
-                    "200": {
+                    "204": {
                         "description": "OK"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
                         }
+                    }
                 }
             }
         },
@@ -130,10 +213,23 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "properties": {
-                                        
+                                    "type": "array",
+                                    "items":{
+                                        "properties": {
+
+                                        }
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
                                 }
                             }
                         }
@@ -157,15 +253,35 @@
                     }
                 },
                 "responses": {
-                    "200": {
-                        "description": "The event was added",
+                    "201": {
+                        "description": "Event created",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "properties": {
-                                        
-                                    }
+                                    "type": "string",
+                                    "example":"Event created"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
                                 }
                             }
                         }
@@ -190,8 +306,30 @@
                         }
                     ],
                 "responses":{
-                    "200":{
+                    "204":{
                         "description": "Delete specified event with success"
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -207,10 +345,23 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "properties": {
+                                    "type": "array",
+                                    "items":{
+                                        "properties": {
                                         
+                                        }
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
                                 }
                             }
                         }
@@ -234,8 +385,49 @@
                     }
                 },
                 "responses": {
-                    "200":{
-                        "description": "New marker created with success"
+                    "201": {
+                        "description": "Marker created",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Marker created"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "403":{
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Forbidden"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -258,8 +450,41 @@
                     }
                 ],
                 "responses": {
-                    "200":{
+                    "204":{
                         "description": "Marker deleted with success"
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "403":{
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Forbidden"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -292,27 +517,61 @@
                     }
                 },
                 "responses": {
-                    "200":{
-                        "description": "Marker deleted with success"
+                    "204":{
+                        "description": "Marker edited with success"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    },
+                    "403":{
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Forbidden"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/user/{userId}":{
+        "/profile":{
             "get":{
                 "tags": ["User"],
                 "description": "Gets user information",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in":"path",
-                        "required": true,
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "responses": {
                     "200":{
                         "description": "Infromation succesfully received",
@@ -323,23 +582,46 @@
                                 }
                             }
                         }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             },
             "put":{
                 "tags": ["User"],
                 "description": "Edit user perfil",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in":"path",
-                        "required": true,
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -350,12 +632,38 @@
                     }
                 },
                 "responses": {
-                    "200":{
-                        "description": "Infromation succesfully edited",
+                    "204":{
+                        "description": "Infromation succesfully edited"
+                    },
+                    "400":{
+                        "description": "Bad Request",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object"
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
                                 }
                             }
                         }
@@ -365,38 +673,118 @@
             "delete":{
                 "tags": ["User"],
                 "description": "Delete user account",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in":"path",
-                        "required": true,
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "responses": {
-                    "200":{
+                    "204":{
                         "description": "Infromation succesfully deleted"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/user/{userId}/search?name=":{
+        "/search?name=":{
             "get":{
                 "tags": ["User"],
                 "description": "Get all accounts with specified name",
                 "parameters": [
                     {
-                        "name": "userId",
+                        "name": "name",
                         "required": true,
-                        "in": "path",
+                        "in": "query",
                         "schema":{
-                            "type": "integer",
-                            "format": "int64"
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                        }
+                                    }
+                                }
+                            }
                         }
                     },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search/{userId}":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get specific account",
+                "parameters": [
                     {
                         "name": "name",
                         "required": true,
@@ -416,25 +804,48 @@
                                 }
                             }
                         }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/user/{userId}/friends":{
+        "/friends":{
             "get":{
                 "tags": ["User"],
                 "description": "Get all accounts that users is friends with",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "required": true,
-                        "in": "path",
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "responses": {
                     "200":{
                         "description": "OK",
@@ -445,23 +856,46 @@
                                 }
                             }
                         }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             },
             "post":{
                 "tags": ["User"],
                 "description": "Add a new user to the friend list",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "required": true,
-                        "in": "path",
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "parameters": [],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -472,12 +906,35 @@
                     }
                 },
                 "responses": {
-                    "200":{
-                        "description": "OK",
+                    "201": {
+                        "description": "Friend account added",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object"
+                                    "type": "string",
+                                    "example":"Friend account added"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
                                 }
                             }
                         }
@@ -485,20 +942,11 @@
                 }
             }
         },
-        "/user/{userId}/friends/{friendsId}":{
+        "/friends/{friendsId}":{
             "delete":{
                 "tags": ["User"],
                 "description": "Unfriend an account",
                 "parameters": [
-                    {
-                        "name": "userId",
-                        "required": true,
-                        "in": "path",
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
                     {
                         "name": "friendsId",
                         "required": true,
@@ -510,12 +958,27 @@
                     }
                 ],
                 "responses": {
-                    "200":{
-                        "description": "OK",
+                    "204":{
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object"
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
                                 }
                             }
                         }
@@ -523,7 +986,7 @@
                 }
             }
         },
-        "/user/{userId}/events":{
+        "/eventsUser":{
             "get":{
                 "tags": ["User"],
                 "description": "Get all the Events that user is sign",
@@ -534,10 +997,35 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "properties": {
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
                                         
+                                        }
                                     }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
                                 }
                             }
                         }
@@ -561,15 +1049,35 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "The event was added",
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object",
-                                    "properties": {
-                                        
-                                    }
+                                    "type": "string",
+                                    "example":"The event was added"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
                                 }
                             }
                         }
@@ -577,21 +1085,10 @@
                 }
             }
         },
-        "/user/{userId}/events/{eventsId}":{
+        "/eventsUser/{eventsId}":{
             "delete":{
                 "tags": ["User"],
                 "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "description": "The id of the user",
-                        "schema":{
-                            "type": "integer",
-                            "format": "int64",
-                            "minimum": 0
-                        }
-                    },
                     {
                         "name": "eventId",
                         "in": "path",
@@ -605,11 +1102,218 @@
                     }
                     ],
                 "responses":{
-                    "200":{
+                    "204":{
                         "description": "Delete specified event with success"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
                     }
                 }
             }
+        },
+        "/feed": {
+
+        },
+        "/{friendId}/messages" : {
+            "get":{
+                "tags": ["User"],
+                "description": "Get all messages",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the friend to get",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "200":{
+                        "description": "Messages obtain with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }, 
+            "post":{
+                "tags": ["User"],
+                "description": "Send a message",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the friend to send",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Messages send with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Messages send with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{firendId}/messages/{messageId}":{
+            "delete":{
+                "tags": ["User"],
+                "description": "Send a message",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the friend to chat",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "messageId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the message to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "204":{
+                        "description": "Messages deleted with success"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }  
         }
     }
 }
