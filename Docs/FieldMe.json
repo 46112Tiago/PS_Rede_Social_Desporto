@@ -216,7 +216,22 @@
                                     "type": "array",
                                     "items":{
                                         "properties": {
-
+                                            "sport":{
+                                                "type": "string"
+                                            },
+                                            "startDate":{
+                                                "type":"string",
+                                                "format": "dd/mm/aa"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "description":{
+                                                "type": "string"
+                                            },
+                                            "field":{
+                                                "type": "object"
+                                            }
                                         }
                                     }
                                 }
@@ -246,7 +261,22 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-
+                                    "sport":{
+                                        "type": "string"
+                                    },
+                                    "startDate":{
+                                        "type":"string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "field":{
+                                        "type": "object"
+                                    }
                                 }
                             }
                         }
@@ -510,7 +540,7 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-
+                                    
                                 }
                             }
                         }
@@ -578,7 +608,28 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object"
+                                    "type": "object",
+                                    "properties": {
+                                        "firstName":{
+                                            "type": "string"
+                                        },
+                                        "lastName":{
+                                            "type": "string"
+                                        },
+                                        "profilePic":{
+                                            "type": "object"
+                                        },
+                                        "available":{
+                                            "type": "boolean"
+                                        },
+                                        "birthDay":{
+                                            "type": "string",
+                                            "format": "dd/mm/aa"
+                                        },
+                                        "city":{
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -626,7 +677,28 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "type": "object"
+                                "type": "object",
+                                "properties": {
+                                    "firstName":{
+                                        "type": "string"
+                                    },
+                                    "lastName":{
+                                        "type": "string"
+                                    },
+                                    "profilePic":{
+                                        "type": "object"
+                                    },
+                                    "available":{
+                                        "type": "boolean"
+                                    },
+                                    "birthDay":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "city":{
+                                        "type": "string"
+                                    }
+                                }
                             }
                         }
                     }
@@ -738,6 +810,18 @@
                                     "items":{
                                         "type": "object",
                                         "properties": {
+                                            "firstName":{
+                                                "type": "string"
+                                            },
+                                            "lastName":{
+                                                "type": "string"
+                                            },
+                                            "profilePic":{
+                                                "type": "object"
+                                            },
+                                            "available":{
+                                                "type": "boolean"
+                                            }
                                         }
                                     }
                                 }
@@ -786,11 +870,11 @@
                 "description": "Get specific account",
                 "parameters": [
                     {
-                        "name": "name",
+                        "name": "userId",
                         "required": true,
-                        "in": "query",
+                        "in": "path",
                         "schema":{
-                            "type": "string"
+                            "type": "integer"
                         }
                     }
                 ],
@@ -800,59 +884,21 @@
                         "content": {
                             "application/json":{
                                 "schema":{
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400":{
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "string",
-                                    "example":"Bad Request"
-                                }
-                            }
-                        }
-                    },
-                    "401":{
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "string",
-                                    "example":"Unauthorized"
-                                }
-                            }
-                        }
-                    },
-                    "404":{
-                        "description": "Resource not found",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "string",
-                                    "example":"Resource not found"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/friends":{
-            "get":{
-                "tags": ["User"],
-                "description": "Get all accounts that users is friends with",
-                "parameters": [],
-                "responses": {
-                    "200":{
-                        "description": "OK",
-                        "content": {
-                            "application/json":{
-                                "schema":{
-                                    "type": "object"
+                                    "type": "object",
+                                    "properties": {
+                                        "firstName":{
+                                            "type": "string"
+                                        },
+                                        "lastName":{
+                                            "type": "string"
+                                        },
+                                        "profilePic":{
+                                            "type": "object"
+                                        },
+                                        "available":{
+                                            "type": "boolean"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -895,7 +941,16 @@
             "post":{
                 "tags": ["User"],
                 "description": "Add a new user to the friend list",
-                "parameters": [],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "requestBody":{
                     "content": {
                         "application/json":{
@@ -935,6 +990,71 @@
                                 "schema":{
                                     "type": "string",
                                     "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/friends":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all accounts that users is friends with",
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "properties": {
+                                            "firstName":{
+                                                "type": "string"
+                                            },
+                                            "lastName":{
+                                                "type": "string"
+                                            },
+                                            "profilePic":{
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
                                 }
                             }
                         }
@@ -1001,7 +1121,22 @@
                                     "items":{
                                         "type": "object",
                                         "properties": {
-                                        
+                                            "sport":{
+                                                "type": "string"
+                                            },
+                                            "startDate":{
+                                                "type":"string",
+                                                "format": "dd/mm/aa"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "description":{
+                                                "type": "string"
+                                            },
+                                            "field":{
+                                                "type": "object"
+                                            }
                                         }
                                     }
                                 }
@@ -1042,7 +1177,22 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-
+                                    "sport":{
+                                        "type": "string"
+                                    },
+                                    "startDate":{
+                                        "type":"string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "field":{
+                                        "type": "object"
+                                    }
                                 }
                             }
                         }
@@ -1160,7 +1310,13 @@
                                     "items":{
                                         "type": "object",
                                         "properties": {
-
+                                            "text":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string",
+                                                "format": "dd/mm/aa"
+                                            }
                                         }
                                     }
                                 }
@@ -1215,7 +1371,13 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-
+                                    "text":{
+                                        "type": "string"
+                                    },
+                                    "date":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    }
                                 }
                             }
                         }
