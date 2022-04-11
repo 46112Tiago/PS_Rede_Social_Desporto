@@ -216,6 +216,9 @@
                                     "type": "array",
                                     "items":{
                                         "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
                                             "sport":{
                                                 "type": "string"
                                             },
@@ -229,8 +232,71 @@
                                             "description":{
                                                 "type": "string"
                                             },
+                                            "limitParticipants":{
+                                                "type": "integer"
+                                            },
                                             "field":{
-                                                "type": "object"
+                                                "type": "object",
+                                                "properties": {
+                                                    "compound":{
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id":{
+                                                                "type": "integer"
+                                                            },
+                                                            "name":{
+                                                                "type": "string"
+                                                            },
+                                                            "description":{
+                                                                "type": "string"
+                                                            },
+                                                            "dressinRoom":{
+                                                                "type": "string"
+                                                            },
+                                                            "parking":{
+                                                                "type":"boolean"
+                                                            },
+                                                            "schedule":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type":"object"
+                                                                }
+                                                            },
+                                                            "material":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "location":{
+                                                                "type": "object",
+                                                                "format": "Pair<Float,Float>"
+                                                            },
+                                                            "picture":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "name":{
+                                                        "type": "integer"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "participants":{
+                                                "type": "array",
+                                                "items":{
+                                                    "description": "userId",
+                                                    "type": "integer"
+                                                }
                                             }
                                         }
                                     }
@@ -274,8 +340,64 @@
                                     "description":{
                                         "type": "string"
                                     },
+                                    "limitParticipants":{
+                                        "type": "integer"
+                                    },
                                     "field":{
-                                        "type": "object"
+                                        "type": "object",
+                                        "properties": {
+                                            "compound":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "name":{
+                                                        "type": "string"
+                                                    },
+                                                    "description":{
+                                                        "type": "string"
+                                                    },
+                                                    "dressinRoom":{
+                                                        "type": "string"
+                                                    },
+                                                    "parking":{
+                                                        "type":"boolean"
+                                                    },
+                                                    "schedule":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type":"object"
+                                                        }
+                                                    },
+                                                    "material":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "location":{
+                                                        "type": "object",
+                                                        "format": "Pair<Float,Float>"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "name":{
+                                                "type": "integer"
+                                            },
+                                            "picture":{
+                                                "type": "array",
+                                                "items":{
+                                                    "type": "object"
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -376,9 +498,66 @@
                             "application/json":{
                                 "schema":{
                                     "type": "array",
+                                    "description":"array of compounds and fields",
                                     "items":{
                                         "properties": {
-                                        
+                                            "compound":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "name":{
+                                                        "type": "string"
+                                                    },
+                                                    "description":{
+                                                        "type": "string"
+                                                    },
+                                                    "dressinRoom":{
+                                                        "type": "string"
+                                                    },
+                                                    "parking":{
+                                                        "type":"boolean"
+                                                    },
+                                                    "schedule":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type":"object"
+                                                        }
+                                                    },
+                                                    "material":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "location":{
+                                                        "type": "object",
+                                                        "format": "Pair<Float,Float>"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "fields":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "name":{
+                                                                    "type": "string"
+                                                                },
+                                                                "pictures":{
+                                                                    "type": "object",
+                                                                    "format": "URL"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -408,7 +587,55 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-                                    
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "dressinRoom":{
+                                        "type": "string"
+                                    },
+                                    "parking":{
+                                        "type":"boolean"
+                                    },
+                                    "schedule":{
+                                        "type": "array",
+                                        "items":{
+                                            "type":"object"
+                                        }
+                                    },
+                                    "material":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "location":{
+                                        "type": "object",
+                                        "format": "Pair<Float,Float>"
+                                    },
+                                    "picture":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object"
+                                        }
+                                    },
+                                    "fields":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object",
+                                            "properties": {
+                                                "name":{
+                                                    "type": "string"
+                                                },
+                                                "pictures":{
+                                                    "type": "object",
+                                                    "format": "URL"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -540,7 +767,58 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-                                    
+                                    "id":{
+                                        "type": "integer"
+                                    },
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "dressinRoom":{
+                                        "type": "string"
+                                    },
+                                    "parking":{
+                                        "type":"boolean"
+                                    },
+                                    "schedule":{
+                                        "type": "array",
+                                        "items":{
+                                            "type":"object"
+                                        }
+                                    },
+                                    "material":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "location":{
+                                        "type": "object",
+                                        "format": "Pair<Float,Float>"
+                                    },
+                                    "picture":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object"
+                                        }
+                                    },
+                                    "fields":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object",
+                                            "properties": {
+                                                "name":{
+                                                    "type": "string"
+                                                },
+                                                "pictures":{
+                                                    "type": "object",
+                                                    "format": "URL"
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -597,6 +875,74 @@
                 }
             }
         },
+        "/map/suggestion":{
+            "post":{
+                "tags":["Map"],
+                "description": "User suggests a new marker",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "fields":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object",
+                                            "properties": {
+                                                "name":{
+                                                    "type": "string"
+                                                },
+                                                "pictures":{
+                                                    "type": "object",
+                                                    "format": "URL"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Suggestion sended",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Suggestion sended"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        },
         "/profile":{
             "get":{
                 "tags": ["User"],
@@ -617,7 +963,8 @@
                                             "type": "string"
                                         },
                                         "profilePic":{
-                                            "type": "object"
+                                            "type": "object",
+                                            "format": "URL"
                                         },
                                         "available":{
                                             "type": "boolean"
@@ -627,6 +974,15 @@
                                             "format": "dd/mm/aa"
                                         },
                                         "city":{
+                                            "type": "string"
+                                        },
+                                        "sports":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "string"
+                                            }
+                                        },
+                                        "gender":{
                                             "type": "string"
                                         }
                                     }
@@ -679,14 +1035,9 @@
                             "schema":{
                                 "type": "object",
                                 "properties": {
-                                    "firstName":{
-                                        "type": "string"
-                                    },
-                                    "lastName":{
-                                        "type": "string"
-                                    },
                                     "profilePic":{
-                                        "type": "object"
+                                        "type": "object",
+                                        "format": "URL"
                                     },
                                     "available":{
                                         "type": "boolean"
@@ -696,6 +1047,15 @@
                                         "format": "dd/mm/aa"
                                     },
                                     "city":{
+                                        "type": "string"
+                                    },
+                                    "sports":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "gender":{
                                         "type": "string"
                                     }
                                 }
@@ -810,6 +1170,10 @@
                                     "items":{
                                         "type": "object",
                                         "properties": {
+                                            "id":{
+                                                "type": "integer",
+                                                "description": "userId"
+                                            },
                                             "firstName":{
                                                 "type": "string"
                                             },
@@ -818,9 +1182,6 @@
                                             },
                                             "profilePic":{
                                                 "type": "object"
-                                            },
-                                            "available":{
-                                                "type": "boolean"
                                             }
                                         }
                                     }
@@ -893,10 +1254,27 @@
                                             "type": "string"
                                         },
                                         "profilePic":{
-                                            "type": "object"
+                                            "type": "object",
+                                            "description": "URL"
                                         },
                                         "available":{
                                             "type": "boolean"
+                                        },
+                                        "city":{
+                                            "type":"string"
+                                        },
+                                        "birthDay":{
+                                            "type": "string",
+                                            "format": "dd/mm/aa"
+                                        },
+                                        "gender":{
+                                            "type":"string"
+                                        },
+                                        "sports":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "string"
+                                            }
                                         }
                                     }
                                 }
@@ -955,7 +1333,8 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "type": "object"
+                                "type": "integer",
+                                "description": "userId"
                             }
                         }
                     }
@@ -1063,6 +1442,96 @@
             }
         },
         "/friends/{friendsId}":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get specific friend account",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "firstName":{
+                                            "type": "string"
+                                        },
+                                        "lastName":{
+                                            "type": "string"
+                                        },
+                                        "profilePic":{
+                                            "type": "object",
+                                            "description": "URL"
+                                        },
+                                        "available":{
+                                            "type": "boolean"
+                                        },
+                                        "city":{
+                                            "type":"string"
+                                        },
+                                        "birthDay":{
+                                            "type": "string",
+                                            "format": "dd/mm/aa"
+                                        },
+                                        "gender":{
+                                            "type":"string"
+                                        },
+                                        "sports":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "delete":{
                 "tags": ["User"],
                 "description": "Unfriend an account",
@@ -1121,6 +1590,9 @@
                                     "items":{
                                         "type": "object",
                                         "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
                                             "sport":{
                                                 "type": "string"
                                             },
@@ -1134,8 +1606,71 @@
                                             "description":{
                                                 "type": "string"
                                             },
+                                            "limitParticipants":{
+                                                "type": "integer"
+                                            },
                                             "field":{
-                                                "type": "object"
+                                                "type": "object",
+                                                "properties": {
+                                                    "compound":{
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id":{
+                                                                "type": "integer"
+                                                            },
+                                                            "name":{
+                                                                "type": "string"
+                                                            },
+                                                            "description":{
+                                                                "type": "string"
+                                                            },
+                                                            "dressinRoom":{
+                                                                "type": "string"
+                                                            },
+                                                            "parking":{
+                                                                "type":"boolean"
+                                                            },
+                                                            "schedule":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type":"object"
+                                                                }
+                                                            },
+                                                            "material":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "location":{
+                                                                "type": "object",
+                                                                "format": "Pair<Float,Float>"
+                                                            },
+                                                            "picture":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "name":{
+                                                        "type": "integer"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "participants":{
+                                                "type": "array",
+                                                "items":{
+                                                    "description": "userId",
+                                                    "type": "integer"
+                                                }
                                             }
                                         }
                                     }
@@ -1175,25 +1710,8 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "type": "object",
-                                "properties": {
-                                    "sport":{
-                                        "type": "string"
-                                    },
-                                    "startDate":{
-                                        "type":"string",
-                                        "format": "dd/mm/aa"
-                                    },
-                                    "name":{
-                                        "type": "string"
-                                    },
-                                    "description":{
-                                        "type": "string"
-                                    },
-                                    "field":{
-                                        "type": "object"
-                                    }
-                                }
+                                "type": "integer",
+                                "description": "userId"
                             }
                         }
                     }
@@ -1250,7 +1768,7 @@
                             "minimum": 0
                         }
                     }
-                    ],
+                ],
                 "responses":{
                     "204":{
                         "description": "Delete specified event with success"
@@ -1281,12 +1799,430 @@
             }
         },
         "/feed": {
+            "get":{
+                "tags": ["User"],
+                "description": "Get all posts",
+                "parameters": [],
+                "responses":{
+                    "200":{
+                        "description": "Posts obtain with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "id":{
+                                            "type": "integer"
+                                        },
+                                        "posts":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "description":{
+                                                        "type": "string"
+                                                    },
+                                                    "date":{
+                                                        "type": "string",
+                                                        "format": "dd/mm/aa"
+                                                    },
+                                                    "pictures":{
+                                                        "type": "object",
+                                                        "format": "URL"
+                                                    },
+                                                    "likes":{
+                                                        "type": "integer"
+                                                    },
+                                                    "comments":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id":{
+                                                                    "type": "integer"
+                                                                },
+                                                                "text":{
+                                                                    "type": "string"
+                                                                },
+                                                                "date":{
+                                                                    "type": "string",
+                                                                    "format": "dd/mm/aa"
+                                                                },
+                                                                "likes":{
+                                                                    "type": "integer"
+                                                                },
+                                                                "users":{
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "id":{
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "fName":{
+                                                                            "type": "string"
+                                                                        },
+                                                                        "lName":{
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts":{
+            "post":{
+                "tags": ["User"],
+                "description": "Create a post",
+                "parameters": [],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "date":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "pictures":{
+                                        "type": "object",
+                                        "format": "URL"
+                                    },
+                                    "likes":{
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Post created with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Post created with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/likes":{
+            "put":{
+                "tags": ["User"],
+                "description": "Like a specific post",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the post to like",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "likes":{
+                                        "type": "integer",
+                                        "description": "add 1 to the likes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "Post liked",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Post liked"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments":{
+            "post":{
+                "tags": ["User"],
+                "description": "Create a comment in a specific post",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the post to comment",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "comments":{
+                                        "type": "object",
+                                        "properties": {
+                                            "text":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string",
+                                                "format": "dd/mm/aa"
+                                            },
+                                            "likes":{
+                                                "type": "integer"
+                                            },
+                                            "users":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "fName":{
+                                                        "type": "string"
+                                                    },
+                                                    "lName":{
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Comment created with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Comment created with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments/{commentId}/likes":{
+            "put":{
+                "tags": ["User"],
+                "description": "Like a comment in a specific post",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the post where is the comment",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "commentId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the comment to like",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "likes":{
+                                        "type": "integer",
+                                        "description": "add 1 to the likes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "Comment liked",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Comment liked"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "/{friendId}/messages" : {
             "get":{
                 "tags": ["User"],
-                "description": "Get all messages",
+                "description": "Get all messages for a specific friend",
                 "parameters": [
                     {
                         "name": "friendId",
@@ -1310,6 +2246,9 @@
                                     "items":{
                                         "type": "object",
                                         "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
                                             "text":{
                                                 "type": "string"
                                             },
@@ -1350,7 +2289,7 @@
             }, 
             "post":{
                 "tags": ["User"],
-                "description": "Send a message",
+                "description": "Send a message to a specific friend",
                 "parameters": [
                     {
                         "name": "friendId",
@@ -1423,13 +2362,210 @@
         "/{firendId}/messages/{messageId}":{
             "delete":{
                 "tags": ["User"],
-                "description": "Send a message",
+                "description": "Delete a message",
                 "parameters": [
                     {
                         "name": "friendId",
                         "in": "path",
                         "required": true,
                         "description": "The id of the friend to chat",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "messageId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the message to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "204":{
+                        "description": "Messages deleted with success"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }  
+        },
+        "/{groupId}/messages" : {
+            "get":{
+                "tags": ["User"],
+                "description": "Get all messages for specific group",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the group to get",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "200":{
+                        "description": "Messages obtain with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
+                                            "text":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string",
+                                                "format": "dd/mm/aa"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }, 
+            "post":{
+                "tags": ["User"],
+                "description": "Send a message",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the group to send",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "text":{
+                                        "type": "string"
+                                    },
+                                    "date":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Messages send with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Messages send with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{groupId}/messages/{messageId}":{
+            "delete":{
+                "tags": ["User"],
+                "description": "Delete a message in the group",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the group to chat",
                         "schema":{
                             "type": "integer",
                             "format": "int64",

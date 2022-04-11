@@ -9,5 +9,6 @@ data class Event(
     val name : String,
     val sport : String,
     val description : String,
-    val participants : List<User>
+    val participants : List<User>,
+    val limitParticipants : Int
 )

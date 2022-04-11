@@ -32,7 +32,7 @@ class NavLog extends React.Component {
                 <button class="dropbtn " onClick={myFunction}><FaSortDown className="rightSide"></FaSortDown></button>
                 <div class="dropdown-content" id="myDropdown">
                     <a href="#"><FaUserAlt></FaUserAlt> Perfil</a>
-                    <a href="#"><RiSettings5Fill></RiSettings5Fill> Definições</a>
+                    <a href="/contacts"><RiSettings5Fill></RiSettings5Fill> Contacts</a>
                     <a href="#"><FiLogOut></FiLogOut> LogOut</a>
                 </div>
             </div> 

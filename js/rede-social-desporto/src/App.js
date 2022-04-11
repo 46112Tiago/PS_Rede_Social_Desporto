@@ -15,6 +15,7 @@ import Map from './Components/Map/Map';
 import Events from './Components/Events/Events';
 import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
+import Contacts from './Components/Contacts/Contacts';
 
 
 
@@ -32,7 +33,7 @@ class App extends Component {
             <Route path='/events' element={<Events></Events>}></Route>
             <Route path='/signUp' element={<SignUp></SignUp>}></Route>
             <Route path='/logIn' element={<LogIn></LogIn>}></Route>
-
+            <Route path='/contacts' element={<Contacts></Contacts>}></Route>
 
           </Routes>
 
