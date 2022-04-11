@@ -1,5 +1,6 @@
 package com.ps.demo.data
 
+import java.net.URL
 import java.sql.Blob
 import java.sql.Date
 
@@ -9,13 +10,13 @@ data class User(
     val lName : String,
     val city : String,
     val bDay : Date,
-    val profilePic : Blob,
+    val profilePic : URL,
     val email : String,
     val available : Boolean,
     val sports : List<String>,
     val gender : String,
-    val groupsId : List<Int>,
-    val friendsId : List<Int>,
-    val eventsId : List<Int>,
+    val groups : List<Group>,
+    val friends : List<User>,
+    val events : List<Event>,
 
     )
