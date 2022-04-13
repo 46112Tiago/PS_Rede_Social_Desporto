@@ -1,5 +1,6 @@
 import React from 'react';
 import './LogIn.css'
+import LoginButton from '../SignInButton';
 
 class LogIn extends React.Component {
     constructor(props) {
@@ -34,6 +35,8 @@ class LogIn extends React.Component {
                     <input id='subBtn' className='btn' type="submit" value="Confirmar" />
                     <a id='logInBtn' className='btn' href='../signUp'> Ainda não possui conta </a>
                   </form>
+                  <br/>
+                  <LoginButton></LoginButton>
               </div>
         </div>
       );

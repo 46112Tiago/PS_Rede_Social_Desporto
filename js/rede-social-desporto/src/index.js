@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+     <Auth0Provider
+          domain="dev-7xsir3ai.eu.auth0.com"
+          clientId="eG9fFbcWlzOLUqMg69ZGpMg4iZ6YQfnn"
+          redirectUri={"https://localhost:3000/events"}
+        >
+          <App />
+        </Auth0Provider>
+          
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -15,7 +15,7 @@ import Map from './Components/Map/Map';
 import Events from './Components/Events/Events';
 import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
-
+import { use } from 'express/lib/application';
 
 
 class App extends Component {
@@ -23,22 +23,23 @@ class App extends Component {
   render(){
     return(
       <Router>
-        <div className="App">       
-          <NavLog></NavLog>
-          <SearchBar></SearchBar>
-          <Routes>
-            <Route path='/' element={<Home></Home>}></Route>
-            <Route path='/map' element={<Map></Map>}></Route>
-            <Route path='/events' element={<Events></Events>}></Route>
-            <Route path='/signUp' element={<SignUp></SignUp>}></Route>
-            <Route path='/logIn' element={<LogIn></LogIn>}></Route>
-
-
-          </Routes>
-
+       
+          <div className="App">       
+              <NavLog></NavLog>
+              <SearchBar></SearchBar>                          
+              <Routes>
+                
+                <Route path='/' element={<Home></Home>}></Route>
+                <Route path='/map' element={<Map></Map>}></Route>
+                <Route path='/events' element={<Events></Events>}></Route>
+                <Route path='/signUp' element={<SignUp></SignUp>}></Route>
+                <Route path='/logIn' element={<LogIn></LogIn>}></Route>
+              </Routes>          
           <Footer/>
-        </div>
+          </div>
       </Router>
       );
   };
+
+  
 } export default App;
