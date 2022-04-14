@@ -1,0 +1,80 @@
+#containerProfile {
+    display: flex;
+    height: 550px;
+}
+
+#leftSide {
+    flex-direction:row ;
+    justify-content: center;
+    min-width: 20%;
+    width: 30%;
+    background-color:whitesmoke ;
+    opacity: 0.9;
+    height: 100%;
+    border-right: solid rgb(75, 69, 69) 3px;
+}
+
+#profilePicDiv {
+    margin-top: 15%;
+    margin-bottom: 20%;
+    height: 100px;
+}
+
+.rowLeft {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#profilePic {
+    border: solid #333 1px;
+    border-radius: 100%;
+}
+
+#rightSide {
+    height: 100%;
+    width: 70%;
+    background-color:rgb(173, 169, 169) ;
+    opacity: 0.9;
+    overflow-y: scroll;
+}
+
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;  
+}
+
+.rowRight {
+    margin-left: 5%;
+}
+
+.anchorDiv {
+    display: flex;
+    justify-content: center;    
+}
+
+.anchorBtn {
+    border-radius: 20px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    background-color: aliceblue;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 10px;      
+}
+
+.anchorBtn:hover {
+    background-color: #333;
+    color: aliceblue;
+}
+
+.anchorBtn:active {
+    background-color: aliceblue;
+    color: #333;
+}
+
+

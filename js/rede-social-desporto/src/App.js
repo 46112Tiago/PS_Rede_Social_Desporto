@@ -16,8 +16,7 @@ import Events from './Components/Events/Events';
 import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
 import Contacts from './Components/Contacts/Contacts';
-
-
+import Profile from './Components/Profile/StaticProfile/StaticProfile';
 
 class App extends Component {
 
@@ -26,7 +25,6 @@ class App extends Component {
       <Router>
         <div className="App">       
           <NavLog></NavLog>
-          <SearchBar></SearchBar>
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/map' element={<Map></Map>}></Route>
@@ -34,6 +32,7 @@ class App extends Component {
             <Route path='/signUp' element={<SignUp></SignUp>}></Route>
             <Route path='/logIn' element={<LogIn></LogIn>}></Route>
             <Route path='/contacts' element={<Contacts></Contacts>}></Route>
+            <Route path='/profile' element={<Profile></Profile>}></Route>
 
           </Routes>
 
