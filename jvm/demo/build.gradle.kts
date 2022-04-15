@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.plugin.statistics.ReportStatisticsToElasticSearch.url
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -13,14 +14,19 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	compileOnly("org.jdbi:jdbi3-spring4:3.9.1")
+	compileOnly("org.jdbi:jdbi3-sqlobject:3.9.1")
+	compileOnly("org.jdbi:jdbi3-postgres:3.9.1")
+	compileOnly("org.jdbi:jdbi3-kotlin-sqlobject:3.2.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -30,6 +36,8 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+/*
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+*/

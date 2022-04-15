@@ -1,4 +1,4 @@
-package com.ps.demo.data
+package com.ps.data
 
 import java.net.URL
 

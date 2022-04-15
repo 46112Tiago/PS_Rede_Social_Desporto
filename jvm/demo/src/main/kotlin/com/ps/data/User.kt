@@ -1,7 +1,6 @@
-package com.ps.demo.data
+package com.ps.data
 
 import java.net.URL
-import java.sql.Blob
 import java.sql.Date
 
 data class User(

@@ -1,4 +1,4 @@
-package com.ps.demo.data
+package com.ps.data
 
 data class Review(
     val id : Int,
