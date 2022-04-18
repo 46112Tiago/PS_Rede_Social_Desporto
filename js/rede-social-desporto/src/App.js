@@ -17,6 +17,8 @@ import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
 import Contacts from './Components/Contacts/Contacts';
 import Profile from './Components/Profile/StaticProfile/StaticProfile';
+import ProfileSearch from './Components/ProfileSearch/ProfileSearch';
+import UserEvent from './Components/UserEvents/UserEvent';
 
 class App extends Component {
 
@@ -33,7 +35,8 @@ class App extends Component {
             <Route path='/logIn' element={<LogIn></LogIn>}></Route>
             <Route path='/contacts' element={<Contacts></Contacts>}></Route>
             <Route path='/profile' element={<Profile></Profile>}></Route>
-
+            <Route path='/profileSearch' element={<ProfileSearch></ProfileSearch>}></Route>
+            <Route path='/userEvents' element={<UserEvent></UserEvent>}></Route>
           </Routes>
 
           <Footer/>

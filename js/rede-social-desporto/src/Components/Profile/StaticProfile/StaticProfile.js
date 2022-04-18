@@ -1,6 +1,6 @@
 import React from 'react';
 import './StaticProfile.css'
-import { FaBirthdayCake } from 'react-icons/fa';
+import EditModal from '../EditProfile/EditModal';
 
 class StaticProfile extends React.Component {
   
@@ -29,7 +29,7 @@ class StaticProfile extends React.Component {
               <h2 className='title'>Editar</h2>
               <p className='rowRight'>Edite os seus dados e interesses.</p>
               <div className='anchorDiv'>
-                <a href='/edit' className='anchorBtn'>Edite Agora</a>
+                <EditModal></EditModal>
               </div>
 
               <hr></hr>
