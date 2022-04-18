@@ -1,3 +1,8 @@
+html, body, #app, #app>div {
+  height: 100%
+}
+
+
 body {
   background-image: url('./assets/images/sports_wpp2.webp');
   background-attachment: fixed;
@@ -16,3 +21,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+}
+
+
