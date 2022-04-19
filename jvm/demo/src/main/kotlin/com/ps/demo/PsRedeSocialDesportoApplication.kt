@@ -31,7 +31,7 @@ class JdbiConfig() {
 	@Bean
 	fun jdbi(): Jdbi? {
 		var jdbi : Jdbi? = null
-		val password = "postgres"
+		val password = System.getenv("PostgresPassword")
 		try{
 			jdbi = Jdbi.create("jdbc:postgresql://localhost:5432/postgres","postgres",password)
 				.installPlugins()
@@ -40,9 +40,6 @@ class JdbiConfig() {
 				.installPlugin(KotlinSqlObjectPlugin())
 		} catch (e : Exception) {e.printStackTrace()}
 
-//		jdbi!!.useHandleUnchecked {
-//				handle : Handle -> handle.execute("Create table test (id int primary key)")
-//		}
 
 		return jdbi
 	}
