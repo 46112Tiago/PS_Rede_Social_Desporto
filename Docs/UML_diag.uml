@@ -15,10 +15,14 @@ class Event {
     val id : Int
     val field : Field
     val startDate : Date
+    val plannedFinishDate : Date
     val name : String
     val sport : String
     val description : String
     val participants : List<User>
+    val limitParticipants : Int
+    val creator : User
+    val active : Boolean
 }
 
 class Field {
@@ -40,6 +44,13 @@ abstract class Message {
    val id:Int
    val text : String
    val date : Date
+}
+
+class GroupMessage {
+    val id : Int
+    val text : String
+    val date : Date
+    val receiver : Group
 }
 
 class PrivateMessage {
@@ -106,7 +117,8 @@ Field "1" o-- "many" Review
 Event "many" --o "many" User
 User "1" o-- "many" Post
 User "1" --> "many" PrivateMessage : Depends
-Group --|> Message : Extends
+GroupMessage --|> Message : Extends
+Group "1" --> "many" GroupMessage : Depends
 Post "many" --* "many" Feed
 Post "1" o-- "many" Comment
 @enduml
