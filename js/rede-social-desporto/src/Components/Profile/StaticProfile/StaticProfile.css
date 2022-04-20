@@ -1,80 +1,161 @@
-#containerProfile {
-    display: flex;
-    height: 550px;
-}
-
-#leftSide {
-    flex-direction:row ;
-    justify-content: center;
-    min-width: 20%;
-    width: 30%;
-    background-color:whitesmoke ;
-    opacity: 0.9;
+#Profile {
     height: 100%;
-    border-right: solid rgb(75, 69, 69) 3px;
-}
-
-#profilePicDiv {
-    margin-top: 15%;
-    margin-bottom: 20%;
-    height: 100px;
-}
-
-.rowLeft {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-#profilePic {
-    border: solid #333 1px;
+#containerProfile {
+    height: 70%;
+    width: 70%;
+    border: 5px rgb(112, 105, 105) solid;
+    display: flex;
+}
+
+#leftSide {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+}
+
+#imageProfile {
+    height: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#photoProfile {
     border-radius: 100%;
+    width: 35%;
+    height: 50%;
+}
+
+#nameProfile {
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #rightSide {
     height: 100%;
-    width: 70%;
-    background-color:rgb(173, 169, 169) ;
-    opacity: 0.9;
-    overflow-y: scroll;
-}
-
-.title {
-    width: 100%;
+    width: 60%;
     display: flex;
-    justify-content: center;  
-}
-
-.rowRight {
-    margin-left: 5%;
-}
-
-.anchorDiv {
+    background-color: rgb(119, 137, 125);
     display: flex;
-    justify-content: center;    
+    flex-direction: column;
 }
 
-.anchorBtn {
-    border-radius: 20px;
-    width: 200px;
+#infoProfile {
+    height: 70%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+#btnProfile {
+    height: 30%;
     display: flex;
     justify-content: center;
-    text-decoration: none;
-    color: #333;
-    background-color: aliceblue;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    padding: 10px;      
-}
-
-.anchorBtn:hover {
-    background-color: #333;
-    color: aliceblue;
-}
-
-.anchorBtn:active {
-    background-color: aliceblue;
-    color: #333;
+    align-items: center;
+    flex-direction: row;
 }
 
 
+
+
+
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.wrapper .icon {
+    position: relative;
+    background: #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+  }
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #ffffff;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #ffffff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+ 
+  .wrapper .edit:hover,
+  .wrapper .edit:hover .tooltip,
+  .wrapper .edit:hover .tooltip::before {
+    background: #916d0b;
+    color: #fefafa;
+  }
+
+  .wrapper .looking:hover,
+  .wrapper .looking:hover .tooltip,
+  .wrapper .looking:hover .tooltip::before {
+    background: #09790f;
+    color: #fbf7f7;
+  }
+  
+  .wrapper .friends:hover,
+  .wrapper .friends:hover .tooltip,
+  .wrapper .friends:hover .tooltip::before {
+    background: #1472d0;
+    color: #eee3e3;
+  }
+  
+  .wrapper .events:hover,
+  .wrapper .events:hover .tooltip,
+  .wrapper .events:hover .tooltip::before {
+    background: #9a0606;
+    color: #f5eeee;
+  }
+
+  .friends {
+      margin-left: 70px;
+      margin-right: 70px;
+  }
+  
+  
+  
+  

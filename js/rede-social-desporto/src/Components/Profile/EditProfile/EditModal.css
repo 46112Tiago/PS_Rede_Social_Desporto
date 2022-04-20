@@ -179,3 +179,10 @@
     background-color: #c0b5b5;
     color: rgb(29, 27, 27);
 }
+
+.anchorBtn {
+    background-color: #fff5f5;
+    border-radius: 100%;
+    width: 20px;
+    height: 20%;
+}

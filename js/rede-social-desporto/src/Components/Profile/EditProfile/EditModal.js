@@ -1,5 +1,7 @@
 import React from 'react';
 import './EditModal.css'
+import {MdEdit} from 'react-icons/md'
+
 
 class EditModal extends React.Component {
   
@@ -7,9 +9,9 @@ class EditModal extends React.Component {
       return (
           
         <div>
-            <a href='#demo-modal' className='anchorBtn'>Editar</a>
-            <div id="demo-modal" class="modal">
-                <div class="modal__content">
+            <a href='#demo-modal' className='anchorBtn'><MdEdit></MdEdit></a>
+            <div id="demo-modal" className="modal">
+                <div className="modal__content">
                     <h1>Edição Perfil</h1>
                     <form id='editForm'>
                         <label>Cidade:</label>
@@ -31,11 +33,11 @@ class EditModal extends React.Component {
                         <br/><br/>
                         <label>Available:</label>
                         <br/><br/>
-                        <div class="toggle-button-cover">
-                                <div class="button r" id="button">
-                                <input type="checkbox" class="checkbox" value={'yes'}/>
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
+                        <div className="toggle-button-cover">
+                                <div claclassNamess="button r" id="button">
+                                <input type="checkbox" className="checkbox" value={'yes'}/>
+                                <div className="knobs"></div>
+                                <div className="layer"></div>
                             </div>
                         </div>
                         <br/><br/>
@@ -44,7 +46,7 @@ class EditModal extends React.Component {
                         </div>
                     </form>
 
-                <a href="#" class="modal__close">&times;</a>
+                <a href="#" className="modal__close">&times;</a>
                 </div>
             </div>
         </div>
