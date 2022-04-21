@@ -4,6 +4,7 @@ import com.ps.data.Event
 import com.ps.data.Test
 import com.ps.demo.events.EventsDAO
 import com.ps.demo.events.EventsRepositoryInterface
+import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.withExtensionUnchecked
 import org.springframework.beans.factory.annotation.Autowired
@@ -27,9 +28,9 @@ class TestRepoImplementation @Autowired constructor(var jdbi: Jdbi) : TestServic
         return toReturn
     }
 
-    override fun deleteTest() {
-        jdbi.withExtensionUnchecked(TestDAO::class) { dao: TestDAO ->
-            dao.deleteTest()
+    override fun deleteTest(testId : Int) {
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate("DELETE FROM test WHERE id = ?").bind(0, testId).execute()
         }
     }
 

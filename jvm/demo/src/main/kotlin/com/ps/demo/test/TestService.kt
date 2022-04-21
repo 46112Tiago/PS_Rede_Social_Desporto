@@ -9,7 +9,7 @@ interface TestService {
 
     fun getTestById() : Test?
 
-    fun deleteTest()
+    fun deleteTest(testId : Int)
 
     fun insertTest() : Int
 

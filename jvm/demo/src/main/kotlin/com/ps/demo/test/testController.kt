@@ -23,9 +23,9 @@ class testController @Autowired constructor (val testRepo : TestRepoImplementati
         return ResponseEntity(test, HttpStatus.OK)
     }
 
-    @DeleteMapping("/test")
-    fun deleteTest() : ResponseEntity<Any?> {
-        testRepo.deleteTest()
+    @DeleteMapping("/test/{testId}")
+    fun deleteTest(@PathVariable("testId") testId : Int) : ResponseEntity<Any?> {
+        testRepo.deleteTest(testId)
         return ResponseEntity(HttpStatus.OK)
     }
 
