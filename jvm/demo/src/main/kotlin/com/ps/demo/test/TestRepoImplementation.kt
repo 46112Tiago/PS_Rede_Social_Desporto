@@ -6,25 +6,29 @@ import com.ps.demo.events.EventsDAO
 import com.ps.demo.events.EventsRepositoryInterface
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
+import org.jdbi.v3.core.kotlin.mapTo
 import org.jdbi.v3.core.kotlin.withExtensionUnchecked
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
 class TestRepoImplementation @Autowired constructor(var jdbi: Jdbi) : TestService {
-
     override fun getTest(): List<Test> {
+        val toReturn = jdbi.withHandle<List<Test>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select * from test ").mapTo<Test>().list()
 
-        val toReturn = jdbi.withExtensionUnchecked(TestDAO::class) { dao: TestDAO ->
-            dao.getTest()
         }
+
         return toReturn
     }
 
+
     override fun getTestById(): Test? {
-        val toReturn = jdbi.withExtensionUnchecked(TestDAO::class) { dao: TestDAO ->
-            dao.getTestById()
+        val toReturn = jdbi.withHandle<Test?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select * from test where id = 1").mapTo<Test>().one()
+
         }
+
         return toReturn
     }
 
@@ -35,9 +39,14 @@ class TestRepoImplementation @Autowired constructor(var jdbi: Jdbi) : TestServic
     }
 
     override fun insertTest(): Int {
-        val toReturn = jdbi.withExtensionUnchecked(TestDAO::class) { dao: TestDAO ->
-            dao.insertTest()
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into test(id) values(1)").execute()
         }
-        return toReturn
+        val toReturn = jdbi.withHandle<Test?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select * from test order by id desc").mapTo<Test>().one()
+
+        }
+        return toReturn.id!!
     }
+
 }
