@@ -18,7 +18,7 @@ CREATE TABLE FIELD(
     compoundId INT,
     name VARCHAR(32),
     pictures VARCHAR(100)[],
-    PRIMARY KEY(id),
+    PRIMARY KEY(id,compoundId),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)   
 );
 
@@ -32,11 +32,16 @@ CREATE TABLE USER_PROFILE(
     email VARCHAR(32),
     available BOOLEAN,
     gender VARCHAR(32),
-    friends INT[],
     PRIMARY KEY(id)
-    FOREIGN KEY(friends) REFERENCES USER(id)
-
 );
+
+CREATE TABLE FRIENDS(
+    id SERIAL,
+    userId INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
+);
+
 
 CREATE TABLE PRIVATE_MESSAGE(
     id SERIAL,
@@ -76,17 +81,20 @@ CREATE TABLE GROUP_MESSAGE(
     FOREIGN KEY(senderId) REFERENCES USER_PROFILE(id)
 );
 
+
 CREATE TABLE SPORTS(
     id SERIAL,
     userId INT,
     name VARCHAR(32),
-    PRIMARY KEY(id),
+    PRIMARY KEY(id,userId),
     FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
 );
+
 
 CREATE TABLE EVENT(
     id serial PRIMARY KEY,
     fieldId INT,
+    compoundId INT,
     startDate TIMESTAMP,
 	plannedfinishDate TIMESTAMP,
     name VARCHAR(32),
@@ -94,11 +102,12 @@ CREATE TABLE EVENT(
     description VARCHAR(64),
 	limitParticipants INT,
 	creatorId INT,
-	active BOOLEAN
-    FOREIGN KEY(fieldId) REFERENCES FIELD(id)
-    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(id)
+	active BOOLEAN,
+    FOREIGN KEY(fieldId,compoundId) REFERENCES FIELD(id,compoundId),
+    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(id),
     FOREIGN KEY(creatorId,sportId) REFERENCES SPORTS(userId,id)
 );
+
 
 CREATE TABLE EVENT_PARTICIPANT(
     id SERIAL,
@@ -120,6 +129,8 @@ CREATE TABLE POST(
     FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
 );
 
+
+
 CREATE TABLE POST_COMMENT(
     id SERIAL,
     postId INT,
@@ -131,6 +142,7 @@ CREATE TABLE POST_COMMENT(
     FOREIGN KEY(commentCreatorId) REFERENCES USER_PROFILE(id)
 );
 
+begin;
 CREATE TABLE REVIEW(
     id INT,
     fieldId INT,
@@ -143,7 +155,7 @@ CREATE TABLE REVIEW(
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id),
     FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
 );
-
+commit;
 CREATE TABLE SCHEDULE(
     id SERIAL,
     compoundId INT,
@@ -151,7 +163,7 @@ CREATE TABLE SCHEDULE(
     openingHour TIME,
     closingHour TIME,
     PRIMARY KEY(id),
-    FOREIGN KEY(compoundId)
+    FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)
 );
 
 commit;
