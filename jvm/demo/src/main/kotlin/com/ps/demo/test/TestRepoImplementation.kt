@@ -1,13 +1,9 @@
 package com.ps.demo.test
 
-import com.ps.data.Event
 import com.ps.data.Test
-import com.ps.demo.events.EventsDAO
-import com.ps.demo.events.EventsRepositoryInterface
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
-import org.jdbi.v3.core.kotlin.withExtensionUnchecked
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 

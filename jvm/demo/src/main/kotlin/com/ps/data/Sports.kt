@@ -1,7 +1,5 @@
 package com.ps.data
 
-package com.ps.data
-
 data class Sports(
     val id : Int,
     val user : User,
