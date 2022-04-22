@@ -165,5 +165,22 @@ CREATE TABLE SCHEDULE(
     PRIMARY KEY(id),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)
 );
+begin;
+
+CREATE TABLE FEED(
+    id SERIAL,
+    userid Int,
+    PRIMARY KEY(id),
+    FOREIGN KEY(userid) REFERENCES USER_PROFILE(id)
+);
+begin;
+CREATE TABLE FEED_POST(
+    id SERIAL,
+    postid Int,
+    feedid Int,
+    PRIMARY KEY (id,postid),
+    FOREIGN KEY(postid) REFERENCES  POST(id),
+    FOREIGN KEY(feedid) REFERENCES  FEED(feed_id)
+);
 
 commit;

@@ -2,20 +2,23 @@ package com.ps.data
 
 import java.net.URL
 import java.sql.Date
+import java.sql.Timestamp
 
-data class User(
-    val id : Int,
-    val fName : String,
-    val lName : String,
-    val city : String,
-    val bDay : Date,
-    val profilePic : URL,
-    val email : String,
-    val available : Boolean,
-    val sports : List<String>,
-    val gender : String,
-    val groups : List<Group>,
-    val friends : List<User>,
-    val events : List<Event>,
+data class User constructor(
+    val id : Int?,
+    val firstname : String?,//= "unknown",
+    val lastname : String?, //= "unknown",
+    val city : String?, //= "unknown",
+    val birthday : Timestamp?, //= Date(20000603),
+    val profilepic : String?,   //? = "unknown",
+    val email : String?, //= "unknown",
+    val available : Boolean?, //= false,
+    val gender : String?, //= "unknown",
+    //TODO
+    //val sports : List<String>?, //= listOf(),
+    ///val groups : List<Group>?, //= listOf(),
+    //val friends : List<User>?, //= listOf(),
+    //val events : List<Event>? //= listOf(),
 
     )
+
