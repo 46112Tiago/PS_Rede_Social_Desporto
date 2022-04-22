@@ -3,26 +3,30 @@ package com.ps.demo.events
 import com.ps.data.Event
 import org.jdbi.v3.core.Handle
 import org.springframework.stereotype.Repository
-
 import org.jdbi.v3.core.Jdbi
-import org.jdbi.v3.core.kotlin.useHandleUnchecked
-import org.jdbi.v3.core.kotlin.withExtension
-import org.jdbi.v3.core.kotlin.withExtensionUnchecked
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Bean
-import org.springframework.stereotype.Component
+import org.jdbi.v3.core.kotlin.mapTo
 
 
 @Repository
-class EventRepositoryImplementation @Autowired constructor(jdbi: Jdbi) : EventsRepositoryInterface {
+class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
 
+    override fun getEvents(): List<Event>? {
 
-    val jdbi : Jdbi = jdbi
+        val toReturn = jdbi.withHandle<List<Event>?,RuntimeException> {
+            handle : Handle -> handle.createQuery("Select * from Event")
+                .mapTo<Event>().list()
+        }
+        return toReturn
+    }
 
-    override fun getEvent(): Event {
+    override fun createEvent(): Int {
+        val toReturn = jdbi.withHandle<Int,RuntimeException> {
+            handle : Handle ->
 
-        val toReturn = jdbi.withExtensionUnchecked(EventsDAO::class) { dao: EventsDAO ->
-            dao.getEvent()
+            handle.createUpdate("").execute()
+
+            handle.createQuery("Select id from Event order by Desc")
+                .mapTo<Int>().one()
         }
         return toReturn
     }

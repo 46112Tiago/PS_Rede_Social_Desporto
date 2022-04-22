@@ -15,16 +15,12 @@ import javax.servlet.http.HttpServletResponse
 
 
 @RestController
-@RequestMapping
-@Component
-class EventController @Autowired constructor(eventRepo : EventRepositoryImplementation) {
+@RequestMapping("/event")
+class EventController (val eventRepo : EventRepositoryImplementation) {
 
-    val eventRepo : EventRepositoryImplementation = eventRepo
-
-
-    @GetMapping("/events")
-    fun getEvent() : ResponseEntity<Any?> {
-        val event : Event = eventRepo.getEvent()
+    @GetMapping()
+    fun getEvents() : ResponseEntity<Any?> {
+        val event : List<Event>? = eventRepo.getEvents()
         return ResponseEntity(event,HttpStatus.OK)
     }
 

@@ -8,6 +8,7 @@ data class Field(
     val id : Int,
     val compound : Compound,
     val name : String,
-    val pictures : List<URL>
+    val pictures : List<URL>,
+    val accepted : Boolean
 )
 

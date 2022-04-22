@@ -13,5 +13,6 @@ data class Compound(
         val material : List<String>,
         val dressingRoom : Char, //M / F / A / N
         val parking : Boolean,
-        val schedule : List<Date>
+        val schedule : List<Date>,
+        val accepted : Boolean
 )
