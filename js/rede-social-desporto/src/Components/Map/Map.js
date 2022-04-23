@@ -32,8 +32,15 @@ function Map() {
       <div id='suggestion'>
         <h2 id='suggestionTxt'>Suggestions:</h2>
         <br/>
-        <button className='btnSug' id='compoundBtn'>COMPOUND</button>
-        <button className='btnSug' id='fieldBtn'>FIELD</button>
+        <div id='suggestionBtn'>
+          <div id='suggestionBtnLeft'>
+            <button className='btnSug' id='compoundBtn'>COMPOUND</button>
+          </div>
+          <div id='suggestionBtnRight'>
+            <button className='btnSug' id='fieldBtn'>FIELD</button>
+          </div>
+        </div>
+
       </div>
     </div>
 
