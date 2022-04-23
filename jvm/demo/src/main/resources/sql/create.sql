@@ -10,14 +10,16 @@ CREATE TABLE COMPOUND(
     material VARCHAR(32)[16],
     dressingRoom CHAR,
     parking BOOLEAN,
-    pictures VARCHAR(100)[]
+    pictures VARCHAR(100)[],
+    accepted BOOLEAN
 );
 
 CREATE TABLE FIELD(
-    id INT,
+    id SERIAL,
     compoundId INT,
     name VARCHAR(32),
     pictures VARCHAR(100)[],
+    accepted BOOLEAN,
     PRIMARY KEY(id,compoundId),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)   
 );
@@ -84,6 +86,13 @@ CREATE TABLE GROUP_MESSAGE(
 
 CREATE TABLE SPORTS(
     id SERIAL,
+    name VARCHAR(32),
+    PRIMARY KEY(id)
+);
+
+
+CREATE TABLE USER_SPORTS(
+    id SERIAL,
     userId INT,
     name VARCHAR(32),
     PRIMARY KEY(id,userId),
@@ -137,7 +146,7 @@ CREATE TABLE POST_COMMENT(
     commentDate TIMESTAMP,
     comment VARCHAR(128),
     commentCreatorId INT,
-    PRIMARY KEY(id),
+    PRIMARY KEY(id,postId),
     FOREIGN KEY(postId) REFERENCES POST(id),
     FOREIGN KEY(commentCreatorId) REFERENCES USER_PROFILE(id)
 );
@@ -162,7 +171,7 @@ CREATE TABLE SCHEDULE(
     weekday CHAR,
     openingHour TIME,
     closingHour TIME,
-    PRIMARY KEY(id),
+    PRIMARY KEY(id,compoundId),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)
 );
 begin;

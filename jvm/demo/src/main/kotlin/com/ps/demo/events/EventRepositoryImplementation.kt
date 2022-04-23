@@ -5,30 +5,129 @@ import org.jdbi.v3.core.Handle
 import org.springframework.stereotype.Repository
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @Repository
 class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
 
-    override fun getEvents(): List<Event>? {
+    override fun getActiveEvents(): List<Event>? {
 
-        val toReturn = jdbi.withHandle<List<Event>?,RuntimeException> {
-            handle : Handle -> handle.createQuery("Select * from Event")
-                .mapTo<Event>().list()
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+        val formatted = current.format(formatter)
+
+        val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, SPORTS.name as sport " +
+                    "from EVENT JOIN SPORTS " +
+                    "ON EVENT.sportID = SPORTS.id" +
+                    "WHERE active = ? AND startDate < ?")
+                    .bind(0,true)
+                    .bind(1, formatted)
+                    .mapTo<Event>()
+                    .list()
         }
+
         return toReturn
     }
 
-    override fun createEvent(): Int {
-        val toReturn = jdbi.withHandle<Int,RuntimeException> {
-            handle : Handle ->
+    override fun getUserEvents(userId : Int,eventId: Int): List<Event>? {
 
-            handle.createUpdate("").execute()
+        val current = LocalDateTime.now()
 
-            handle.createQuery("Select id from Event order by Desc")
-                .mapTo<Int>().one()
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+        val formatted = current.format(formatter)
+
+        val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, sports.name as sport " +
+                    "from SPORTS sports JOIN EVENT event " +
+                    "ON sports.id  = event.sportID" +
+                    "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
+                    "JOIN USER_PROFILE user on eventParticipant.participantId = user.Id" +
+                    "WHERE active = ? AND startDate < ? AND user.id = ? AND event.id")
+                    .bind(0,true)
+                    .bind(1, formatted)
+                    .bind(2,userId)
+                    .bind(3,eventId)
+                    .mapTo<Event>()
+                    .list()
         }
+
         return toReturn
+    }
+
+    override fun getEventDescription(eventId: Int): String? {
+
+        val toReturn = jdbi.withHandle<Event,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select description " +
+                    "from EVENT " +
+                    "WHERE id = ?")
+                    .bind(0,eventId)
+                    .mapTo<Event>()
+                    .one()
+        }
+
+        return toReturn.description
+    }
+
+
+    override fun createEvent(event : Event): Int {
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
+                    "values(?,?,?,?,?,?,?,?,?,?)")
+                    .bind(0,event.field!!.id)
+                    .bind(1,event)
+                    .bind(2,event.startDate)
+                    .bind(3,event.plannedfinishDate)
+                    .bind(4,event.name)
+                    .bind(5,event.sport)
+                    .bind(6,event.description)
+                    .bind(7,event.limitParticipants)
+                    .bind(8,event.creator!!.id)
+                    .bind(9,true)
+                    .execute()
+        }
+        val toReturn = jdbi.withHandle<Event?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select id from EVENT " +
+                    "order by id desc")
+                    .mapTo<Event>().one()
+        }
+        return toReturn.id!!
+    }
+
+    override fun participateEvent(participantId : Int, eventId : Int): Int {
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "EVENT_PARTICIPANT(participantId,eventId) " +
+                    "values(?,?)")
+                    .bind(0,participantId)
+                    .bind(1,eventId)
+                    .execute()
+        }
+        val toReturn = jdbi.withHandle<Event?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select id from EVENT_PARTICIPANT " +
+                    "where participantId = ? and eventId = ? " +
+                    "order by id desc")
+                    .bind(0,participantId)
+                    .bind(1,eventId)
+                    .mapTo<Event>().one()
+
+        }
+        return toReturn.id!!
+    }
+
+    override fun cancelEvent(eventId : Int) {
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate(" UPDATE EVENT " +
+                    "SET active = ?" +
+                    "WHERE id = ?")
+                    .bind(0, false)
+                    .bind(1,eventId)
+                    .execute()
+        }
     }
 
 

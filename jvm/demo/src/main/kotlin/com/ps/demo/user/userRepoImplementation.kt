@@ -1,22 +1,11 @@
 package com.ps.demo.user
 
-import com.ps.demo.test.TestService
-
-
-
-
-import com.ps.data.Event
-import com.ps.data.Test
 import com.ps.data.User
-import com.ps.demo.events.EventsDAO
-import com.ps.demo.events.EventsRepositoryInterface
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
-import org.jdbi.v3.core.kotlin.withExtensionUnchecked
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
-import java.sql.Timestamp
 
 @Repository
 class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserService {
