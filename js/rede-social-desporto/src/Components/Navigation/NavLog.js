@@ -25,14 +25,14 @@ class NavLog extends React.Component {
 
     render() {
       return (
-        <div class="navbar">
+        <div className="navbar">
             <a className="leftSide" href="/">Feed</a>
             <a className="leftSide" href="/map">Mapa</a>
             <a className="leftSide" href="/events">Eventos</a>
 
             <div className="dropdown">
-                <button class="dropbtn " onClick={myFunction}><FaSortDown className="rightSide"></FaSortDown></button>
-                <div class="dropdown-content" id="myDropdown">
+                <button className="dropbtn " onClick={myFunction}><FaSortDown className="rightSide"></FaSortDown></button>
+                <div className="dropdown-content" id="myDropdown">
                     <a href="/profile"><FaUserAlt></FaUserAlt> Perfil</a>
                     <a href="/contacts"><RiSettings5Fill></RiSettings5Fill> Contacts</a>
                     <a href="#"><FiLogOut></FiLogOut> LogOut</a>

@@ -1,5 +1,6 @@
 import './App.css';
 import React,{Component} from "react";
+import ReactDOM from "react-dom/client";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,9 +19,8 @@ import LogIn from './Components/LogIn/LogIn';
 import Contacts from './Components/Contacts/Contacts';
 import Profile from './Components/Profile/StaticProfile/StaticProfile';
 
-class App extends Component {
+export default function App() {
 
-  render(){
     return(
       <Router>
         <div className="App">       
@@ -41,4 +41,4 @@ class App extends Component {
       </Router>
       );
   };
-} export default App;
+
