@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/user/{userId}")
 class SportsController(val sportsRepo : SportsRepoImplementation) {
 
-    @GetMapping
+    @GetMapping("/sports")
     fun getUserSports(@PathVariable("userId") userId : Int) : ResponseEntity<List<Sports>?> {
         val sports : List<Sports>? = sportsRepo.getUserSports(userId)
         return ResponseEntity(sports, HttpStatus.OK)
@@ -23,7 +23,7 @@ class SportsController(val sportsRepo : SportsRepoImplementation) {
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping
+    @PostMapping("/sports")
     fun addUserSport(@PathVariable("userId") userId : Int,
                              @RequestBody sports : Sports)
             : ResponseEntity<Any?> {

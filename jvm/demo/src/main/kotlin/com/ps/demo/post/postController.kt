@@ -13,10 +13,11 @@ import java.sql.Timestamp
 
 @RestController
 @RequestMapping
+
 class PostController @Autowired constructor (val postRepo : PostRepoImplementation) {
 
 
-    @GetMapping("/posts")
+    @GetMapping("/post")
     fun getPosts() : ResponseEntity<List<Post?>> {
         val groups = postRepo.getPosts()
         return ResponseEntity(groups, HttpStatus.OK)
@@ -38,12 +39,6 @@ class PostController @Autowired constructor (val postRepo : PostRepoImplementati
     fun getUserPosts(@PathVariable("userId") userId: Int) : ResponseEntity<List<Post?>> {
         val posts = postRepo.getUserPosts(userId)
         return ResponseEntity(posts,HttpStatus.OK)
-    }
-
-    @GetMapping("/post/{postId}/feed")
-    fun getPostFeed(@PathVariable("postId") postId: Int) : ResponseEntity<Feed?> {
-        val feeds = postRepo.getPostFeed(postId)
-        return ResponseEntity(feeds,HttpStatus.OK)
     }
 
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/compound/{compoundId}")
 class ReviewController(val reviewRepo : ReviewRepoImplementation) {
 
-    @GetMapping
+    @GetMapping("/review")
     fun getAllReviews(@PathVariable("postId") postId : Int) : ResponseEntity<List<Review>?> {
         val reviews : List<Review>? = reviewRepo.getAllReviews()
         return ResponseEntity(reviews, HttpStatus.OK)

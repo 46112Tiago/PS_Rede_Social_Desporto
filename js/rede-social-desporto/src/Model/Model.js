@@ -1,5 +1,5 @@
-/*
-    export const user {
+
+const user = {
     user_id : 0,
     firstname : 'fname',
     lastname : 'lname',
@@ -9,5 +9,7 @@
     email : 'test@test.com',
     available : false,
     gender : 'Gender'
-    };
-*/
+};
+
+export default user;
+

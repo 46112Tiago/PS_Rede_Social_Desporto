@@ -54,15 +54,6 @@ class PostRepoImplementation @Autowired constructor(var jdbi: Jdbi) : PostServic
         return posts
     }
 
-    override fun getPostFeed(postId: Int) : Feed? {
-        val feeds = jdbi.withHandle<Feed?, RuntimeException> { handle: Handle ->
-            handle.createQuery("Select feed_id, userid, postid from feed join feed_post on postid = ?")
-                .bind(0, postId)
-                .mapTo<Feed>().one()
-
-        }
-        return feeds
-    }
 
     override fun deletePost(postId : Int) {
 
@@ -85,7 +76,7 @@ class PostRepoImplementation @Autowired constructor(var jdbi: Jdbi) : PostServic
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into post(userid,description,postdate,likes,pictures)" +
                     " values(?,?,?,?,?)")
-                .bind(0,post.user!!.id)
+                .bind(0,post.user!!.user_id)
                 .bind(1,post.description)
                 .bind(2,post.date)
                 .bind(3,post.likes)

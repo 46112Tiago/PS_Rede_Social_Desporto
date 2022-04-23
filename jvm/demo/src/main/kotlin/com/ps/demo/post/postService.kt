@@ -17,8 +17,6 @@ interface PostService {
 
     fun getUserPosts(userId: Int) : List<Post?>
 
-    fun getPostFeed(postId: Int) : Feed?
-
     fun deletePost(postId : Int)
 
     fun insertPost(post : Post) : Int?

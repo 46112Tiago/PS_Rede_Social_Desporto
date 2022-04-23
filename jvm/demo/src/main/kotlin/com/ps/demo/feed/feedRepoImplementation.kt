@@ -39,7 +39,7 @@ class FeedRepoImplementation @Autowired constructor(var jdbi: Jdbi) : FeedServic
 
     override fun getFeedUser(feedId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery("(Select userid = ? from feed left join user_profile up on userid = up.id)")
+            handle.createQuery("(Select userid = ? from feed left join user_profile up on userid = up.user_id)")
                 .bind(0,feedId)
                 .mapTo<User>()
                 .one()
@@ -77,7 +77,7 @@ class FeedRepoImplementation @Autowired constructor(var jdbi: Jdbi) : FeedServic
     override fun insertFeed(feed : Feed): Int? {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into FEED(userid) values(?)")
-                .bind(0,feed.user?.id)
+                .bind(0,feed.user?.user_id)
                 .execute()
         }
 
@@ -85,14 +85,14 @@ class FeedRepoImplementation @Autowired constructor(var jdbi: Jdbi) : FeedServic
             handle.createQuery("Select * from USER_GROUP order by id desc").mapTo<Feed>().list().first()
 
         }
-        return toReturn.id
+        return toReturn.feed_id
     }
 
     override fun insertFeedPost(feed : Feed, post: Post): Int? {
         val postid = jdbi.useHandle<RuntimeException>{
             handle : Handle ->
             handle.createUpdate("INSERT INTO " +
-                    "POST(id, userid, description, postdate, likes, pictures) " +
+                    "POST(post_id, userid, description, postdate, likes, pictures) " +
                     "VALUES(?,?,?,?,?,?)")
                 .execute()
         }
@@ -100,7 +100,7 @@ class FeedRepoImplementation @Autowired constructor(var jdbi: Jdbi) : FeedServic
         val toReturn = jdbi.withHandle<Int?,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into FEED_POST(postid, feedid)  values(?,?)")
                 .bind(0,postid)
-                .bind(1,feed.user?.id)
+                .bind(1,feed.user?.user_id)
                 .execute()
         }
 

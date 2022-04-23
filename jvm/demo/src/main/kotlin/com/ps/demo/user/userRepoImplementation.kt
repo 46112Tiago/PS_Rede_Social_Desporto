@@ -21,7 +21,7 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
 
     override fun getUserById(userId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE where id = 1").mapTo<User>().one()
+            handle.createQuery("Select * from USER_PROFILE where user_id = 1").mapTo<User>().one()
 
         }
 
@@ -30,7 +30,7 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
 
     override fun deleteUser(userId : Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate("DELETE FROM USER_PROFILE WHERE id = ?").bind(0, userId).execute()
+            handle.createUpdate("DELETE FROM USER_PROFILE WHERE user_id = ?").bind(0, userId).execute()
         }
     }
 
@@ -48,10 +48,10 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
         }
 
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE order by id desc").mapTo<User>().list().first()
+            handle.createQuery("Select * from USER_PROFILE order by user_id desc").mapTo<User>().list().first()
 
         }
-        return toReturn.id!!
+        return toReturn.user_id!!
     }
 
 }

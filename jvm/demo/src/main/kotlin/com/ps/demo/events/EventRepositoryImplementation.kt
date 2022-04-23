@@ -22,7 +22,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, SPORTS.name as sport " +
                     "from EVENT JOIN SPORTS " +
-                    "ON EVENT.sportID = SPORTS.id" +
+                    "ON EVENT.sportID = SPORTS.userid " +
                     "WHERE active = ? AND startDate < ?")
                     .bind(0,true)
                     .bind(1, formatted)
@@ -43,9 +43,9 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, sports.name as sport " +
                     "from SPORTS sports JOIN EVENT event " +
-                    "ON sports.id  = event.sportID" +
+                    "ON sports.id  = event.sportID " +
                     "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
-                    "JOIN USER_PROFILE user on eventParticipant.participantId = user.Id" +
+                    "JOIN USER_PROFILE user on eventParticipant.participantId = user.user_id " +
                     "WHERE active = ? AND startDate < ? AND user.id = ? AND event.id")
                     .bind(0,true)
                     .bind(1, formatted)
@@ -86,7 +86,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     .bind(5,event.sport)
                     .bind(6,event.description)
                     .bind(7,event.limitParticipants)
-                    .bind(8,event.creator!!.id)
+                    .bind(8,event.creator!!.user_id)
                     .bind(9,true)
                     .execute()
         }
