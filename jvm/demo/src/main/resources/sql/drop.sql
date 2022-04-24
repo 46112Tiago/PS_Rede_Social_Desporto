@@ -1,29 +1,39 @@
 begin;
 
-drop table friends;
+drop table IF EXISTS feed_post CASCADE ;
 
-drop table private_message;
+drop table IF EXISTS feed CASCADE ;
 
-drop table group_participant;
+drop table IF EXISTS schedule CASCADE ;
 
-drop table group_message;
+drop table IF EXISTS review CASCADE ;
 
-drop table user_group;
+drop table IF EXISTS post_comment CASCADE ;
 
-drop table event_participant;
+drop table IF EXISTS post CASCADE ;
 
-drop table event;
+drop table IF EXISTS event_participant CASCADE ;
 
-drop table field;
+drop table IF EXISTS event CASCADE ;
 
-drop table compound;
+drop table IF EXISTS user_sports CASCADE ;
 
-drop table sports;
+drop table IF EXISTS sports CASCADE ;
 
-drop table post_comment;
+drop table IF EXISTS group_message CASCADE ;
 
-drop table post;
+drop table IF EXISTS group_participant CASCADE ;
 
-drop table user_profile;
+drop table IF EXISTS user_group CASCADE ;
+
+drop table IF EXISTS private_message CASCADE ;
+
+drop table IF EXISTS friends CASCADE ;
+
+drop table IF EXISTS field CASCADE ;
+
+drop table IF EXISTS compound CASCADE ;
+
+drop table IF EXISTS user_profile CASCADE ;
 
 commit;

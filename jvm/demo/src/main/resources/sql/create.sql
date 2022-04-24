@@ -25,7 +25,7 @@ CREATE TABLE FIELD(
 );
 
 CREATE TABLE USER_PROFILE(
-    id SERIAL,
+    user_id SERIAL,
     firstName VARCHAR(32),
     lastName VARCHAR(32),
     city VARCHAR(32),
@@ -34,14 +34,14 @@ CREATE TABLE USER_PROFILE(
     email VARCHAR(32),
     available BOOLEAN,
     gender VARCHAR(32),
-    PRIMARY KEY(id)
+    PRIMARY KEY(user_id)
 );
 
 CREATE TABLE FRIENDS(
     id SERIAL,
-    userId INT,
+    user_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(user_id) REFERENCES USER_PROFILE(user_id)
 );
 
 
@@ -51,8 +51,8 @@ CREATE TABLE PRIVATE_MESSAGE(
     receiverId INT,
     message VARCHAR(1024),
     PRIMARY KEY(id,senderId,receiverId),
-    FOREIGN KEY(senderId) REFERENCES USER_PROFILE(id),
-    FOREIGN KEY(receiverId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(senderId) REFERENCES USER_PROFILE(user_id),
+    FOREIGN KEY(receiverId) REFERENCES USER_PROFILE(user_id)
 );
 
 CREATE TABLE USER_GROUP(
@@ -61,14 +61,14 @@ CREATE TABLE USER_GROUP(
     picture VARCHAR(100),
     name VARCHAR(32),
     PRIMARY KEY(id),
-    FOREIGN KEY(ownerId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(ownerId) REFERENCES USER_PROFILE(user_id)
 );
 
 CREATE TABLE GROUP_PARTICIPANT(
     participantId SERIAL,
     groupId INT,
     PRIMARY KEY(participantId,groupId),
-    FOREIGN KEY(participantId) REFERENCES USER_PROFILE(id),
+    FOREIGN KEY(participantId) REFERENCES USER_PROFILE(user_id),
     FOREIGN KEY(groupId) REFERENCES USER_GROUP(id)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE GROUP_MESSAGE(
     message VARCHAR(1020),
     PRIMARY KEY(id),
     FOREIGN KEY(groupId) REFERENCES USER_GROUP(id),
-    FOREIGN KEY(senderId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(senderId) REFERENCES USER_PROFILE(user_id)
 );
 
 
@@ -96,7 +96,7 @@ CREATE TABLE USER_SPORTS(
     userId INT,
     name VARCHAR(32),
     PRIMARY KEY(id,userId),
-    FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(userId) REFERENCES USER_PROFILE(user_id)
 );
 
 
@@ -113,8 +113,8 @@ CREATE TABLE EVENT(
 	creatorId INT,
 	active BOOLEAN,
     FOREIGN KEY(fieldId,compoundId) REFERENCES FIELD(id,compoundId),
-    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(id),
-    FOREIGN KEY(creatorId,sportId) REFERENCES SPORTS(userId,id)
+    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(user_id),
+    FOREIGN KEY(sportId) REFERENCES SPORTS(id)
 );
 
 
@@ -124,7 +124,7 @@ CREATE TABLE EVENT_PARTICIPANT(
     eventId INT,
     PRIMARY KEY(id),
     FOREIGN KEY(eventId) REFERENCES EVENT(id),
-    FOREIGN KEY(participantId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(participantId) REFERENCES USER_PROFILE(user_id)
 );
 
 CREATE TABLE POST(
@@ -135,7 +135,7 @@ CREATE TABLE POST(
     likes INT,
     pictures VARCHAR(100)[],
     PRIMARY KEY(id),
-    FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(userId) REFERENCES USER_PROFILE(user_id)
 );
 
 
@@ -148,10 +148,10 @@ CREATE TABLE POST_COMMENT(
     commentCreatorId INT,
     PRIMARY KEY(id,postId),
     FOREIGN KEY(postId) REFERENCES POST(id),
-    FOREIGN KEY(commentCreatorId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(commentCreatorId) REFERENCES USER_PROFILE(user_id)
 );
 
-begin;
+
 CREATE TABLE REVIEW(
     id INT,
     fieldId INT,
@@ -162,9 +162,9 @@ CREATE TABLE REVIEW(
     PRIMARY KEY(id),
     FOREIGN KEY(fieldId,compoundId) REFERENCES FIELD(id,compoundId),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id),
-    FOREIGN KEY(userId) REFERENCES USER_PROFILE(id)
+    FOREIGN KEY(userId) REFERENCES USER_PROFILE(user_id)
 );
-commit;
+
 CREATE TABLE SCHEDULE(
     id SERIAL,
     compoundId INT,
@@ -174,15 +174,14 @@ CREATE TABLE SCHEDULE(
     PRIMARY KEY(id,compoundId),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)
 );
-begin;
 
 CREATE TABLE FEED(
-    id SERIAL,
+    feed_id SERIAL,
     userid Int,
-    PRIMARY KEY(id),
-    FOREIGN KEY(userid) REFERENCES USER_PROFILE(id)
+    PRIMARY KEY(feed_id),
+    FOREIGN KEY(userid) REFERENCES USER_PROFILE(user_id)
 );
-begin;
+
 CREATE TABLE FEED_POST(
     id SERIAL,
     postid Int,
