@@ -1,0 +1,119 @@
+
+
+#eventCardContainer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    display: flex;
+    background-color: rgb(186, 170, 170,0.8);
+}
+
+#eventCardContainer:hover {
+    border: 4px rgb(27, 26, 26) solid;
+}
+
+#eventCardLeft {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#eventCardImage {
+    width: 80%;
+    height: 70%;
+}
+
+.local_image {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+#eventCardRight {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#eventCardText {
+    height: 20%;
+    width: 100%;
+    text-align: center;
+}
+
+#eventCardInfo {
+    height: 80%;
+    width: 100%;
+    display: flex;
+}
+
+#eventCardInfoLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    text-align: center;
+}
+
+#eventCardInfoRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    text-align: center;
+}
+
+#eventSummary {
+    width: 100%;
+    height: 60%;
+}
+
+#eventBtnContainer {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.eventBtn {
+    width: 50%;
+    height: 30%;
+    border-radius: 20px;
+    text-align: center;
+    transition-duration: 0.8s;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: rgb(23, 66, 103);
+    color: aliceblue;
+}
+
+.eventBtn:hover {
+    border: 3px solid rgb(116, 113, 225);
+}
+
+.eventBtn:after {
+    content: "";
+    background: #11e8ef;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+  }
+  
+  .eventBtn:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
