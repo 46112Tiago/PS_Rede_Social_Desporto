@@ -1,14 +1,14 @@
 
-const user = {
+let user = {
     user_id : 0,
-    firstname : 'fname',
-    lastname : 'lname',
-    city : 'city',
+    firstname : '',
+    lastname : '',
+    city : '',
     birthday : null,
-    profilepic : 'a',
-    email : 'test@test.com',
+    profilepic : '',
+    email : '',
     available : false,
-    gender : 'Gender'
+    gender : ''
 };
 
 export default user;

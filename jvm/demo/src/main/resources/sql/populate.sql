@@ -5,6 +5,4 @@ VALUES ('Diogo','Fernandes','Lisboa',null,null,'diogotag@gmail.com',true,'Male')
 
 INSERT INTO feed(userid) values(1);
 
-
-
 commit;

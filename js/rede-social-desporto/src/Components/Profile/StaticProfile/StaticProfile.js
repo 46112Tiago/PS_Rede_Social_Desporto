@@ -1,13 +1,17 @@
 import React from 'react';
 import './StaticProfile.css'
 import { FaBirthdayCake } from 'react-icons/fa';
-import user from '../../../Model/Model.js';
+import User from '../../../Model/Model.js';
 
 const StaticProfile = () => {
+
+  const myHeaders = new Headers();
+
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   
-  const [data, setData] = React.useState(user);
+  const [user, setUser] = React.useState(User);
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -18,10 +22,9 @@ const StaticProfile = () => {
       setError(null);
       setIsLoading(true);
       try {
-        const req = await (await fetch("http://localhost:3000/user/1"));
+        const req =  await fetch("http://localhost:8080/user/3");
         const resp = await req.json();
-        //setData(resp);
-        setData({...data,firstname : 'Teste',lastname : 'TesteSurname'})
+        setUser(resp);
       } catch (err) {
         setError(err);
         //console.log(err);
@@ -32,7 +35,7 @@ const StaticProfile = () => {
     };
 
     if (!isLoading) makeRequest();
-  },[isLoading]);
+  },[]);
   //if (isLoading) return <LoadingComponent />;
   //if (error) return <ErrorComponent text={error.message} />;
 
@@ -42,17 +45,17 @@ const StaticProfile = () => {
           <div className='rowLeft' id='profilePicDiv'>
             <img id='profilePic' src={require('../Img/default_profile.jpg')}></img>
           </div>
-            <h4 className='rowLeft'>{data.firstname} </h4>
-            <h4 className='rowLeft'></h4>
-            <h4 className='rowLeft'>DD/MM/AAAA</h4>
+            <h4 className='rowLeft'>{user.firstname} {user.lastname}</h4>
+            <h4 className='rowLeft'>{user.email}</h4>
+            <h4 className='rowLeft'>{user.birthday}</h4>
 
         </div>
         <div id='rightSide'>
           
           <h2 className='title'>Info</h2>
-          <h4 className='rowRight'>city</h4>
-          <h4 className='rowRight'>available</h4>
-          <h4 className='rowRight'>gender</h4> 
+          <h4 className='rowRight'>{user.city}</h4>
+          <h4 className='rowRight'>{user.available}</h4>
+          <h4 className='rowRight'>{user.gender}</h4> 
           <h4 className='rowRight'>sports</h4>
 
           <hr></hr>

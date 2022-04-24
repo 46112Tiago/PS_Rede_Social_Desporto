@@ -3,6 +3,7 @@ package com.ps.demo.user
 import com.ps.data.Test
 import com.ps.data.User
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat
 
 @RestController
 @RequestMapping
-class UserController @Autowired constructor (val userRepo : UserRepoImplementation) {
+class UserController (val userRepo : UserRepoImplementation) {
 
 
     @GetMapping("/users")
@@ -20,10 +21,12 @@ class UserController @Autowired constructor (val userRepo : UserRepoImplementati
         return ResponseEntity(users[0], HttpStatus.OK)
     }
 
-    @GetMapping("/user/{userId}")
-    fun getUserById(@PathVariable("userId") userId : Int) : ResponseEntity<User?> {
-        val user : User? = userRepo.getUserById(userId)
-        return ResponseEntity(user, HttpStatus.OK)
+    @GetMapping("/user/{user_id}")
+    fun getUserById(@PathVariable("user_id") user_id : Int) : ResponseEntity<User?> {
+        val user : User? = userRepo.getUserById(user_id)
+        val responseHeaders = HttpHeaders()
+        responseHeaders.set("Access-Control-Allow-Origin","http://localhost:3000")
+        return ResponseEntity.ok().headers(responseHeaders).body(user)
     }
 
     @DeleteMapping("/user/{userId}")
