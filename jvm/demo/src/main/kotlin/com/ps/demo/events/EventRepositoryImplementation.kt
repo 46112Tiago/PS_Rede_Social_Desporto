@@ -5,6 +5,7 @@ import org.jdbi.v3.core.Handle
 import org.springframework.stereotype.Repository
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
+import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -14,18 +15,16 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
 
     override fun getActiveEvents(): List<Event>? {
 
-        val current = LocalDateTime.now()
-
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
-        val formatted = current.format(formatter)
+        val now = LocalDateTime.now()
+        val timestamp: Timestamp = Timestamp.valueOf(now)
 
         val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, SPORTS.name as sport " +
-                    "from EVENT JOIN SPORTS " +
-                    "ON EVENT.sportID = SPORTS.userid " +
+            handle.createQuery("Select EVENT.id, startDate, plannedfinishDate, EVENT.name, limitParticipants, " +
+                    "sportId, EVENT.compoundId, fieldId " +
+                    "from EVENT JOIN FIELD ON EVENT.fieldId = FIELD.id  " +
                     "WHERE active = ? AND startDate < ?")
                     .bind(0,true)
-                    .bind(1, formatted)
+                    .bind(1, timestamp)
                     .mapTo<Event>()
                     .list()
         }
@@ -35,10 +34,8 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
 
     override fun getUserEvents(userId : Int,eventId: Int): List<Event>? {
 
-        val current = LocalDateTime.now()
-
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
-        val formatted = current.format(formatter)
+        val now = LocalDateTime.now()
+        val timestamp: Timestamp = Timestamp.valueOf(now)
 
         val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, sports.name as sport " +
@@ -48,7 +45,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     "JOIN USER_PROFILE user on eventParticipant.participantId = user.user_id " +
                     "WHERE active = ? AND startDate < ? AND user.id = ? AND event.id")
                     .bind(0,true)
-                    .bind(1, formatted)
+                    .bind(1, timestamp)
                     .bind(2,userId)
                     .bind(3,eventId)
                     .mapTo<Event>()
@@ -79,11 +76,11 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     "EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
                     "values(?,?,?,?,?,?,?,?,?,?)")
                     .bind(0,event.field!!.id)
-                    .bind(1,event)
+                    .bind(1,event.compound!!.id)
                     .bind(2,event.startDate)
                     .bind(3,event.plannedfinishDate)
                     .bind(4,event.name)
-                    .bind(5,event.sport)
+                    .bind(5,event.sport!!.id)
                     .bind(6,event.description)
                     .bind(7,event.limitParticipants)
                     .bind(8,event.creator!!.user_id)
@@ -93,7 +90,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         val toReturn = jdbi.withHandle<Event?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select id from EVENT " +
                     "order by id desc")
-                    .mapTo<Event>().one()
+                    .mapTo<Event>().list()[0]
         }
         return toReturn.id!!
     }
@@ -113,7 +110,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     "order by id desc")
                     .bind(0,participantId)
                     .bind(1,eventId)
-                    .mapTo<Event>().one()
+                    .mapTo<Event>().list()[0]
 
         }
         return toReturn.id!!

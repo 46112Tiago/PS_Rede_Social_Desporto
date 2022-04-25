@@ -25,7 +25,7 @@ class SportsController(val sportsRepo : SportsRepoImplementation) {
 
     @PostMapping("/sports")
     fun addUserSport(@PathVariable("userId") userId : Int,
-                             @RequestBody sports : Sports)
+                             @RequestBody sports : List<Sports>)
             : ResponseEntity<Any?> {
         val sportsKey : Int? = sportsRepo.addUserSport(userId,sports)
         return ResponseEntity(sportsKey, HttpStatus.OK)

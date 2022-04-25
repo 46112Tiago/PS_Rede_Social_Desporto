@@ -6,7 +6,7 @@ CREATE TABLE COMPOUND(
     name VARCHAR(32),
     description VARCHAR(540),
     summary VARCHAR(64),
-    location FLOAT[2],
+    location FLOAT[],
     material VARCHAR(32)[16],
     dressingRoom CHAR,
     parking BOOLEAN,
@@ -153,7 +153,7 @@ CREATE TABLE POST_COMMENT(
 
 
 CREATE TABLE REVIEW(
-    id INT,
+    id SERIAL,
     fieldId INT,
     compoundId INT,
     rating FLOAT,

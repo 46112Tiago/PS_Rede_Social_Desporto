@@ -10,21 +10,18 @@ import org.springframework.stereotype.Repository
 @Repository
 class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
 
-    /*TODO insert in table schedule */
+    /*TODO insert in table schedule, location, material, pictures */
     override fun createCompound(compound: Compound): Int? {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "compound(name,description,summary,location,material,dressingRoom,parking,pictures,accepted) " +
-                    "values(?,?,?,?,?,?,?,?)")
+                    "compound(name,description,summary,dressingRoom,parking,accepted) " +
+                    "values(?,?,?,?,?,?)")
                     .bind(0,compound.name)
                     .bind(1,compound.description)
                     .bind(2,compound.summary)
-                    .bind(3,compound.location)
-                    .bind(4,compound.material)
-                    .bind(5,compound.dressingRoom)
-                    .bind(6,compound.parking)
-                    .bind(7,compound.pictures)
-                    .bind(8,false)
+                    .bind(3,compound.dressingRoom)
+                    .bind(4,compound.parking)
+                    .bind(5,false)
                     .execute()
         }
         val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
@@ -43,11 +40,11 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
     }
 
     /* TODO: Bring only x locations */
-    override fun getCompoundLocations(): List<Pair<Float, Float>>? {
-        val toReturn = jdbi.withHandle<List<Pair<Float, Float>>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select location, id from COMPOUND ")
+    override fun getCompoundLocations(): List<Compound>? {
+        val toReturn = jdbi.withHandle<List<Compound>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select location, id from COMPOUND where accepted = ? ")
                     .bind(0,true)
-                    .mapTo<Pair<Float, Float>>()
+                    .mapTo<Compound>()
                     .list()
         }
 
@@ -56,8 +53,8 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
 
     /* TODO: See which attributes should retrieve for the info */
     override fun getCompoundInformation(compoundId : Int): Compound? {
-        val toReturn = jdbi.withHandle<Compound,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select  " +
+        val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select name, description, material, location,dressingRoom, summary, parking " +
                     "from COMPOUND " +
                     "WHERE id = ? AND accepted = ?")
                     .bind(0,compoundId)
@@ -67,6 +64,17 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
         }
 
         return toReturn
+    }
+
+    override fun acceptCompound(compoundId: Int) {
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate(" UPDATE COMPOUND " +
+                    "SET accepted = ?" +
+                    "WHERE id = ? ")
+                    .bind(0, true)
+                    .bind(1,compoundId)
+                    .execute()
+        }
     }
 
 }

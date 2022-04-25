@@ -5,12 +5,18 @@ import com.ps.data.Field
 
 interface FieldService {
 
-    fun createField(compound : Compound, field: Field) : Int?
+    fun createField(field: Field) : Int?
 
-    fun deleteField(compoundId: Int,fieldId : Int)
+    fun addFieldToCompound(compoundId: Int, field: Field) : Int?
+
+    fun deleteField(fieldId : Int)
+
+    fun deleteFieldFromCompound(compoundId: Int,fieldId : Int)
 
     fun getAllFields(compoundId : Int) : List<Field>?
 
     fun getFieldInfo(fieldId : Int) : Field?
+
+    fun acceptField(compoundId: Int,fieldId: Int)
 
 }

@@ -10,8 +10,10 @@ interface CompoundService {
 
     fun deleteCompound(compoundId : Int)
 
-    fun getCompoundLocations() : List<Pair<Float, Float>>?
+    fun getCompoundLocations() : List<Compound>?
 
     fun getCompoundInformation(compoundId : Int) : Compound?
+
+    fun acceptCompound(compoundId: Int)
 
 }

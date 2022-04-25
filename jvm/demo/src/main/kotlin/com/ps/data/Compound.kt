@@ -10,7 +10,7 @@ data class Compound(
         val description : String?,
         val summary : String?,
         val pictures : URL?,
-        val location : Pair<Float, Float>?,
+        val location : List<Float>?,
         val material : List<String>?,
         val dressingRoom : Char?, //M / F / A / N
         val parking : Boolean?,

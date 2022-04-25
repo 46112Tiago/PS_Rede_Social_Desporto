@@ -10,6 +10,6 @@ interface ReviewService {
 
     fun deleteReview(reviewId : Int)
 
-    fun getAllReviews() : List<Review>?
+    fun getAllReviews(compoundId: Int) : List<Review>?
 
 }

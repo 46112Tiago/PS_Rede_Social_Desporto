@@ -9,19 +9,22 @@ import org.springframework.stereotype.Repository
 @Repository
 class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
 
-    override fun addUserSport(userId: Int, sports : Sports): Int? {
+    override fun addUserSport(userId: Int, sports : List<Sports>): Int? {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into " +
-                    "USER_SPORTS(userId,name) " +
-                    "values(?,?)")
-                    .bind(0,userId)
-                    .bind(1,sports.name)
-                    .execute()
+            for (sport in sports){
+                handle.createUpdate("insert into " +
+                        "USER_SPORTS(userId,name) " +
+                        "values(?,?)")
+                        .bind(0,userId)
+                        .bind(1,sport.name)
+                        .execute()
+            }
+
         }
         val toReturn = jdbi.withHandle<Sports?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select id from USER_SPORTS where userId = ? order by id desc")
                     .bind(0,userId)
-                    .mapTo<Sports>().one()
+                    .mapTo<Sports>().list()[0]
 
         }
         return toReturn.id
@@ -38,7 +41,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
 
     override fun getUserSports(userId: Int): List<Sports>? {
         val toReturn = jdbi.withHandle<List<Sports>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select name " +
+            handle.createQuery("Select name, id " +
                     "from USER_SPORTS " +
                     "WHERE userId = ? ")
                     .bind(0,userId)

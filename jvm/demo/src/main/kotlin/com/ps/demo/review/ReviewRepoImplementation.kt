@@ -21,7 +21,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
                     .execute()
         }
         val toReturn = jdbi.withHandle<Review?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from REVIEW order by id desc").mapTo<Review>().one()
+            handle.createQuery("Select id from REVIEW order by id desc").mapTo<Review>().list()[0]
 
         }
         return toReturn.id
@@ -39,7 +39,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
                     .execute()
         }
         val toReturn = jdbi.withHandle<Review?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from REVIEW order by id desc").mapTo<Review>().one()
+            handle.createQuery("Select id from REVIEW order by id desc").mapTo<Review>().list()[0]
 
         }
         return toReturn.id
@@ -54,12 +54,14 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
         }
     }
 
-    override fun getAllReviews(): List<Review>? {
+    override fun getAllReviews(compoundId: Int): List<Review>? {
 
         val toReturn = jdbi.withHandle<List<Review>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select rating, description, firstName, lastName, profilePic " +
-                    "from REVIEW join USER_PROFILE " +
-                    "ON userId = USER_PROFILE.id  ").mapTo<Review>().list()
+            handle.createQuery("Select rating, description, id " +
+                    "from REVIEW " +
+                    "Where compoundId = ?")
+                    .bind(0,compoundId)
+                    .mapTo<Review>().list()
         }
 
         return toReturn

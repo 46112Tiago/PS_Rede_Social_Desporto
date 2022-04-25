@@ -5,14 +5,14 @@ import java.sql.Date
 import java.sql.Timestamp
 
 
-@EntityScan
 data class Event(
     val id : Int?,
     val field : Field?,
+    val compound : Compound?,
     val startDate : Timestamp?,
     val plannedfinishDate : Timestamp?,
     val name : String?,
-    val sport : String?,
+    val sport : Sports?,
     val description : String?,
     val participants : List<User>?,
     val creator : User?,

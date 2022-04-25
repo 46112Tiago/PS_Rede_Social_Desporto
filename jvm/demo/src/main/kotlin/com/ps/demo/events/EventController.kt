@@ -22,14 +22,14 @@ class EventController (val eventRepo : EventRepositoryImplementation) {
     }
 
     @GetMapping("/event/{eventId}")
-    fun getEventDescription(@PathVariable("eventID") eventID : Int) : ResponseEntity<String?> {
+    fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<String?> {
         val description : String? = eventRepo.getEventDescription(eventID)
         return ResponseEntity(description,HttpStatus.OK)
     }
 
-    @GetMapping("user/{userId}/event/{eventID}")
+    @GetMapping("/user/{userId}/event/{eventId}")
     fun getUserEvents(@PathVariable("userId") userId : Int,
-                      @PathVariable("eventID") eventID : Int ) : ResponseEntity<List<Event>?> {
+                      @PathVariable("eventId") eventID : Int ) : ResponseEntity<List<Event>?> {
         val event : List<Event>? = eventRepo.getUserEvents(userId,eventID)
         return ResponseEntity(event,HttpStatus.OK)
     }
@@ -37,6 +37,12 @@ class EventController (val eventRepo : EventRepositoryImplementation) {
     @PostMapping("/event")
     fun createEvent(@RequestBody event : Event) : ResponseEntity<Int> {
         val eventKey : Int = eventRepo.createEvent(event)
+        return ResponseEntity(eventKey,HttpStatus.OK)
+    }
+
+    @PostMapping("/user/{userId}/event/{eventId}")
+    fun participateUserEvent(@PathVariable eventId : Int, @PathVariable userId: Int) : ResponseEntity<Int> {
+        val eventKey : Int = eventRepo.participateEvent(userId,eventId)
         return ResponseEntity(eventKey,HttpStatus.OK)
     }
 

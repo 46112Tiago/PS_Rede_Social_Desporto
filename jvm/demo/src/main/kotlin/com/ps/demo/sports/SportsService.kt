@@ -4,7 +4,7 @@ import com.ps.data.Sports
 
 interface SportsService {
 
-    fun addUserSport(userId : Int, sports : Sports) : Int?
+    fun addUserSport(userId : Int, sports : List<Sports>) : Int?
 
     fun deleteUserSport(userId : Int, sportId : Int)
 

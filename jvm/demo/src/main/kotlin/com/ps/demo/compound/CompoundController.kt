@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/compound")
 class CompoundController(val compoundRepo : CompoundRepoImplementation) {
 
-    @GetMapping
-    fun getLocations() : ResponseEntity<List<Pair<Float,Float>>?> {
-        val locations : List<Pair<Float,Float>>? = compoundRepo.getCompoundLocations()
+    @GetMapping("/location")
+    fun getLocations() : ResponseEntity<List<Compound>?> {
+        val locations : List<Compound>? = compoundRepo.getCompoundLocations()
         return ResponseEntity(locations, HttpStatus.OK)
     }
 
     @GetMapping("/{compoundId}")
     fun getCompoundInfo(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<Compound?> {
-        val compound : Compound? = compoundRepo.getCompoundInformation(compoundId)
+        val compound : Compound = compoundRepo.getCompoundInformation(compoundId)
+                ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+
         return ResponseEntity(compound, HttpStatus.OK)
     }
 
@@ -34,6 +36,13 @@ class CompoundController(val compoundRepo : CompoundRepoImplementation) {
             : ResponseEntity<Any?> {
         val compoundKey : Int? = compoundRepo.createCompound(compound)
         return ResponseEntity(compoundKey, HttpStatus.OK)
+    }
+
+    @PutMapping("/{compoundId}")
+    fun acceptField(@PathVariable compoundId : Int)
+            : ResponseEntity<Any?> {
+        compoundRepo.acceptCompound(compoundId)
+        return ResponseEntity(HttpStatus.OK)
     }
 
 }

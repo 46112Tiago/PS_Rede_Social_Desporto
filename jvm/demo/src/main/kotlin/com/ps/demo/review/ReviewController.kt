@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 class ReviewController(val reviewRepo : ReviewRepoImplementation) {
 
     @GetMapping("/review")
-    fun getAllReviews(@PathVariable("postId") postId : Int) : ResponseEntity<List<Review>?> {
-        val reviews : List<Review>? = reviewRepo.getAllReviews()
+    fun getAllReviews(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<List<Review>?> {
+        val reviews : List<Review>? = reviewRepo.getAllReviews(compoundId)
         return ResponseEntity(reviews, HttpStatus.OK)
     }
 
