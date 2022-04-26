@@ -1,6 +1,7 @@
 import React from 'react';
 import './Events.css'
 import { FaCalendarDay, FaMapMarker, FaUserCheck, FaRunning } from 'react-icons/fa';
+import EventDelete from './EventDelete';
 
 class Events extends React.Component {
   
@@ -20,6 +21,7 @@ class Events extends React.Component {
                     <p className='inline' id='modalidade'><FaRunning></FaRunning> Modalidade</p>
                     <p className='inline'><FaUserCheck></FaUserCheck> 8 / 30</p>
                     <br/>
+                    <EventDelete></EventDelete> 
                     <button className='eventsBtn'>Participar</button>
                 </div>
 

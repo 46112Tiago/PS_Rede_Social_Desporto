@@ -3,6 +3,7 @@ package com.ps.demo.field
 import com.ps.data.Compound
 import com.ps.data.Field
 import org.antlr.v4.runtime.misc.Pair
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -23,10 +24,13 @@ class FieldController(val fieldRepo : FieldRepoImplementation) {
         return ResponseEntity(field, HttpStatus.OK)
     }
 
+    @CrossOrigin("http://localhost:3000")
     @DeleteMapping("/field/{fieldId}")
     fun deleteField(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any?> {
         fieldRepo.deleteField(fieldId)
-        return ResponseEntity(HttpStatus.OK)
+        val responseHeaders = HttpHeaders()
+        responseHeaders.set("Access-Control-Allow-Origin","*")
+        return ResponseEntity.ok().headers(responseHeaders).body(1)
     }
 
     @DeleteMapping("/compound/{compoundId}/field/{fieldId}")

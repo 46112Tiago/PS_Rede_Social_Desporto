@@ -25,7 +25,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
                     .execute()
         }
         val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from COMPOUND order by id desc").mapTo<Compound>().one()
+            handle.createQuery("Select id from COMPOUND order by id desc").mapTo<Compound>().list()[0]
 
         }
         return toReturn.id

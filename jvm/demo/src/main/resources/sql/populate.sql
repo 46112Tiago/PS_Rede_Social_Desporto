@@ -7,6 +7,6 @@ INSERT INTO SPORTS(name) values ('tenis')
 
 INSERT INTO feed(userid) values(1);
 
-select * from Compound
+select * from compound
 
 commit;

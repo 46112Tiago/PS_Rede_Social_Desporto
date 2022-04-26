@@ -3,6 +3,7 @@ package com.ps.demo.compound
 import com.ps.data.Compound
 import com.ps.data.Review
 import org.antlr.v4.runtime.misc.Pair
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -28,9 +29,12 @@ class CompoundController(val compoundRepo : CompoundRepoImplementation) {
     @DeleteMapping("/{compoundId}")
     fun deleteCompound(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<Any?> {
         compoundRepo.deleteCompound(compoundId)
-        return ResponseEntity(HttpStatus.OK)
+        val responseHeaders = HttpHeaders()
+        responseHeaders.set("Access-Control-Allow-Origin","*")
+        return ResponseEntity.ok().headers(responseHeaders).body(1)
     }
 
+    @CrossOrigin("http://localhost:3000")
     @PostMapping
     fun createCompound(@RequestBody compound : Compound)
             : ResponseEntity<Any?> {
