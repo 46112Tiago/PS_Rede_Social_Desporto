@@ -1,88 +1,65 @@
 
+#evnetCardCon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
 #eventCardContainer {
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 20px;
     display: flex;
+    flex-direction: column;
     background-color: rgb(186, 170, 170,0.8);
+    height: 400px;
+    width: 900px;
 }
 
 #eventCardContainer:hover {
     border: 4px rgb(27, 26, 26) solid;
 }
 
-#eventCardLeft {
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#eventCardImage {
-    width: 80%;
-    height: 70%;
-}
-
-.local_image {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-}
-
-#eventCardRight {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#eventCardText {
+#eventCardTop {
     height: 20%;
-    width: 100%;
     text-align: center;
 }
 
-#eventCardInfo {
-    height: 80%;
-    width: 100%;
-    display: flex;
-}
-
-#eventCardInfoLeft {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
-    text-align: center;
-}
-
-#eventCardInfoRight {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50%;
-    text-align: center;
-}
-
-#eventSummary {
-    width: 100%;
+#eventCardContent {
     height: 60%;
+    display: flex;
 }
 
 #eventBtnContainer {
+    height: 20%;
     width: 100%;
-    height: 40%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center; 
 }
 
-.eventBtn {
+.btnEvent {
     width: 50%;
-    height: 30%;
+}
+
+#eventCardLeft {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#eventCardRight {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.eventBtn {
+    width: 100px;
+    height: 25px;
     border-radius: 20px;
     text-align: center;
     transition-duration: 0.8s;

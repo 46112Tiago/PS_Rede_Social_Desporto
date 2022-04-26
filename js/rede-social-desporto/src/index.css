@@ -5,6 +5,7 @@ html, body, #app, #app>div {
 
 
 body {
+  
   background-image: url('./assets/images/sports_wpp2.webp');
   background-attachment: fixed;
   background-position: center;

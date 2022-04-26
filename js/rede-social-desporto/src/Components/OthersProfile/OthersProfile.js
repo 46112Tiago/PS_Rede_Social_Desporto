@@ -1,7 +1,7 @@
 import React from "react";
 import './OthersProfile.css'
 import {FaCity} from 'react-icons/fa'
-import {MdSportsTennis} from 'react-icons/md'
+import SportsModal from "../SportsModal/SportsModal";
 
 class OthersProfile extends React.Component {
 
@@ -19,7 +19,7 @@ class OthersProfile extends React.Component {
                     </div>
                     <div className="rightProfile" id="rightInfo">
                         <h4><FaCity></FaCity> Cidade</h4>
-                        <h4><MdSportsTennis></MdSportsTennis> Desportos</h4>
+                        <SportsModal></SportsModal>
                     </div>
                     <div className="rightProfile" id="rightBtn">
                         <button id="friendRequest">Friend</button>

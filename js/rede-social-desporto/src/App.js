@@ -20,6 +20,7 @@ import Profile from './Components/Profile/StaticProfile/StaticProfile';
 import ProfileSearch from './Components/ProfileSearch/ProfileSearch';
 import UserEvent from './Components/UserEvents/UserEvent';
 import OthersProfile from './Components/OthersProfile/OthersProfile';
+import Friends from './Components/Friends/Friends';
 
 class App extends Component {
 
@@ -39,6 +40,8 @@ class App extends Component {
             <Route path='/profileSearch' element={<ProfileSearch></ProfileSearch>}></Route>
             <Route path='/userEvents' element={<UserEvent></UserEvent>}></Route>
             <Route path='/profile/:id' element={<OthersProfile></OthersProfile>}></Route>
+            <Route path='/friends' element={<Friends></Friends>}></Route>
+
           </Routes>
 
           <Footer/>

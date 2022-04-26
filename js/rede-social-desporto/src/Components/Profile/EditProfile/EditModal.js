@@ -8,12 +8,15 @@ class EditModal extends React.Component {
     render() {
       return (
           
-        <div>
-            <a href='#demo-modal' className='anchorBtn'><MdEdit></MdEdit></a>
-            <div id="demo-modal" className="modal">
-                <div className="modal__content">
+        <div id='editModal'>
+            
+            <div>
+                <a href='#edit-modal' className='anchorBtn'><MdEdit></MdEdit></a>
+            </div>
+            <div id="edit-modal" className="modalEdit">
+                <div className="modal_content_Edit">
                     <h1>Edição Perfil</h1>
-                    <form id='editForm'>
+                    <form id='editForm' action=''>
                         <label>Cidade:</label>
                         <br/>
                         <input type={'text'}></input>
@@ -34,7 +37,7 @@ class EditModal extends React.Component {
                         <label>Available:</label>
                         <br/><br/>
                         <div className="toggle-button-cover">
-                                <div claclassNamess="button r" id="button">
+                                <div className="button r" id="button">
                                 <input type="checkbox" className="checkbox" value={'yes'}/>
                                 <div className="knobs"></div>
                                 <div className="layer"></div>
@@ -42,7 +45,7 @@ class EditModal extends React.Component {
                         </div>
                         <br/><br/>
                         <div id='editDiv'>
-                            <input type={'submit'} value='Editar' id='subEdit'></input>
+                            <input type='submit' value='Editar' id='subEdit'></input>
                         </div>
                     </form>
 
