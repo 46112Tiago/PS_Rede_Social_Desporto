@@ -29,9 +29,6 @@ function Map() {
   return isLoaded ? (
     <div>
 
-      <CompoundPostTest></CompoundPostTest>
-
-
       <GoogleMap id='mapGoogle' center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
         { /* Child components, such as markers, info windows, etc. */ }
       </GoogleMap>

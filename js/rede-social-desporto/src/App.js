@@ -18,6 +18,7 @@ import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
 import Contacts from './Components/Contacts/Contacts';
 import Profile from './Components/Profile/StaticProfile/StaticProfile';
+import CompoundPostTest from './Components/Map/CompoundPostTest';
 
 export default function App() {
 
@@ -33,7 +34,7 @@ export default function App() {
             <Route path='/logIn' element={<LogIn></LogIn>}></Route>
             <Route path='/contacts' element={<Contacts></Contacts>}></Route>
             <Route path='/profile' element={<Profile></Profile>}></Route>
-
+            <Route path='/compoundPost' element={<CompoundPostTest></CompoundPostTest>}></Route>
           </Routes>
 
           <Footer/>

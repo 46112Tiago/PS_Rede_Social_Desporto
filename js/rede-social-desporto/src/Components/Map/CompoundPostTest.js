@@ -41,7 +41,7 @@ const CompoundPostTest = () => {
 
   return (
       <div className="card m-3">
-          <h5 className="card-header">React Hook Form - Set Form Values in useEffect Example</h5>
+          <h5 className="card-header">Test Create Compound</h5>
           <div className="card-body">
               {compound &&
                   <form onSubmit={handleSubmit(submit)} >
