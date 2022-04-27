@@ -83,7 +83,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     .bind(5,event.sport!!.id)
                     .bind(6,event.description)
                     .bind(7,event.limitParticipants)
-                    .bind(8,event.creator!!.user_id)
+                    .bind(8,event.creator!!.userId)
                     .bind(9,true)
                     .execute()
         }
@@ -104,16 +104,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     .bind(1,eventId)
                     .execute()
         }
-        val toReturn = jdbi.withHandle<Event?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from EVENT_PARTICIPANT " +
-                    "where participantId = ? and eventId = ? " +
-                    "order by id desc")
-                    .bind(0,participantId)
-                    .bind(1,eventId)
-                    .mapTo<Event>().list()[0]
-
-        }
-        return toReturn.id!!
+        return participantId
     }
 
     override fun cancelEvent(eventId : Int) {

@@ -59,12 +59,12 @@ class GroupController @Autowired constructor (val groupRepo : GroupRepoImplement
     }
 
     @PostMapping("/group/{groupid}/participant/{userid}")
-    fun createGroupParticipant(@PathVariable("groupid") groupId: Int, @PathVariable("userid") userId : Int): ResponseEntity<Int?> {
+    fun createGroupParticipant(@PathVariable("groupid") groupId: Int, @PathVariable("userid") userId : Int): ResponseEntity<Any?> {
         val participant = groupRepo.insertGroupParticipant(groupId,userId)
         return ResponseEntity(participant,HttpStatus.OK)
     }
 
-    @GetMapping("/group/user/{userid}")
+    @GetMapping("/user/{userid}/group")
     fun getUserGroups(@PathVariable("userid") userId: Int) : ResponseEntity<Any?> {
         val groups = groupRepo.getUserGroups(userId)
         return ResponseEntity(groups,HttpStatus.OK)

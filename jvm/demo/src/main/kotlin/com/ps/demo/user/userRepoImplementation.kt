@@ -19,10 +19,10 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
     }
 
 
-    override fun getUserById(user_id : Int): User? {
+    override fun getUserById(userId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE where user_id = ?")
-                    .bind(0,user_id)
+            handle.createQuery("Select * from USER_PROFILE where userId = ?")
+                    .bind(0,userId)
                     .mapTo<User>().one()
 
         }
@@ -32,17 +32,17 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
 
     override fun deleteUser(userId : Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate("DELETE FROM USER_PROFILE WHERE user_id = ?").bind(0, userId).execute()
+            handle.createUpdate("DELETE FROM USER_PROFILE WHERE userId = ?").bind(0, userId).execute()
         }
     }
 
     override fun insertUser(user : User): Int {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into USER_PROFILE(firstname,lastname,city,birthday,email,available,gender) " +
+            handle.createUpdate("insert into USER_PROFILE(firstname,lastname,city,birthdate,email,available,gender) " +
                     "values(?,?,?,?,?,?)").bind(0,user.firstname)
                                         .bind(1,user.lastname)
                                         .bind(2,user.city)
-                                        .bind(3,user.birthday)
+                                        .bind(3,user.birthdate)
                                         .bind(4,user.email)
                                         .bind(5,user.available)
                                         .bind(6,user.gender)
@@ -50,10 +50,10 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
         }
 
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE order by user_id desc").mapTo<User>().one()
+            handle.createQuery("Select * from USER_PROFILE order by userId desc").mapTo<User>().one()
 
         }
-        return toReturn.user_id!!
+        return toReturn.userId!!
     }
 
 }

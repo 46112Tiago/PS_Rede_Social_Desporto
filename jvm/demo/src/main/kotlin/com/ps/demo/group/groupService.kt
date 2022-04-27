@@ -19,7 +19,7 @@ interface GroupService {
 
     fun insertGroup(group : Group) : Int?
 
-    fun insertGroupParticipant(groupId : Int, userId : Int) : Int?
+    fun insertGroupParticipant(groupId : Int, userId : Int) : Any?
 
     fun deleteGroupParticipant(groupId: Int,userId: Int) : Int
 

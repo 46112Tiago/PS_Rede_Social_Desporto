@@ -5,11 +5,11 @@ import java.sql.Date
 import java.sql.Timestamp
 
 data class User constructor(
-    val user_id : Int?,
+    val userId : Int?,
     val firstname : String?,//= "unknown",
     val lastname : String?, //= "unknown",
     val city : String?, //= "unknown",
-    val birthday : Timestamp?, //= Date(20000603),
+    val birthdate : Timestamp?, //= Date(20000603),
     val profilepic : String?,   //? = "unknown",
     val email : String?, //= "unknown",
     val available : Boolean?, //= false,

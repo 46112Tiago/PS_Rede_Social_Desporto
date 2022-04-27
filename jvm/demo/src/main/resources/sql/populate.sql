@@ -1,12 +1,10 @@
 begin;
 
-INSERT INTO user_profile(firstname, lastname, city, birthday, profilepic, email, available, gender)
+INSERT INTO user_profile(firstname, lastname, city, birthdate, profilepic, email, available, gender)
 VALUES ('Diogo','Fernandes','Lisboa',null,null,'diogotag@gmail.com',true,'Male');
 
-INSERT INTO SPORTS(name) values ('tenis')
+INSERT INTO SPORTS(name) values ('tenis');
 
-INSERT INTO feed(userid) values(1);
-
-select * from compound
+select * from compound;
 
 commit;

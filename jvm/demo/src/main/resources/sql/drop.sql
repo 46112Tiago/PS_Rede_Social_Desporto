@@ -1,9 +1,5 @@
 begin;
 
-drop table IF EXISTS feed_post CASCADE ;
-
-drop table IF EXISTS feed CASCADE ;
-
 drop table IF EXISTS schedule CASCADE ;
 
 drop table IF EXISTS review CASCADE ;
@@ -31,6 +27,8 @@ drop table IF EXISTS private_message CASCADE ;
 drop table IF EXISTS friends CASCADE ;
 
 drop table IF EXISTS field CASCADE ;
+
+drop table IF EXISTS materials CASCADE ;
 
 drop table IF EXISTS compound CASCADE ;
 
