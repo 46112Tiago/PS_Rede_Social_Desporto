@@ -9,8 +9,9 @@ import java.sql.Timestamp
 data class Post(
     val id : Int?,
     val description : String?,
-    val pictures : Array<String?>,
-    val date : Timestamp?,
-    val user : User?,
+    //val pictures : List<String>?,
+    val postdate : Timestamp?,
+    var user : User?,
     val likes : Int?
 )
+

@@ -1,7 +1,7 @@
 package com.ps.demo.groupMessage
 
 import com.ps.data.GroupMessage
-import com.ps.demo.privateMessage.GroupMessageRepoImplementation
+import com.ps.demo.groupMessage.GroupMessageRepoImplementation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

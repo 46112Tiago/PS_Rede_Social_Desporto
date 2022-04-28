@@ -20,7 +20,7 @@ class PostController (val postRepo : PostRepoImplementation) {
     }
 
     @GetMapping("/post/{postId}")
-    fun getGroupById(@PathVariable("postId") postId : Int) : ResponseEntity<Post?> {
+    fun getPostById(@PathVariable("postId") postId : Int) : ResponseEntity<Post?> {
         val group : Post? = postRepo.getPostById(postId)
         return ResponseEntity(group, HttpStatus.OK)
     }
@@ -31,7 +31,7 @@ class PostController (val postRepo : PostRepoImplementation) {
         return ResponseEntity(user,HttpStatus.OK)
     }
 
-    @GetMapping("/post/user/{userId}")
+    @GetMapping("/user/{userId}/post")
     fun getUserPosts(@PathVariable("userId") userId: Int) : ResponseEntity<List<Post?>> {
         val posts = postRepo.getUserPosts(userId)
         return ResponseEntity(posts,HttpStatus.OK)
@@ -52,7 +52,6 @@ class PostController (val postRepo : PostRepoImplementation) {
         val post = Post(
             null,
             "test 2 post",
-            emptyArray(),
             Timestamp(System.currentTimeMillis()),
             us,
             0
