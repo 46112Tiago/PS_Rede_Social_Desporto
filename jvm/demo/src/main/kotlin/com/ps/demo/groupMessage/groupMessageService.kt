@@ -1,27 +1,12 @@
-//package com.ps.demo.groupMessage
-//
-//import com.ps.data.User
-//import com.ps.data.Group
-//
-//interface GroupService {
-//
-//    fun getGroups() : List<Group?>
-//
-//    fun getGroupById(groupId : Int) : Group?
-//
-//    fun getGroupParticipants(groupId : Int) : List<User?>
-//
-//    //fun getGroupParticipantById(groupId : Int, userId : Int) : User?
-//
-//    fun getUserGroups(userId: Int) : List<Group?>
-//
-//    fun deleteGroup(groupId : Int)
-//
-//    fun insertGroup(group : Group) : Int?
-//
-//    fun insertGroupParticipant(groupId : Int, userId : Int) : Int?
-//
-//    fun deleteGroupParticipant(groupId: Int,userId: Int) : Int
-//
-//
-//}
+package com.ps.demo.groupMessage
+
+import com.ps.data.GroupMessage
+
+interface GroupMessageService {
+
+    //TODO: get a limit number of messages
+    fun getAllMessages(userId : Int, groupId : Int) : List<GroupMessage>?
+
+    fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage) : Int?
+
+}

@@ -1,11 +1,11 @@
 package com.ps.data
 
-import java.util.Date
+import java.util.*
 
 data class GroupMessage(
-    val id : Int,
-    val group : Group,
-    val sender : User,
-    val date : Date,
-    val message : String
+    val id : Int?,
+    val group : Group?,
+    val sender : User?,
+    val messageDate : Date?,
+    val message : String?
 )
