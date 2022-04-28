@@ -37,7 +37,7 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
     }
 
     override fun insertUser(user : User): Int {
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn = jdbi.withHandle<User,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into USER_PROFILE(firstname,lastname,city,birthdate,email,available,gender) " +
                     "values(?,?,?,?,?,?)").bind(0,user.firstname)
                                         .bind(1,user.lastname)
@@ -46,13 +46,10 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
                                         .bind(4,user.email)
                                         .bind(5,user.available)
                                         .bind(6,user.gender)
-                                        .execute()
+                                        .executeAndReturnGeneratedKeys("userId")
+                                        .mapTo<User>().one()
         }
 
-        val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE order by userId desc").mapTo<User>().one()
-
-        }
         return toReturn.userId!!
     }
 

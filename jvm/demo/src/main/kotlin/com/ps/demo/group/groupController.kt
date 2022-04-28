@@ -1,19 +1,15 @@
 package com.ps.demo.group
 
 import com.ps.data.Group
-import com.ps.data.Test
 import com.ps.data.User
 import com.ps.demo.user.GroupRepoImplementation
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
 
 @RestController
 @RequestMapping
-class GroupController @Autowired constructor (val groupRepo : GroupRepoImplementation) {
+class GroupController (val groupRepo : GroupRepoImplementation) {
 
 
     @GetMapping("/groups")

@@ -11,24 +11,21 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
 
     override fun createCompoundReview(compoundId: Int, review : Review): Int? {
 
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "review(compoundId,rating,description) " +
                     "values(?,?,?)")
                     .bind(0,compoundId)
                     .bind(1,review.rating)
                     .bind(2,review.description)
-                    .execute()
+                    .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
         }
-        val toReturn = jdbi.withHandle<Review?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from REVIEW order by id desc").mapTo<Review>().list()[0]
 
-        }
         return toReturn.id
     }
 
     override fun createFieldReview(compoundId: Int, fieldId: Int, review : Review): Int? {
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "review(fieldId,compoundId,rating,description) " +
                     "values(?,?,?,?)")
@@ -36,12 +33,9 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
                     .bind(1,compoundId)
                     .bind(2,review.rating)
                     .bind(3,review.description)
-                    .execute()
+                    .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
         }
-        val toReturn = jdbi.withHandle<Review?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from REVIEW order by id desc").mapTo<Review>().list()[0]
 
-        }
         return toReturn.id
     }
 

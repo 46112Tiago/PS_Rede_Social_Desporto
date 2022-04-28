@@ -1,8 +1,6 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
-import org.antlr.v4.runtime.misc.Pair
-import java.net.URL
 
 interface CompoundService {
 

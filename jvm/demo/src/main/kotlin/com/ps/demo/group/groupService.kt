@@ -1,7 +1,7 @@
 package com.ps.demo.group
 
-import com.ps.data.User
 import com.ps.data.Group
+import com.ps.data.User
 
 interface GroupService {
 
@@ -19,7 +19,7 @@ interface GroupService {
 
     fun insertGroup(group : Group) : Int?
 
-    fun insertGroupParticipant(groupId : Int, userId : Int) : Any?
+    fun insertGroupParticipant(groupId : Int, userId : Int)
 
     fun deleteGroupParticipant(groupId: Int,userId: Int) : Int
 

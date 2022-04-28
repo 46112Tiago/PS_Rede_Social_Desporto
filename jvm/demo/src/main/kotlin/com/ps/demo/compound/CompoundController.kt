@@ -1,8 +1,6 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
-import com.ps.data.Review
-import org.antlr.v4.runtime.misc.Pair
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -38,7 +36,7 @@ class CompoundController(val compoundRepo : CompoundRepoImplementation) {
     @PostMapping
     fun createCompound(@RequestBody compound : Compound)
             : ResponseEntity<Any?> {
-        val compoundKey : Int? = compoundRepo.createCompound(compound)
+        val compoundKey = compoundRepo.createCompound(compound)
         return ResponseEntity(compoundKey, HttpStatus.OK)
     }
 

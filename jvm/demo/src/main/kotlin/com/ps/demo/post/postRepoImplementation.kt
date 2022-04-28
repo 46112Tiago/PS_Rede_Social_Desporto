@@ -1,19 +1,16 @@
 package com.ps.demo.post
 
 
-import com.ps.data.Feed
-import com.ps.data.Group
 import com.ps.data.Post
 import com.ps.data.User
-
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
-class PostRepoImplementation @Autowired constructor(var jdbi: Jdbi) : PostService {
+class PostRepoImplementation (var jdbi: Jdbi) : PostService {
+
     override fun getPosts(): List<Post?> {
         val toReturn = jdbi.withHandle<List<Post?> ,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from POST ").mapTo<Post>().list()
@@ -66,7 +63,7 @@ class PostRepoImplementation @Autowired constructor(var jdbi: Jdbi) : PostServic
     }
 
     override fun insertPost(post : Post): Int? {
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn = jdbi.withHandle<Post,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into post(userid,description,postdate,likes,pictures)" +
                     " values(?,?,?,?,?)")
                 .bind(0,post.user!!.userId)
@@ -74,13 +71,9 @@ class PostRepoImplementation @Autowired constructor(var jdbi: Jdbi) : PostServic
                 .bind(2,post.date)
                 .bind(3,post.likes)
                 .bind(4,post.pictures)
-                .execute()
+                .executeAndReturnGeneratedKeys("id").mapTo<Post>().one()
         }
 
-        val toReturn = jdbi.withHandle<Post?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from Post order by id desc").mapTo<Post>().list().first()
-
-        }
         return toReturn.id
     }
 

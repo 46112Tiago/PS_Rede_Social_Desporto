@@ -1,38 +1,38 @@
 package com.ps.demo.comment
 
 import com.ps.data.Comment
-import com.ps.data.Test
+import com.ps.data.User
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
+import org.jdbi.v3.core.kotlin.KotlinMapper
 import org.jdbi.v3.core.kotlin.mapTo
+import org.jdbi.v3.core.mapper.RowMapperFactory
+import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 @Repository
 class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
 
-    override fun createComment(postId: Int, comment : String): Int? {
+    override fun createComment(postId: Int, comment : String) : Int? {
 
         val current = LocalDateTime.now()
 
         val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
         val formatted = current.format(formatter)
 
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val pk = jdbi.withHandle<Comment,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "comment(postId,commentDate,comment,commentCreatorId) " +
+                    "POST_COMMENT(postId,commentDate,comment,commentCreatorId) " +
                     "values(?,?,?,?)")
                     .bind(0,postId)
                     .bind(1,formatted)
                     .bind(2,comment)
-                    .execute()
+                    .executeAndReturnGeneratedKeys("id").mapTo<Comment>().one()
         }
-        val toReturn = jdbi.withHandle<Comment?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from POST_COMMENT order by id desc").mapTo<Comment>().one()
-
-        }
-        return toReturn.id
+        return pk.id
     }
 
     override fun deleteComment(postId: Int, commentId: Int) {
@@ -44,15 +44,30 @@ class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
         }
     }
 
-    override fun getAllComments(postId: Int): List<Comment>? {
-        val toReturn = jdbi.withHandle<List<Comment>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select comment, firstName, lastName, profilePic " +
+    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
+        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
+    }
+
+    override fun getAllComments(postId: Int) {
+        val toReturn  = jdbi.withHandle<Unit,RuntimeException> { handle : Handle ->
+
+            val comments = handle.createQuery("Select c_comment, u_firstName, u_lastName " +
                     "from POST_COMMENT join USER_PROFILE " +
                     "ON userId = USER_PROFILE.id  " +
                     "WHERE postId = ?")
-                    .bind(0,postId)
-                    .mapTo<Comment>()
-                    .list()
+                    .registerRowMapper(factory(Comment::class.java, "c"))
+                    .registerRowMapper(factory(User::class.java, "u"))
+                    .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Comment>, rowView: RowView ->
+                        val comment = map.computeIfAbsent(rowView.getColumn("c_id", Int::class.javaObjectType)) {
+                            rowView.getRow(Comment::class.java) as Comment
+                        }
+
+                        if (rowView.getColumn("p_id", Int::class.javaObjectType) != null) {
+                            comment.user = rowView.getRow(User::class.java) as User
+                        }
+                        map
+                    }
+                    .toList().map { it.second }
         }
 
         return toReturn

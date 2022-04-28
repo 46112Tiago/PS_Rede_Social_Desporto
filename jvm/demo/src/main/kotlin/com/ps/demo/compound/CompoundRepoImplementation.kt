@@ -1,7 +1,6 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
-import org.antlr.v4.runtime.misc.Pair
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
@@ -11,8 +10,8 @@ import org.springframework.stereotype.Repository
 class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
 
     /*TODO insert in table schedule, location, material, pictures */
-    override fun createCompound(compound: Compound): Int? {
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+    override fun createCompound(compound: Compound) : Int? {
+        val toReturn : Compound = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "compound(name,description,summary,dressingRoom,parking,accepted) " +
                     "values(?,?,?,?,?,?)")
@@ -22,12 +21,9 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
                     .bind(3,compound.dressingRoom)
                     .bind(4,compound.parking)
                     .bind(5,false)
-                    .execute()
+                    .executeAndReturnGeneratedKeys("id").mapTo<Compound>().one()
         }
-        val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from COMPOUND order by id desc").mapTo<Compound>().list()[0]
 
-        }
         return toReturn.id
     }
 

@@ -1,8 +1,6 @@
 package com.ps.demo.field
 
-import com.ps.data.Comment
 import com.ps.data.Compound
-import com.ps.data.Event
 import com.ps.data.Field
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
@@ -14,32 +12,24 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
 
     /*TODO add pictures and location*/
     override fun createField(field: Field): Int? {
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val compoundId = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "compound(name,parking,accepted) " +
                     "values(?,?,?)")
                     .bind(0,field.compound!!.name)
                     .bind(1, field.compound.parking)
                     .bind(2,false)
-                    .execute()
+                    .executeAndReturnGeneratedKeys("id").mapTo<Compound>().one()
         }
 
-        val compoundId = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from COMPOUND order by id desc").mapTo<Compound>().list()[0]
-        }
-
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn = jdbi.withHandle<Field,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "field(compoundId,name,accepted) " +
                     "values(?,?,?)")
                     .bind(0,compoundId.id)
                     .bind(1,field.name)
                     .bind(2,false)
-                    .execute()
-        }
-
-        val toReturn = jdbi.withHandle<Field?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from FIELD order by id desc").mapTo<Field>().list()[0]
+                    .executeAndReturnGeneratedKeys("id").mapTo<Field>().one()
         }
 
         return toReturn.id
@@ -48,18 +38,14 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
     /*TODO add pictures*/
     override fun addFieldToCompound(compoundId: Int, field: Field): Int? {
 
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn = jdbi.withHandle<Field,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "field(compoundId,name,accepted) " +
                     "values(?,?,?)")
                     .bind(0,compoundId)
                     .bind(1,field.name)
                     .bind(2,false)
-                    .execute()
-        }
-
-        val toReturn = jdbi.withHandle<Field?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from FIELD order by id desc").mapTo<Field>().list()[0]
+                    .executeAndReturnGeneratedKeys("id").mapTo<Field>().one()
         }
 
         return toReturn.id

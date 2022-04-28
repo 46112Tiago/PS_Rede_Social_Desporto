@@ -6,16 +6,11 @@ import com.ps.demo.group.GroupService
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
-import org.jdbi.v3.core.mapper.JoinRowMapper
-import org.jdbi.v3.core.mapper.reflect.BeanMapper
-import org.jdbi.v3.core.result.LinkedHashMapRowReducer
-import org.jdbi.v3.sqlobject.config.RegisterRowMapper
-import org.skife.jdbi.v2.util.IntegerMapper
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
-class GroupRepoImplementation @Autowired constructor(var jdbi: Jdbi) : GroupService {
+class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
+
     override fun getGroups(): List<Group?> {
         val toReturn = jdbi.withHandle<List<Group?> ,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from user_group ").mapTo<Group>().list()
@@ -67,7 +62,7 @@ class GroupRepoImplementation @Autowired constructor(var jdbi: Jdbi) : GroupServ
             handle.createUpdate("insert into USER_GROUP(name, ownerid) values(?,?)")
                 .bind(0,group.name)
                 .bind(1,group.ownerid)
-                .executeAndReturnGeneratedKeys().mapTo<Group>().one()
+                .executeAndReturnGeneratedKeys("id").mapTo<Group>().one()
         }
 
         jdbi.useHandle<RuntimeException> {handle : Handle ->
@@ -101,15 +96,15 @@ class GroupRepoImplementation @Autowired constructor(var jdbi: Jdbi) : GroupServ
         return userId
     }
 
-    override fun insertGroupParticipant(groupId: Int, userId: Int): Any? {
-        val pk = jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
+    override fun insertGroupParticipant(groupId: Int, userId: Int){
+        jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into group_participant(groupid, participantid) values(?,?)")
                 .bind(0,groupId)
                 .bind(1,userId)
                 .execute()
         }
 
-        return null
+
     }
 
     override fun getUserGroups(userId : Int): List<Group?> {

@@ -1,10 +1,7 @@
 package com.ps.demo.post
 
-import com.ps.data.Feed
 import com.ps.data.Post
 import com.ps.data.User
-import com.ps.demo.user.GroupRepoImplementation
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,8 +10,7 @@ import java.sql.Timestamp
 
 @RestController
 @RequestMapping
-
-class PostController @Autowired constructor (val postRepo : PostRepoImplementation) {
+class PostController (val postRepo : PostRepoImplementation) {
 
 
     @GetMapping("/post")
@@ -52,11 +48,6 @@ class PostController @Autowired constructor (val postRepo : PostRepoImplementati
     fun createPost() : ResponseEntity<Any?> {
         val us = User(1,"Diogo","Fernandes","Torres Vedras", null,null,"diogotag@gmail.com",true,"Male")
 
-        val feed = Feed(
-            null,
-            us,
-            emptyList()
-        )
 
         val post = Post(
             null,

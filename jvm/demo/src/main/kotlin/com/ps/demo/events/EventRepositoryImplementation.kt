@@ -2,12 +2,11 @@ package com.ps.demo.events
 
 import com.ps.data.Event
 import org.jdbi.v3.core.Handle
-import org.springframework.stereotype.Repository
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
+import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 @Repository
@@ -38,7 +37,10 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         val timestamp: Timestamp = Timestamp.valueOf(now)
 
         val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select startDate, plannedfinishDate, name, limitParticipants, sports.name as sport " +
+            handle.createQuery("Select startDate, " +
+                    "plannedfinishDate, " +
+                    "name, limitParticipants, " +
+                    "sports.name as sport " +
                     "from SPORTS sports JOIN EVENT event " +
                     "ON sports.id  = event.sportID " +
                     "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
@@ -71,7 +73,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
 
 
     override fun createEvent(event : Event): Int {
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
+        val toReturn : Event = jdbi.withHandle<Event,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
                     "values(?,?,?,?,?,?,?,?,?,?)")
@@ -85,12 +87,8 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
                     .bind(7,event.limitParticipants)
                     .bind(8,event.creator!!.userId)
                     .bind(9,true)
-                    .execute()
-        }
-        val toReturn = jdbi.withHandle<Event?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id from EVENT " +
-                    "order by id desc")
-                    .mapTo<Event>().list()[0]
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo<Event>().one()
         }
         return toReturn.id!!
     }
