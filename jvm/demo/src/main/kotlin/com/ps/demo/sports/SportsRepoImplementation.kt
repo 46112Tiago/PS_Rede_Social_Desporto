@@ -11,7 +11,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
 
     override fun addSport(sports : List<Sports>) : MutableList<Sports>? {
 
-        val sportsKeys : MutableList<Sports> = mutableList()
+        val sportsKeys : MutableList<Sports> = mutableListOf()
 
         for (sport in sports){
 

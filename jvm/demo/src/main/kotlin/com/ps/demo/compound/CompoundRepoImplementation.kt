@@ -1,6 +1,8 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
+import com.ps.data.Material
+import com.ps.data.Schedule
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
@@ -13,15 +15,45 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
     override fun createCompound(compound: Compound) : Int? {
         val toReturn : Compound = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "compound(name,description,summary,dressingRoom,parking,accepted) " +
-                    "values(?,?,?,?,?,?)")
+                    "compound(name,description,summary,dressingRoom,parking,accepted,location) " +
+                    "values(?,?,?,?,?,?,?)")
                     .bind(0,compound.name)
                     .bind(1,compound.description)
                     .bind(2,compound.summary)
                     .bind(3,compound.dressingRoom)
                     .bind(4,compound.parking)
                     .bind(5,false)
+                    .bind(6,compound.location)
                     .executeAndReturnGeneratedKeys("id").mapTo<Compound>().one()
+        }
+
+        return toReturn.id
+    }
+
+    override fun addMaterial(compoundId: Int, material: Material): Int? {
+        val toReturn : Material = jdbi.withHandle<Material,RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "Material(name,compoundId) " +
+                    "values(?,?)")
+                    .bind(0,material.name)
+                    .bind(1,compoundId)
+                    .executeAndReturnGeneratedKeys("id").mapTo<Material>().one()
+        }
+
+        return toReturn.id
+    }
+
+    override fun addSchedule(compoundId: Int, schedule: Schedule): Int? {
+        val toReturn : Schedule = jdbi.withHandle<Schedule,RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "Schedule(compoundId,weekday,openingHour,closingHour,optionalDescription) " +
+                    "values(?,?,?,?,?)")
+                    .bind(0,compoundId)
+                    .bind(1,schedule.weekday)
+                    .bind(2,schedule.openingHour)
+                    .bind(3,schedule.closingHour)
+                    .bind(4,schedule.optionalDescription)
+                    .executeAndReturnGeneratedKeys("id").mapTo<Schedule>().one()
         }
 
         return toReturn.id

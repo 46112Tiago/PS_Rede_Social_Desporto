@@ -7,5 +7,6 @@ data class Schedule(
         val compound: Compound?,
         val weekday : Char?,
         val openingHour : Time?,
-        val closingHour : Time?
+        val closingHour : Time?,
+        val optionalDescription : String
 )

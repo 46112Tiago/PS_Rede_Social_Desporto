@@ -1,17 +1,44 @@
-//package com.ps.demo.privateMessage
-//
-//
-//import com.ps.data.Group
-//import com.ps.data.User
-//import com.ps.demo.group.GroupService
-//import org.jdbi.v3.core.Handle
-//import org.jdbi.v3.core.Jdbi
-//import org.jdbi.v3.core.kotlin.mapTo
-//import org.springframework.beans.factory.annotation.Autowired
-//import org.springframework.stereotype.Repository
-//
-//@Repository
-//class GroupRepoImplementation @Autowired constructor(var jdbi: Jdbi) : GroupService {
+package com.ps.demo.privateMessage
+
+import com.ps.data.PrivateMessage
+import com.ps.data.Schedule
+import org.jdbi.v3.core.Handle
+import org.jdbi.v3.core.Jdbi
+import org.jdbi.v3.core.kotlin.mapTo
+import org.springframework.stereotype.Repository
+
+
+@Repository
+class PrivateMessageRepoImplementation (var jdbi: Jdbi) : PrivateMessageService {
+
+    override fun getAllMessages(userId : Int): List<PrivateMessage>? {
+        val toReturn = jdbi.withHandle<List<PrivateMessage>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select * from PRIVATE_MESSAGE where senderId = ? ")
+                    .bind(0,userId)
+                    .mapTo<PrivateMessage>()
+                    .list()
+        }
+
+        return toReturn
+    }
+
+    override fun sendMessage(privateMessage: PrivateMessage): Int? {
+        val toReturn : Schedule = jdbi.withHandle<Schedule,RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "PRIVATE_MESSAGE(senderId,receiverId,message,date) " +
+                    "values(?,?,?,?)")
+                    .bind(0,privateMessage.receiver?.userId)
+                    .bind(1,privateMessage.sender?.userId)
+                    .bind(2,privateMessage.date)
+                    .bind(3,privateMessage.message)
+                    .executeAndReturnGeneratedKeys("id").mapTo<Schedule>().one()
+        }
+
+        return toReturn.id
+    }
+
+}
+
 //    override fun getGroups(): List<Group?> {
 //        val toReturn = jdbi.withHandle<List<Group?> ,RuntimeException> { handle : Handle ->
 //            handle.createQuery("Select * from user_group ").mapTo<Group>().list()
