@@ -5,7 +5,6 @@ import com.ps.data.User
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.sql.Timestamp
 
 
 @RestController
@@ -44,19 +43,12 @@ class PostController (val postRepo : PostRepoImplementation) {
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping("/post")
-    fun createPost() : ResponseEntity<Any?> {
-        val us = User(1,"Diogo","Fernandes","Torres Vedras", null,null,"diogotag@gmail.com",true,"Male")
+    @PostMapping("/user/{userId}/post")
+    fun createPost(@PathVariable("userId") userId: Int,
+                    @RequestBody post: Post
+                   ) : ResponseEntity<Any?> {
 
-
-        val post = Post(
-            null,
-            "test 2 post",
-            Timestamp(System.currentTimeMillis()),
-            us,
-            0
-        )
-        val postKey : Int? = postRepo.insertPost(post)
+        val postKey : Int? = postRepo.insertPost(userId,post)
         return ResponseEntity(postKey, HttpStatus.OK)
     }
 

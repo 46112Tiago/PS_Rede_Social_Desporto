@@ -1,13 +1,11 @@
 package com.ps.data
 
-import java.net.URL
-import java.sql.Date
 import java.sql.Timestamp
 
 data class User constructor(
     val userId : Int?,
-    val firstname : String?,//= "unknown",
-    val lastname : String?, //= "unknown",
+    val firstName : String?,//= "unknown",
+    val lastName : String?, //= "unknown",
     val city : String?, //= "unknown",
     val birthdate : Timestamp?, //= Date(20000603),
     val profilepic : String?,   //? = "unknown",

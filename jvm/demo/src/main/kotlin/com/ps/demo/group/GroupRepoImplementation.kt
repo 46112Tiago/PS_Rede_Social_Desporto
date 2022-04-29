@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
+    //TODO:Ver
     override fun getGroups(): List<Group?> {
         val toReturn = jdbi.withHandle<List<Group?> ,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from user_group ").mapTo<Group>().list()
@@ -20,7 +21,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
         return toReturn
     }
 
-
+    //TODO:Ver
     override fun getGroupById(groupId : Int): Group? {
         val toReturn = jdbi.withHandle<Group?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from USER_GROUP where id = ?")
@@ -57,18 +58,18 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
     }
 
-    override fun insertGroup(group : Group): Int? {
+    override fun insertGroup(userId : Int, group : Group): Int? {
         val pk : Group = jdbi.withHandle<Group?,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into USER_GROUP(name, ownerid) values(?,?)")
                 .bind(0,group.name)
-                .bind(1,group.ownerid)
+                .bind(1,userId)
                 .executeAndReturnGeneratedKeys("id").mapTo<Group>().one()
         }
 
         jdbi.useHandle<RuntimeException> {handle : Handle ->
             handle.createUpdate("insert into group_participant(participantid, groupid) values(?,?)")
-                .bind(0,group.ownerid)
-                .bind(1,group.id)
+                .bind(0,userId)
+                .bind(1,pk.id)
                 .execute()
         }
 

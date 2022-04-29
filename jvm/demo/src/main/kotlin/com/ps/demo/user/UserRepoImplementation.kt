@@ -4,11 +4,11 @@ import com.ps.data.User
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
-class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserService {
+class UserRepoImplementation (var jdbi: Jdbi) : UserService {
+
     override fun getUser(): List<User> {
         val toReturn = jdbi.withHandle<List<User>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from USER_PROFILE ").mapTo<User>().list()
@@ -38,9 +38,9 @@ class UserRepoImplementation @Autowired constructor(var jdbi: Jdbi) : UserServic
 
     override fun insertUser(user : User): Int {
         val toReturn = jdbi.withHandle<User,RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into USER_PROFILE(firstname,lastname,city,birthdate,email,available,gender) " +
-                    "values(?,?,?,?,?,?)").bind(0,user.firstname)
-                                        .bind(1,user.lastname)
+            handle.createUpdate("insert into USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender) " +
+                    "values(?,?,?,?,?,?)").bind(0,user.firstName)
+                                        .bind(1,user.lastName)
                                         .bind(2,user.city)
                                         .bind(3,user.birthdate)
                                         .bind(4,user.email)

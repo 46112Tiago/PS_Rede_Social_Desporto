@@ -36,15 +36,13 @@ class GroupController (val groupRepo : GroupRepoImplementation) {
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping("/group")
-    fun createGroup() : ResponseEntity<Any?> {
-        val group = Group(
-            null,
-            null,
-            "Group",
-            1
-        )
-        val userKey : Int? = groupRepo.insertGroup(group)
+    @PostMapping("/user/{userId}/group")
+    fun createGroup(
+            @PathVariable("userId") userId: Int,
+            @RequestBody group: Group
+    ) : ResponseEntity<Any?> {
+
+        val userKey : Int? = groupRepo.insertGroup(userId,group)
         return ResponseEntity(userKey, HttpStatus.OK)
     }
 

@@ -12,6 +12,8 @@ import org.jdbi.v3.core.mapper.reflect.BeanMapper
 import org.jdbi.v3.core.result.LinkedHashMapRowReducer
 import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.LinkedHashMap
 
 @Repository
@@ -43,19 +45,19 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
                     "user_profile.available as u_avb, " +
                     "user_profile.gender as u_gender " +
                     "FROM POST INNER JOIN user_profile on post.userid = user_profile.userid AND post.id = ?")
-                .bind(0,postId)
-                .registerRowMapper(BeanMapper.factory(User::class.java, "u"))
-                .registerRowMapper(BeanMapper.factory(Post::class.java, "p"))
-                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Post?>, rowView: RowView ->
-                    val post = map.computeIfAbsent(rowView.getColumn("p_id", Int::class.javaObjectType)) {
-                        rowView.getRow(Post::class.java)
-                    }
+                    .bind(0,postId)
+                    .registerRowMapper(BeanMapper.factory(User::class.java, "u"))
+                    .registerRowMapper(BeanMapper.factory(Post::class.java, "p"))
+                    .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Post?>, rowView: RowView ->
+                        val post = map.computeIfAbsent(rowView.getColumn("p_id", Int::class.javaObjectType)) {
+                            rowView.getRow(Post::class.java)
+                        }
 
-                    if (rowView.getColumn("u_id", Int::class.javaObjectType) != null) {
-                        post!!.user = rowView.getRow(User::class.java)
-                    }
-                    map
-                }.get(0)
+                        if (rowView.getColumn("u_id", Int::class.javaObjectType) != null) {
+                            post!!.user = rowView.getRow(User::class.java)
+                        }
+                        map
+                    }[0]
         }
 
         return toReturn
@@ -93,13 +95,19 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
 
     }
 
-    override fun insertPost(post : Post): Int? {
+    override fun insertPost(userId : Int, post : Post): Int? {
+
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+        val formatted = current.format(formatter)
+
         val toReturn = jdbi.withHandle<Post,RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into post(userid,description,postdate,likes,pictures)" +
-                    " values(?,?,?,?,?)")
-                .bind(0,post.user!!.userId)
+            handle.createUpdate("insert into post(userid,description,postdate,likes)" +
+                    " values(?,?,?,?)")
+                .bind(0,userId)
                 .bind(1,post.description)
-                .bind(2,post.postdate)
+                .bind(2,formatted)
                 .bind(3,post.likes)
                 //.bind(4,post.pictures)
                 .executeAndReturnGeneratedKeys("id").mapTo<Post>().one()

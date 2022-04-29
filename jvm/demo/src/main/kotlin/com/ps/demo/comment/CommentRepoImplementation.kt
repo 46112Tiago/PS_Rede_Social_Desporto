@@ -16,7 +16,7 @@ import java.util.*
 @Repository
 class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
 
-    override fun createComment(postId: Int, comment : String) : Int? {
+    override fun createComment(postId: Int, comment : Comment) : Int? {
 
         val current = LocalDateTime.now()
 
@@ -29,7 +29,7 @@ class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
                     "values(?,?,?,?)")
                     .bind(0,postId)
                     .bind(1,formatted)
-                    .bind(2,comment)
+                    .bind(2,comment.comment)
                     .executeAndReturnGeneratedKeys("id").mapTo<Comment>().one()
         }
         return pk.id

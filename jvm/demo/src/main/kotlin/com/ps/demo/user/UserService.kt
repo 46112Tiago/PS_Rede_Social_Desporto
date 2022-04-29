@@ -1,6 +1,5 @@
 package com.ps.demo.user
 
-import com.ps.data.Event
 import com.ps.data.User
 
 interface UserService {

@@ -27,7 +27,7 @@ class CommentController(val commentRepo : CommentRepoImplementation) {
     fun createComment(@PathVariable("postId") postId : Int,
                    @RequestBody comment : Comment)
     : ResponseEntity<Any?> {
-        val commentKey = commentRepo.createComment(postId,comment.comment!!)
+        val commentKey = commentRepo.createComment(postId,comment)
         return ResponseEntity(commentKey, HttpStatus.OK)
     }
 

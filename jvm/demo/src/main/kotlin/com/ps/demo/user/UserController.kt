@@ -1,21 +1,17 @@
 package com.ps.demo.user
 
-import com.ps.data.Test
 import com.ps.data.User
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
 
 @RestController
 @RequestMapping
 class UserController (val userRepo : UserRepoImplementation) {
 
 
-    @GetMapping("/users")
+    @GetMapping("/user")
     fun getUser() : ResponseEntity<User?> {
         val users : List<User> = userRepo.getUser()
         return ResponseEntity(users[0], HttpStatus.OK)
@@ -36,20 +32,8 @@ class UserController (val userRepo : UserRepoImplementation) {
     }
 
     @PostMapping("/user")
-    fun createUser() : ResponseEntity<Any?> {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
+    fun createUser(@RequestBody user: User) : ResponseEntity<Any?> {
 
-        val user = User(
-            null,
-            "Diogo2",
-            "Fernandes2",
-            "Lisboa",
-            Timestamp(sdf.parse("2000-06-03T13:30:00.000").time),
-            null,
-            "diogotag@gmail.com",
-            true,
-            "Male"
-        )
         val userKey : Int = userRepo.insertUser(user)
         return ResponseEntity(userKey, HttpStatus.OK)
     }
