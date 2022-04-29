@@ -1,13 +1,12 @@
 package com.ps.data
 
-import java.sql.Date
+import java.sql.Timestamp
 
 data class Comment(
         val id : Int?,
         var user : User?,
         val comment : String?,
-        val commentDate : Date?,
-        val likes : Int?
+        val commentDate : Timestamp?,
 ) {
 
 }

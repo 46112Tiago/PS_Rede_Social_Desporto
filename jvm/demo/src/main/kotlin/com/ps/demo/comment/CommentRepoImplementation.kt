@@ -9,6 +9,7 @@ import org.jdbi.v3.core.kotlin.mapTo
 import org.jdbi.v3.core.mapper.RowMapperFactory
 import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
+import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -16,20 +17,19 @@ import java.util.*
 @Repository
 class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
 
-    override fun createComment(postId: Int, comment : Comment) : Int? {
+    override fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
 
         val current = LocalDateTime.now()
-
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
-        val formatted = current.format(formatter)
+        val timestamp : Timestamp = Timestamp.valueOf(current)
 
         val pk = jdbi.withHandle<Comment,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "POST_COMMENT(postId,commentDate,comment,commentCreatorId) " +
                     "values(?,?,?,?)")
                     .bind(0,postId)
-                    .bind(1,formatted)
+                    .bind(1,timestamp)
                     .bind(2,comment.comment)
+                    .bind(3,userId)
                     .executeAndReturnGeneratedKeys("id").mapTo<Comment>().one()
         }
         return pk.id
@@ -48,26 +48,31 @@ class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
         return RowMapperFactory.of(type, KotlinMapper(type, prefix))
     }
 
-    override fun getAllComments(postId: Int) {
-        val toReturn  = jdbi.withHandle<Unit,RuntimeException> { handle : Handle ->
+    override fun getAllComments(postId: Int) : LinkedHashMap<Int, Comment>? {
+        val toReturn : LinkedHashMap<Int, Comment>? = jdbi.withHandle<LinkedHashMap<Int, Comment>?,RuntimeException> { handle : Handle ->
 
-            val comments = handle.createQuery("Select c_comment, u_firstName, u_lastName " +
+            handle.createQuery("Select post_comment.id as c_id, " +
+                    "user_profile.userId as u_userId," +
+                    "post_comment.comment as c_comment, " +
+                    "post_comment.commentDate as c_commentDate," +
+                    "user_profile.firstName as u_firstName, " +
+                    "user_profile.lastName as u_lastName " +
                     "from POST_COMMENT join USER_PROFILE " +
-                    "ON userId = USER_PROFILE.id  " +
+                    "ON commentCreatorId = USER_PROFILE.userId  " +
                     "WHERE postId = ?")
+                    .bind(0,postId)
                     .registerRowMapper(factory(Comment::class.java, "c"))
                     .registerRowMapper(factory(User::class.java, "u"))
                     .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Comment>, rowView: RowView ->
                         val comment = map.computeIfAbsent(rowView.getColumn("c_id", Int::class.javaObjectType)) {
-                            rowView.getRow(Comment::class.java) as Comment
+                            rowView.getRow(Comment::class.java)
                         }
 
-                        if (rowView.getColumn("p_id", Int::class.javaObjectType) != null) {
-                            comment.user = rowView.getRow(User::class.java) as User
+                        if (rowView.getColumn("u_userId", Int::class.javaObjectType) != null) {
+                            comment.user = rowView.getRow(User::class.java)
                         }
                         map
                     }
-                    .toList().map { it.second }
         }
 
         return toReturn
