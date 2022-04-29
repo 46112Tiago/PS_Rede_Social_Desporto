@@ -109,6 +109,8 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
     }
 
     override fun getUserGroups(userId : Int): List<Group?> {
+
+
         val groups = jdbi.withHandle<List<Group?>, RuntimeException> { handle: Handle ->
 //            handle.createQuery("(Select groupid from group_participant inner join user_group ug on group_participant.groupid = ug.id where participantid = ?)")
 //                .bind(0, userId).map((rs, ctx) -> new User(rs.getInt("id"), rs.getString("name")))

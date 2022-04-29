@@ -1,7 +1,6 @@
 package com.ps.demo.groupMessage
 
 import com.ps.data.GroupMessage
-import com.ps.demo.groupMessage.GroupMessageRepoImplementation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping
 class GroupMessageController(val groupMessageRepo : GroupMessageRepoImplementation) {
 
-    @GetMapping("/user/{userId}/group/{groupId}/messages")
+    @GetMapping("/user/{userId}/group/{groupId}/message")
     fun getAllMessages(@PathVariable("userId") userId : Int,
                        @PathVariable("groupId") groupId : Int
     ) : ResponseEntity<List<GroupMessage>?> {
@@ -18,7 +17,7 @@ class GroupMessageController(val groupMessageRepo : GroupMessageRepoImplementati
         return ResponseEntity(groupMessages, HttpStatus.OK)
     }
 
-    @PostMapping("/user/{userId}/group/{groupId}/messages")
+    @PostMapping("/user/{userId}/group/{groupId}/message")
     fun sendMessage(@PathVariable("userId") userId : Int,
                     @PathVariable("groupId") groupId : Int,
                     @RequestBody groupMessage: GroupMessage) : ResponseEntity<Any?> {

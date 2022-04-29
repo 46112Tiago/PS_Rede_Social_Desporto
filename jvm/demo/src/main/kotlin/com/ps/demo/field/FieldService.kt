@@ -1,7 +1,7 @@
 package com.ps.demo.field
 
-import com.ps.data.Compound
 import com.ps.data.Field
+import java.util.*
 
 interface FieldService {
 
@@ -15,7 +15,7 @@ interface FieldService {
 
     fun getAllFields(compoundId : Int) : List<Field>?
 
-    fun getFieldInfo(fieldId : Int) : Field?
+    fun getFieldInfo(fieldId : Int) : Optional<Field>?
 
     fun acceptField(compoundId: Int,fieldId: Int)
 

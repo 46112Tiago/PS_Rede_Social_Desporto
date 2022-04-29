@@ -4,7 +4,7 @@ import com.ps.data.Sports
 
 interface SportsService {
 
-    fun addSport(sports : List<Sports>) : MutableList<Sports>?
+    fun addSport(sports : List<Sports>) : MutableList<Int>?
 
     fun addUserSport(userId : Int, sports : List<Sports>)
 

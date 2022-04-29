@@ -6,6 +6,7 @@ import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
@@ -52,7 +53,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
     }
 
     override fun deleteField(fieldId: Int) {
-        val compoundId = jdbi.withHandle<Field?,RuntimeException> { handle : Handle ->
+        val compound = jdbi.withHandle<Field?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select compoundId from Field " +
                     "where id = ?")
                     .bind(0,fieldId)
@@ -67,7 +68,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
 
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM COMPOUND WHERE id = ?  ")
-                    .bind(0, compoundId.id)
+                    .bind(0, compound.id)
                     .execute()
         }
 
@@ -99,15 +100,15 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
     }
 
     /*TODO add pictures*/
-    override fun getFieldInfo(fieldId: Int): Field? {
-        val toReturn = jdbi.withHandle<Field?,RuntimeException> { handle : Handle ->
+    override fun getFieldInfo(fieldId: Int): Optional<Field>? {
+        val toReturn = jdbi.withHandle<Optional<Field>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name " +
                     "from FIELD " +
                     "WHERE id = ? AND accepted = ?")
                     .bind(0,fieldId)
                     .bind(1,true)
                     .mapTo<Field>()
-                    .list()[0]
+                    .findOne()
         }
         return toReturn
     }

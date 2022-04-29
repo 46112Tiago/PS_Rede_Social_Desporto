@@ -39,7 +39,7 @@ class SportsController(val sportsRepo : SportsRepoImplementation) {
     @PostMapping("/sports")
     fun addSport(@RequestBody sports : List<Sports>)
             : ResponseEntity<Any?> {
-        val sportsKey : MutableList<Sports>? = sportsRepo.addSport(sports)
+        val sportsKey : MutableList<Int>? = sportsRepo.addSport(sports)
         return ResponseEntity(sportsKey, HttpStatus.OK)
     }
 

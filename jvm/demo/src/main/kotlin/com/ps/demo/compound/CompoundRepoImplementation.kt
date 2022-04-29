@@ -6,6 +6,7 @@ import com.ps.data.Schedule
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
+import org.postgis.Point
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -13,17 +14,20 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
 
     /*TODO insert in table schedule, location, material, pictures */
     override fun createCompound(compound: Compound) : Int? {
+
+
+        val point = Point(3.0,4.0)
+
         val toReturn : Compound = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "compound(name,description,summary,dressingRoom,parking,accepted,location) " +
-                    "values(?,?,?,?,?,?,?)")
+                    "compound(name,description,summary,dressingRoom,parking,accepted) " +
+                    "values(?,?,?,?,?,?)")
                     .bind(0,compound.name)
                     .bind(1,compound.description)
                     .bind(2,compound.summary)
                     .bind(3,compound.dressingRoom)
                     .bind(4,compound.parking)
                     .bind(5,false)
-                    .bind(6,compound.location)
                     .executeAndReturnGeneratedKeys("id").mapTo<Compound>().one()
         }
 
@@ -82,7 +86,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
     /* TODO: See which attributes should retrieve for the info */
     override fun getCompoundInformation(compoundId : Int): Compound? {
         val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select name, description, material, location,dressingRoom, summary, parking " +
+            handle.createQuery("Select name, description, location, dressingRoom, summary, parking " +
                     "from COMPOUND " +
                     "WHERE id = ? AND accepted = ?")
                     .bind(0,compoundId)

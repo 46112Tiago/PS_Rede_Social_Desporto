@@ -11,7 +11,7 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
 
     override fun getUser(): List<User> {
         val toReturn = jdbi.withHandle<List<User>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE ").mapTo<User>().list()
+            handle.createQuery("Select firstName, lastName, birthdate from USER_PROFILE ").mapTo<User>().list()
 
         }
 
@@ -39,14 +39,14 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
     override fun insertUser(user : User): Int {
         val toReturn = jdbi.withHandle<User,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender) " +
-                    "values(?,?,?,?,?,?)").bind(0,user.firstName)
+                    "values(?,?,?,?,?,?,?)").bind(0,user.firstName)
                                         .bind(1,user.lastName)
                                         .bind(2,user.city)
                                         .bind(3,user.birthdate)
                                         .bind(4,user.email)
                                         .bind(5,user.available)
                                         .bind(6,user.gender)
-                                        .executeAndReturnGeneratedKeys("userId")
+                                        .executeAndReturnGeneratedKeys("userid")
                                         .mapTo<User>().one()
         }
 

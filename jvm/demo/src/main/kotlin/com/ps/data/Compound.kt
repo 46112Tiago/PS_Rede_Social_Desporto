@@ -8,14 +8,10 @@ data class Compound(
         val description : String?,
         val summary : String?,
         val pictures : URL?,
-        val location : Point?,
+        //TODO: USe geoApi to convert location to coordinates
+        val location : String?,
         val material : List<String>?,
         val dressingRoom : Char?, //M / F / A / N
         val parking : Boolean?,
         val accepted : Boolean?
-)
-
-data class Point(
-        val x : Float?,
-        val y : Float?
 )

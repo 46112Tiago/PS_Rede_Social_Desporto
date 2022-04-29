@@ -56,7 +56,7 @@ CREATE TABLE FRIENDS(
 CREATE TABLE PRIVATE_MESSAGE(
     id SERIAL,
     senderId INT,
-    receiverId INT,
+    receiverId INT CONSTRAINT different_then_sender CHECK (receiverId <> senderId),
     message VARCHAR(1024),
     date TIMESTAMP,
     PRIMARY KEY(id,senderId,receiverId),

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository
 @Repository
 class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
 
-    override fun addSport(sports : List<Sports>) : MutableList<Sports>? {
+    override fun addSport(sports : List<Sports>) : MutableList<Int>? {
 
-        val sportsKeys : MutableList<Sports> = mutableListOf()
+        val sportsKeys : MutableList<Int> = mutableListOf()
 
         for (sport in sports){
 
@@ -23,7 +23,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
                         .executeAndReturnGeneratedKeys("id").mapTo<Sports>().one()
             }
 
-            sportsKeys.add(toReturn)
+            sportsKeys.add(toReturn.id!!)
 
         }
 
@@ -38,6 +38,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
                         "values(?,?)")
                         .bind(0,userId)
                         .bind(1,sport.id)
+                        .execute()
             }
 
         }
@@ -45,7 +46,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
 
     override fun deleteUserSport(userId: Int, sportId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate(" DELETE FROM USER_SPORTS WHERE userId = ? AND id = ?")
+            handle.createUpdate(" DELETE FROM USER_SPORTS WHERE userId = ? AND sportId = ?")
                     .bind(0, userId)
                     .bind(1,sportId)
                     .execute()

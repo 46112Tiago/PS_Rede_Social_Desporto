@@ -1,12 +1,11 @@
 package com.ps.demo.field
 
-import com.ps.data.Compound
 import com.ps.data.Field
-import org.antlr.v4.runtime.misc.Pair
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping
@@ -19,8 +18,9 @@ class FieldController(val fieldRepo : FieldRepoImplementation) {
     }
 
     @GetMapping("/compound/{compoundId}/field/{fieldId}")
-    fun getFieldInfo(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Field?> {
-        val field : Field? = fieldRepo.getFieldInfo(fieldId)
+    fun getFieldInfo(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any?> {
+        val field : Optional<Field>? = fieldRepo.getFieldInfo(fieldId)
+        if(field!!.isEmpty) return ResponseEntity("Resource not found", HttpStatus.NOT_FOUND)
         return ResponseEntity(field, HttpStatus.OK)
     }
 

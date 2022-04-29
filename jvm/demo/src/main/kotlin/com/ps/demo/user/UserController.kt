@@ -12,9 +12,9 @@ class UserController (val userRepo : UserRepoImplementation) {
 
 
     @GetMapping("/user")
-    fun getUser() : ResponseEntity<User?> {
+    fun getUser() : ResponseEntity<List<User>?> {
         val users : List<User> = userRepo.getUser()
-        return ResponseEntity(users[0], HttpStatus.OK)
+        return ResponseEntity(users, HttpStatus.OK)
     }
 
     @GetMapping("/user/{user_id}")

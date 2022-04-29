@@ -1,11 +1,11 @@
 package com.ps.data
 
-import java.util.*
+import java.sql.Timestamp
 
 data class GroupMessage(
     val id : Int?,
     val group : Group?,
     val sender : User?,
-    val messageDate : Date?,
+    val messageDate : Timestamp?,
     val message : String?
 )

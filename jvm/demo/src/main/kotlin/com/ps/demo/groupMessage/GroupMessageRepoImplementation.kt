@@ -5,8 +5,8 @@ import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
+import java.sql.Timestamp
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 
 @Repository
@@ -27,9 +27,7 @@ class GroupMessageRepoImplementation (var jdbi: Jdbi) : GroupMessageService {
     override fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage): Int? {
 
         val current = LocalDateTime.now()
-
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val formatted = current.format(formatter)
+        val timestamp : Timestamp = Timestamp.valueOf(current)
 
         val toReturn : GroupMessage = jdbi.withHandle<GroupMessage,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
@@ -38,7 +36,7 @@ class GroupMessageRepoImplementation (var jdbi: Jdbi) : GroupMessageService {
                     .bind(0,userId)
                     .bind(1,groupId)
                     .bind(2,groupMessage.message)
-                    .bind(3,formatted)
+                    .bind(3,timestamp)
                     .executeAndReturnGeneratedKeys("id").mapTo<GroupMessage>().one()
         }
 
