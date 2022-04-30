@@ -12,6 +12,8 @@ ReactDOM.render(
           domain="dev-7xsir3ai.eu.auth0.com"
           clientId="eG9fFbcWlzOLUqMg69ZGpMg4iZ6YQfnn"
           redirectUri={"https://localhost:3000/events"}
+          audience="https://localhost:8080"
+          scope="read:current_user update:current_user_metadata"
         >
           <App />
         </Auth0Provider>
