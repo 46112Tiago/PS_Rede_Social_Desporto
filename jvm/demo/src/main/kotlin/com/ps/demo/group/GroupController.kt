@@ -11,13 +11,6 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping
 class GroupController (val groupRepo : GroupRepoImplementation) {
 
-
-    @GetMapping("/groups")
-    fun getGroups() : ResponseEntity<List<Group?>> {
-        val groups = groupRepo.getGroups()
-        return ResponseEntity(groups, HttpStatus.OK)
-    }
-
     @GetMapping("/group/{groupId}")
     fun getGroupById(@PathVariable("groupId") groupId : Int) : ResponseEntity<Group?> {
         val group : Group? = groupRepo.getGroupById(groupId)

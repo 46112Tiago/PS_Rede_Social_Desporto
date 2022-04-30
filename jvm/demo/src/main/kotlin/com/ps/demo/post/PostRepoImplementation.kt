@@ -17,15 +17,43 @@ import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.LinkedHashMap
+import kotlin.collections.LinkedHashMap
 
 @Repository
 class PostRepoImplementation (var jdbi: Jdbi) : PostService {
 
     override fun getPosts(): List<Post?> {
-        val toReturn = jdbi.withHandle<List<Post?> ,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from POST ").mapTo<Post>().list()
+        val toReturn = jdbi.withHandle<List<Post?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("SELECT " +
+                    "post.id as p_id," +
+                    "user_profile.userid as u_userid," +
+                    "post.description as p_description, " +
+                    "post.postdate as p_postdate, " +
+                    "post.likes as p_likes, " +
+                    //"post.pictures as p_pictures, " +
+                    "user_profile.firstname as u_firstname, " +
+                    "user_profile.lastname as u_lastname, " +
+                    "user_profile.city as u_city, " +
+                    "user_profile.birthdate as u_birthdate, " +
+                    "user_profile.profilepic as u_profilepic, " +
+                    "user_profile.email as u_email, " +
+                    "user_profile.available as u_available, " +
+                    "user_profile.gender as u_gender " +
+                    "FROM POST INNER JOIN user_profile on post.userid = user_profile.userid")
+                .registerRowMapper(factory(User::class.java, "u"))
+                .registerRowMapper(factory(Post::class.java, "p"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Post?>, rowView: RowView ->
+                    val post = map.computeIfAbsent(rowView.getColumn("p_id", Int::class.javaObjectType)) {
+                        rowView.getRow(Post::class.java)
+                    }
+
+                    if (rowView.getColumn("u_userid", Int::class.javaObjectType) != null) {
+                        post!!.user = rowView.getRow(User::class.java)
+                    }
+                    map
+                }.values.toList()
         }
+
         return toReturn
     }
 
@@ -72,18 +100,32 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
 
     override fun getPostCreator(postId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            //handle.createQuery("Select * from group_participant where groupid = ?")
-            handle.createQuery("Select user_profile.userId, " +
-                    "firstName, " +
-                    "lastName," +
-                    "profilepic" +
-                    " from user_profile " +
-                    "inner join post pst " +
-                    "on user_profile.userId = pst.userid AND pst.id = ?")//") where id = ?)")
+            handle.createQuery("SELECT " +
+                    "post.id as p_id," +
+                    "user_profile.userid as u_userid," +
+                    "post.description as p_description, " +
+                    "post.postdate as p_postdate, " +
+                    "post.likes as p_likes, " +
+                    //"post.pictures as p_pictures, " +
+                    "user_profile.firstname as u_firstname, " +
+                    "user_profile.lastname as u_lastname, " +
+                    "user_profile.city as u_city, " +
+                    "user_profile.birthdate as u_birthdate, " +
+                    "user_profile.profilepic as u_profilepic, " +
+                    "user_profile.email as u_email, " +
+                    "user_profile.available as u_available, " +
+                    "user_profile.gender as u_gender " +
+                    "FROM POST INNER JOIN user_profile on post.userid = user_profile.userid AND post.id = ?")
                 .bind(0,postId)
-                .mapTo<User>()
-                .one()
+                .registerRowMapper(factory(User::class.java, "u"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, User?>, rowView: RowView ->
+                    val post = map.computeIfAbsent(rowView.getColumn("u_userid", Int::class.javaObjectType)) {
+                        rowView.getRow(User::class.java)
+                    }
+                    map
+                }[1]
         }
+
         return toReturn
     }
 

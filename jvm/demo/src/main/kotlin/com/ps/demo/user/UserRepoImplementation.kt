@@ -11,7 +11,7 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
 
     override fun getUser(): List<User> {
         val toReturn = jdbi.withHandle<List<User>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select firstName, lastName, birthdate from USER_PROFILE ").mapTo<User>().list()
+            handle.createQuery("Select * from USER_PROFILE ").mapTo<User>().list()
 
         }
 
@@ -51,6 +51,13 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
         }
 
         return toReturn.userId!!
+    }
+
+    override fun updateUserProfilePic(userId: Int, url: String) : User {
+        return jdbi.withHandle<User,RuntimeException>{ handle:Handle ->
+            handle.createUpdate("update user_profile " +
+                    "SET profilepic = ? WHERE  userid = ?").bind(0,url).bind(1,userId).executeAndReturnGeneratedKeys().mapTo(User::class.java).one()
+        }
     }
 
 }

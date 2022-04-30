@@ -1,47 +1,90 @@
 package com.ps.demo.user
 
 import com.ps.data.Group
+import com.ps.data.Post
 import com.ps.data.User
 import com.ps.demo.group.GroupService
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
+import org.jdbi.v3.core.kotlin.KotlinMapper
 import org.jdbi.v3.core.kotlin.mapTo
+import org.jdbi.v3.core.mapper.RowMapperFactory
+import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
 
 @Repository
 class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
-    //TODO:Ver
-    override fun getGroups(): List<Group?> {
-        val toReturn = jdbi.withHandle<List<Group?> ,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from user_group ").mapTo<Group>().list()
-
-        }
-
-        return toReturn
-    }
-
-    //TODO:Ver
     override fun getGroupById(groupId : Int): Group? {
         val toReturn = jdbi.withHandle<Group?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_GROUP where id = ?")
-                    .bind(0,groupId)
-                    .mapTo<Group>()
-                    .one()
+            handle.createQuery("SELECT " +
+                    "user_group.id as g_id," +
+                    "user_profile.userid as u_userid," +
+                    "user_group.ownerid as g_ownerid, " +
+                    "user_group.picture as g_picture, " +
+                    "user_group.name as g_name, " +
+                    //"post.pictures as p_pictures, " +
+                    "user_profile.firstname as u_firstname, " +
+                    "user_profile.lastname as u_lastname, " +
+                    "user_profile.city as u_city, " +
+                    "user_profile.birthdate as u_birthdate, " +
+                    "user_profile.profilepic as u_profilepic, " +
+                    "user_profile.email as u_email, " +
+                    "user_profile.available as u_available, " +
+                    "user_profile.gender as u_gender " +
+                    "FROM user_group INNER JOIN user_profile on user_group.ownerid = user_profile.userid AND user_group.id = ?")
+                .bind(0,groupId)
+                .registerRowMapper(factory(User::class.java, "u"))
+                .registerRowMapper(factory(Group::class.java, "g"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Group?>, rowView: RowView ->
+                    val group = map.computeIfAbsent(rowView.getColumn("g_id", Int::class.javaObjectType)) {
+                        rowView.getRow(Group::class.java)
+                    }
+
+                    if (rowView.getColumn("g_ownerid", Int::class.javaObjectType) != null) {
+                        group!!.owner = rowView.getRow(User::class.java)
+                    }
+                    map
+                }.values.toList().get(0)
         }
 
         return toReturn
     }
+
+    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
+        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
+    }
+
+
 
     override fun getGroupParticipants(groupId : Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            //handle.createQuery("Select * from group_participant where groupid = ?")
-            handle.createQuery("Select * from user_profile inner join group_participant gp on user_profile.userId = gp.participantid AND groupid = ?")
+            handle.createQuery("SELECT " +
+                    "group_participant.groupid as gp_groupid," +
+                    "user_profile.userid as u_userid," +
+                    "group_participant.participantid as gp_participantid," +
+                    //"post.pictures as p_pictures, " +
+                    "user_profile.firstname as u_firstname, " +
+                    "user_profile.lastname as u_lastname, " +
+                    "user_profile.city as u_city, " +
+                    "user_profile.birthdate as u_birthdate, " +
+                    "user_profile.profilepic as u_profilepic, " +
+                    "user_profile.email as u_email, " +
+                    "user_profile.available as u_available, " +
+                    "user_profile.gender as u_gender " +
+                    "FROM group_participant INNER JOIN user_profile on group_participant.participantid = user_profile.userid AND group_participant.groupid = ?")
                 .bind(0,groupId)
-                .mapTo<User>()
-                .list()
+                .registerRowMapper(factory(User::class.java, "u"))
+                .registerRowMapper(factory(Group::class.java, "g"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, User?>, rowView: RowView ->
+                    val users = map.computeIfAbsent(rowView.getColumn("u_userid", Int::class.javaObjectType)) {
+                        rowView.getRow(User::class.java)
+                    }
+                    map
+                }.values.toList()
         }
         return toReturn
+
     }
 
 
@@ -49,11 +92,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
         jdbi.useHandle<RuntimeException> {
             handle: Handle ->
-                handle.createUpdate("DELETE FROM GROUP_PARTICIPANT WHERE groupid = ?").bind(0,groupId).execute()
-        }
-
-        jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate("DELETE FROM USER_GROUP WHERE id = ?").bind(0, groupId).execute()
+                handle.createUpdate("DELETE FROM USER_GROUP WHERE id = ?").bind(0,groupId).execute()
         }
 
     }
@@ -75,17 +114,6 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
         return pk.id
     }
-//
-//    override fun getGroupParticipantById(groupId: Int, userId: Int): User? {
-//        val user = jdbi.withHandle<User,RuntimeException> { handle : Handle ->
-//            handle.createQuery("Select * from group_participant where groupid = ? AND participantid = ?")
-//                .bind(0,groupId)
-//                .bind(1,userId)
-//                .mapTo<User>().one()
-//        }
-//
-//        return toReturn
-//    }
 
     override fun deleteGroupParticipant(groupId: Int,userId: Int) : Int{
         jdbi.useHandle<RuntimeException> { handle: Handle ->
@@ -109,21 +137,38 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
     }
 
     override fun getUserGroups(userId : Int): List<Group?> {
-
-
-        val groups = jdbi.withHandle<List<Group?>, RuntimeException> { handle: Handle ->
-//            handle.createQuery("(Select groupid from group_participant inner join user_group ug on group_participant.groupid = ug.id where participantid = ?)")
-//                .bind(0, userId).map((rs, ctx) -> new User(rs.getInt("id"), rs.getString("name")))
-//                //.registerRowMapper(BeanMapper.factory(Group::class.java,"group_participant"))
-//                .execute()
-            handle.createQuery("SELECT id,ownerid,picture,name FROM user_group INNER JOIN group_participant as gp ON user_group.id = gp.groupid AND gp.participantid = ?")
+        val toReturn = jdbi.withHandle<List<Group?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("SELECT " +
+                    "user_group.id as g_id," +
+                    "user_profile.userid as u_userid," +
+                    "user_group.ownerid as g_ownerid, " +
+                    "user_group.picture as g_picture, " +
+                    "user_group.name as g_name, " +
+                    //"post.pictures as p_pictures, " +
+                    "user_profile.firstname as u_firstname, " +
+                    "user_profile.lastname as u_lastname, " +
+                    "user_profile.city as u_city, " +
+                    "user_profile.birthdate as u_birthdate, " +
+                    "user_profile.profilepic as u_profilepic, " +
+                    "user_profile.email as u_email, " +
+                    "user_profile.available as u_available, " +
+                    "user_profile.gender as u_gender " +
+                    "FROM user_group INNER JOIN user_profile on user_group.ownerid = user_profile.userid AND user_group.ownerid = ?")
                 .bind(0,userId)
-                .mapTo<Group>().list()
-                //.map(JoinRowMapper.forTypes(Group::class.java, Article.class))
-            //.forEach(jr -> joined.put(jr.get(User.class), jr.get(Article.class)));
+                .registerRowMapper(factory(User::class.java, "u"))
+                .registerRowMapper(factory(Group::class.java, "g"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Group?>, rowView: RowView ->
+                    val group = map.computeIfAbsent(rowView.getColumn("g_id", Int::class.javaObjectType)) {
+                        rowView.getRow(Group::class.java)
+                    }
+
+                    if (rowView.getColumn("g_ownerid", Int::class.javaObjectType) != null) {
+                        group!!.owner = rowView.getRow(User::class.java)
+                    }
+                    map
+                }.values.toList()
         }
 
-
-        return groups
+        return toReturn
     }
 }

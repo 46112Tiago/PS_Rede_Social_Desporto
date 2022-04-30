@@ -6,5 +6,5 @@ data class Group(
     val id : Int?,
     val picture : String?,
     val name : String?,
-    val ownerid : Int?
+    var owner : User?
 )

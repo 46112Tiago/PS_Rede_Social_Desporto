@@ -5,13 +5,9 @@ import com.ps.data.User
 
 interface GroupService {
 
-    fun getGroups() : List<Group?>
-
     fun getGroupById(groupId : Int) : Group?
 
     fun getGroupParticipants(groupId : Int) : List<User?>
-
-    //fun getGroupParticipantById(groupId : Int, userId : Int) : User?
 
     fun getUserGroups(userId: Int) : List<Group?>
 

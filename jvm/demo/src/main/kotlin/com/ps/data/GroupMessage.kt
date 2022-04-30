@@ -4,8 +4,8 @@ import java.sql.Timestamp
 
 data class GroupMessage(
     val id : Int?,
-    val group : Group?,
-    val sender : User?,
+    val groupid : Int?,
+    var sender : User?,
     val messageDate : Timestamp?,
     val message : String?
 )

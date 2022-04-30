@@ -12,4 +12,6 @@ interface UserService {
 
     fun insertUser(user : User) : Int
 
+    fun updateUserProfilePic(userId: Int, url: String) : User
+
 }

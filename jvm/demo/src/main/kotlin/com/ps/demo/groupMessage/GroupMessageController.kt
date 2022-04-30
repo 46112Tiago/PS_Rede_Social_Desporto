@@ -12,8 +12,8 @@ class GroupMessageController(val groupMessageRepo : GroupMessageRepoImplementati
     @GetMapping("/user/{userId}/group/{groupId}/message")
     fun getAllMessages(@PathVariable("userId") userId : Int,
                        @PathVariable("groupId") groupId : Int
-    ) : ResponseEntity<List<GroupMessage>?> {
-        val groupMessages : List<GroupMessage>? = groupMessageRepo.getAllMessages(userId,groupId)
+    ) : ResponseEntity<List<GroupMessage?>> {
+        val groupMessages : List<GroupMessage?> = groupMessageRepo.getAllMessages(userId,groupId)
         return ResponseEntity(groupMessages, HttpStatus.OK)
     }
 

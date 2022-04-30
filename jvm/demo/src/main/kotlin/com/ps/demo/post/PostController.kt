@@ -14,7 +14,7 @@ class PostController (val postRepo : PostRepoImplementation) {
 
     @GetMapping("/post")
     fun getPosts() : ResponseEntity<List<Post?>> {
-        val groups = postRepo.getPosts()
+        val groups = postRepo.getPosts().toList()
         return ResponseEntity(groups, HttpStatus.OK)
     }
 

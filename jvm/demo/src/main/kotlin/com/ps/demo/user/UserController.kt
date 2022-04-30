@@ -37,4 +37,12 @@ class UserController (val userRepo : UserRepoImplementation) {
         val userKey : Int = userRepo.insertUser(user)
         return ResponseEntity(userKey, HttpStatus.OK)
     }
+
+
+    @PutMapping("/user/{user_id}/profilepic")
+    fun updateProfilepic(@RequestBody url: String,@PathVariable("user_id") user_id : Int) : ResponseEntity<Any?> {
+
+        val user : User = userRepo.updateUserProfilePic(user_id,url)
+        return ResponseEntity(user, HttpStatus.OK)
+    }
 }
