@@ -1,19 +1,36 @@
 import React from "react";
 import './EventModal.css'
 import './EventCard.css'
-import {MdSportsTennis} from 'react-icons/md'
+import {event} from '../../Model/Model'
 
-class EventModal extends React.Component {
+const EventModal = (props) => {
 
-    render() {
+
+    const [err, setError] = React.useState();
+    
+    const [eventDescription, setDescription] = React.useState(event);
+
+      const makeRequest = async () => {
+        setError(null);
+        try {
+          const req =  await fetch(`http://localhost:8080/event/${props.eventId}`);
+          const resp = await req.json();
+          setDescription(resp);
+        } catch (err) {
+          setError(err);
+          //console.log(err);
+        } 
+      };
+  
       return (
         <div>
             <div>
             <button id="activateModalEvent" onClick={(e) => {
                                 e.preventDefault();
                                 window.location.href="#demo-modal";
+                                makeRequest();
                                 }}className = 'eventBtn'>                 
-            Descrição</button>
+                                Descrição</button>
             </div>
             
             <div id="demo-modal" className="modalEvent">
@@ -24,11 +41,9 @@ class EventModal extends React.Component {
 
                     <h4 id="descriptionTitle">Descrição</h4>
                     <p>
-                        Some description
+                        {eventDescription.description}
                     </p>
-                    
-                    
-                   
+                                
                     <a href="#" className="modal__close">&times;</a>
                 </div>
 
@@ -36,7 +51,6 @@ class EventModal extends React.Component {
         </div>
 
       );
-    }
   }
 
   export default EventModal

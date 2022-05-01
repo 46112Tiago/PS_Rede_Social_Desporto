@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserEvent.css'
 import UserEventCard from './UserEventCard';
+import UserCreateEvent from './UserEventCreate/UserCreateEvent';
 
 class UserEvent extends React.Component {
   
@@ -10,7 +11,9 @@ class UserEvent extends React.Component {
                 <UserEventCard></UserEventCard>
                 <UserEventCard></UserEventCard>
                 <UserEventCard></UserEventCard>
-                <UserEventCard></UserEventCard>
+
+
+                <UserCreateEvent></UserCreateEvent>
             </div>
       );
     }

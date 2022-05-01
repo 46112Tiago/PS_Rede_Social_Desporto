@@ -1,9 +1,43 @@
-#activateModal {
-    text-decoration: none;
-    color: rgb(189, 194, 199);
+.modalGroupBody {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.modal {
+.addBtn {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    color: rgb(230, 220, 220);
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.addBtn:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.addBtn:active {
+    cursor: pointer;
+    background-color: rgb(185, 179, 179);
+    color: gray;
+}
+
+
+
+
+
+
+
+#activateModal_group {
+    text-decoration: none;
+}
+
+.modal_group {
     height: 100%;
     visibility: hidden;
     opacity: 0;
@@ -20,17 +54,17 @@
     background-size:contain;
   }
   
-  .modal:target {
+  .modal_group:target {
     visibility: visible;
     opacity: 1;
   }
   
-  .modal__content {
+  .modal__content_group {
     border-radius: 4px;
     position: relative;
     width: 500px;
     max-width: 90%;
-    height: 70%;
+    height: 25%;
     overflow-y: scroll;
     background: #fff;
     padding: 1em 2em;
@@ -44,10 +78,4 @@
     right: 10px;
     color: #585858;
     text-decoration: none;
-  }
-
-  .listSport {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 7px;
   }

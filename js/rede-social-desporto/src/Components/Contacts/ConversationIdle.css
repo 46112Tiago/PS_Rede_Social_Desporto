@@ -44,4 +44,12 @@
     overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#overflowText::-webkit-scrollbar {
+  display: none;
 }

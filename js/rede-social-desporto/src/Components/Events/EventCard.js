@@ -2,6 +2,7 @@ import React from 'react';
 import './EventCard.css'
 import { FaCalendarDay, FaMapMarker, FaUserCheck, FaRunning } from 'react-icons/fa';
 import EventModal from './EventModal';
+import ParticipateEvent from './Participate/ParticipateEvent';
 
 class EventCard extends React.Component {
   
@@ -28,12 +29,12 @@ class EventCard extends React.Component {
 
                 <div id='eventBtnContainer'>
                     <div className='btnEvent'>
-                        <EventModal></EventModal>
+                        <EventModal eventId={1}></EventModal>
                         
                     </div>
                     <br></br>
                     <div>
-                        <button className = 'eventBtn'>Participar</button>
+                        <ParticipateEvent eventId={1}></ParticipateEvent>
                     </div>
 
                 </div>

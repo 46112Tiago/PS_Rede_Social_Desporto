@@ -1,10 +1,38 @@
 import React from "react";
 import './SportsModal.css'
 import {MdSportsTennis} from 'react-icons/md'
+import {sport} from "../../Model/Model"
+import CreateSportsList from "./CreateSportsList";
 
-class SportsModal extends React.Component {
+const SportsModal = () => {
 
-    render() {
+const [isLoading, setIsLoading] = React.useState(false);
+const [error, setError] = React.useState();
+  
+const [sportArray, setSport] = React.useState([sport]);
+
+  React.useEffect(() => {
+    const makeRequest = async () => {
+      setError(null);
+      setIsLoading(true);
+      try {
+        const req =  await fetch("http://localhost:8080/user/3/sports");
+        const resp = await req.json();
+        setSport(resp);
+        
+      } catch (err) {
+        setError(err);
+        //console.log(err);
+      } finally {
+        setIsLoading(false);
+        
+      }
+    };
+
+    if (!isLoading) makeRequest();
+  },[]);
+
+
       return (
         <div>
             <div>
@@ -14,13 +42,10 @@ class SportsModal extends React.Component {
             <div id="demo-modal" className="modal">
                 <div className="modal__content">
                     <h1>Desportos</h1>
-                    <ul>
-                        <li>
-                            Tenis
-                        </li>
-                        <li>
-                            FootBall
-                        </li>
+                    <ul id="Sports" >
+                        {sportArray.map((sportObj,i) => 
+                            <CreateSportsList key={i} sportName={sportObj.name} sportId={sportObj.id}></CreateSportsList>
+                        )}
                     </ul>
                    
                     <a href="#" className="modal__close">&times;</a>
@@ -31,6 +56,5 @@ class SportsModal extends React.Component {
 
       );
     }
-  }
 
   export default SportsModal

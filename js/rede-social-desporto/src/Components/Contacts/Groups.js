@@ -3,6 +3,7 @@ import './Contacts.css'
 import './Groups.css'
 import { FaUser, FaUsers } from 'react-icons/fa';
 import {BsFillPlusCircleFill} from 'react-icons/bs';
+import GroupModal from './CreateGroup/GroupModal';
 
 class Groups extends React.Component {
   
@@ -17,8 +18,6 @@ class Groups extends React.Component {
 
      render() {
 
-
-
         return (
           <div>
               <div className='messageOption'>
@@ -30,7 +29,7 @@ class Groups extends React.Component {
               <div id='contacts'>
                       <hr id='line'/>
                       <h3 id='contactsH3'>Groups:</h3>
-                      <button id='addBtn'>Create Group <BsFillPlusCircleFill></BsFillPlusCircleFill></button> 
+                      <GroupModal></GroupModal>
               </div>
           </div>
         );

@@ -26,6 +26,13 @@ class ConversationIdle extends React.Component {
                 <OwnMsg></OwnMsg>
                 <FriendMsg></FriendMsg>
                 <FriendMsg></FriendMsg>
+                <OwnMsg></OwnMsg>
+                <FriendMsg></FriendMsg>
+                <FriendMsg></FriendMsg>
+                <FriendMsg></FriendMsg>
+                <OwnMsg></OwnMsg>
+                <FriendMsg></FriendMsg>
+                <FriendMsg></FriendMsg>
                 
               </div>
 
