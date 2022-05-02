@@ -1,6 +1,7 @@
 package com.ps.demo.user
 
 import com.ps.data.User
+import org.springframework.web.bind.annotation.RequestParam
 
 interface UserService {
 
@@ -14,4 +15,7 @@ interface UserService {
 
     fun updateUserProfilePic(userId: Int, url: String) : User
 
-}
+    fun getUserByEmail(email :String) : Int?
+
+
+    }

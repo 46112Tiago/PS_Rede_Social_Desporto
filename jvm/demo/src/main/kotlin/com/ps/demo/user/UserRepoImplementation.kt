@@ -18,6 +18,15 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
         return toReturn
     }
 
+    override fun getUserByEmail(userEmail : String): Int? {
+        val toReturn = jdbi.withHandle<Int?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select userId from USER_PROFILE where email = ?")
+                .bind(0,userEmail)
+                .mapTo<Int>().one()
+        }
+        return toReturn
+    }
+
 
     override fun getUserById(userId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->

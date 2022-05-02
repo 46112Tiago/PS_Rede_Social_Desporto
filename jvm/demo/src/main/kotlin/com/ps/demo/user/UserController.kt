@@ -25,6 +25,12 @@ class UserController (val userRepo : UserRepoImplementation) {
         return ResponseEntity.ok().headers(responseHeaders).body(user)
     }
 
+    @GetMapping("/user/email")
+    fun getUserByEmail(@RequestParam(required = false) email : String) : ResponseEntity<Int?> {
+        val user : Int? = userRepo.getUserByEmail(email)
+        return ResponseEntity(user, HttpStatus.OK)
+    }
+
     @DeleteMapping("/user/{userId}")
     fun deleteUser(@PathVariable("userId") userId : Int) : ResponseEntity<Any?> {
         userRepo.deleteUser(userId)
