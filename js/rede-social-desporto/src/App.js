@@ -5,6 +5,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Navigation from './Components/Navigation/Navigation';
 import SearchBar from './Components/SearchBar/SearchBar';
@@ -15,23 +16,23 @@ import Map from './Components/Map/Map';
 import Events from './Components/Events/Events';
 import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
-import { use } from 'express/lib/application';
+import ChooseAuthPath from './Components/Auth0/ChooseAuthPath';
 
+const App = () => {
 
-class App extends Component {
+    const { isAuthenticated } = useAuth0()
 
-  render(){
     return(
       <Router>
        
-          <div className="App">       
-              <NavLog></NavLog>
+          <div className="App"> 
+              {isAuthenticated ?  <NavLog></NavLog> : <Navigation></Navigation> }      
               <SearchBar></SearchBar>                          
               <Routes>
-                
+                <Route path='/map' element={<ChooseAuthPath></ChooseAuthPath>}></Route>
                 <Route path='/' element={<Home></Home>}></Route>
-                <Route path='/map' element={<Map></Map>}></Route>
-                <Route path='/events' element={<Events></Events>}></Route>
+                <Route path='/' element={<Map></Map>}></Route>
+                <Route path='/pathAuth' element={<Events></Events>}></Route>
                 <Route path='/signUp' element={<SignUp></SignUp>}></Route>
                 <Route path='/logIn' element={<LogIn></LogIn>}></Route>
               </Routes>          
@@ -41,5 +42,4 @@ class App extends Component {
       );
   };
 
-  
-} export default App;
+   export default App;

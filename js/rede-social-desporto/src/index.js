@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 
 ReactDOM.render(
@@ -11,9 +11,8 @@ ReactDOM.render(
      <Auth0Provider
           domain="dev-7xsir3ai.eu.auth0.com"
           clientId="eG9fFbcWlzOLUqMg69ZGpMg4iZ6YQfnn"
-          redirectUri={"https://localhost:3000/events"}
-          audience="https://localhost:8080"
-          scope="read:current_user update:current_user_metadata"
+          redirectUri={"https://localhost:3000/map"}
+          audience={"http://localhost:8080"}
         >
           <App />
         </Auth0Provider>

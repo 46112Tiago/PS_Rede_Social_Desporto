@@ -2,11 +2,11 @@ import React from 'react';
 import './Events.css'
 import { FaCalendarDay, FaMapMarker, FaUserCheck, FaRunning } from 'react-icons/fa';
 
-class Events extends React.Component {
+const Events = () => {
   
-    render() {
+
       return (
-        <div>
+                  <div>
             <div className='container'>
 
                 <div className='images'>
@@ -72,6 +72,5 @@ class Events extends React.Component {
         </div>
       );
     }
-  }
 
   export default Events

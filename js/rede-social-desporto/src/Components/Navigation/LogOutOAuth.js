@@ -6,7 +6,12 @@ const LogOutOAuth = () => {
   const { logout } = useAuth0();
 
   return (
-    <a href='#' onClick={() => logout({ returnTo: window.location.origin })}>
+    <a href='#' onClick={() => 
+      {
+        document.cookie = 'userId' + "=; Max-Age=0"
+        logout({ returnTo: window.location.origin })
+        
+      }}>
       <FiLogOut></FiLogOut> LogOut 
     </a> 
   );
