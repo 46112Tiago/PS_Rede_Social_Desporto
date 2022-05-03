@@ -51,7 +51,6 @@ window.onclick = function(e) {
                         <a className="leftSide" href="/map">Mapa</a>
                         <a className="leftSide" href="/events">Eventos</a>
                         <a className="rightSide" href="/logIn">LogIn</a>
-                        <a className="rightSide" href="/signUp">Sign Up</a>
                       </div>
       
       }
