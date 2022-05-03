@@ -4,19 +4,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Fetch = (props) => {
     const {getAccessTokenSilently} = useAuth0();
     
-    /*
-    const accessToken = getAccessTokenSilently({
-        audience: `https://localhost:8080`,
-      }).then(
-        res => {
-            console.log(res.accessToken);
-            fetch(`}`,
-        {
-            headers: {
-                Authorization : `Bearer ${res.accessToken}`
-            },
 
-        })
+    const accessToken = getAccessTokenSilently({
+        audience: `http://localhost:8080`,
+      }).then( res => {
+            console.log(res.accessToken);
+            fetch(`http://localhost8080/user/3`,
+            {
+                headers: {
+                    Authorization : `Bearer ${res.accessToken}`
+                },
+
+            })
     }).then(
         res => {
                 if(res.ok){
@@ -29,32 +28,9 @@ const Fetch = (props) => {
     ).then(res => {
          document.cookie = `userId = ${res.userId}`
         alert(props.email)
-    });
-*/
-  
-    useEffect(() => {
-      (async () => {
-        try {
-          const token = await getAccessTokenSilently({
-            audience: 'https://api.example.com/',
-          });
-          const response = await fetch(`http://localhost:8080/user/${props.userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          const cookie = await response.json();
-          document.cookie = `userId = ${cookie.userId}`
-          alert(props.email)
-
-        } catch (e) {
-          console.error(e.error);
-        }
-      })();
-    }, [getAccessTokenSilently]);
-
-
-
+    }).catch( e =>
+      console.log(e)
+    );
 
     return (
         <div>
