@@ -31,7 +31,6 @@ const App = () => {
        
           <div className="App"> 
               <Navigation></Navigation>    
-              <SearchBar></SearchBar>                          
               <Routes>
                 <Route path='/map' element={<ChooseAuthPath></ChooseAuthPath>}></Route>
                 <Route path='/' element={<Home></Home>}></Route>

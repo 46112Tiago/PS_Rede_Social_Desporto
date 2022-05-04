@@ -7,7 +7,9 @@ import { Auth0Provider } from '@auth0/auth0-react';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
-const audience = process.env.AUTH0_AUDIENCE 
+const audience = process.env.REACT_APP_AUTH0_AUDIENCE 
+const scope = process.env.REACT_APP_AUTH0_SCOPE
+
 ReactDOM.render(
 
     
@@ -18,6 +20,7 @@ ReactDOM.render(
           clientId={clientId}
           redirectUri='https://localhost:3000/map'
           audience={audience}
+          scope={scope}
         >
           <App />
         </Auth0Provider>
