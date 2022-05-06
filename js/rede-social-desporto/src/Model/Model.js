@@ -34,3 +34,6 @@ export let sport = {
     name : ''
 }
 
+export let message = {
+    message : ''
+}

@@ -2,9 +2,8 @@ import React from 'react';
 import './UserEventCard.css'
 import { FaCalendarDay, FaMapMarker, FaRunning } from 'react-icons/fa';
 
-class UserEventCard extends React.Component {
+const UserEventCard = (props) => {
   
-    render() {
       return (
         <div>
               <div className="cardEvents">
@@ -27,6 +26,6 @@ class UserEventCard extends React.Component {
         </div>
       );
     }
-  }
+  
 
   export default UserEventCard

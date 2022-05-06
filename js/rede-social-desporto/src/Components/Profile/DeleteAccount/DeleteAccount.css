@@ -1,0 +1,17 @@
+#deleteAccountBtn {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: rgb(237, 9, 9);
+    font-size: 25px;
+    float: left;
+    margin-left: 10px;
+    border: rgb(237, 9, 9) solid 2px;
+}
+
+#deleteAccountBtn:hover {
+    border: 3px solid rgb(92, 7, 7);
+    color: rgb(92, 7, 7);
+}
+

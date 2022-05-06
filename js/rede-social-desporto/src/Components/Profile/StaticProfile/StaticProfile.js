@@ -1,6 +1,7 @@
 import React from 'react';
 import './StaticProfile.css'
 import EditModal from '../EditProfile/EditModal';
+import DeleteAccount from '../DeleteAccount/DeleteAccount';
 import SportsModal from '../../SportsModal/SportsModal';
 import {ImBinoculars} from 'react-icons/im'
 import {FaUserFriends} from 'react-icons/fa'
@@ -50,9 +51,15 @@ const StaticProfile = () => {
             <div id='nameProfile'>
               <h2>{userObj.firstname} {userObj.lastname}</h2>
             </div>
-            <div id='editModal'>
-              <EditModal></EditModal>
+            <div id='modifyProfileBtn'>
+              <div id='editModal'>
+                <EditModal></EditModal>
+              </div>
+              <div id=''>
+                <DeleteAccount></DeleteAccount>
+              </div>
             </div>
+
 
           </div>
           <div id='rightSide'>

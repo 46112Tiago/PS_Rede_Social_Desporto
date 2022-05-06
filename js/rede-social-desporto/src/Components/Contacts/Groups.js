@@ -2,38 +2,70 @@ import React from 'react';
 import './Contacts.css'
 import './Groups.css'
 import { FaUser, FaUsers } from 'react-icons/fa';
-import {BsFillPlusCircleFill} from 'react-icons/bs';
 import GroupModal from './CreateGroup/GroupModal';
+import Account from './Account';
+import ConversationIdle from './ConversationIdle';
+import { group } from '../../Model/Model';
 
-class Groups extends React.Component {
+const Groups = () => {
   
+    
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [error, setError] = React.useState();
+    
+    const [groupArray, setGroup] = React.useState([group]);
+  
+    // Keep the above values in sync, this will fire
+    // every time the component rerenders, ie when
+    // it first mounts, and then when any of the above
+    // values change
+    React.useEffect(() => {
+      const makeRequest = async () => {
+        setError(null);
+        setIsLoading(true);
+        try {
+          const req =  await fetch("http://localhost:8080/user/1/group");
+          const resp = await req.json();
+          setGroup(resp);
+        } catch (err) {
+          setError(err);
+          //console.log(err);
+        } finally {
+          setIsLoading(false);
+          
+        }
+      };
+  
+      if (!isLoading) makeRequest();
+    },[]);
 
-
-
-    /**
-     * Change Friends/Groups to only one of those. 
-     * If the user press Friends, appears only the friends list
-     * If the user press Groups, appears only the groups list
-     */
-
-     render() {
 
         return (
-          <div>
-              <div className='messageOption'>
-                  <button className='btnMessage' id='private'><FaUser></FaUser> Friends</button> 
-              </div>
-              <div className='messageOption'>
-                  <button className='btnMessage' id='group'><FaUsers></FaUsers> Groups</button>
-              </div>
-              <div id='contacts'>
+            <div>
+                <div className='flex-container' >
+                    <div className='itemFlex' id='leftItem'>
+                        <div className='messageOption'>
+                            <button className='btnMessage' onClick={() => {window.location.replace('./friendsMessage')}}><FaUser></FaUser> Friends</button> 
+                        </div>
+                    <div className='messageOption'>
+                        <button className='btnMessage' id='group' ><FaUsers></FaUsers> Groups</button>
+                    </div>
+                    <div id='contacts'>
                       <hr id='line'/>
                       <h3 id='contactsH3'>Groups:</h3>
                       <GroupModal></GroupModal>
-              </div>
-          </div>
+                        {groupArray.map((groupObj,i) => 
+                            <Account key={i} groupName={groupObj.name}  groupId={groupObj.id} groupdPicture={groupObj.picture}></Account>
+                        )}
+                    </div>      
+                    </div>
+                    <div className='itemFlex' id='rightItem'>
+                        <ConversationIdle href={'http://localhost:8080/user/1/group/5/message'}></ConversationIdle>
+                    </div>
+                </div>
+            </div>
         );
     }
-  }
+  
 
   export default Groups

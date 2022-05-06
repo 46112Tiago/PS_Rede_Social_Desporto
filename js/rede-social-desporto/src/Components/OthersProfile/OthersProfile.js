@@ -2,10 +2,35 @@ import React from "react";
 import './OthersProfile.css'
 import {FaCity} from 'react-icons/fa'
 import SportsModal from "../SportsModal/SportsModal";
+import { user } from "../../Model/Model";
 
-class OthersProfile extends React.Component {
+const OthersProfile = (props) => {
 
-    render() {
+const [isLoading, setIsLoading] = React.useState(false);
+const [error, setError] = React.useState();
+const [userObj, setUser] = React.useState(user);
+  
+    React.useEffect(() => {
+      const makeRequest = async () => {
+        setError(null);
+        setIsLoading(true);
+        try {
+          const req =  await fetch(`http://localhost:8080/user/${props.userId}`);
+          const resp = await req.json();
+          setUser(resp);
+          
+        } catch (err) {
+          setError(err);
+          //console.log(err);
+        } finally {
+          setIsLoading(false);
+          
+        }
+      };
+  
+      if (!isLoading) makeRequest();
+    },[]);
+
       return (
         <div id="body">
             <div id="backgroundProfile">
@@ -30,6 +55,6 @@ class OthersProfile extends React.Component {
         </div>
       );
     }
-  }
+  
 
   export default OthersProfile

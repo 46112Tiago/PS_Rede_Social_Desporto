@@ -4,9 +4,8 @@ import { FaCalendarDay, FaMapMarker, FaUserCheck, FaRunning } from 'react-icons/
 import EventModal from './EventModal';
 import ParticipateEvent from './Participate/ParticipateEvent';
 
-class EventCard extends React.Component {
+const EventCard = (props) => {
   
-    render() {
       return (
           <div id='evnetCardCon'>
             <div id='eventCardContainer'>
@@ -43,6 +42,6 @@ class EventCard extends React.Component {
         </div>
       );
     }
-  }
+  
 
   export default EventCard

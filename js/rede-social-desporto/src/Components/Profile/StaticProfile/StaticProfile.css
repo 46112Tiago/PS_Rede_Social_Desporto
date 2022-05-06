@@ -133,3 +133,11 @@
   background-color: rgb(6, 117, 25);
 }
 
+#modifyProfileBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
