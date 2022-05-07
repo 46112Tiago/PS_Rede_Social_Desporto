@@ -1,8 +1,11 @@
 import React from 'react';
 import './UserEventCard.css'
+import CancelBtn from './CancelBtn/CancelBtn';
 import { FaCalendarDay, FaMapMarker, FaRunning } from 'react-icons/fa';
 
 const UserEventCard = (props) => {
+
+    const cancel = props.created == 'created' ? <CancelBtn id={props.id}/> : <></>
   
       return (
         <div>
@@ -20,6 +23,7 @@ const UserEventCard = (props) => {
                         <p>Summary</p>
                         {/*Add in the read me the image and the description in a pop up */}
                         <a href="#">Read me</a>
+                        {cancel}
                       </div>
                   </div>
               </div>              

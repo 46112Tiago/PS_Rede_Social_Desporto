@@ -13,7 +13,7 @@ import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import Map from './Components/Map/Map';
 import Events from './Components/Events/Events';
-import SignUp from './Components/Sign_Up/Sign_Up';
+import CreateUser from './Components/Sign_Up/CreateUser';
 import LogIn from './Components/LogIn/LogIn';
 import Profile from './Components/Profile/StaticProfile/StaticProfile';
 import ProfileSearch from './Components/ProfileSearch/ProfileSearch';
@@ -34,7 +34,7 @@ class App extends Component {
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/map' element={<Map></Map>}></Route>
             <Route path='/events' element={<Events></Events>}></Route>
-            <Route path='/signUp' element={<SignUp></SignUp>}></Route>
+            <Route path='/signUp' element={<CreateUser></CreateUser>}></Route>
             <Route path='/logIn' element={<LogIn></LogIn>}></Route>
             <Route path='/profile' element={<Profile></Profile>}></Route>
             <Route path='/profileSearch' element={<ProfileSearch></ProfileSearch>}></Route>

@@ -71,9 +71,27 @@
     color: #333;
     padding: 5px;
     border: 1px solid #333;
+    
 }
 
 .cardEvents .face.face2 .contentEvent a:hover{
     background: #333;
     color: #fff;
+}
+
+.cardEvents .face.face2 .contentEvent button{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #333;
+    padding: 5px;
+    border: 1px solid #333;
+    width: 80px;
+}
+
+.cardEvents .face.face2 .contentEvent button:hover{
+    background: #333;
+    color: #fff;
+    cursor: pointer;
 }

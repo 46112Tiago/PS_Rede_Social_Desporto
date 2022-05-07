@@ -1,3 +1,7 @@
+
+/*In case of error check if the properties have the exact same name as in the data class*/
+
+
 export let user = {
     user_id : 0,
     firstname : '',

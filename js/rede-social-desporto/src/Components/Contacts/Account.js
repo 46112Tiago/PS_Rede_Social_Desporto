@@ -3,20 +3,9 @@ import './Contacts.css'
 
 
 
-class Account extends React.Component {
+const Account = (props) => {
   
 
-
-
-    /**
-     * Change Friends/Groups to only one of those. 
-     * If the user press Friends, appears only the friends list
-     * If the user press Groups, appears only the groups list
-     */
-
-    render() {
-
-        
 
       return (
         <div>
@@ -28,6 +17,5 @@ class Account extends React.Component {
         </div>
       );
     }
-  }
 
   export default Account
