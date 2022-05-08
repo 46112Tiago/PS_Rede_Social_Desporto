@@ -20,8 +20,8 @@ import ProfileSearch from './Components/ProfileSearch/ProfileSearch';
 import UserEvent from './Components/UserEvents/UserEvent';
 import OthersProfile from './Components/OthersProfile/OthersProfile';
 import Friends from './Components/Friends/Friends';
-import FriendsMessage from './Components/Contacts/Friends';
-import Groups from './Components/Contacts/Groups';
+import FriendsMessage from './Components/Contacts/Friends/Friends';
+import Groups from './Components/Contacts/Groups/Groups';
 
 class App extends Component {
 

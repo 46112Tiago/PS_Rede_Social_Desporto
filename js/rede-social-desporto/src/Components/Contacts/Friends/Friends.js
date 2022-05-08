@@ -1,10 +1,11 @@
 import React from 'react';
-import './Contacts.css'
+import '../Contacts.css'
 import './Friend.css'
 import { FaUser, FaUsers } from 'react-icons/fa';
-import Account from './Account';
-import ConversationIdle from './ConversationIdle';
-import { user } from '../../Model/Model';
+import Account from '../Account';
+import ConversationIdle from '../ConversationIdle';
+import { user } from '../../../Model/Model';
+import ConversationStart from '../ConversationStart';
 
 const FriendsMessage = () => {
   
@@ -13,6 +14,7 @@ const FriendsMessage = () => {
   const [error, setError] = React.useState();
   
   const [friendArray, setUser] = React.useState([user]);
+  const [id, setId] = React.useState(0);
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -23,20 +25,29 @@ const FriendsMessage = () => {
       setError(null);
       setIsLoading(true);
       try {
-        const req =  await fetch("http://localhost:8080/user/1/friends");
-        const resp = await req.json();
-        setUser(resp);
+        if(id == 0){
+          const req =  await fetch("http://localhost:8080/user/1/friends");
+          const resp = await req.json();
+          setUser(resp);
+        }
+
       } catch (err) {
         setError(err);
         //console.log(err);
       } finally {
         setIsLoading(false);
-        
       }
     };
 
     if (!isLoading) makeRequest();
-  },[]);
+  },[id]);
+
+  let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle dropdown={false} href={`http://localhost:8080/user/1/message/${id}`}/>
+
+  const getConversation = (idMsg) => {
+    setId(idMsg)
+    console.log(id)
+  }
 
       return (
         <div>
@@ -53,11 +64,11 @@ const FriendsMessage = () => {
                 <h3 id='contactsH3'>Friends:</h3> 
               </div>
               {friendArray.map((friendObj,i) => 
-                        <Account key={i} friendName={friendObj.firstname} friendLName={friendObj.lastname} friendId={friendObj.user_id} friendPicture={friendObj.profilepic}></Account>
+                        <Account getConversation={getConversation} key={i} friendName={friendObj.firstname} friendLName={friendObj.lastname} friendId={friendObj.user_id} friendPicture={friendObj.profilepic}></Account>
               )}
             </div>
             <div className='itemFlex' id='rightItem'>
-              <ConversationIdle href={'http://localhost:8080/user/1/message/4'}></ConversationIdle>
+              {talkTemplate}
             </div>
           </div>
         </div>

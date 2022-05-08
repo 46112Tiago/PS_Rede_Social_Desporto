@@ -1,19 +1,16 @@
 import React from 'react';
-import './ConversationIdle.css'
+import '../ConversationIdle.css'
 
-class OwnMsg extends React.Component {
+const OwnMsg = (props) => {
   
-    render() {
-
       return (
         <div>
             <div className='textBox'>
-                <p className='ownMsg'> Some text written by me.</p>
+                <p className='ownMsg'>{props.message} Some text written by me.</p>
             </div>
             <br/><br/><br/>
         </div>
       );
     }
-  }
 
   export default OwnMsg

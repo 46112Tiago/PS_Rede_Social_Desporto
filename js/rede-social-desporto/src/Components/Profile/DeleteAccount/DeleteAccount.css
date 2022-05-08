@@ -8,6 +8,7 @@
     float: left;
     margin-left: 10px;
     border: rgb(237, 9, 9) solid 2px;
+    cursor: pointer;
 }
 
 #deleteAccountBtn:hover {

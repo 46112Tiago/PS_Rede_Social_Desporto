@@ -1,18 +1,20 @@
 import React from 'react';
-import './Contacts.css'
+import '../Contacts.css'
 import './Groups.css'
 import { FaUser, FaUsers } from 'react-icons/fa';
-import GroupModal from './CreateGroup/GroupModal';
-import Account from './Account';
-import ConversationIdle from './ConversationIdle';
-import { group } from '../../Model/Model';
+import GroupModal from '../CreateGroup/GroupModal';
+import Account from '../Account';
+import ConversationIdle from '../ConversationIdle';
+import { group } from '../../../Model/Model';
+import ConversationStart from '../ConversationStart';
+
 
 const Groups = () => {
   
     
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
-    
+    const [id, setId] = React.useState(0);
     const [groupArray, setGroup] = React.useState([group]);
   
     // Keep the above values in sync, this will fire
@@ -24,21 +26,29 @@ const Groups = () => {
         setError(null);
         setIsLoading(true);
         try {
-          const req =  await fetch("http://localhost:8080/user/1/group");
-          const resp = await req.json();
-          setGroup(resp);
+          if(id == 0){
+            const req =  await fetch("http://localhost:8080/user/1/group");
+            const resp = await req.json();
+            setGroup(resp);
+          }
         } catch (err) {
           setError(err);
           //console.log(err);
         } finally {
           setIsLoading(false);
-          
         }
       };
   
       if (!isLoading) makeRequest();
-    },[]);
+    },[id]);
 
+    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle dropdown={true} href={`http://localhost:8080/user/1/group/${id}/message`}/>
+
+    const getConversation = (idMsg) => {
+      setId(idMsg)
+      console.log(id)
+    }
+  
 
         return (
             <div>
@@ -55,12 +65,12 @@ const Groups = () => {
                       <h3 id='contactsH3'>Groups:</h3>
                       <GroupModal></GroupModal>
                         {groupArray.map((groupObj,i) => 
-                            <Account key={i} groupName={groupObj.name}  groupId={groupObj.id} groupdPicture={groupObj.picture}></Account>
+                            <Account getConversation={getConversation} key={i} groupName={groupObj.name}  groupId={groupObj.id} groupdPicture={groupObj.picture}></Account>
                         )}
                     </div>      
                     </div>
                     <div className='itemFlex' id='rightItem'>
-                        <ConversationIdle href={'http://localhost:8080/user/1/group/5/message'}></ConversationIdle>
+                          {talkTemplate}
                     </div>
                 </div>
             </div>

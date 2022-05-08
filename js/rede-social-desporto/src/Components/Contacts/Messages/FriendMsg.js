@@ -1,7 +1,7 @@
 import React from 'react';
-import './ConversationIdle.css'
+import '../ConversationIdle.css'
 
-class FriendMsg extends React.Component {
+const FriendMsg = (props) => {
   
     /**
      * Change Friends/Groups to only one of those. 
@@ -9,17 +9,14 @@ class FriendMsg extends React.Component {
      * If the user press Groups, appears only the groups list
      */
 
-    render() {
-
       return (
         <div>
             <div className='textBox'>
-                <p className='friendMsg'> Some text written by the other person. </p>
+                <p className='friendMsg'>{props.message} Some text written by the other person. </p>
             </div>
             <br/><br/><br/>
         </div>
       );
     }
-  }
 
   export default FriendMsg

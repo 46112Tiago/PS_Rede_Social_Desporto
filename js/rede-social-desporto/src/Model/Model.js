@@ -39,5 +39,6 @@ export let sport = {
 }
 
 export let message = {
-    message : ''
+    message : '',
+    ownerId : 0
 }
