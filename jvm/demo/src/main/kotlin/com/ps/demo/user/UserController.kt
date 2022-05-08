@@ -3,25 +3,29 @@ package com.ps.demo.user
 import com.ps.data.User
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping
+@RequestMapping(path = ["user"], produces = [MediaType.APPLICATION_JSON_VALUE])
+// For simplicity of this sample, allow all origins. Real applications should configure CORS for their use case.
+@CrossOrigin("*")
 class UserController (val userRepo : UserRepoImplementation) {
 
 
-    @GetMapping("/user")
+    @GetMapping
     fun getUser() : ResponseEntity<List<User>?> {
         val users : List<User> = userRepo.getUser()
-        return ResponseEntity(users, HttpStatus.OK)
+        return ResponseEntity.ok().body(users)
     }
 
-    @GetMapping("/user/{user_id}")
+    @CrossOrigin("https://localhost:3000")
+    @GetMapping("/{user_id}")
     fun getUserById(@PathVariable("user_id") user_id : Int) : ResponseEntity<User?> {
         val user : User? = userRepo.getUserById(user_id)
         val responseHeaders = HttpHeaders()
-        responseHeaders.set("Access-Control-Allow-Origin","http://localhost:3000")
+        responseHeaders.accessControlAllowOrigin
         return ResponseEntity.ok().headers(responseHeaders).body(user)
     }
 

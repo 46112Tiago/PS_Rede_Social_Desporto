@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserRepoImplementation (var jdbi: Jdbi) : UserService {
 
+
     override fun getUser(): List<User> {
         val toReturn = jdbi.withHandle<List<User>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from USER_PROFILE ").mapTo<User>().list()
