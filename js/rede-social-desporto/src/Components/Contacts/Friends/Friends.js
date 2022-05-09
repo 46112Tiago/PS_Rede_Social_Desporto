@@ -46,7 +46,6 @@ const FriendsMessage = () => {
 
   const getConversation = (idMsg) => {
     setId(idMsg)
-    console.log(id)
   }
 
       return (

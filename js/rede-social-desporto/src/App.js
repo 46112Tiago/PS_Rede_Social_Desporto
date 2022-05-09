@@ -22,6 +22,7 @@ import OthersProfile from './Components/OthersProfile/OthersProfile';
 import Friends from './Components/Friends/Friends';
 import FriendsMessage from './Components/Contacts/Friends/Friends';
 import Groups from './Components/Contacts/Groups/Groups';
+import Post from './Components/Feed/Post';
 
 class App extends Component {
 
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path='/friends' element={<Friends></Friends>}></Route>
             <Route path='/groups' element={<Groups></Groups>}></Route>
             <Route path='/friendsMessage' element={<FriendsMessage></FriendsMessage>}></Route>
+            <Route path='/feed' element={<Post></Post>}></Route>
           </Routes>
 
           <Footer/>

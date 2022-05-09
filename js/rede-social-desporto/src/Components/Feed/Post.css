@@ -1,0 +1,35 @@
+#feed {
+    height: 150%;
+    display: flex;
+    justify-content: center;
+}
+
+#postContent {
+    height: 100%;
+    background-color: rgba(230, 241, 241, 0.95);
+    width: 50%;
+    overflow-y: scroll;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#postContent::-webkit-scrollbar {
+  display: none;
+}
+
+#createPostComponent {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#postTemplate {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}

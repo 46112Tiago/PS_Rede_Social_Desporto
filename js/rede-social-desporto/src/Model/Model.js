@@ -42,3 +42,8 @@ export let message = {
     message : '',
     ownerId : 0
 }
+
+export let post = {
+    description : "",
+    pictures : []
+}
