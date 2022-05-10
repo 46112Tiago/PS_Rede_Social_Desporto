@@ -32,8 +32,8 @@ const App = () => {
           <div className="App"> 
               <Navigation></Navigation>    
               <Routes>
-                <Route path='/map' element={<ChooseAuthPath></ChooseAuthPath>}></Route>
-                <Route path='/' element={<Home></Home>}></Route>
+                <Route path='/' element={<ChooseAuthPath></ChooseAuthPath>}></Route>
+                <Route path='/x' element={<Home></Home>}></Route>
                 <Route path='/m' element={<Map></Map>}></Route>
                 <Route path='/events' element={isAuthenticated?< Events></Events> : <LogIn></LogIn>}></Route>
                 <Route path='/logIn' element={<LogIn></LogIn>}></Route>

@@ -18,7 +18,7 @@ ReactDOM.render(
      <Auth0Provider
           domain={domain}
           clientId={clientId}
-          redirectUri='https://localhost:3000/map'
+          redirectUri={window.location.origin}
           audience={audience}
           scope={scope}
         >

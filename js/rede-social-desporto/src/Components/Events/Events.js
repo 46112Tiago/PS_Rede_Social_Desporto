@@ -3,7 +3,7 @@ import './Events.css'
 import { FaCalendarDay, FaMapMarker, FaUserCheck, FaRunning } from 'react-icons/fa';
 
 const Events = () => {
-  
+
 
       return (
                   <div>
