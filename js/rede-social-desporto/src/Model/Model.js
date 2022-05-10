@@ -44,6 +44,24 @@ export let message = {
 }
 
 export let post = {
+    id : 0,
     description : "",
     pictures : []
+}
+
+
+export let field = {
+    id : 0,
+    compound : {
+        name : '',
+        parking : false
+    },
+
+    name : ''
+}
+
+
+export let comment = {
+    id : 0,
+    comment : ''
 }

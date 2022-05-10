@@ -1,4 +1,6 @@
 import React from 'react'
+import FieldModal from './FieldModal/FieldModal';
+import CompoundModal from './Compound/CompoundModal';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import './Map.css'
 const center = {
@@ -33,11 +35,9 @@ function Map() {
         <h2 id='suggestionTxt'>Suggestions:</h2>
         <br/>
         <div id='suggestionBtn'>
-          <div id='suggestionBtnLeft'>
-            <button className='btnSug' id='compoundBtn'>COMPOUND</button>
-          </div>
-          <div id='suggestionBtnRight'>
-            <button className='btnSug' id='fieldBtn'>FIELD</button>
+          <div id='suggestionBtns'>
+            <CompoundModal></CompoundModal>
+            <FieldModal></FieldModal>
           </div>
         </div>
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import './PostTemplate.css'
+import CommentModal from '../Comment/CommentModal/CommentModal';
 
 const PostOText = (props) => {
 
       return (
+        <div id='posComment'>
         <div id='postOnlyText'>
             <div id='leftPostTemplate'>
               <img id='userPost' src={require('./images/default_profile.jpg')}></img>
@@ -13,6 +15,9 @@ const PostOText = (props) => {
                 <p className='letters'>vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv</p>
             </div>
         </div>
+                    <CommentModal></CommentModal>
+                    </div>
+        
       );
     }
   

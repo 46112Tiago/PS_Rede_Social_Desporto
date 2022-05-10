@@ -49,3 +49,22 @@
     border: rgb(14, 25, 219) solid 2px;
     background-color: rgb(52, 111, 171);
 }
+
+.custom-file-upload {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent; 
+}
+
+.custom-file-upload:hover {
+    border: solid 2px black;
+}
+
+#file-upload {
+    display: none
+}

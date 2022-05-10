@@ -5,6 +5,7 @@ import './CreateUser.css'
 import {HiOutlineMail} from 'react-icons/hi'
 import {FaCity,FaBirthdayCake} from 'react-icons/fa'
 import {CgProfile} from 'react-icons/cg'
+import {AiOutlinePlusCircle} from 'react-icons/ai'
 
 const CreateUser = () => {
 
@@ -64,20 +65,21 @@ const CreateUser = () => {
                               <HiOutlineMail></HiOutlineMail>
                               <input name="email" type='email' {...register('email')}  placeholder='example@email.com' required></input>
                           </div>
-                          <div className="eventInput">
-                            <label for='profilepic' className='labelEvent'>Choose a profile picture:</label>
-                            <input type="file"  {...register('profilepic')} name="profilepic" placeholder='profile picture' accept="image/png, image/jpeg"/>
+                          <div className="eventInput">                            
+                            <label for="file-upload" className="custom-file-upload">Profile picture <AiOutlinePlusCircle/></label>
+                            <input id="file-upload" name='profilepic' type="file" accept="image/*" {...register('profilepic')} placeholder='profile picture'/> 
                           </div>
                           <div className="eventInput">
-                            <input type="radio"  name="gender" value="M" {...register('gender')}/>
+                            <input type="radio"  name="gender" value="M" {...register('gender')} checked/>
                             <label className='labelEvent'>Male</label><br/>
                             <input type="radio"  name="gender" value="F" {...register('gender')}/>
                             <label className='labelEvent'>Female</label><br/>
                             <input type="radio" name="gender" value="O" {...register('gender')}/>
                             <label className='labelEvent'>Other</label>
                           </div>
+                          <div className='eventInput'>
                             
-                         
+                          </div>
                       <div className="form-row" id='submitEvent'>
                           <button type="submit" id='createBtn'>Submit</button>
                       </div>
