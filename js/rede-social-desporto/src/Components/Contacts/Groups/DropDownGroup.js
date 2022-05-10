@@ -1,7 +1,7 @@
 import React from 'react';
 import './DropDownGroup.css'
+import './AddParticipant/AddParticipant.css'
 import { HiDotsVertical } from 'react-icons/hi'
-
 
 
 const DropDownGroup = () => {
@@ -12,7 +12,7 @@ const DropDownGroup = () => {
   <div class="dropdownG">
     <button class="dropbtnG"><HiDotsVertical/></button>
     <div class="dropdown-contentG">
-      <a href="#">Add Participant</a>
+      <a href="#participant-modal" >Add Participant</a>
       <a href="#">See Participant</a>
       <a href="#">Exit</a>
     </div>

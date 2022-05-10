@@ -7,6 +7,7 @@ import Account from '../Account';
 import ConversationIdle from '../ConversationIdle';
 import { group } from '../../../Model/Model';
 import ConversationStart from '../ConversationStart';
+import AddParticipant from './AddParticipant/AddParticipant';
 
 
 const Groups = () => {
@@ -64,6 +65,7 @@ const Groups = () => {
                       <hr id='line'/>
                       <h3 id='contactsH3'>Groups:</h3>
                       <GroupModal></GroupModal>
+                      <AddParticipant/>
                         {groupArray.map((groupObj,i) => 
                             <Account getConversation={getConversation} key={i} groupName={groupObj.name}  groupId={groupObj.id} groupdPicture={groupObj.picture}></Account>
                         )}
