@@ -64,18 +64,18 @@ const AddParticipant = () => {
                 <div className="modal__content_participant">
                     <a href="#" className="modal__close">&times;</a>
                     <h1>Friends:</h1>
-                    <form onSubmit={handleSubmit(submit)}>
+                    <form onSubmit={handleSubmit(submit)} id='formParticipant'>
                         <fieldset>
                             <legend>Add more participants:</legend>
                             {
                                 friendsArray.map((friendObj,i)=>
                                 <div>
                                     <div className='checkDiv'>
-                                        <label for={`check_1${i}`} >{friendObj.firstname} {friendObj.lastname} The weekly newsletter</label>
+                                        <label for={`check_1${i}`} >{friendObj.firstname} {friendObj.lastname} Name Surname</label>
                                         <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={1} {...register('friends')}/>
                                     </div>
                                     <div className='checkDiv'>
-                                        <label for={`check_2${i}`} >{friendObj.firstname} {friendObj.lastname} The weekly newsletter</label>
+                                        <label for={`check_2${i}`} >{friendObj.firstname} {friendObj.lastname} Name Surname</label>
                                         <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={2} {...register('friends')}/>
                                     </div>    
                                 </div>
@@ -83,7 +83,9 @@ const AddParticipant = () => {
                                 )
                             }
                         </fieldset>
-                        <input type={'submit'}/>
+                        <div id='participantbtn'>
+                          <input type={'submit'} id='addParticipant'/>
+                        </div>
                     </form>
                 </div>
             </div>

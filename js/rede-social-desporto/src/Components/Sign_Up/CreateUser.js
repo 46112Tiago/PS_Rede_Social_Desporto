@@ -51,7 +51,7 @@ const CreateUser = () => {
                           </div>
                           <div className="eventInput">
                               <CgProfile></CgProfile>
-                              <input name="firstname" type="text" {...register('firstname')}  placeholder='First Name' required></input>
+                              <input name="lastname" type="text" {...register('lastname')}  placeholder='Last Name' required></input>
                           </div>
                           <div className="eventInput">
                               <FaBirthdayCake></FaBirthdayCake>

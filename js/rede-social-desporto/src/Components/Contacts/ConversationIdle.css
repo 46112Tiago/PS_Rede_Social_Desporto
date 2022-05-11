@@ -1,3 +1,10 @@
+#startConvo {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #nameConvo {
     margin-left: 5%;
     color: rgb(65, 57, 57);
