@@ -49,7 +49,7 @@ const StaticProfile = () => {
               <img src={require('../Img/default_profile.jpg')} id='photoProfile'></img>
             </div>
             <div id='nameProfile'>
-              <h2>{userObj.firstname} {userObj.lastname}</h2>
+              <h2>{userObj.firstName} {userObj.lastName}</h2>
             </div>
             <div id='modifyProfileBtn'>
               <div id='editModal'>
@@ -65,7 +65,7 @@ const StaticProfile = () => {
           <div id='rightSide'>
             <div id='infoProfile'>
               <h3>Info:</h3>
-              <p>{userObj.birthday}</p>
+              <p>{userObj.birthdate}</p>
               <p>{userObj.city}</p>
               <p>Disponibilidade: {userObj.available}</p>
               <SportsModal></SportsModal>

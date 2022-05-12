@@ -16,7 +16,7 @@ const DeleteSport = (props) => {
     const makeRequest = async () => {
 
         try {
-            const response = await fetch(`http://localhost:8080/user/1/sports/${props.sportId}`, deleteMethod);
+            const response = await fetch(`http://localhost:8080/user/3/sports/${props.sportId}`, deleteMethod);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);

@@ -17,7 +17,7 @@ const DeleteAccount = () => {
         const confirmation = window.confirm("Are you sure you want to delete your account ?")
         if(confirmation){
             try {
-                const response = await fetch(`http://localhost:8080/user/1`, deleteMethod);
+                const response = await fetch(`http://localhost:8080/user/5`, deleteMethod);
                 if (!response.ok) {
                   const message = 'Error with Status Code: ' + response.status;
                   throw new Error(message);

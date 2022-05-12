@@ -4,10 +4,10 @@
 
 export let user = {
     user_id : 0,
-    firstname : '',
-    lastname : '',
+    firstName : '',
+    lastName : '',
     city : '',
-    birthday : null,
+    birthdate : null,
     profilepic : '',
     email : '',
     available : false,

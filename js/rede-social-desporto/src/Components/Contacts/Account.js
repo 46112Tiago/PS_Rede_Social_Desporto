@@ -6,14 +6,14 @@ import './Contacts.css'
 const Account = (props) => {
 
     function sendAccountId() {
-      props.getConversation(2)
+      props.getConversation(props.groupId)
     }
   
       return (
         <div>
             <div className='account'>
                     <button type='button' className='btnAccount' onClick={sendAccountId}>                            
-                        <img className='profileImg' src={require('./Img/default_profile.jpg')}></img> Name Surname
+                        <img className='profileImg' src={require('./Img/default_profile.jpg')}></img> {props.groupName}
                     </button>
             </div>                    
         </div>
