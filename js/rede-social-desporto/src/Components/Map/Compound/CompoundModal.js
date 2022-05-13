@@ -1,5 +1,8 @@
 import React from "react";
 import './CompoundModal.css'
+import CompoundSuggestion from "./CompoundSuggestion/CompoundSuggestion";
+import Materials from "./Materials/Materials";
+import Schedule from "./Schedule/Schedule";
 
 class CompoundModal extends React.Component {
 
@@ -13,6 +16,8 @@ class CompoundModal extends React.Component {
             <div id="demo-modal" className="modal_compound">
                 <div className="modal__content_compound">                   
                     <a href="#" className="modal__close">&times;</a>
+                    
+                    <Schedule></Schedule>
                 </div>
 
             </div>

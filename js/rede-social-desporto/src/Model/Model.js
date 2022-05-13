@@ -65,3 +65,33 @@ export let comment = {
     id : 0,
     comment : ''
 }
+
+export let review = {
+    id : 0,
+    rating : 0,
+    description : ''
+}
+
+export let schedule = {
+    id : 0,
+    weekday : '',
+    openingHour : '',
+    closingHour : '',
+    optionalDescription : ''
+}
+
+export let materials = {
+    id : 0,
+    name : ''
+}
+
+
+export let compound = {
+    id : 0,
+    name : '',
+    description : '',
+    summary : '',
+    dressingRoom : '',
+    parking : false,
+    location : ''
+}
