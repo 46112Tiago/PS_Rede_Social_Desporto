@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping
+@CrossOrigin("http://localhost:3000")
 class GroupController (val groupRepo : GroupRepoImplementation) {
 
     @GetMapping("/group/{groupId}")

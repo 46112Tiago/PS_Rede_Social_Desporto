@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse
 
 @RestController
 @RequestMapping
+@CrossOrigin("http://localhost:3000")
 class EventController (val eventRepo : EventRepositoryImplementation) {
 
     @GetMapping("/event")

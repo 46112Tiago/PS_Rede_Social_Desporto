@@ -8,20 +8,19 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(path = ["user"], produces = [MediaType.APPLICATION_JSON_VALUE])
+@RequestMapping
+@CrossOrigin("https://localhost:3000")
 // For simplicity of this sample, allow all origins. Real applications should configure CORS for their use case.
-@CrossOrigin("*")
 class UserController (val userRepo : UserRepoImplementation) {
 
 
-    @GetMapping
+    @GetMapping("/user")
     fun getUser() : ResponseEntity<List<User>?> {
         val users : List<User> = userRepo.getUser()
         return ResponseEntity.ok().body(users)
     }
 
-    @CrossOrigin("https://localhost:3000")
-    @GetMapping("/{user_id}")
+    @GetMapping("/user/{user_id}")
     fun getUserById(@PathVariable("user_id") user_id : Int) : ResponseEntity<User?> {
         val user : User? = userRepo.getUserById(user_id)
         val responseHeaders = HttpHeaders()
