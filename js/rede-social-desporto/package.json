@@ -2,6 +2,7 @@
   "name": "rede-social-desporto",
   "version": "0.0.0",
   "private": true,
+  "proxy":"https://localhost:3000",
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",
