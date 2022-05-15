@@ -24,6 +24,10 @@
 
 }
 
+#formBody {
+    height: 100%;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 #userCreateForm::-webkit-scrollbar {
   display: none;
@@ -37,6 +41,7 @@
     background-color: rgb(137, 173, 208);
     border-radius: 20px;
     margin-top: 20px;
+    margin-bottom: 15px;
     width: 100px;
 }
 
@@ -67,4 +72,8 @@
 
 #file-upload {
     display: none
+}
+
+#submitProfile {
+    margin-bottom: 15px;
 }

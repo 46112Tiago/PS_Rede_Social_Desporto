@@ -43,7 +43,7 @@ const CreateUser = () => {
       <div id='creteBody'>
           <div id='userCreateForm'>
               {userObj &&
-                  <form onSubmit={handleSubmit(submit)}>
+                  <form onSubmit={handleSubmit(submit)} id='formBody'>
                                 <h3 id='titleAccount'>Create Account</h3>
                           <div className="eventInput">
                               <CgProfile></CgProfile>
@@ -80,7 +80,7 @@ const CreateUser = () => {
                           <div className='eventInput'>
                             
                           </div>
-                      <div className="form-row" id='submitEvent'>
+                      <div id='submitProfile'>
                           <button type="submit" id='createBtn'>Submit</button>
                       </div>
                   </form>

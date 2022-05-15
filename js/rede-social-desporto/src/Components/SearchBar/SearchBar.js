@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";import './SearchBar.css'
 import { FaSearch, FaTimes } from 'react-icons/fa';
-import { message } from '../../Model/Model';
 
 const SearchBar = () => {
 
@@ -32,7 +31,7 @@ const SearchBar = () => {
         mode: 'cors',
     };
 
-    fetch(`http://localhost:8080/search?name=${data.name}`, options)
+    fetch(`http://localhost:8080/user/search?name=${data.name}`, options)
     .then(response => response.json())
     .then(data => console.log(data));
 }
@@ -44,8 +43,6 @@ const SearchBar = () => {
             <input name='name' className='searchBarItem' id='searchBarTxt' type="text" {...register('name')} placeholder='Search...' required/>
           </form>
           <button className='searchBarItem' id='cancelBtn' onClick={reset}><FaTimes></FaTimes></button>
-
-
         </div>
       );
     }

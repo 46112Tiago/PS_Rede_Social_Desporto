@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm } from "react-hook-form";
 import './EditModal.css'
 import {MdEdit} from 'react-icons/md'
 
 
-class EditModal extends React.Component {
+const EditModal = () => {
+
+
+  // get functions to build form with useForm() hook
+  const { register, handleSubmit } = useForm();
+
+  const myHeaders = new Headers()
+  myHeaders.append('Content-Type','application/json')
+
+  function submit(data) {
+
+    const options = {
+        method: "PUT",
+        headers: myHeaders,
+        mode: 'cors',
+        body:JSON.stringify(data)
+    };
+    console.log(options.body)
+
+    fetch('http://localhost:8080/user/3', options)
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+
   
-    render() {
       return (
-          
         <div id='editModal'>
-            
             <div>
                 <a href='#edit-modal' className='anchorBtn'><MdEdit></MdEdit></a>
             </div>
             <div id="edit-modal" className="modalEdit">
                 <div className="modal_content_Edit">
                     <h1>Edição Perfil</h1>
-                    <form id='editForm' action=''>
+                    <form id='editForm' onSubmit={handleSubmit(submit)}>
                         <label>Cidade:</label>
                         <br/>
-                        <input type={'text'}></input>
+                        <input type={'text'} {...register('city')}  placeholder='City'></input>
                         <br/><br/>
                         <label>Desportos:</label>
                         <br/><br/>
@@ -38,7 +59,7 @@ class EditModal extends React.Component {
                         <br/><br/>
                         <div className="toggle-button-cover">
                                 <div className="button r" id="button">
-                                <input type="checkbox" className="checkbox" value={'yes'}/>
+                                <input type="checkbox" className="checkbox" {...register('available')}/>
                                 <div className="knobs"></div>
                                 <div className="layer"></div>
                             </div>
@@ -55,6 +76,5 @@ class EditModal extends React.Component {
         </div>
       );
     }
-  }
 
   export default EditModal

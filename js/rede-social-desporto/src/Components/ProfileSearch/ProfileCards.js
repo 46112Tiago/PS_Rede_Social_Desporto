@@ -1,19 +1,17 @@
 import React from 'react';
 import './ProfileCards.css'
 
-class ProfileCards extends React.Component {
+const ProfileCards = (props) =>  {
   
-    render() {
       return (
         <div>
           <div className="card card0">
               <div className="border">
-                  <a href='/profile/:id'><h2 className='name'>Name Surname</h2></a>
+                  <a href={`/profile/${props.userId}`}><h2 className='name'>{props.userFName} {props.userLName}Name Surname</h2></a>
               </div>
           </div>
         </div>
       );
     }
-  }
 
   export default ProfileCards

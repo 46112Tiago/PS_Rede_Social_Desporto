@@ -63,7 +63,7 @@ const FriendsMessage = () => {
                 <h3 id='contactsH3'>Friends:</h3> 
               </div>
               {friendArray.map((friendObj,i) => 
-                        <Account getConversation={getConversation} key={i} friendName={friendObj.firstname} friendLName={friendObj.lastname} friendId={friendObj.user_id} friendPicture={friendObj.profilepic}></Account>
+                        <Account getConversation={getConversation} key={i} friendName={friendObj.firstName} friendLName={friendObj.lastName} friendId={friendObj.userId} friendPicture={friendObj.profilepic}></Account>
               )}
             </div>
             <div className='itemFlex' id='rightItem'>

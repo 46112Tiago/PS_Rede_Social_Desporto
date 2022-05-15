@@ -3,7 +3,7 @@
 
 
 export let user = {
-    user_id : 0,
+    userId : 0,
     firstName : '',
     lastName : '',
     city : '',

@@ -2,7 +2,6 @@ import React from 'react'
 import FieldModal from './FieldModal/FieldModal';
 import CompoundModal from './Compound/CompoundModal';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import Geocode from "react-geocode";
 import './Map.css'
 const center = {
   lat: 38.757026,
@@ -51,17 +50,6 @@ function Map() {
   </>
 }
 
-Geocode.setApiKey("")
-Geocode.enableDebug();
-Geocode.fromLatLng("48.8583701", "2.2922926").then(
-  (response) => {
-    const address = response.results[0].formatted_address;
-    console.log(address);
-  },
-  (error) => {
-    console.error(error);
-  }
-);
 
 
 export default Map

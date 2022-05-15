@@ -2,6 +2,7 @@ import React from "react";
 import './OthersProfile.css'
 import {FaCity} from 'react-icons/fa'
 import SportsModal from "../SportsModal/SportsModal";
+import AddFriend from "./AddFriend/AddFriend";
 import { user } from "../../Model/Model";
 
 const OthersProfile = (props) => {
@@ -40,15 +41,13 @@ const [userObj, setUser] = React.useState(user);
 
                 <div id="backgroundRight">
                     <div className="rightProfile" id="rightName">
-                        <h2>Name Surname</h2>
+                        <h2>{userObj.firstName} {userObj.lastName}</h2>
                     </div>
                     <div className="rightProfile" id="rightInfo">
-                        <h4><FaCity></FaCity> Cidade</h4>
+                        <h4><FaCity></FaCity> {userObj.city}</h4>
                         <SportsModal></SportsModal>
                     </div>
-                    <div className="rightProfile" id="rightBtn">
-                        <button id="friendRequest">Friend</button>
-                    </div>
+                    <AddFriend></AddFriend>
                 </div>
 
             </div>
