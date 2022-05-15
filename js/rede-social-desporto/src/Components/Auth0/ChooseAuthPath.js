@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from 'axios';
+
+export const userId = 0 
 
 const ChooseAuthPath = () => {
   
@@ -20,11 +21,10 @@ const ChooseAuthPath = () => {
 
                   var options = {
                     method: 'GET',
-                    url: 'http://localhost:8080/user',
                     headers: {authorization: `Bearer ${token}`}
                   };
                   
-                  const response = await axios.request(options);
+                  const response = await fetch(`http://localhost:8080/user?email=${user.email}`,options);
                   
                   setUser(response.data);
                 }
