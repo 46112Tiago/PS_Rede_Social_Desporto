@@ -5,7 +5,7 @@ import com.ps.data.User
 
 interface PostService {
 
-    fun getPosts() : List<Post?>
+    fun getPosts(userId: Int) : List<Post?>
 
     fun getPostById(postId : Int) : Post?
 

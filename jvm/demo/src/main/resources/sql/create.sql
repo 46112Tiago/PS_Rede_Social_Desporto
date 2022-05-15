@@ -46,7 +46,7 @@ CREATE TABLE USER_PROFILE(
 
 CREATE TABLE FRIENDS(
     userId INT,
-    friendId INT,
+    friendId INT Constraint same_user CHECK (userId <> friendId),
     PRIMARY KEY (userId,friendId),
     FOREIGN KEY(userId) REFERENCES USER_PROFILE(userId),
     FOREIGN KEY(friendId) REFERENCES USER_PROFILE(userId)

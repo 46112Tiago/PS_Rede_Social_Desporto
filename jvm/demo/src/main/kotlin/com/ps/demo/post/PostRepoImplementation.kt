@@ -1,7 +1,6 @@
 package com.ps.demo.post
 
 
-import com.ps.data.Comment
 import com.ps.data.Post
 import com.ps.data.User
 import org.jdbi.v3.core.Handle
@@ -9,37 +8,31 @@ import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.KotlinMapper
 import org.jdbi.v3.core.kotlin.mapTo
 import org.jdbi.v3.core.mapper.RowMapperFactory
-import org.jdbi.v3.core.mapper.RowMapperFactory.of
-import org.jdbi.v3.core.mapper.reflect.BeanMapper
-import org.jdbi.v3.core.result.LinkedHashMapRowReducer
 import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.collections.LinkedHashMap
 
 @Repository
 class PostRepoImplementation (var jdbi: Jdbi) : PostService {
 
-    override fun getPosts(): List<Post?> {
+    override fun getPosts(userId: Int): List<Post?> {
         val toReturn = jdbi.withHandle<List<Post?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "post.id as p_id," +
                     "user_profile.userid as u_userid," +
                     "post.description as p_description, " +
-                    "post.postdate as p_postdate, " +
+                    "post.postDate as p_postDate, " +
                     "post.likes as p_likes, " +
                     //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
                     "user_profile.lastname as u_lastname, " +
-                    "user_profile.city as u_city, " +
-                    "user_profile.birthdate as u_birthdate, " +
-                    "user_profile.profilepic as u_profilepic, " +
-                    "user_profile.email as u_email, " +
-                    "user_profile.available as u_available, " +
-                    "user_profile.gender as u_gender " +
-                    "FROM POST INNER JOIN user_profile on post.userid = user_profile.userid")
+                    "user_profile.profilepic as u_profilepic " +
+                    "FROM FRIENDS  JOIN POST ON  Friends.friendId = Post.userId  JOIN user_profile on Friends.friendId = user_profile.userId " +
+                    "Where friends.userId = ?")
+                .bind(0,userId)
                 .registerRowMapper(factory(User::class.java, "u"))
                 .registerRowMapper(factory(Post::class.java, "p"))
                 .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Post?>, rowView: RowView ->
