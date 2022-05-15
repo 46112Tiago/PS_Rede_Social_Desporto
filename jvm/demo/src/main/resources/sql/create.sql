@@ -38,7 +38,7 @@ CREATE TABLE USER_PROFILE(
     city VARCHAR(32),
     birthdate DATE,
     profilePic VARCHAR(100),
-    email VARCHAR(32),
+    email VARCHAR(32) UNIQUE,
     available BOOLEAN,
     gender VARCHAR(32),
     PRIMARY KEY(userId)

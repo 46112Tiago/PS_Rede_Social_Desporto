@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestParam
 
 interface UserService {
 
-    fun getUser() : List<User>
+    fun getUser(email : String) : Int?
 
     fun getUserById(userId : Int) : User?
 
@@ -15,7 +15,12 @@ interface UserService {
 
     fun updateUserProfilePic(userId: Int, url: String) : User
 
-    fun getUserByEmail(email :String) : Int?
+    fun editUserProfile(userId: Int, user: User) : Int
 
+    fun getFriends(userId: Int) : List<User?>
+
+    fun addFriend(userId: Int, friendId: Int) : Int
+
+    fun getUsersByName(userName : String) : List<User?>
 
     }

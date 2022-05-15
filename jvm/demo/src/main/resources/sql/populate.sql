@@ -5,7 +5,7 @@ VALUES ('Diogo','Fernandes','Lisboa',null,null,'diogotag@gmail.com',true,'Male')
 
 INSERT INTO SPORTS(name) values ('football');
 
-select * from field;
+select * from user_profile;
 
 commit;
 

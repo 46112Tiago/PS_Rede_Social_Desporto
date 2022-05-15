@@ -10,19 +10,10 @@ import org.springframework.stereotype.Repository
 class UserRepoImplementation (var jdbi: Jdbi) : UserService {
 
 
-    override fun getUser(): List<User> {
-        val toReturn = jdbi.withHandle<List<User>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select * from USER_PROFILE ").mapTo<User>().list()
-
-        }
-
-        return toReturn
-    }
-
-    override fun getUserByEmail(userEmail : String): Int? {
+    override fun getUser(email : String): Int? {
         val toReturn = jdbi.withHandle<Int?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select userId from USER_PROFILE where email = ?")
-                .bind(0,userEmail)
+                .bind(0,email)
                 .mapTo<Int>().one()
         }
         return toReturn
@@ -66,8 +57,60 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
     override fun updateUserProfilePic(userId: Int, url: String) : User {
         return jdbi.withHandle<User,RuntimeException>{ handle:Handle ->
             handle.createUpdate("update user_profile " +
-                    "SET profilepic = ? WHERE  userid = ?").bind(0,url).bind(1,userId).executeAndReturnGeneratedKeys().mapTo(User::class.java).one()
+                    "SET profilepic = ? WHERE  userid = ?")
+                .bind(0,url)
+                .bind(1,userId).
+                executeAndReturnGeneratedKeys().mapTo(User::class.java).one()
         }
     }
+
+    override fun editUserProfile(userId: Int, user: User) : Int {
+        jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
+            handle.createUpdate("UPDATE USER_PROFILE SET city = ? , available = ? WHERE userId = ?) ")
+                .bind(0,user.city)
+                .bind(1,user.available)
+                .bind(2,userId)
+                .execute()
+        }
+
+        return userId
+    }
+
+    override fun getFriends(userId: Int): List<User?> {
+        val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select friendId, firstName, lastName " +
+                    "from FRIENDS f" +
+                    "JOIN USER_PROFILE u on f.userId = u.userId " +
+                    " where userId = ?")
+                .bind(0,userId)
+                .mapTo<User>().list()
+        }
+        return toReturn
+    }
+
+    override fun addFriend(userId: Int, friendId: Int): Int {
+        jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
+            handle.createUpdate("INSERT INTO FRIENDS(userId,friendId) " +
+                    "values(?,?")
+                .bind(0,userId)
+                .bind(1,friendId)
+                .execute()
+        }
+
+        return friendId
+    }
+
+    override fun getUsersByName(userName: String): List<User?> {
+        val name = userName.split(" ")
+        val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select userId, firstName, lastName " +
+                    "from USER_PROFILE" +
+                    " where firstName = ? AND lastName = ?")
+                .bind(0,name[0])
+                .bind(1,name[1])
+                .mapTo<User>().list()
+        }
+        return toReturn    }
+
 
 }
