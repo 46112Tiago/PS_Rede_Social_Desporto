@@ -20,7 +20,7 @@ const Post = (props) => {
         setError(null);
         setIsLoading(true);
         try {
-          const req =  await fetch(`http://localhost:8080/post`);
+          const req =  await fetch(`http://localhost:8080/user/1/post`);
           const resp = await req.json();
           setPost(resp);
         } catch (err) {

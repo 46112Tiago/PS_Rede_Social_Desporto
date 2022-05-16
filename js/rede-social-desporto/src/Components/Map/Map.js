@@ -2,11 +2,13 @@ import React from 'react'
 import FieldModal from './FieldModal/FieldModal';
 import CompoundModal from './Compound/CompoundModal';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { convertLocationToCoordinate,convertCoordinateToLocation } from '../../GoogleMaps/Geocoding';
 import './Map.css'
 const center = {
   lat: 38.757026,
   lng: -9.1185779
 };
+
 
 function Map() {
   const { isLoaded } = useJsApiLoader({

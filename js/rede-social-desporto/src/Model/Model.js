@@ -11,7 +11,8 @@ export let user = {
     profilepic : '',
     email : '',
     available : false,
-    gender : ''
+    gender : '',
+    friends : []
 };
 
 export let group = {
