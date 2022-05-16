@@ -5,6 +5,7 @@ import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 class UserRepoImplementation (var jdbi: Jdbi) : UserService {
@@ -19,6 +20,17 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
         return toReturn
     }
 
+    fun isFriend(userId: Int, friendId: Int) : Optional<User>? {
+        val toReturn = jdbi.withHandle<Optional<User>?,RuntimeException> { handle : Handle ->
+            handle.select("Select * from FRIENDS where userId = ? AND friendId = ?")
+                .bind(0,userId)
+                .bind(1,friendId)
+                .mapTo<User>().findOne()
+
+        }
+
+        return toReturn
+    }
 
     override fun getUserById(userId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
@@ -78,10 +90,10 @@ class UserRepoImplementation (var jdbi: Jdbi) : UserService {
 
     override fun getFriends(userId: Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select friendId, firstName, lastName " +
-                    "from FRIENDS f" +
+            handle.createQuery("Select friendId as userId, firstName, lastName " +
+                    "from FRIENDS f " +
                     "JOIN USER_PROFILE u on f.userId = u.userId " +
-                    " where userId = ?")
+                    " where u.userId = ?")
                 .bind(0,userId)
                 .mapTo<User>().list()
         }

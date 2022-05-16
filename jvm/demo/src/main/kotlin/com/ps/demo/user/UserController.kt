@@ -3,7 +3,6 @@ package com.ps.demo.user
 import com.ps.data.User
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -14,11 +13,16 @@ import org.springframework.web.bind.annotation.*
 class UserController (val userRepo : UserRepoImplementation) {
 
 
-    @GetMapping("/{userId}")
-    fun getUserById(@PathVariable("userId") user_id : Int) : ResponseEntity<User?> {
-        val user : User? = userRepo.getUserById(user_id)
+    @GetMapping("/{userId}/friend/{friendId}")
+    fun getUserById(@PathVariable("userId") userId : Int,
+                    @PathVariable("friendId") friendId : Int
+
+    ) : ResponseEntity<User?> {
+        val user : User? = userRepo.getUserById(friendId)
+        val friend = userRepo.isFriend(userId,friendId)
+        if (friend!!.isPresent)
+            user!!.friends = listOf(friend.get())
         val responseHeaders = HttpHeaders()
-        responseHeaders.accessControlAllowOrigin
         return ResponseEntity.ok().headers(responseHeaders).body(user)
     }
 
@@ -58,7 +62,7 @@ class UserController (val userRepo : UserRepoImplementation) {
         return ResponseEntity(idFriend,HttpStatus.OK)
     }
 
-    @GetMapping("/{user_id}/friend")
+    @GetMapping("/{userId}/friend")
     fun getFriends(@PathVariable("userId") userId : Int) : ResponseEntity<List<User?>> {
         val user : List<User?> = userRepo.getFriends(userId)
         return ResponseEntity.ok().body(user)

@@ -15,8 +15,6 @@ data class User constructor(
     //TODO
     //val sports : List<String>?, //= listOf(),
     ///val groups : List<Group>?, //= listOf(),
-    //val friends : List<User>?, //= listOf(),
+    var friends : List<User>?, //= listOf(),
     //val events : List<Event>? //= listOf(),
-
-    )
-
+)

@@ -1,7 +1,7 @@
 package com.ps.demo.user
 
 import com.ps.data.User
-import org.springframework.web.bind.annotation.RequestParam
+import java.util.*
 
 interface UserService {
 
