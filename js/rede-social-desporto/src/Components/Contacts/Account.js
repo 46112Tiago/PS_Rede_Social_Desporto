@@ -6,7 +6,7 @@ import './Contacts.css'
 const Account = (props) => {
 
     function sendAccountId() {
-      props.getConversation(props.groupId)
+      props.getConversation(1)
     }
   
       return (

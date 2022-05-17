@@ -1,0 +1,35 @@
+#deleteParticipant {
+    border-radius: 50%;
+    background-color: transparent;
+    border: red solid 3px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#deleteParticipantBtn {
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+}
+
+#deleteParticipantBtn:hover {
+    color: rgb(93, 19, 19);
+}
+
+#deleteParticipant:hover {
+    border: solid 3px rgb(93, 19, 19); 
+}
+
+#deleteParticipantBtn:active {
+    color: rgb(6, 140, 49);
+}
+
+#deleteParticipant:active {
+    border: solid 3px rgb(6, 140, 49); 
+}

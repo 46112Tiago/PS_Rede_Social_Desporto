@@ -16,7 +16,8 @@ const [userObj, setUser] = React.useState(user);
         setError(null);
         setIsLoading(true);
         try {
-          const req =  await fetch(`http://localhost:8080/user/${props.userId}/friend/2`);
+          const friendId = window.location.href.split('/')[4][0]
+          const req =  await fetch(`http://localhost:8080/user/${props.userId}/friend/${friendId}`);
           const resp = await req.json();
           setUser(resp);
           
@@ -45,7 +46,7 @@ const [userObj, setUser] = React.useState(user);
                     </div>
                     <div className="rightProfile" id="rightInfo">
                         <h4><FaCity></FaCity> {userObj.city}</h4>
-                        <SportsModal></SportsModal>
+                        <SportsModal otherProfile={true}></SportsModal>
                     </div>
                     {userObj.friends[0] == null ? <AddFriend></AddFriend> : <></> }
                 </div>

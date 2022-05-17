@@ -9,7 +9,7 @@ import DropDownGroup from './Groups/DropDownGroup';
 const ConversationIdle = (props) => {
   
 
-  const dropdown = props.dropdown ? <DropDownGroup/> : <></>
+  const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId}/> : <></>
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
   const [messageArray, setMessage] = React.useState([message]);

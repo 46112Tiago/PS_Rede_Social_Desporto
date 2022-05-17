@@ -4,7 +4,7 @@ import {MdSportsTennis} from 'react-icons/md'
 import {sport} from "../../Model/Model"
 import CreateSportsList from "./CreateSportsList";
 
-const SportsModal = () => {
+const SportsModal = (props) => {
 
 const [isLoading, setIsLoading] = React.useState(false);
 const [error, setError] = React.useState();
@@ -44,7 +44,7 @@ const [sportArray, setSport] = React.useState([sport]);
                     <h1>Desportos</h1>
                     <ul id="Sports" >
                         {sportArray.map((sportObj,i) => 
-                            <CreateSportsList key={i} sportName={sportObj.name} sportId={sportObj.id}></CreateSportsList>
+                            <CreateSportsList otherProfile={props.otherProfile} key={i} sportName={sportObj.name} sportId={sportObj.id}></CreateSportsList>
                         )}
                     </ul>
                    
