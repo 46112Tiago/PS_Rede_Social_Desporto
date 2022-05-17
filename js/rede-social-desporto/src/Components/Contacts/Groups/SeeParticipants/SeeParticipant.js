@@ -14,7 +14,7 @@ const SeeParticipant = (props) => {
                 <div>
                     <div className='participantDiv'>
                         <h3>{participant.firstname} {participant.lastname} Name Surname</h3>
-                        {/*props.owner*/ true ? <DeleteParticipant participantId={participant.participantId}/> : <></>}
+                        {/*props.owner && participant.participantId != userId */ true ? <DeleteParticipant participantId={participant.participantId}/> : <></>}
                     </div> 
                 </div>
 
