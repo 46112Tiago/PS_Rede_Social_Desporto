@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import { schedule } from '../../../../Model/Model';
 import './Schedule.css'
