@@ -18,15 +18,16 @@ class GroupController (val groupRepo : GroupRepoImplementation) {
         return ResponseEntity(group, HttpStatus.OK)
     }
 
-    @GetMapping("/group/{groupId}/participants")
+    @GetMapping("/group/{groupId}/participant")
     fun getGroupParticipants(@PathVariable("groupId") groupId: Int) : ResponseEntity<List<User?>> {
         val users : List<User?> = groupRepo.getGroupParticipants(groupId)
         return ResponseEntity(users,HttpStatus.OK)
     }
 
-    @DeleteMapping("/group/{groupId}")
-    fun deleteGroup(@PathVariable("groupId") groupId : Int) : ResponseEntity<Any?> {
-        groupRepo.deleteGroup(groupId)
+    @DeleteMapping("user/{userId}/group/{groupId}")
+    fun deleteGroup(@PathVariable("groupId") groupId : Int,
+                    @PathVariable("userId") userId: Int ) : ResponseEntity<Any?> {
+        groupRepo.deleteGroup(groupId,userId)
         return ResponseEntity(HttpStatus.OK)
     }
 
@@ -46,9 +47,10 @@ class GroupController (val groupRepo : GroupRepoImplementation) {
         return ResponseEntity(groups,HttpStatus.OK)
     }
 
-    @PostMapping("/group/{groupid}/participant/{userid}")
-    fun createGroupParticipant(@PathVariable("groupid") groupId: Int, @PathVariable("userid") userId : Int): ResponseEntity<Any?> {
-        val participant = groupRepo.insertGroupParticipant(groupId,userId)
+    @PostMapping("/group/{groupid}/participant")
+    fun createGroupParticipant(@PathVariable("groupid") groupId: Int,
+                               @RequestBody participantsId : List<String>): ResponseEntity<Any?> {
+        val participant = groupRepo.insertGroupParticipant(groupId,participantsId)
         return ResponseEntity(participant,HttpStatus.OK)
     }
 
@@ -56,5 +58,12 @@ class GroupController (val groupRepo : GroupRepoImplementation) {
     fun getUserGroups(@PathVariable("userid") userId: Int) : ResponseEntity<Any?> {
         val groups = groupRepo.getUserGroups(userId)
         return ResponseEntity(groups,HttpStatus.OK)
+    }
+
+    @DeleteMapping("/group/{groupId}/user/{userid}")
+    fun exitGroup(@PathVariable("userid") userId: Int,
+                  @PathVariable("groupId") groupId: Int) : ResponseEntity<Any?> {
+        groupRepo.exitGroup(groupId,userId)
+        return ResponseEntity(HttpStatus.OK)
     }
 }

@@ -65,13 +65,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
                     "group_participant.participantid as gp_participantid," +
                     //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
-                    "user_profile.lastname as u_lastname, " +
-                    "user_profile.city as u_city, " +
-                    "user_profile.birthdate as u_birthdate, " +
-                    "user_profile.profilepic as u_profilepic, " +
-                    "user_profile.email as u_email, " +
-                    "user_profile.available as u_available, " +
-                    "user_profile.gender as u_gender " +
+                    "user_profile.lastname as u_lastname " +
                     "FROM group_participant INNER JOIN user_profile on group_participant.participantid = user_profile.userid AND group_participant.groupid = ?")
                 .bind(0,groupId)
                 .registerRowMapper(factory(User::class.java, "u"))
@@ -88,11 +82,14 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
     }
 
 
-    override fun deleteGroup(groupId : Int) {
+    override fun deleteGroup(groupId : Int, userId : Int) {
 
         jdbi.useHandle<RuntimeException> {
             handle: Handle ->
-                handle.createUpdate("DELETE FROM USER_GROUP WHERE id = ?").bind(0,groupId).execute()
+                handle.createUpdate("DELETE FROM USER_GROUP WHERE id = ? AND ownerId = ? ")
+                    .bind(0,groupId)
+                    .bind(1,userId)
+                    .execute()
         }
 
     }
@@ -125,15 +122,28 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
         return userId
     }
 
-    override fun insertGroupParticipant(groupId: Int, userId: Int){
-        jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into group_participant(groupid, participantid) values(?,?)")
+    override fun exitGroup(groupId: Int, userId: Int) {
+        jdbi.useHandle<RuntimeException> { handle : Handle ->
+            handle.createUpdate("Delete from GROUP_PARTICIPANT where groupId = ? AND participantId = ? ")
                 .bind(0,groupId)
                 .bind(1,userId)
                 .execute()
         }
+    }
 
+    override fun insertGroupParticipant(groupId: Int, participantsId: List<String>){
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+            for (participantId: String in participantsId) {
+                insertGroupParticipantAux(groupId, participantId, handle)
+            }
+        }
+    }
 
+    fun insertGroupParticipantAux(groupId: Int, participantId: String, handle: Handle) {
+        handle.createUpdate("insert into group_participant(groupid, participantid) values (?,?)")
+            .bind(0,groupId)
+            .bind(1,participantId)
+            .execute()
     }
 
     override fun getUserGroups(userId : Int): List<Group?> {

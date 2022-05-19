@@ -11,13 +11,14 @@ interface GroupService {
 
     fun getUserGroups(userId: Int) : List<Group?>
 
-    fun deleteGroup(groupId : Int)
+    fun deleteGroup(groupId : Int, userId : Int)
 
     fun insertGroup(userId : Int, group : Group) : Int?
 
-    fun insertGroupParticipant(groupId : Int, userId : Int)
+    fun insertGroupParticipant(groupId : Int, participantsId : List<String>)
 
     fun deleteGroupParticipant(groupId: Int,userId: Int) : Int
 
+    fun exitGroup(groupId: Int, userId: Int)
 
 }
