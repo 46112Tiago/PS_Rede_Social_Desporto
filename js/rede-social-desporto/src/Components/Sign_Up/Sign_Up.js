@@ -1,17 +1,16 @@
 import React from 'react';
 import './Sign_Up.css'
+import { use } from 'express/lib/router';
+import LoginButton from '../SignInButton';
 
-class SignUp extends React.Component {
-    constructor(props) {
-      super(props);
-      this.name = {value: ''};
-      this.lastname = {value: ''};
-      this.email = {value: ''};
-      this.password = {value: ''};
-      this.rePassword = {value: ''};
-    }
-  
-    render() {
+
+ // this.name = {value: ''};
+ // this.lastname = {value: ''};
+ // this.email = {value: ''};
+  //this.password = {value: ''};
+//  this.rePassword = {value: ''};
+
+function SignUp() {
       return (
         <div className='formContainer'>
               <div className='item' id='imageItem'>
@@ -50,11 +49,15 @@ class SignUp extends React.Component {
                     <br/>  
                     <input id='subBtn' type="submit" value="Inscrever" />
                     <a id='logInBtn' href='../logIn'> Já possui conta </a>
+                   
+                    
                   </form>
+                  <br></br>
+                  <LoginButton></LoginButton>
               </div>
         </div>
       );
     }
-  }
+  
 
   export default SignUp
