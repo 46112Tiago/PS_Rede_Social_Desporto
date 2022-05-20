@@ -19,8 +19,6 @@ const SearchPlayer = () => {
                             <legend>Request Player:</legend>
                             <label>Starting Hour</label>
                             <input className='inputForm' type='time' name="startHour"  {...register(`startHour`)}/>
-                            <label>Radius</label>
-                            <input className='inputForm' type='number' name="radius"  {...register(`radius`)} placeholder={'1000'}/>
                             <SelectSport></SelectSport>
                             <SelectCompound></SelectCompound>
                             <input type='submit' id='btnLooking'></input>

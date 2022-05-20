@@ -9,24 +9,10 @@ const Schedule = () => {
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
 
-
-  function  buildBody(data)  {
-    var input = document.getElementsByName("schedules[]");
-    
-    for (var i = 0; i < input.length; i++) {
-      
-    }
-
-  }
-
-
-
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
   function submit(data) {
-
-    buildBody(data)
 
     const options = {
         method: "POST",
@@ -49,10 +35,10 @@ const Schedule = () => {
                       {
                         week.map((weekDay,key) => 
                           <div className='weekDaysBody'>
-                            <label {...register(`weekday`, {value : weekDay})}>{weekDay}</label>
-                            <input type='time' name="schedules[][openingHour]"  {...register(`openingHour`)}/>
+                            <label {...register(`schedules[${key}][weekday]`, {value : weekDay})}>{weekDay}</label>
+                            <input type='time' name="schedules[][openingHour]"  {...register(`schedules[${key}][openingHour]`)}/>
                             <label>to</label>
-                            <input type='time' name={`schedules[][closingHour]`} {...register(`closingHour`)}/>
+                            <input type='time' name={`schedules[][closingHour]`} {...register(`schedules[${key}][closingHour]`)}/>
                           </div>
                         )
                       }

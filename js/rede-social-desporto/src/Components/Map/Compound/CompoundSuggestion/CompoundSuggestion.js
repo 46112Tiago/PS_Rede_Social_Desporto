@@ -26,10 +26,9 @@ const CompoundSuggestion = () => {
 
       return (
         <div>
-            <form onSubmit={handleSubmit(submit)}>
                 <h3>Suggest Compound</h3>
-                <div className="form-row">
-                    <div className="form-group col">
+                <div  id='formConatinerCompound'>
+                    <div >
                         <label>Name:</label>
                         <input name="compoundName" type="text" {...register('name')} className="form-control" placeholder='Compound Name' required />
                     </div>
@@ -62,10 +61,7 @@ const CompoundSuggestion = () => {
                         <input name="dressingRoom" type='radio' {...register('dressingRoom')} className="form-control" value={'N'} />
                     </div>
                 </div>
-                <div className="form-group">
-                    <button type="submit" id='submitGroup'>Submit</button>
-                </div>
-            </form>
+
         </div>
 
       );

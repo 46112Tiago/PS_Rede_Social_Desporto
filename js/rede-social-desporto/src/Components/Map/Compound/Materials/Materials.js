@@ -19,6 +19,7 @@ const Materials = () => {
         setError(null);
         setIsLoading(true);
         try {
+            if(materialsArray[0].name) return 
             const req =  await fetch("http://localhost:8080/compound/1/material");
             const resp = await req.json();
             setMaterials(resp);

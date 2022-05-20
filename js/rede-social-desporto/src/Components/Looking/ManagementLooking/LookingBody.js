@@ -6,6 +6,7 @@ import Made from './Made/Made';
 import Accept from './Accept/Accept'
 import Confirmed from './Confirmed/Confirmed';
 import SearchPlayer from '../SearchPlayer/SearchPlayer';
+import LookingModal from './LookingModal';
 
 const LookingBody = () => {
 
@@ -28,6 +29,7 @@ const LookingBody = () => {
       </div>
       <div id='pendingBody'>
          {component}
+         <LookingModal></LookingModal>
       </div>
    </>
    );

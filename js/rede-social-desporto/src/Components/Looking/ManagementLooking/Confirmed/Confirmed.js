@@ -11,7 +11,7 @@ const Confirmed = () => {
                 <p>Name Surname</p>
                 <img src={require('../../img/default_profile.jpg')} id='photoLooking'></img>
                 <div>
-                    <button id="activateModal_pending" className='infoLooking' onClick={()=>{window.location.href = "#pending-modal"}}>Info</button>
+                    <button id="activateModal_pending" className='infoLooking' onClick={()=>{window.location.href = "#looking-modal"}}>Info</button>
                 </div>            
             </div>
         </div>

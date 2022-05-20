@@ -18,3 +18,14 @@
     color: rgb(43, 40, 40);
     border: solid 2px black;
 }
+
+#modalCheck {
+    background-color: transparent;
+}
+
+#formConatinerCompound {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
