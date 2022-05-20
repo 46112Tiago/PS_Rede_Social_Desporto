@@ -25,11 +25,17 @@ CREATE TABLE FIELD(
 
 CREATE TABLE MATERIALS(
     id SERIAL,
-    compoundId INT,
     name VARCHAR(32),
-    FOREIGN KEY (compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE,
-    PRIMARY KEY (id)                    
+    PRIMARY KEY (id)
 );
+
+CREATE TABLE MATERIAL_COMPOUND(
+    materialId INT,
+    compoundId INT,
+    PRIMARY KEY (materialId,compoundId)
+    FOREIGN KEY (materialId) REFERENCES MATERIALS(id)  ON DELETE CASCADE,
+    FOREIGN KEY (compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE
+)
 
 CREATE TABLE USER_PROFILE(
     userId SERIAL,

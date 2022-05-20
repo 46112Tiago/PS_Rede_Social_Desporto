@@ -301,12 +301,40 @@ INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
 VALUES (5,'6ª','08:00:00','20:00:00');
 
 
+/* MATERIALS */
+--1)
+INSERT INTO MATERIALS(name)
+VALUES ('tenis racket');
+--2)
+INSERT INTO MATERIALS(name)
+VALUES ('tenis balls');
+--3)
+INSERT INTO MATERIALS(name)
+VALUES ('padel balls');
+--4)
+INSERT INTO MATERIALS(name)
+VALUES ('cone');
+--5)
+INSERT INTO MATERIALS(name)
+VALUES ('padel racket');
 
 
-
-
-
-
+/* MATERIAL_COMPOUND */
+--1)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (1,1);
+--1)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (2,1);
+--1)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (3,1);
+--1)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (3,5);
+--1)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (5,5);
 
 
 
