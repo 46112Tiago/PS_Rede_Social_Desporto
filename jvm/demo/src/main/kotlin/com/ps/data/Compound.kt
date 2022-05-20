@@ -1,5 +1,7 @@
 package com.ps.data
 
+
+import org.postgresql.geometric.PGpoint
 import java.net.URL
 
 data class Compound(
@@ -8,8 +10,7 @@ data class Compound(
         val description : String?,
         val summary : String?,
         val pictures : URL?,
-        //TODO: USe geoApi to convert location to coordinates
-        val location : String?,
+        val location : PGpoint?,
         val material : List<String>?,
         val dressingRoom : Char?, //M / F / A / N
         val parking : Boolean?,

@@ -28,7 +28,6 @@ dependencies {
 	implementation("org.jdbi:jdbi3-postgres:3.9.1")
 	implementation("org.jdbi:jdbi3-kotlin-sqlobject:3.2.1")
 	implementation("org.postgresql:postgresql:42.2.16")
-	implementation("net.postgis:postgis-geometry:2.5.0")
 }
 
 tasks.withType<KotlinCompile> {

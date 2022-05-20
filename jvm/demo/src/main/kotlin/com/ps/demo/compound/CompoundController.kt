@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 class CompoundController(val compoundRepo : CompoundRepoImplementation) {
 
     @GetMapping("/location")
-    fun getLocations() : ResponseEntity<List<Compound>?> {
-        val locations : List<Compound>? = compoundRepo.getCompoundLocations()
+    fun getLocations() : ResponseEntity<List<Compound?>?> {
+        val locations : List<Compound?>? = compoundRepo.getCompoundLocations()
         return ResponseEntity(locations, HttpStatus.OK)
     }
 
