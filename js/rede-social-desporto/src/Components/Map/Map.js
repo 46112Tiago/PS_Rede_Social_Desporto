@@ -1,38 +1,41 @@
 import React from 'react'
 import FieldModal from './FieldModal/FieldModal';
 import CompoundModal from './Compound/CompoundModal';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import MapComponent from './MapComponent/MapComponent';
 import { convertLocationToCoordinate,convertCoordinateToLocation } from '../../GoogleMaps/Geocoding';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import './Map.css'
+import Marker from './Marker/Marker';
+
 const center = {
   lat: 38.757026,
   lng: -9.1185779
 };
 
 
-function Map() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: ""
-  })
 
-  const [map, setMap] = React.useState(null)
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
-    <div>
-      <GoogleMap id='mapGoogle' center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
-        { /* Child components, such as markers, info windows, etc. */ }
-      </GoogleMap>
+const Map = () => {
+  const render = (status) => {
+    switch (status) {
+      case Status.LOADING:
+        return;
+      case Status.FAILURE:
+        return;
+      case Status.SUCCESS:
+        return;
+    }
+  };
+  return(
+    <div id='wrapper'>
+      <div id='wrapperContainer'>
+        <div id='searchBox'></div>      
+        <Wrapper render={render} apiKey={""}>
+          <MapComponent center={center} zoom={58}>
+            <Marker position={center}/> 
+          </MapComponent>
+        </Wrapper>  
+      </div>
       <div id='suggestion'>
         <h2 id='suggestionTxt'>Suggestions:</h2>
         <br/>
@@ -46,11 +49,9 @@ function Map() {
       </div>
     </div>
 
-  ) : 
-  <>
+  )  
+  }
 
-  </>
-}
 
 
 

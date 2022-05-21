@@ -1,3 +1,26 @@
+#wrapper {
+  overflow-y: scroll;
+  height: 95%;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+#wrapperContainer {
+  height: 100%;
+  display: flex;
+}
+
+#wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+#searchBox {
+  width: 20%;
+  height: 100%;
+  background-color: #000;
+  min-width: 200px;
+}
+
 #mapGoogle {
     margin-top: 5%;
     margin-left: 10%;
@@ -7,8 +30,7 @@
 
 #suggestion {
     background-color: rgb(142, 140, 137);
-    height: 150px;
-    margin-top: 3%;
+    height: px;
     display: flex;
     flex-direction: column;
     justify-content: center;
