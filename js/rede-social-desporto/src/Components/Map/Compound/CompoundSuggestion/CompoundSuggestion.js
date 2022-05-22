@@ -3,30 +3,22 @@ import { useForm } from "react-hook-form";
 import { compound } from '../../../../Model/Model';
 import './CompoundSuggestion.css'
 
-const CompoundSuggestion = () => {
+const CompoundSuggestion = (props) => {
 
       // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
-
-    const options = {
-        method: "POST",
-        headers: myHeaders,
-        mode: 'cors',
-        body:JSON.stringify(data)
-    };
-
-    fetch('http://localhost:8080/compound', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
+    function submit(data) {
+        props.getCompound(data)
+        console.log(data)
+    }
 
       return (
         <div>
                 <h3>Suggest Compound</h3>
+                <form onSubmit={handleSubmit(submit)} id='formParticipant'>
                 <div  id='formConatinerCompound'>
                     <div >
                         <label>Name:</label>
@@ -61,7 +53,10 @@ const CompoundSuggestion = () => {
                         <input name="dressingRoom" type='radio' {...register('dressingRoom')} className="form-control" value={'N'} />
                     </div>
                 </div>
-
+                <div id='participantbtn'>
+                    <input type={'submit'} id='addParticipant'/>
+                </div>
+            </form>
         </div>
 
       );

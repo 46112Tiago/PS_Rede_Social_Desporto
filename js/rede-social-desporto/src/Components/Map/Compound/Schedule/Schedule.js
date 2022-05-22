@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { schedule } from '../../../../Model/Model';
 import './Schedule.css'
 
-const Schedule = () => {
+const Schedule = (props) => {
 
   const week = ['2ª','3ª','4ª','5ª','6ª','Sat','Sun']
   // get functions to build form with useForm() hook
@@ -13,18 +13,9 @@ const Schedule = () => {
   myHeaders.append('Content-Type','application/json')
 
   function submit(data) {
-
-    const options = {
-        method: "POST",
-        headers: myHeaders,
-        mode: 'cors',
-        body:JSON.stringify(data)
-    };
-
-    fetch('http://localhost:8080/compound/1/schedule', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
+      props.getSchedule(data)
+      console.log(data)
+  }
 
       return (
         <>  

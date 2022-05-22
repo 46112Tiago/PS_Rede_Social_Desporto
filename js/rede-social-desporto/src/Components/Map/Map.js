@@ -19,11 +19,11 @@ const Map = () => {
   const render = (status) => {
     switch (status) {
       case Status.LOADING:
-        return;
+        return <></>;
       case Status.FAILURE:
-        return;
+        return <></>;
       case Status.SUCCESS:
-        return;
+        return <></>;
     }
   };
   return(
@@ -32,7 +32,6 @@ const Map = () => {
         <div id='searchBox'></div>      
         <Wrapper render={render} apiKey={""}>
           <MapComponent center={center} zoom={58}>
-            <Marker position={center}/> 
           </MapComponent>
         </Wrapper>  
       </div>

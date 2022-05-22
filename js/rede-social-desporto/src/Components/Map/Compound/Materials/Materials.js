@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { materials } from '../../../../Model/Model';
 
-const Materials = () => {
+const Materials = (props) => {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
@@ -20,7 +20,7 @@ const Materials = () => {
         setIsLoading(true);
         try {
             if(materialsArray[0].name) return 
-            const req =  await fetch("http://localhost:8080/compound/1/material");
+            const req =  await fetch("http://localhost:8080/material");
             const resp = await req.json();
             setMaterials(resp);
         } catch (err) {
@@ -38,24 +38,10 @@ const Materials = () => {
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
 
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
-
   function submit(data) {
-
-    console.log(JSON.stringify(data))
-
-    const options = {
-        method: "POST",
-        headers: myHeaders,
-        mode: 'cors',
-        body:JSON.stringify(data)
-    };
-
-    fetch('http://localhost:8080/compound/1/materials', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
+    props.getMaterials(data)
+    console.log(data)
+  }
 
       return (
         <>  
