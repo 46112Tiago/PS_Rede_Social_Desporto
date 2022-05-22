@@ -11,7 +11,8 @@ data class Compound(
         val summary : String?,
         val pictures : URL?,
         val location : PGpoint?,
-        val material : List<String>?,
+        val material : List<Material>?,
+        val schedule: List<Schedule>?,
         val dressingRoom : Char?, //M / F / A / N
         val parking : Boolean?,
         val accepted : Boolean?
