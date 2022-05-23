@@ -1,26 +1,53 @@
 package com.ps.demo.user
 
 import com.ps.data.User
+import org.springframework.stereotype.Service
 import java.util.*
 
-interface UserService {
+@Service
+class UserService(val userRepo : UserRepoImplementation) {
 
-    fun getUser(email : String) : Int?
-
-    fun getUserById(userId : Int) : User?
-
-    fun deleteUser(userId : Int)
-
-    fun insertUser(user : User) : Int
-
-    fun updateUserProfilePic(userId: Int, url: String) : User
-
-    fun editUserProfile(userId: Int, user: User) : Int
-
-    fun getFriends(userId: Int) : List<User?>
-
-    fun addFriend(userId: Int, friendId: Int) : Int
-
-    fun getUsersByName(userName : String) : List<User?>
-
+    fun getUser(email : String) : Int? {
+        return userRepo.getUser(email)
     }
+
+    fun getUserById(userId : Int) : User? {
+        return userRepo.getUserById(userId)
+    }
+
+    fun deleteUser(userId : Int) {
+        userRepo.deleteUser(userId)
+    }
+
+    fun insertUser(user : User) : Int {
+        return userRepo.insertUser(user)
+    }
+
+    fun updateUserProfilePic(userId: Int, url: String) : User {
+        return userRepo.updateUserProfilePic(userId,url)
+    }
+
+    fun editUserProfile(userId: Int, user: User) : Int {
+        return userRepo.editUserProfile(userId,user)
+    }
+
+    fun getFriends(userId: Int) : List<User?> {
+        return userRepo.getFriends(userId)
+    }
+
+    fun addFriend(userId: Int, friendId: Int) : Int {
+        if(userRepo.isFriend(userId,friendId)!!.isPresent) {
+            return userRepo.addFriend(userId,friendId)
+        }
+        return -1
+    }
+
+    fun getUsersByName(userName : String) : List<User?> {
+        return userRepo.getUsersByName(userName)
+    }
+
+    fun isFriend(userId: Int, friendId: Int) : User? {
+        return userRepo.isFriend(userId,friendId)!!.get()
+    }
+
+}
