@@ -94,5 +94,5 @@ export let compound = {
     summary : '',
     dressingRoom : '',
     parking : false,
-    location : ''
+    location : {}
 }

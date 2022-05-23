@@ -20,30 +20,36 @@ const MapComponent = (props) => {
       const map = new window.google.maps.Map(document.getElementById("mapComponent"), mapOptions);
         
       
-      const markers = () => {
-        
-        
-            const makeRequest = async () => {
-              setError(null);
-              setIsLoading(true);
-              try {
-                const req =  await fetch("http://localhost:8080/compound/location");
-                const resp = await req.json();
-                setLocations(resp);
-                
-              } catch (err) {
-                setError(err);
-                //console.log(err);
-              } finally {
-                setIsLoading(false);
-                
-              }
-            };
-        
-            if (!isLoading) makeRequest();    
       
-          return locationArray;
+
+    const myHeaders = new Headers();
+    myHeaders.append('authorization','Bearer ');
+
+    const options = {
+        method: "GET",
+        headers: myHeaders,
+        mode: 'cors',
+    };
+
+    const makeRequest = async () => {
+      setError(null);
+      setIsLoading(true);
+      try {
+        const req =  await fetch("http://localhost:8080/compound/location",options);
+        const resp = await req.json();
+        setLocations(resp);
+        
+      } catch (err) {
+        setError(err);
+        //console.log(err);
+      } finally {
+        setIsLoading(false);
+        
       }
+    };
+        
+    if (!isLoading) makeRequest();    
+      
 
       locationArray.forEach(element => {
         new window.google.maps.Marker({
@@ -52,16 +58,11 @@ const MapComponent = (props) => {
             title: "Marker",
         });
       });  
-    })
+    },[]);
     return (
         <>
             <div ref={ref} id="mapComponent"> 
-            {React.Children.map(props.Children, (child) => {
-                if (React.isValidElement(child)) {
-                // set the map prop on the child component
-                return React.cloneElement(child, { Marker });
-                }
-            })}
+            
             </div>
         </>
     );

@@ -1,7 +1,7 @@
 import Geocode from "react-geocode";
 
 export function convertLocationToCoordinate(location) {
-    Geocode.setApiKey("")
+    Geocode.setApiKey("AIzaSyCajrJ3Y0s5ubSgMAw8Gq34ujyt2TbJqi8")
     Geocode.enableDebug();
     Geocode.fromAddress(location).then(
         (response) => {
@@ -15,7 +15,7 @@ export function convertLocationToCoordinate(location) {
 }
 
 export function convertCoordinateToLocation(lat,lng) {
-    Geocode.setApiKey("")
+    Geocode.setApiKey("AIzaSyCajrJ3Y0s5ubSgMAw8Gq34ujyt2TbJqi8")
     Geocode.enableDebug();
     Geocode.fromLatLng(lat, lng).then(
         (response) => {
