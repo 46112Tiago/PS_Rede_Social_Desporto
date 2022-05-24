@@ -25,10 +25,16 @@ CREATE TABLE FIELD(
 
 CREATE TABLE MATERIALS(
     id SERIAL,
-    compoundId INT,
     name VARCHAR(32),
-    FOREIGN KEY (compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE,
-    PRIMARY KEY (id)                    
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE MATERIAL_COMPOUND(
+    materialId INT,
+    compoundId INT,
+    PRIMARY KEY (materialId,compoundId)
+    FOREIGN KEY (materialId) REFERENCES MATERIALS(id)  ON DELETE CASCADE,
+    FOREIGN KEY (compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE
 );
 
 CREATE TABLE USER_PROFILE(
@@ -183,6 +189,26 @@ CREATE TABLE SCHEDULE(
     optionalDescription TEXT,
     PRIMARY KEY(id,compoundId),
     FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE
+);
+
+CREATE TABLE LOOKINGPLAYERS(
+    id SERIAL PRIMARY KEY,
+    compoundId INT,
+    sportId INT,
+    creatorId INT,
+    startDateTime TIMESTAMP,
+    FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE,
+    FOREIGN KEY(sportId) REFERENCES SPORTS(id)  ON DELETE CASCADE,
+    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(userId)  ON DELETE CASCADE
+);
+
+CREATE TABLE LOOKINGPLAYERS_PARTICIPANTS(
+    lookingId INT,
+    participantId INT,
+    state VARCHAR(20), -- pending, canceled, accepted
+    PRIMARY KEY(lookingId,participantId),
+    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(userId)  ON DELETE CASCADE,
+    FOREIGN KEY(creatorId) REFERENCES USER_PROFILE(userId)  ON DELETE CASCADE
 );
 
 commit;

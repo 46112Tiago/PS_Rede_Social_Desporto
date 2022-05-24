@@ -6,7 +6,6 @@ import com.ps.data.Schedule
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
-import org.postgis.Point
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -14,9 +13,6 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
 
     /*TODO insert in table schedule, location, material, pictures */
     override fun createCompound(compound: Compound) : Int? {
-
-
-        val point = Point(3.0,4.0)
 
         val toReturn : Compound = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
@@ -72,8 +68,8 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
     }
 
     /* TODO: Bring only x locations */
-    override fun getCompoundLocations(): List<Compound>? {
-        val toReturn = jdbi.withHandle<List<Compound>,RuntimeException> { handle : Handle ->
+    override fun getCompoundLocations(): List<Compound?>? {
+        val toReturn = jdbi.withHandle<List<Compound?>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select location, id from COMPOUND where accepted = ? ")
                     .bind(0,true)
                     .mapTo<Compound>()

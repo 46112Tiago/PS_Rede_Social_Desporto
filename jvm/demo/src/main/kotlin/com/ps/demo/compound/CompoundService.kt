@@ -14,7 +14,7 @@ interface CompoundService {
 
     fun deleteCompound(compoundId : Int)
 
-    fun getCompoundLocations() : List<Compound>?
+    fun getCompoundLocations() : List<Compound?>?
 
     fun getCompoundInformation(compoundId : Int) : Compound?
 

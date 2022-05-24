@@ -4,9 +4,8 @@ import java.sql.Time
 
 data class Schedule(
         val id : Int?,
-        val compound: Compound?,
-        val weekday : Char?,
+        val weekday : String?,
         val openingHour : Time?,
         val closingHour : Time?,
-        val optionalDescription : String
+        val optionalDescription : String?
 )

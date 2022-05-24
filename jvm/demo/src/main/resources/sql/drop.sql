@@ -1,5 +1,11 @@
 begin;
 
+drop table IF EXISTS lookingplayers_participants CASCADE ;
+
+drop table IF EXISTS lookingplayers CASCADE ;
+
+drop table IF EXISTS material_compound CASCADE ;
+
 drop table IF EXISTS schedule CASCADE ;
 
 drop table IF EXISTS review CASCADE ;
