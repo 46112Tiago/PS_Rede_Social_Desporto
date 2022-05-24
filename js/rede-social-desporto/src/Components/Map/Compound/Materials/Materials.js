@@ -70,7 +70,7 @@ const Materials = (props) => {
                 </div>   
             </fieldset>
             <div id='participantbtn'>
-                <input type={'submit'} id='addParticipant'/>
+                <input type={'submit'} id='addParticipant' value={'Save'}/>
             </div>
         </form>
         </>

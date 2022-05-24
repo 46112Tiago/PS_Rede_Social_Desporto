@@ -54,7 +54,7 @@ const CompoundSuggestion = (props) => {
                     </div>
                 </div>
                 <div id='participantbtn'>
-                    <input type={'submit'} id='addParticipant'/>
+                    <input type={'submit'} id='addParticipant' value={'Save'}/>
                 </div>
             </form>
         </div>

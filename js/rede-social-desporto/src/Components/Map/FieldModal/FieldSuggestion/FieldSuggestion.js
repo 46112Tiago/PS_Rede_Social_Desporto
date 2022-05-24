@@ -39,7 +39,7 @@ const FieldSuggestion = () => {
                         <h4>Parking lot</h4>
                         <input name="parking_y" type='radio' {...register('compound.parking')} className="form-control" value={true} />
                         <label for='parking_y'>Yes</label>
-                        <input name="parking" type='radio' {...register('compound.parking')} className="form-control" value={false} />
+                        <input name="parking" type='radio' {...register('compound.parking')} className="form-control" value={false} defaultChecked/>
                         <label for='parking_n'>No</label>
                     </div>
                 </div>

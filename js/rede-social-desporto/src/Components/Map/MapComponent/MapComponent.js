@@ -23,7 +23,7 @@ const MapComponent = (props) => {
     
     
     const myHeaders = new Headers();
-    myHeaders.append('authorization','Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJLb3pWaFZPYmVSbzg3dHRkSU0xdSJ9.eyJpc3MiOiJodHRwczovL2Rldi03eHNpcjNhaS5ldS5hdXRoMC5jb20vIiwic3ViIjoiUEt3R0k2emlaOTNhbnE5YzEzejBwYWV0MG5VYXhxV3VAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1MzM1NTc2OCwiZXhwIjoxNjUzNDQyMTY4LCJhenAiOiJQS3dHSTZ6aVo5M2FucTljMTN6MHBhZXQwblVheHFXdSIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.eSxs9rMm1X2QJOyZym_iIPHM05Uz-eL7IYmZus3GzFKMagqiXt6-3j-NmaK6CGv5s8AVyIQDopRceFYq-y27lAg_PzZxMTKjtiiq3oBsvT2OxNVxNLnySEmd0F-CqdlDqwFy0M4hrge350LaXeG-pCU6HspgR2_6TRtynL8UOC4qGB1nHR9z8IQ_NrM9DQD23h2NPVFscsbrpU-Qjp5rMWjQlPyV2Zebbe0RrwxhTrnXe_JgNfMq-rX6SJeSufXlOi3blE-LuCshP-6_ItYPhU1oEwKPRVwCOVgfM9-JOZT-PQBjHM6ztB-3Z_xAWi_dlAoKvIZcVoHNmveKJafX3Q');
+    myHeaders.append('authorization','Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1MzM1ODg0MiwiZXhwIjoxNjUzNDQ1MjQyLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.S16EGi1svdirkPZEml54WQeSsXNogs0HMXY6oEzt7jNDyxt9aBwyK2Z6mWPErQAWBrZKm89u51Irc03m8tjrLX4XwXUzuzPSeg5rhGdCda-RMgRQ7Zz7qtGmLApqZzqrOCusGo-8FccgCh9UOtvgSFCnT82FQCdTr3vnDoK2uwZUGkNGdJQg7ETPWsHv4YlFZ5MAAz0r3e3YuZFC0cktBAeOcpdYo5vevGMbtS02dfnVXWQfWrjsd02-D8wARBZSv2vGTzVrZ3XWLfIvlHSK5jWk2JhuD6nOOcUZPPzGhz1UbSBoiGDq3EbIKzOdpuF3fSJTMYtRphoqCHJBhEaGag');
 
     const options = {
         method: "GET",
@@ -41,12 +41,17 @@ const MapComponent = (props) => {
         setLocations(resp);
         resp.forEach(element => {
           const point = { lat : element.location.x, lng : element.location.y};
-          new window.google.maps.Marker({
+         const marker = new window.google.maps.Marker({
               position: point,
               map,
               title: element.name,
           });
+          marker.addListener("click", () => {
+            window.location.href = "#demo-modal"
         });
+        });
+
+      
       } catch (err) {
         setError(err);
         //console.log(err);
