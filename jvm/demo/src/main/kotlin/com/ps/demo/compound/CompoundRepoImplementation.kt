@@ -70,7 +70,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
     /* TODO: Bring only x locations */
     fun getCompoundLocations(): List<Compound?>? {
         val toReturn = jdbi.withHandle<List<Compound?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select location, id from COMPOUND where accepted = ? ")
+            handle.createQuery("Select location, id, name from COMPOUND where accepted = ? ")
                     .bind(0,true)
                     .mapTo<Compound>()
                     .list()
