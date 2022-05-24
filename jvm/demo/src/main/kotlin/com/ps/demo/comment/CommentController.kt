@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user/{userId}/post/{postId}/comment")
-class CommentController(val commentRepo : CommentRepoImplementation) {
+class CommentController(val commentService: CommentService) {
 
     @GetMapping
     fun getAllComments(@PathVariable("postId") postId : Int) : ResponseEntity<Any?> {
-        val comments = commentRepo.getAllComments(postId)?.values
+        val comments = commentService.getAllComments(postId)?.values
         return ResponseEntity(comments, HttpStatus.OK)
     }
 
     @DeleteMapping("/{commentId}")
     fun deleteComment(@PathVariable("postId") postId : Int, @PathVariable("commentId") commentId : Int) : ResponseEntity<Any?> {
-        commentRepo.deleteComment(postId,commentId)
+        commentService.deleteComment(postId,commentId)
         return ResponseEntity(HttpStatus.OK)
     }
 
@@ -28,7 +28,7 @@ class CommentController(val commentRepo : CommentRepoImplementation) {
             @PathVariable("postId") postId : Int,
                    @RequestBody comment : Comment)
     : ResponseEntity<Any?> {
-        val commentKey = commentRepo.createComment(userId,postId,comment)
+        val commentKey = commentService.createComment(userId,postId,comment)
         return ResponseEntity(commentKey, HttpStatus.OK)
     }
 

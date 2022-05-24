@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping
 @CrossOrigin("http://localhost:3000")
-class GroupMessageController(val groupMessageRepo : GroupMessageRepoImplementation) {
+class GroupMessageController(val groupMsgService : GroupMessageService) {
 
     @GetMapping("/user/{userId}/group/{groupId}/message")
     fun getAllMessages(@PathVariable("userId") userId : Int,
                        @PathVariable("groupId") groupId : Int
     ) : ResponseEntity<List<GroupMessage?>> {
-        val groupMessages : List<GroupMessage?> = groupMessageRepo.getAllMessages(userId,groupId)
+        val groupMessages : List<GroupMessage?> = groupMsgService.getAllMessages(userId,groupId)
         return ResponseEntity(groupMessages, HttpStatus.OK)
     }
 
@@ -22,7 +22,7 @@ class GroupMessageController(val groupMessageRepo : GroupMessageRepoImplementati
     fun sendMessage(@PathVariable("userId") userId : Int,
                     @PathVariable("groupId") groupId : Int,
                     @RequestBody groupMessage: GroupMessage) : ResponseEntity<Any?> {
-        val groupMessageKey = groupMessageRepo.sendMessage(userId,groupId, groupMessage )
+        val groupMessageKey = groupMsgService.sendMessage(userId,groupId, groupMessage )
         return ResponseEntity(groupMessageKey, HttpStatus.OK)
     }
 

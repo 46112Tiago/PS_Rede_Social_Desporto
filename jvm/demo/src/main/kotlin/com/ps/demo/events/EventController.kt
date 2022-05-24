@@ -14,42 +14,42 @@ import javax.servlet.http.HttpServletResponse
 @RestController
 @RequestMapping
 @CrossOrigin("http://localhost:3000")
-class EventController (val eventRepo : EventRepositoryImplementation) {
+class EventController (val eventService: EventsService) {
 
     @GetMapping("/event")
     fun getActiveEvents() : ResponseEntity<List<Event>?> {
-        val event : List<Event>? = eventRepo.getActiveEvents()
+        val event : List<Event>? = eventService.getActiveEvents()
         return ResponseEntity(event,HttpStatus.OK)
     }
 
     @GetMapping("/event/{eventId}")
     fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<String?> {
-        val description : String? = eventRepo.getEventDescription(eventID)
+        val description : String? = eventService.getEventDescription(eventID)
         return ResponseEntity(description,HttpStatus.OK)
     }
 
     @GetMapping("/user/{userId}/event/{eventId}")
     fun getUserEvents(@PathVariable("userId") userId : Int,
                       @PathVariable("eventId") eventID : Int ) : ResponseEntity<List<Event>?> {
-        val event : List<Event>? = eventRepo.getUserEvents(userId,eventID)
+        val event : List<Event>? = eventService.getUserEvents(userId,eventID)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
     @PostMapping("/event")
     fun createEvent(@RequestBody event : Event) : ResponseEntity<Int> {
-        val eventKey : Int = eventRepo.createEvent(event)
+        val eventKey : Int = eventService.createEvent(event)
         return ResponseEntity(eventKey,HttpStatus.OK)
     }
 
     @PostMapping("/user/{userId}/event/{eventId}")
     fun participateUserEvent(@PathVariable eventId : Int, @PathVariable userId: Int) : ResponseEntity<Int> {
-        val eventKey : Int = eventRepo.participateEvent(userId,eventId)
+        val eventKey : Int = eventService.participateEvent(userId,eventId)
         return ResponseEntity(eventKey,HttpStatus.OK)
     }
 
     @PutMapping("/event/{eventId}")
     fun cancelEvent(@PathVariable("eventId") eventId: Int) : ResponseEntity<Any?> {
-        eventRepo.cancelEvent(eventId)
+        eventService.cancelEvent(eventId)
         return ResponseEntity(HttpStatus.OK)
     }
 

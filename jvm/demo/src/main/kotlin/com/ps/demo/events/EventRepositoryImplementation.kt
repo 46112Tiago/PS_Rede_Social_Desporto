@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 
 
 @Repository
-class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
+class EventRepositoryImplementation (val jdbi: Jdbi){
 
-    override fun getActiveEvents(): List<Event>? {
+    fun getActiveEvents(): List<Event>? {
 
         val now = LocalDateTime.now()
         val timestamp: Timestamp = Timestamp.valueOf(now)
@@ -31,7 +31,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         return toReturn
     }
 
-    override fun getUserEvents(userId : Int,eventId: Int): List<Event>? {
+    fun getUserEvents(userId : Int,eventId: Int): List<Event>? {
 
         val now = LocalDateTime.now()
         val timestamp: Timestamp = Timestamp.valueOf(now)
@@ -39,13 +39,13 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select startDate, " +
                     "plannedfinishDate, " +
-                    "name, limitParticipants, " +
+                    "event.name, limitParticipants, " +
                     "sports.name as sport " +
                     "from SPORTS sports JOIN EVENT event " +
                     "ON sports.id  = event.sportID " +
                     "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
-                    "JOIN USER_PROFILE user on eventParticipant.participantId = user.user_id " +
-                    "WHERE active = ? AND startDate < ? AND user.id = ? AND event.id")
+                    "JOIN USER_PROFILE userProfile on eventParticipant.participantId = userProfile.userid " +
+                    "WHERE active = ? AND startDate < ? AND userProfile.userid = ? AND event.id")
                     .bind(0,true)
                     .bind(1, timestamp)
                     .bind(2,userId)
@@ -57,7 +57,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         return toReturn
     }
 
-    override fun getEventDescription(eventId: Int): String? {
+    fun getEventDescription(eventId: Int): String? {
 
         val toReturn = jdbi.withHandle<Event,RuntimeException> { handle : Handle ->
             handle.createQuery("Select description " +
@@ -72,7 +72,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
     }
 
 
-    override fun createEvent(event : Event): Int {
+    fun createEvent(event : Event): Int {
         val toReturn : Event = jdbi.withHandle<Event,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
@@ -93,7 +93,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         return toReturn.id!!
     }
 
-    override fun participateEvent(participantId : Int, eventId : Int): Int {
+    fun participateEvent(participantId : Int, eventId : Int): Int {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "EVENT_PARTICIPANT(participantId,eventId) " +
@@ -105,7 +105,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi) : EventsService {
         return participantId
     }
 
-    override fun cancelEvent(eventId : Int) {
+    fun cancelEvent(eventId : Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" UPDATE EVENT " +
                     "SET active = ?" +

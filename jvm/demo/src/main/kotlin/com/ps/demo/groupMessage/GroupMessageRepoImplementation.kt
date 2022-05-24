@@ -15,9 +15,9 @@ import java.time.LocalDateTime
 
 
 @Repository
-class GroupMessageRepoImplementation (var jdbi: Jdbi) : GroupMessageService {
+class GroupMessageRepoImplementation (var jdbi: Jdbi) {
 
-    override fun getAllMessages(userId : Int, groupId: Int): List<GroupMessage?> {
+    fun getAllMessages(userId : Int, groupId: Int): List<GroupMessage?> {
 
         val toReturn = jdbi.withHandle<List<GroupMessage?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
@@ -60,7 +60,7 @@ class GroupMessageRepoImplementation (var jdbi: Jdbi) : GroupMessageService {
 
 
 
-    override fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage): Int? {
+    fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage): Int? {
 
         val current = LocalDateTime.now()
         val timestamp : Timestamp = Timestamp.valueOf(current)

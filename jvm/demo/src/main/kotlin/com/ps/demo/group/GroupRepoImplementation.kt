@@ -13,9 +13,9 @@ import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
 
 @Repository
-class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
+class GroupRepoImplementation (var jdbi: Jdbi){
 
-    override fun getGroupById(groupId : Int): Group? {
+    fun getGroupById(groupId : Int): Group? {
         val toReturn = jdbi.withHandle<Group?,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "user_group.id as g_id," +
@@ -57,7 +57,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
 
 
-    override fun getGroupParticipants(groupId : Int): List<User?> {
+    fun getGroupParticipants(groupId : Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "group_participant.groupid as gp_groupid," +
@@ -82,7 +82,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
     }
 
 
-    override fun deleteGroup(groupId : Int, userId : Int) {
+    fun deleteGroup(groupId : Int, userId : Int) {
 
         jdbi.useHandle<RuntimeException> {
             handle: Handle ->
@@ -94,7 +94,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
 
     }
 
-    override fun insertGroup(userId : Int, group : Group): Int? {
+    fun insertGroup(userId : Int, group : Group): Int? {
         val pk : Group = jdbi.withHandle<Group?,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into USER_GROUP(name, ownerid) values(?,?)")
                 .bind(0,group.name)
@@ -112,7 +112,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
         return pk.id
     }
 
-    override fun deleteGroupParticipant(groupId: Int,userId: Int) : Int{
+    fun deleteGroupParticipant(groupId: Int,userId: Int) : Int{
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("DELETE FROM group_participant WHERE groupid = ? AND participantid = ?")
                 .bind(0, groupId)
@@ -122,7 +122,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
         return userId
     }
 
-    override fun exitGroup(groupId: Int, userId: Int) {
+    fun exitGroup(groupId: Int, userId: Int) {
         jdbi.useHandle<RuntimeException> { handle : Handle ->
             handle.createUpdate("Delete from GROUP_PARTICIPANT where groupId = ? AND participantId = ? ")
                 .bind(0,groupId)
@@ -131,7 +131,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
         }
     }
 
-    override fun insertGroupParticipant(groupId: Int, participantsId: List<String>){
+    fun insertGroupParticipant(groupId: Int, participantsId: List<String>){
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             for (participantId: String in participantsId) {
                 insertGroupParticipantAux(groupId, participantId, handle)
@@ -146,7 +146,7 @@ class GroupRepoImplementation (var jdbi: Jdbi) : GroupService {
             .execute()
     }
 
-    override fun getUserGroups(userId : Int): List<Group?> {
+    fun getUserGroups(userId : Int): List<Group?> {
         val toReturn = jdbi.withHandle<List<Group?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "user_group.id as g_id," +

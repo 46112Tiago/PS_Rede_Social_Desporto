@@ -9,10 +9,10 @@ import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
 
 @Repository
-class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
+class CompoundRepoImplementation(val jdbi: Jdbi){
 
     /*TODO insert in table schedule, location, material, pictures */
-    override fun createCompound(compound: Compound) : Int? {
+    fun createCompound(compound: Compound) : Int? {
 
         val toReturn : Compound = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
@@ -30,10 +30,10 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
         return toReturn.id
     }
 
-    override fun addMaterial(compoundId: Int, material: Material): Int? {
+    fun addMaterial(compoundId: Int, material: Material): Int? {
         val toReturn : Material = jdbi.withHandle<Material,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "Material(name,compoundId) " +
+                    "Materials(name,compoundId) " +
                     "values(?,?)")
                     .bind(0,material.name)
                     .bind(1,compoundId)
@@ -43,7 +43,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
         return toReturn.id
     }
 
-    override fun addSchedule(compoundId: Int, schedule: Schedule): Int? {
+    fun addSchedule(compoundId: Int, schedule: Schedule): Int? {
         val toReturn : Schedule = jdbi.withHandle<Schedule,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "Schedule(compoundId,weekday,openingHour,closingHour,optionalDescription) " +
@@ -59,7 +59,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
         return toReturn.id
     }
 
-    override fun deleteCompound(compoundId : Int) {
+    fun deleteCompound(compoundId : Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM COMPOUND WHERE id = ?  ")
                     .bind(0, compoundId)
@@ -68,7 +68,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
     }
 
     /* TODO: Bring only x locations */
-    override fun getCompoundLocations(): List<Compound?>? {
+    fun getCompoundLocations(): List<Compound?>? {
         val toReturn = jdbi.withHandle<List<Compound?>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select location, id from COMPOUND where accepted = ? ")
                     .bind(0,true)
@@ -80,7 +80,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
     }
 
     /* TODO: See which attributes should retrieve for the info */
-    override fun getCompoundInformation(compoundId : Int): Compound? {
+    fun getCompoundInformation(compoundId : Int): Compound? {
         val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, description, location, dressingRoom, summary, parking " +
                     "from COMPOUND " +
@@ -94,7 +94,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi) : CompoundService{
         return toReturn
     }
 
-    override fun acceptCompound(compoundId: Int) {
+    fun acceptCompound(compoundId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" UPDATE COMPOUND " +
                     "SET accepted = ?" +

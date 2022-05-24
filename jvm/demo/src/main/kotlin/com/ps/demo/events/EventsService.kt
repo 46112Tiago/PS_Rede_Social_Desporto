@@ -1,20 +1,34 @@
 package com.ps.demo.events
 
 import com.ps.data.Event
+import org.springframework.stereotype.Service
 
-interface EventsService {
+@Service
+class EventsService(val eventRepo: EventRepositoryImplementation) {
 
-    fun getActiveEvents() : List<Event>?
+    fun getActiveEvents() : List<Event>? {
+        return eventRepo.getActiveEvents()
+    }
 
-    fun getUserEvents(userId : Int,eventId: Int) : List<Event>?
+    fun getUserEvents(userId : Int,eventId: Int) : List<Event>? {
+        return eventRepo.getUserEvents(userId,eventId)
+    }
 
-    fun getEventDescription(eventId: Int) : String?
+    fun getEventDescription(eventId: Int) : String? {
+        return eventRepo.getEventDescription(eventId)
+    }
 
-    fun createEvent(event : Event) : Int
+    fun createEvent(event : Event) : Int {
+        return eventRepo.createEvent(event)
+    }
 
-    fun participateEvent(participantId : Int, eventId : Int) : Int
+    fun participateEvent(participantId : Int, eventId : Int) : Int {
+        return eventRepo.participateEvent(participantId,eventId)
+    }
 
-    fun cancelEvent(eventId : Int)
+    fun cancelEvent(eventId : Int) {
+        return cancelEvent(eventId)
+    }
 
 
 }

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
+class FieldRepoImplementation(val jdbi : Jdbi){
 
     /*TODO add pictures and location*/
-    override fun createField(field: Field): Int? {
+    fun createField(field: Field): Int? {
         val compoundId = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "compound(name,parking,accepted) " +
@@ -37,7 +37,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
     }
 
     /*TODO add pictures*/
-    override fun addFieldToCompound(compoundId: Int, field: Field): Int? {
+    fun addFieldToCompound(compoundId: Int, field: Field): Int? {
 
         val toReturn = jdbi.withHandle<Field,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
@@ -52,7 +52,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
         return toReturn.id
     }
 
-    override fun deleteField(fieldId: Int) {
+    fun deleteField(fieldId: Int) {
         val compound = jdbi.withHandle<Field?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select compoundId from Field " +
                     "where id = ?")
@@ -74,7 +74,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
 
     }
 
-    override fun deleteFieldFromCompound(compoundId: Int,fieldId: Int) {
+    fun deleteFieldFromCompound(compoundId: Int,fieldId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM FIELD WHERE id = ? AND compoundId = ? ")
                     .bind(0, fieldId)
@@ -85,7 +85,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
     }
 
     /*TODO add pictures*/
-    override fun getAllFields(compoundId : Int): List<Field>? {
+    fun getAllFields(compoundId : Int): List<Field>? {
         val toReturn = jdbi.withHandle<List<Field>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, id " +
                     "from FIELD " +
@@ -100,7 +100,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
     }
 
     /*TODO add pictures*/
-    override fun getFieldInfo(fieldId: Int): Optional<Field>? {
+    fun getFieldInfo(fieldId: Int): Optional<Field>? {
         val toReturn = jdbi.withHandle<Optional<Field>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name " +
                     "from FIELD " +
@@ -113,7 +113,7 @@ class FieldRepoImplementation(val jdbi : Jdbi) : FieldService{
         return toReturn
     }
 
-    override fun acceptField(compoundId: Int, fieldId: Int) {
+    fun acceptField(compoundId: Int, fieldId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" UPDATE FIELD " +
                 "SET accepted = ?" +

@@ -15,9 +15,9 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Repository
-class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
+class CommentRepoImplementation(val jdbi: Jdbi){
 
-    override fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
+    fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
 
         val current = LocalDateTime.now()
         val timestamp : Timestamp = Timestamp.valueOf(current)
@@ -35,7 +35,7 @@ class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
         return pk.id
     }
 
-    override fun deleteComment(postId: Int, commentId: Int) {
+    fun deleteComment(postId: Int, commentId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM POST_COMMENT WHERE id = ? AND postId = ? ")
                     .bind(0, commentId)
@@ -48,7 +48,7 @@ class CommentRepoImplementation(val jdbi: Jdbi) : CommentService{
         return RowMapperFactory.of(type, KotlinMapper(type, prefix))
     }
 
-    override fun getAllComments(postId: Int) : LinkedHashMap<Int, Comment>? {
+    fun getAllComments(postId: Int) : LinkedHashMap<Int, Comment>? {
         val toReturn : LinkedHashMap<Int, Comment>? = jdbi.withHandle<LinkedHashMap<Int, Comment>?,RuntimeException> { handle : Handle ->
 
             handle.createQuery("Select post_comment.id as c_id, " +

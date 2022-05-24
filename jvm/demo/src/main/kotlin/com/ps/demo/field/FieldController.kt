@@ -9,17 +9,17 @@ import java.util.*
 
 @RestController
 @RequestMapping
-class FieldController(val fieldRepo : FieldRepoImplementation) {
+class FieldController(val fieldService: FieldService) {
 
     @GetMapping("/compound/{compoundId}/field")
     fun getAllFields(@PathVariable("compoundId") compoundId: Int) : ResponseEntity<List<Field>?> {
-        val fields : List<Field>? = fieldRepo.getAllFields(compoundId)
+        val fields : List<Field>? = fieldService.getAllFields(compoundId)
         return ResponseEntity(fields, HttpStatus.OK)
     }
 
     @GetMapping("/compound/{compoundId}/field/{fieldId}")
     fun getFieldInfo(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any?> {
-        val field : Optional<Field>? = fieldRepo.getFieldInfo(fieldId)
+        val field : Optional<Field>? = fieldService.getFieldInfo(fieldId)
         if(field!!.isEmpty) return ResponseEntity("Resource not found", HttpStatus.NOT_FOUND)
         return ResponseEntity(field, HttpStatus.OK)
     }
@@ -27,7 +27,7 @@ class FieldController(val fieldRepo : FieldRepoImplementation) {
     @CrossOrigin("http://localhost:3000")
     @DeleteMapping("/field/{fieldId}")
     fun deleteField(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any?> {
-        fieldRepo.deleteField(fieldId)
+        fieldService.deleteField(fieldId)
         val responseHeaders = HttpHeaders()
         responseHeaders.set("Access-Control-Allow-Origin","*")
         return ResponseEntity.ok().headers(responseHeaders).body(1)
@@ -36,28 +36,28 @@ class FieldController(val fieldRepo : FieldRepoImplementation) {
     @DeleteMapping("/compound/{compoundId}/field/{fieldId}")
     fun deleteFieldFromCompound(@PathVariable("compoundId") compoundId: Int,
                        @PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any?> {
-        fieldRepo.deleteFieldFromCompound(compoundId,fieldId)
+        fieldService.deleteFieldFromCompound(compoundId,fieldId)
         return ResponseEntity(HttpStatus.OK)
     }
 
     @PostMapping("/field")
     fun createField(@RequestBody() field: Field)
             : ResponseEntity<Any?> {
-        val fieldKey : Int? = fieldRepo.createField(field)
+        val fieldKey : Int? = fieldService.createField(field)
         return ResponseEntity(fieldKey, HttpStatus.OK)
     }
 
     @PostMapping("/compound/{compoundId}/field")
     fun addFieldToCompound(@PathVariable compoundId : Int, @RequestBody field: Field)
             : ResponseEntity<Any?> {
-        val fieldKey : Int? = fieldRepo.addFieldToCompound(compoundId,field)
+        val fieldKey : Int? = fieldService.addFieldToCompound(compoundId,field)
         return ResponseEntity(fieldKey, HttpStatus.OK)
     }
 
     @PutMapping("/compound/{compoundId}/field/{fieldId}")
     fun acceptField(@PathVariable compoundId : Int, @PathVariable fieldId: Int)
             : ResponseEntity<Any?> {
-        fieldRepo.acceptField(compoundId, fieldId)
+        fieldService.acceptField(compoundId, fieldId)
         return ResponseEntity(HttpStatus.OK)
     }
 
