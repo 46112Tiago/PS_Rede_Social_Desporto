@@ -16,9 +16,9 @@ import java.util.*
 import kotlin.collections.LinkedHashMap
 
 @Repository
-class PostRepoImplementation (var jdbi: Jdbi) : PostService {
+class PostRepoImplementation (var jdbi: Jdbi) {
 
-    override fun getPosts(userId: Int): List<Post?> {
+     fun getPosts(userId: Int): List<Post?> {
         val toReturn = jdbi.withHandle<List<Post?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "post.id as p_id," +
@@ -55,7 +55,7 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
     }
 
 
-    override fun getPostById(postId : Int): Post? {
+     fun getPostById(postId : Int): Post? {
         val toReturn = jdbi.withHandle<Post?,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "post.id as p_id," +
@@ -91,7 +91,7 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
         return toReturn
     }
 
-    override fun getPostCreator(postId : Int): User? {
+     fun getPostCreator(postId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "post.id as p_id," +
@@ -123,7 +123,7 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
     }
 
 
-    override fun getUserPosts(userId : Int): List<Post?> {
+     fun getUserPosts(userId : Int): List<Post?> {
         val posts = jdbi.withHandle<List<Post?>, RuntimeException> { handle: Handle ->
             handle.createQuery("(Select * from post where userid = ?)")
                 .bind(0, userId)
@@ -133,7 +133,7 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
     }
 
 
-    override fun deletePost(postId : Int) {
+     fun deletePost(postId : Int) {
 
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("DELETE FROM post WHERE id = ?")
@@ -143,7 +143,7 @@ class PostRepoImplementation (var jdbi: Jdbi) : PostService {
 
     }
 
-    override fun insertPost(userId : Int, post : Post): Int? {
+     fun insertPost(userId : Int, post : Post): Int? {
 
         val current = LocalDateTime.now()
         val timestamp : Timestamp = Timestamp.valueOf(current)

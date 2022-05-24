@@ -10,37 +10,37 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping
 @CrossOrigin("https://localhost:3000")
-class PostController (val postRepo : PostRepoImplementation) {
+class PostController (val postService: PostService) {
 
 
     @GetMapping("/user/{userId}/post")
     fun getPosts(@PathVariable("userId") userId : Int) : ResponseEntity<List<Post?>> {
-        val groups = postRepo.getPosts(userId).toList()
+        val groups = postService.getPosts(userId).toList()
         return ResponseEntity(groups, HttpStatus.OK)
     }
 
     @GetMapping("/post/{postId}")
     fun getPostById(@PathVariable("postId") postId : Int) : ResponseEntity<Post?> {
-        val group : Post? = postRepo.getPostById(postId)
+        val group : Post? = postService.getPostById(postId)
         return ResponseEntity(group, HttpStatus.OK)
     }
 
     /*
     @GetMapping("/post/{postId}/user")
     fun getPostCreator(@PathVariable("postId") postId: Int) : ResponseEntity<User> {
-        val user : User? = postRepo.getPostCreator(1)
+        val user : User? = postService.getPostCreator(1)
         return ResponseEntity(user,HttpStatus.OK)
     }*/
 
     @GetMapping("/post/user/{userId}")
     fun getUserPosts(@PathVariable("userId") userId: Int) : ResponseEntity<List<Post?>> {
-        val posts = postRepo.getUserPosts(userId)
+        val posts = postService.getUserPosts(userId)
         return ResponseEntity(posts,HttpStatus.OK)
     }
 
     @DeleteMapping("/post/{postId}")
     fun deletePost(@PathVariable("postId") postId : Int) : ResponseEntity<Any?> {
-        postRepo.deletePost(postId)
+        postService.deletePost(postId)
         return ResponseEntity(HttpStatus.OK)
     }
 
@@ -49,7 +49,7 @@ class PostController (val postRepo : PostRepoImplementation) {
                     @RequestBody post: Post
                    ) : ResponseEntity<Any?> {
 
-        val postKey : Int? = postRepo.insertPost(userId,post)
+        val postKey : Int? = postService.insertPost(userId,post)
         return ResponseEntity(postKey, HttpStatus.OK)
     }
 

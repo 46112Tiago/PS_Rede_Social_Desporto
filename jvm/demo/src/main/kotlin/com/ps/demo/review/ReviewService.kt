@@ -1,15 +1,25 @@
 package com.ps.demo.review
 
 import com.ps.data.Review
+import org.springframework.stereotype.Service
 
-interface ReviewService {
+@Service
+class ReviewService(val reviewRepo : ReviewRepoImplementation) {
 
-    fun createCompoundReview(compoundId : Int, review : Review) : Int?
+    fun createCompoundReview(compoundId : Int, review : Review) : Int? {
+        return reviewRepo.createCompoundReview(compoundId,review)
+    }
 
-    fun createFieldReview(compoundId : Int, fieldId : Int, review : Review) : Int?
+    fun createFieldReview(compoundId : Int, fieldId : Int, review : Review) : Int? {
+        return reviewRepo.createFieldReview(compoundId,fieldId, review)
+    }
 
-    fun deleteReview(reviewId : Int)
+    fun deleteReview(reviewId : Int) {
+        return reviewRepo.deleteReview(reviewId)
+    }
 
-    fun getAllReviews(compoundId: Int) : List<Review>?
+    fun getAllReviews(compoundId: Int) : List<Review>? {
+        return reviewRepo.getAllReviews(compoundId)
+    }
 
 }

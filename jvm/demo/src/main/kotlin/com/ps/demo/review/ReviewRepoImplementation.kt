@@ -7,9 +7,9 @@ import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
 
 @Repository
-class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
+class ReviewRepoImplementation(val jdbi:Jdbi)  {
 
-    override fun createCompoundReview(compoundId: Int, review : Review): Int? {
+    fun createCompoundReview(compoundId: Int, review : Review): Int? {
 
         val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
@@ -24,7 +24,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
         return toReturn.id
     }
 
-    override fun createFieldReview(compoundId: Int, fieldId: Int, review : Review): Int? {
+     fun createFieldReview(compoundId: Int, fieldId: Int, review : Review): Int? {
         val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "review(fieldId,compoundId,rating,description) " +
@@ -40,7 +40,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
     }
 
 
-    override fun deleteReview(reviewId : Int) {
+     fun deleteReview(reviewId : Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM REVIEW WHERE id = ?")
                     .bind(0, reviewId)
@@ -48,7 +48,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi) : ReviewService {
         }
     }
 
-    override fun getAllReviews(compoundId: Int): List<Review>? {
+     fun getAllReviews(compoundId: Int): List<Review>? {
 
         val toReturn = jdbi.withHandle<List<Review>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select rating, description, id " +
