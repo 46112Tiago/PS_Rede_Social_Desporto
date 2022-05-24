@@ -15,7 +15,7 @@ export function convertLocationToCoordinate(location) {
 }
 
 export function convertCoordinateToLocation(lat,lng) {
-    Geocode.setApiKey("AIzaSyCajrJ3Y0s5ubSgMAw8Gq34ujyt2TbJqi8")
+    Geocode.setApiKey("AIzaSyCajrJ3Y0s5ubSgMAw8Gq34ujyt2TbJqi8") //AIzaSyCajrJ3Y0s5ubSgMAw8Gq34ujyt2TbJqi8
     Geocode.enableDebug();
     Geocode.fromLatLng(lat, lng).then(
         (response) => {

@@ -13,7 +13,7 @@ const center = {
 };
 
 
-
+//AIzaSyCIkVFF1vWmNB9zeS1PxsUBQWSD2gDLZ1E
 
 const Map = () => {
   const render = (status) => {
@@ -30,7 +30,7 @@ const Map = () => {
     <div id='wrapper'>
       <div id='wrapperContainer'>
         <div id='searchBox'></div>      
-        <Wrapper render={render} apiKey={"AIzaSyCIkVFF1vWmNB9zeS1PxsUBQWSD2gDLZ1E"}>
+        <Wrapper render={render} apiKey={"AIzaSyCIkVFF1vWmNB9zeS1PxsUBQWSD2gDLZ1E"}> 
           <MapComponent center={center} zoom={58}>
           </MapComponent>
         </Wrapper>  

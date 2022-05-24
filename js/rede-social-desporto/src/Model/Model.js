@@ -94,5 +94,10 @@ export let compound = {
     summary : '',
     dressingRoom : '',
     parking : false,
-    location : {}
+    location : {
+        type: '',
+        value: '',
+        x: 0.0,
+        y: 0.0
+    }
 }
