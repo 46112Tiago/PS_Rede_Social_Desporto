@@ -36,7 +36,7 @@ const ReviewModal = (props) => {
       return (
         <div id="modalReview">
             <h2>Reviews</h2>
-            <MakeReview/>
+            <Makereview/>
             {reviewArray.map((reviewObj,i) => 
                 <div id="review_body">
                     <div id="leftSideReview">

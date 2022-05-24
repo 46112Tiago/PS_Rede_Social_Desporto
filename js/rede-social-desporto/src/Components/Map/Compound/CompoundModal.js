@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { materials } from "../../../Model/Model";
 import './CompoundModal.css'
 import CompoundSuggestion from "./CompoundSuggestion/CompoundSuggestion";
 import Materials from "./Materials/Materials";

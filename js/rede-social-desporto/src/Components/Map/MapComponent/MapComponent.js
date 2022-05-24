@@ -2,8 +2,7 @@ import React from 'react'
 import { compound } from '../../../Model/Model';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import "./MapComponent.css";
-import Marker from '../Marker/Marker';
-
+import Marker from './Marker/Marker';
 
 const MapComponent = (props) => { 
  
@@ -23,7 +22,7 @@ const MapComponent = (props) => {
     
     
     const myHeaders = new Headers();
-    myHeaders.append('authorization','Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1MzM1ODg0MiwiZXhwIjoxNjUzNDQ1MjQyLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.S16EGi1svdirkPZEml54WQeSsXNogs0HMXY6oEzt7jNDyxt9aBwyK2Z6mWPErQAWBrZKm89u51Irc03m8tjrLX4XwXUzuzPSeg5rhGdCda-RMgRQ7Zz7qtGmLApqZzqrOCusGo-8FccgCh9UOtvgSFCnT82FQCdTr3vnDoK2uwZUGkNGdJQg7ETPWsHv4YlFZ5MAAz0r3e3YuZFC0cktBAeOcpdYo5vevGMbtS02dfnVXWQfWrjsd02-D8wARBZSv2vGTzVrZ3XWLfIvlHSK5jWk2JhuD6nOOcUZPPzGhz1UbSBoiGDq3EbIKzOdpuF3fSJTMYtRphoqCHJBhEaGag');
+    myHeaders.append('authorization','Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1MzQwMjE5NSwiZXhwIjoxNjUzNDg4NTk1LCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.Rfnnp1lQsU8Ro8Xhe4PmqQz_HyXWR8dNdyXBIsPTfQHV-l8LgZaE06L7v76hF39iQkLiefTcOrl04Iq_HFm4mHI_AvVzATwumG-5zatwao4jyyIh0Ta63d3tr7zGoi4OSxnjtYiXyqJTriRRwhn4yqbExwy6jYJ2alX0SNAUNuOq0lTP-VBd33mVyTdPkNJ3V_49H4082oUnpD8hd2K8DMNONLCs3QNAg_Z5ExUPzUtw9AoP4Q3mX27fWHvSG4sKG9yAqMLOr2EyyJ9ODJ6KxTYHg5OBW8D-eoDx3BzV-xa3AMBDkl4Yr8vsXAk6bEFWmrjP1w3z6NlVzHjPbClApA');
 
     const options = {
         method: "GET",
@@ -47,7 +46,7 @@ const MapComponent = (props) => {
               title: element.name,
           });
           marker.addListener("click", () => {
-            window.location.href = "#demo-modal"
+            window.location.href = "#marker-modal"
         });
         });
 
@@ -69,8 +68,9 @@ const MapComponent = (props) => {
     },[]);
     return (
         <>
+            <Marker/>
             <div ref={ref} id="mapComponent"> 
-            
+
             </div>
         </>
     );

@@ -19,10 +19,6 @@
     border: solid 2px black;
 }
 
-#modalCheck {
-    background-color: transparent;
-}
-
 #formConatinerCompound {
     display: flex;
     flex-direction: column;

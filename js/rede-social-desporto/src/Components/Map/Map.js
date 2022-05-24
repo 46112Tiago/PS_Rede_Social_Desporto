@@ -5,7 +5,7 @@ import MapComponent from './MapComponent/MapComponent';
 import { convertLocationToCoordinate,convertCoordinateToLocation } from '../../GoogleMaps/Geocoding';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import './Map.css'
-import Marker from './Marker/Marker';
+import Marker from './MapComponent/Marker/Marker';
 
 const center = {
   lat: 38.757026,
@@ -29,9 +29,10 @@ const Map = () => {
       <div id='wrapperContainer'>
         <div id='searchBox'></div>      
         <Wrapper render={render} apiKey={""}> 
-          <MapComponent center={center} zoom={58}>
+          <MapComponent center={center} zoom={1}>
           </MapComponent>
-        </Wrapper>  
+        </Wrapper>
+
       </div>
       <div id='suggestion'>
         <h2 id='suggestionTxt'>Suggestions:</h2>
