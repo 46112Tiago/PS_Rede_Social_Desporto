@@ -86,7 +86,6 @@ export let materials = {
     name : ''
 }
 
-
 export let compound = {
     id : 0,
     name : '',
@@ -95,9 +94,5 @@ export let compound = {
     dressingRoom : '',
     parking : false,
     location : {
-        type: '',
-        value: '',
-        x: 0.0,
-        y: 0.0
     }
 }

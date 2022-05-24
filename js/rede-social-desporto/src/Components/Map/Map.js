@@ -13,8 +13,6 @@ const center = {
 };
 
 
-//AIzaSyCIkVFF1vWmNB9zeS1PxsUBQWSD2gDLZ1E
-
 const Map = () => {
   const render = (status) => {
     switch (status) {
