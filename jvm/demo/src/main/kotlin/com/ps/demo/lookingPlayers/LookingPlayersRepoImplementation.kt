@@ -8,9 +8,9 @@ import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
 
 @Repository
-class LookingPlayersRepoImplementation (var jdbi: Jdbi) : LookingPlayersService {
+class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
 
-    override fun createRequest(lookingPlayers: LookingPlayers): Int? {
+     fun createRequest(lookingPlayers: LookingPlayers): Int? {
         val looking : LookingPlayers = jdbi.withHandle<LookingPlayers,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime) " +
@@ -26,7 +26,7 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi) : LookingPlayersService 
         return looking.id
     }
 
-    override fun participateRequest(lookingId: Int, participantId: Int): Int {
+     fun participateRequest(lookingId: Int, participantId: Int): Int {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId) " +
@@ -38,7 +38,7 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi) : LookingPlayersService 
         return participantId
     }
 
-    override fun updateState(state: String, lookingId: Int, participantId: Int) {
+     fun updateState(state: String, lookingId: Int, participantId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" UPDATE LOOKINGPLAYERS_PARTICIPANTS " +
                     "SET state = ?" +
@@ -50,7 +50,7 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi) : LookingPlayersService 
         }
     }
 
-    override fun cancelState(lookingId: Int, userId: Int) {
+     fun cancelState(lookingId: Int, userId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM LOOKINGPLAYERS " +
                     "WHERE lookingId = ? AND creatorId = ?")
@@ -59,11 +59,11 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi) : LookingPlayersService 
                 .execute()
         }    }
 
-    override fun getLookingPlayers(lookingId: Int, state: String): List<LookingPlayers> {
+     fun getLookingPlayers(lookingId: Int, state: String): List<LookingPlayers> {
         TODO("Not yet implemented")
     }
 
-    override fun getLookingCreated(cretaorId: Int): List<LookingPlayers> {
+     fun getLookingCreated(creatorId: Int): List<LookingPlayers> {
         TODO("Not yet implemented")
     }
 

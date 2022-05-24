@@ -1,6 +1,5 @@
 package com.ps.demo.review
 
-import com.ps.data.Comment
 import com.ps.data.Review
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -8,17 +7,18 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/compound/{compoundId}")
-class ReviewController(val reviewRepo : ReviewRepoImplementation) {
+@CrossOrigin("https://localhost:3000")
+class ReviewController(val reviewService: ReviewService) {
 
     @GetMapping("/review")
     fun getAllReviews(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<List<Review>?> {
-        val reviews : List<Review>? = reviewRepo.getAllReviews(compoundId)
+        val reviews : List<Review>? = reviewService.getAllReviews(compoundId)
         return ResponseEntity(reviews, HttpStatus.OK)
     }
 
     @DeleteMapping("/review/{reviewId}")
     fun deleteReview(@PathVariable("reviewId") reviewId : Int) : ResponseEntity<Any?> {
-        reviewRepo.deleteReview(reviewId)
+        reviewService.deleteReview(reviewId)
         return ResponseEntity(HttpStatus.OK)
     }
 
@@ -26,7 +26,7 @@ class ReviewController(val reviewRepo : ReviewRepoImplementation) {
     fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
                              @RequestBody review : Review)
             : ResponseEntity<Any?> {
-        val reviewKey : Int? = reviewRepo.createCompoundReview(compoundId,review)
+        val reviewKey : Int? = reviewService.createCompoundReview(compoundId,review)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 
@@ -35,7 +35,7 @@ class ReviewController(val reviewRepo : ReviewRepoImplementation) {
                           @PathVariable("fieldId") fieldId : Int,
                              @RequestBody review : Review)
             : ResponseEntity<Any?> {
-        val reviewKey : Int? = reviewRepo.createFieldReview(compoundId,fieldId,review)
+        val reviewKey : Int? = reviewService.createFieldReview(compoundId,fieldId,review)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 

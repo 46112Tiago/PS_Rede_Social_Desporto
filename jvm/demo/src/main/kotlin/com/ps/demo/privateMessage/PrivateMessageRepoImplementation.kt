@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 
 
 @Repository
-class PrivateMessageRepoImplementation (var jdbi: Jdbi) : PrivateMessageService {
+class PrivateMessageRepoImplementation (var jdbi: Jdbi)  {
 
-    override fun getAllMessages(userId : Int, receiverId : Int): List<PrivateMessage>? {
+     fun getAllMessages(userId : Int, receiverId : Int): List<PrivateMessage>? {
         val toReturn = jdbi.withHandle<List<PrivateMessage>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select * from PRIVATE_MESSAGE where senderId = ? AND receiverId = ? ")
                     .bind(0,userId)
@@ -24,7 +24,7 @@ class PrivateMessageRepoImplementation (var jdbi: Jdbi) : PrivateMessageService 
         return toReturn
     }
 
-    override fun sendMessage(userId : Int,receiverId : Int,privateMessage: PrivateMessage): Int? {
+     fun sendMessage(userId : Int,receiverId : Int,privateMessage: PrivateMessage): Int? {
 
         val now = LocalDateTime.now()
         val timestamp: Timestamp = Timestamp.valueOf(now)

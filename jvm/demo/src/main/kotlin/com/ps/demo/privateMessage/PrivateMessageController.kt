@@ -6,14 +6,15 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping()
-class PrivateMessageController(val privateMessageRepo : PrivateMessageRepoImplementation) {
+@RequestMapping
+@CrossOrigin("https://localhost:3000")
+class PrivateMessageController(val privateMessageService: PrivateMessageService) {
 
     @GetMapping("/user/{userId}/message/{receiverId}")
     fun getAllMessages(@PathVariable("userId") userId : Int,
     @PathVariable("receiverId") receiverId : Int
     ) : ResponseEntity<List<PrivateMessage>?> {
-        val privateMessages : List<PrivateMessage>? = privateMessageRepo.getAllMessages(userId,receiverId)
+        val privateMessages : List<PrivateMessage>? = privateMessageService.getAllMessages(userId,receiverId)
         return ResponseEntity(privateMessages, HttpStatus.OK)
     }
 
@@ -21,7 +22,7 @@ class PrivateMessageController(val privateMessageRepo : PrivateMessageRepoImplem
     fun sendMessage(@PathVariable("userId") userId : Int,
                     @PathVariable("receiverId") receiverId: Int,
             @RequestBody privateMessage: PrivateMessage) : ResponseEntity<Any?> {
-        val privateMessageKey = privateMessageRepo.sendMessage(userId,receiverId,privateMessage)
+        val privateMessageKey = privateMessageService.sendMessage(userId,receiverId,privateMessage)
         return ResponseEntity(privateMessageKey, HttpStatus.OK)
     }
 

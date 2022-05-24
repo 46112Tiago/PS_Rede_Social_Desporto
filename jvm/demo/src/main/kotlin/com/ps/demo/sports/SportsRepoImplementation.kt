@@ -7,9 +7,9 @@ import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
 
 @Repository
-class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
+class SportsRepoImplementation(val jdbi : Jdbi)  {
 
-    override fun addSport(sports : List<Sports>) : MutableList<Int>? {
+     fun addSport(sports : List<Sports>) : MutableList<Int>? {
 
         val sportsKeys : MutableList<Int> = mutableListOf()
 
@@ -30,7 +30,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
         return sportsKeys
     }
 
-    override fun addUserSport(userId: Int, sports : List<Sports>) {
+     fun addUserSport(userId: Int, sports : List<Sports>) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             for (sport in sports){
                 handle.createUpdate("insert into " +
@@ -44,7 +44,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
         }
     }
 
-    override fun deleteUserSport(userId: Int, sportId: Int) {
+     fun deleteUserSport(userId: Int, sportId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM USER_SPORTS WHERE userId = ? AND sportId = ?")
                     .bind(0, userId)
@@ -53,7 +53,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
         }
     }
 
-    override fun getUserSports(userId: Int): List<Sports>? {
+     fun getUserSports(userId: Int): List<Sports>? {
         val toReturn = jdbi.withHandle<List<Sports>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name , s.id " +
                     "from USER_SPORTS us " +
@@ -67,7 +67,7 @@ class SportsRepoImplementation(val jdbi : Jdbi) : SportsService {
         return toReturn
     }
 
-    override fun getSports(): List<Sports>? {
+     fun getSports(): List<Sports>? {
         val toReturn = jdbi.withHandle<List<Sports>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, id " +
                     "from SPORTS ")
