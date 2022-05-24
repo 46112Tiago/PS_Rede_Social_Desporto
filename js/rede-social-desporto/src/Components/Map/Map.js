@@ -6,6 +6,7 @@ import { convertLocationToCoordinate,convertCoordinateToLocation } from '../../G
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import './Map.css'
 import Marker from './MapComponent/Marker/Marker';
+import SearchBox from './SearchBox/SearchBox';
 
 const center = {
   lat: 38.757026,
@@ -27,7 +28,7 @@ const Map = () => {
   return(
     <div id='wrapper'>
       <div id='wrapperContainer'>
-        <div id='searchBox'></div>      
+        <SearchBox></SearchBox>      
         <Wrapper render={render} apiKey={""}> 
           <MapComponent center={center} zoom={1}>
           </MapComponent>

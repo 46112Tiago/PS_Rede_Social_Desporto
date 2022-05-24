@@ -14,13 +14,6 @@
   display: none;
 }
 
-#searchBox {
-  width: 20%;
-  height: 100%;
-  background-color: #000;
-  min-width: 200px;
-}
-
 #mapGoogle {
     margin-top: 5%;
     margin-left: 10%;

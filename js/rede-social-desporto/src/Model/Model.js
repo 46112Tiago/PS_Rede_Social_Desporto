@@ -94,5 +94,7 @@ export let compound = {
     dressingRoom : '',
     parking : false,
     location : {
-    }
+    },
+    schedule : {},
+    materials : {}
 }

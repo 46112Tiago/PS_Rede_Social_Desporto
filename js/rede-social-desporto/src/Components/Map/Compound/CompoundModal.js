@@ -8,11 +8,6 @@ import './Confirm/ConfirmCompound.css'
 
 const CompoundModal = () => {
 
-  const [component, setComponent] = React.useState(<CompoundSuggestion/>);
-  const [scheduleObj, setSchedule] = React.useState({});
-  const [materialObj, setMaterials] = React.useState({});
-  const [compoundObj, setCompound] = React.useState({});
-
 
   const getSchedule = (schedule) => {
     setSchedule(schedule)
@@ -26,6 +21,13 @@ const CompoundModal = () => {
     setCompound(compoundInfo)
   }
 
+  const [component, setComponent] = React.useState(<CompoundSuggestion getCompound={getCompound}/>);
+  const [scheduleObj, setSchedule] = React.useState({});
+  const [materialObj, setMaterials] = React.useState({});
+  const [compoundObj, setCompound] = React.useState({});
+
+
+
   React.useEffect(() => {
 
   },[component]);
@@ -34,6 +36,7 @@ const CompoundModal = () => {
         const { register, handleSubmit } = useForm();
         const myHeaders = new Headers()
         myHeaders.append('Content-Type','application/json')
+        myHeaders.append("Authorization","Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InJLb3pWaFZPYmVSbzg3dHRkSU0xdSJ9.eyJpc3MiOiJodHRwczovL2Rldi03eHNpcjNhaS5ldS5hdXRoMC5jb20vIiwic3ViIjoiUEt3R0k2emlaOTNhbnE5YzEzejBwYWV0MG5VYXhxV3VAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1MzQxNTk3MSwiZXhwIjoxNjUzNTAyMzcxLCJhenAiOiJQS3dHSTZ6aVo5M2FucTljMTN6MHBhZXQwblVheHFXdSIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.PsFFozl4_aHlZcFOD6URGaTAcP2iQM-r4isziQJpHlSbeaIYJeixBd7YpLD19Zrwb3BT7rzPyd_7nTyLy9TC9QfJIeBx0wMlVfs4Gw8b_dstQND4IiWAyW7CnJs3B0Wxh_eyHLxox0MMdQkvdLtUNfCy2scam5hv4SyvnR-bhrMSUicdzC7pVHpoQQ_WU4XpmOxbGO-lszNQgrirxj6ASfWNS7ZdPxU0znuTctThvhhY8jN9y2GV3uW_9SGXWEzxDy8lP8x7v9NCnP-dw7y1G1hGubwxPw0V4jcbTJTEx8-OxTsq0A0zMRcPfbhUY-HkugWTfq-xlpj7X-G8RaHzkw")
       
         function submit() {
       

@@ -15,7 +15,7 @@ export function convertLocationToCoordinate(location) {
 }
 
 export function convertCoordinateToLocation(lat,lng) {
-    Geocode.setApiKey("") 
+    Geocode.setApiKey("")
     Geocode.enableDebug();
     Geocode.fromLatLng(lat, lng).then(
         (response) => {
