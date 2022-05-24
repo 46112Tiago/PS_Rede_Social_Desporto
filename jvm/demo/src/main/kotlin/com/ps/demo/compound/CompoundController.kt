@@ -34,7 +34,7 @@ class CompoundController(val compoundService: CompoundService) {
     }
 
     //TODO:Add capability to add schedule and materials
-    @CrossOrigin("http://localhost:3000")
+
     @PostMapping
     fun createCompound(@RequestBody compound : Compound)
             : ResponseEntity<Any?> {
