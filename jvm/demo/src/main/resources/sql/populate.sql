@@ -197,22 +197,22 @@ INSERT INTO USER_SPORTS(userId,sportId)
 VALUES (3,1);
 
 
-/* USER_SPORTS */
+/* EVENT */
 --1)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (1,5,'23/05/2019 11:00:00','25/05/2019 18:00:00',4,'Description','Summary',8,1,true);
+VALUES (1,5,'23/05/2019 11:00:00','25/05/2019 18:00:00','event',4,'Description','Summary',8,1,true);
 --2)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (2,5,'23/05/2019 11:00:00','25/05/2019 18:00:00',4,'Description','Summary',8,1,true);
+VALUES (2,5,'23/05/2019 11:00:00','25/05/2019 18:00:00','event',4,'Description','Summary',8,1,true);
 --3)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (5,1,'30/06/2021 10:00:00','02/07/2021 15:00:00',3,'Description','Summary',16,3,true);
+VALUES (5,1,'30/06/2021 10:00:00','02/07/2021 15:00:00','event',3,'Description','Summary',16,3,true);
 --4)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (5,1,'30/06/2021 10:00:00','02/07/2021 15:00:00',3,'Description','Summary',16,3,true);
+VALUES (5,1,'30/06/2021 10:00:00','02/07/2021 15:00:00','event',3,'Description','Summary',16,3,true);
 --5)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (4,3,'15/08/2020 11:24:43','16/08/2020 11:24:43',2,'Description','Summary',8,2,true);
+VALUES (4,3,'15/08/2020 11:24:43','16/08/2020 11:24:43','event',2,'Description','Summary',8,2,true);
 
 
 /* EVENT_PARTICIPANT */
@@ -301,6 +301,9 @@ INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
 VALUES (5,'6ª','08:00:00','20:00:00');
 
 
+<<<<<<< HEAD
+commit;
+=======
 /* MATERIALS */
 --1)
 INSERT INTO MATERIALS(name)
@@ -318,6 +321,7 @@ VALUES ('cone');
 INSERT INTO MATERIALS(name)
 VALUES ('padel racket');
 
+>>>>>>> 81bd293647f044697bc39e7298ce6bbe722f9a2d
 
 /* MATERIAL_COMPOUND */
 --1)
