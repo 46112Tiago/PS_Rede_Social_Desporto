@@ -1,0 +1,20 @@
+#submitGroup {
+    margin-top: 5%;
+    border:none;
+    border-radius: 20px;
+    background-color: gray;
+    padding: 5px;
+    width: 90px;
+}
+
+#submitGroup:hover {
+    background-color: gray;
+    color: black;
+    border: solid 2px black;
+}
+
+#submitGroup:active {
+    background-color: rgb(231, 219, 219);
+    color: rgb(43, 40, 40);
+    border: solid 2px black;
+}

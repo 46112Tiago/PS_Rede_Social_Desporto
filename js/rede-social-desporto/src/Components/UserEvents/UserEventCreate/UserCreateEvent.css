@@ -1,0 +1,12 @@
+.cardCreateEvents{
+    margin-top: 100px;
+    width: 300px;
+    cursor: pointer;
+    height: 200px;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: rgb(112, 114, 116);
+}

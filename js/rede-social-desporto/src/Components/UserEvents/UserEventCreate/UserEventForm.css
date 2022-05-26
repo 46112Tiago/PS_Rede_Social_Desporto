@@ -1,0 +1,50 @@
+
+#userEventForm {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#titleEvent {
+    font-size: 30px;
+}
+
+.eventInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#submitEvent {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#submitEventBtn {
+    margin-top: 5%;
+    border:none;
+    border-radius: 20px;
+    background-color: gray;
+    padding: 5px;
+    width: 90px;
+}
+
+#submitEventBtn:hover {
+    background-color: gray;
+    color: black;
+    border: solid 2px black;
+}
+
+#submitEventBtn:active {
+    background-color: rgb(231, 219, 219);
+    color: rgb(43, 40, 40);
+    border: solid 2px black;
+}
+
+.labelEvent {
+    margin-right: 15px;
+}

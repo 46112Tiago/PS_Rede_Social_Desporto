@@ -1,0 +1,55 @@
+#searchBox {
+    width: 20%;
+    height: 100%;
+    background-color: rgb(185, 174, 174);
+    min-width: 200px;
+}
+
+#filterButton {
+    width: 100%;
+    height: 20%;
+    background-color: rgb(79, 77, 77);
+}
+
+.sport {
+    width: 100%;
+    height: 15%;
+    background-color: rgb(79, 77, 77);
+}
+
+.town {
+    width: 100%;
+    height: 15%;
+    background-color: rgb(79, 77, 77);
+}
+
+.open {
+    width: 100%;
+    height: 15%;
+    background-color: rgb(79, 77, 77);
+}
+
+.activeEvents {
+    width: 100%;
+    height: 15%;
+    background-color: rgb(79, 77, 77);
+}   
+
+.searchBox a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.searchBox a {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .dropdown {
+    float: right;
+    overflow: hidden;
+    direction: rtl;
+  }
+  

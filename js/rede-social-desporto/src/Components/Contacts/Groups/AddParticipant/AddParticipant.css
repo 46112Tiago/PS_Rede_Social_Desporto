@@ -1,0 +1,34 @@
+
+.checkDiv {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.checkboxCn {
+    border-radius: 50%;
+}
+
+
+#addParticipant {
+  border: none;
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: rgb(42, 213, 42);
+  color: aliceblue;
+}
+
+#addParticipant:hover {
+  background-color:  green;
+}
+
+#participantbtn {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,96 @@
+
+#evnetCardCon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#eventCardContainer {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(186, 170, 170,0.8);
+    height: 400px;
+    width: 900px;
+}
+
+#eventCardContainer:hover {
+    border: 4px rgb(27, 26, 26) solid;
+}
+
+#eventCardTop {
+    height: 20%;
+    text-align: center;
+}
+
+#eventCardContent {
+    height: 60%;
+    display: flex;
+}
+
+#eventBtnContainer {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnEvent {
+    width: 50%;
+}
+
+#eventCardLeft {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#eventCardRight {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.eventBtn {
+    width: 100px;
+    height: 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition-duration: 0.8s;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: rgb(23, 66, 103);
+    color: aliceblue;
+}
+
+.eventBtn:hover {
+    border: 3px solid rgb(116, 113, 225);
+}
+
+.eventBtn:after {
+    content: "";
+    background: #11e8ef;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s;
+  }
+  
+  .eventBtn:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }

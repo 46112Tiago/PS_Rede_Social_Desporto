@@ -1,0 +1,52 @@
+.border {
+  height: 240px;
+  width: 170px;
+  background: transparent;
+  border-radius: 10px;
+  transition: border 1s;
+  position: relative;
+}
+
+.border:hover h2{
+    background-color: rgba(255, 254, 254, 0.7);
+    opacity: 1;
+    color:#000000
+}
+    
+.cardP {
+    height: 250px;
+    width: 190px;
+    background: grey;
+    border-radius: 10px;
+    transition:  0.8s;
+    overflow: hidden;
+    background: black;
+    box-shadow: 0 70px 63px -60px #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+
+.card0{
+    background: url('./Img/user_icon.png') center center no-repeat;
+    background-size: 300px;
+
+}
+
+.card0:hover {
+    background: url('./Img/user_icon.png') left center no-repeat;
+    background-size: 400px;
+} 
+
+.name {
+    color: white;
+    margin: 20px;
+    opacity: 0;
+    transition: opacity 1s;
+}

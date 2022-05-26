@@ -24,7 +24,7 @@ class Home extends React.Component {
               <div className='left_float'>
                   <h1>Eventos</h1>
                   <p>Participa em torneios orquestrados por complexos deportivos.</p>
-                  <p>Cria ou participa em eventos organizados organizados pelos utilizadores.</p>
+                  <p>Cria ou participa em eventos organizados pelos utilizadores.</p>
                   <FaArrowDown></FaArrowDown>
                   <br/>
                   <a href='/events'><FaFutbol className='icons' id='football'></FaFutbol></a>
@@ -37,7 +37,6 @@ class Home extends React.Component {
                   <p>Entra em contacto e compartilha as tuas atividades e marcos com os teus amigos.</p>
                   <p>Procura por elementos que possam preencher a vaga que falta no teu grupo.</p>
                   <p>Informa te sobre os campos, horários e preços disponiveis.</p>
-                  <p>Encontra campos nas tuas redondezas, ou em qualquer lugar que estejas.</p>
                   <FaArrowDown></FaArrowDown>
                   <br/>
                   <a href='/signup'><FaBasketballBall className='icons' id='basketball'></FaBasketballBall></a>

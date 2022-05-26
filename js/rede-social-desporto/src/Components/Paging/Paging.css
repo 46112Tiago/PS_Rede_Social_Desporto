@@ -1,0 +1,30 @@
+#pagingBody {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagingBtn {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pagingBtn:hover {
+    border-radius: 50%;
+    background-color: rgb(149, 151, 154);
+}
+
+#previousBtn {
+    margin-left: 50px;
+}
+
+#forwardBtn {
+    margin-right: 50px;
+}
