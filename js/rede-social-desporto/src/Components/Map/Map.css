@@ -1,3 +1,19 @@
+#wrapper {
+  overflow-y: scroll;
+  height: 95%;
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+#wrapperContainer {
+  height: 100%;
+  display: flex;
+}
+
+#wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 #mapGoogle {
     margin-top: 5%;
     margin-left: 10%;
@@ -7,43 +23,81 @@
 
 #suggestion {
     background-color: rgb(142, 140, 137);
-    height: 150px;
-    margin-top: 3%;
+    height: px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#suggestionTxt {
-    padding-top: 15px;
-    margin-left: 43%;
-    color: aliceblue;
-    width: 170px;
-    border-radius: 20px;
+#suggestionBtn {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
 }
 
-#compoundBtn {
-    float: left;
-    margin-left: 20%;
+#suggestionBtns {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#fieldBtn {
-    float: right;
-    margin-right: 20%;
-}
+.spanbtn{
+    position: relative;
+    display: inline-flex;
+    width: 180px;
+    height: 55px;
+    margin: 0 15px;
+    perspective: 1000px;
+  }
+.spanbtn .btnSug{
+    font-size: 19px;
+    letter-spacing: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(-25px);
+    transition: transform .25s;
+    font-family: 'Montserrat', sans-serif;
+    
+  }
+.spanbtn .btnSug:before,
+.spanbtn .btnSug:after{
+    position: absolute;
+    height: 55px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
 
-.btnSug {
-    width: 120px;
-    border: none;
-    border-radius: 20px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
+  #spanField .btnSug:before,
+  #spanField .btnSug:after {
+      content: 'FIELD';
+  }
 
-.btnSug:hover {
-    cursor: pointer;
-    border: rgb(132, 29, 29) solid 4px;
-}
+  #spanCompound .btnSug:before,
+  #spanCompound .btnSug:after {
+      content: 'COMPOUND';
+  }
 
-.btnSug:active {
-    cursor: pointer;
-    color: aliceblue;
-    background-color: rgb(48, 47, 47);
-}
+
+
+.spanbtn .btnSug:before{
+    color: #fff;
+    background: #000;
+    transform: rotateY(0deg) translateZ(25px);
+  }
+.spanbtn .btnSug:after{
+    color: #000;
+    transform: rotateX(90deg) translateZ(25px);
+  }
+.spanbtn .btnSug:hover{
+    transform: translateZ(-25px) rotateX(-90deg);
+  }
+  

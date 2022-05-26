@@ -1,49 +1,57 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import FieldModal from './FieldModal/FieldModal';
+import CompoundModal from './Compound/CompoundModal';
+import MapComponent from './MapComponent/MapComponent';
+import { convertLocationToCoordinate,convertCoordinateToLocation } from '../../GoogleMaps/Geocoding';
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import './Map.css'
-import CompoundPostTest from './CompoundPostTest';
+import Marker from './MapComponent/Marker/Marker';
+import SearchBox from './SearchBox/SearchBox';
 
 const center = {
   lat: 38.757026,
   lng: -9.1185779
 };
 
-function Map() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "key"
-  })
 
-  const [map, setMap] = React.useState(null)
+const Map = () => {
+  const render = (status) => {
+    switch (status) {
+      case Status.LOADING:
+        return <></>;
+      case Status.FAILURE:
+        return <></>;
+      case Status.SUCCESS:
+        return <></>;
+    }
+  };
+  return(
+    <div id='wrapper'>
+      <div id='wrapperContainer'>
+        <SearchBox></SearchBox>      
+        <Wrapper render={render} apiKey={""}> 
+          <MapComponent center={center} zoom={1}>
+          </MapComponent>
+        </Wrapper>
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
-  return isLoaded ? (
-    <div>
-
-      <GoogleMap id='mapGoogle' center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
-        { /* Child components, such as markers, info windows, etc. */ }
-      </GoogleMap>
+      </div>
       <div id='suggestion'>
         <h2 id='suggestionTxt'>Suggestions:</h2>
         <br/>
-        <button className='btnSug' id='compoundBtn'>COMPOUND</button>
-        <button className='btnSug' id='fieldBtn'>FIELD</button>
+        <div id='suggestionBtn'>
+          <div id='suggestionBtns'>
+            <CompoundModal></CompoundModal>
+            <FieldModal></FieldModal>
+          </div>
+        </div>
+
       </div>
     </div>
 
-  ) : 
-  <>
+  )  
+  }
 
-  </>
-}
+
+
 
 export default Map

@@ -1,0 +1,21 @@
+#pagingTextBody {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pagingMore {
+    border: none;
+    color: rgb(37, 37, 166);
+    cursor: pointer;
+    font-size: 20px;
+    background-color: transparent;
+    margin-top: 50px;
+    border-bottom: 2px solid rgb(37, 37, 166);
+}
+
+#pagingMore:hover {
+    color: rgb(36, 129, 175);
+    border-bottom: 2px solid rgb(36, 129, 175);
+}

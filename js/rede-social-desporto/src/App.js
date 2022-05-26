@@ -14,8 +14,17 @@ import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import Map from './Components/Map/Map';
 import Events from './Components/Events/Events';
-import SignUp from './Components/Sign_Up/Sign_Up';
+import CreateUser from './Components/Sign_Up/CreateUser';
 import LogIn from './Components/LogIn/LogIn';
+import Profile from './Components/Profile/StaticProfile/StaticProfile';
+import ProfileSearch from './Components/ProfileSearch/ProfileSearch';
+import UserEvent from './Components/UserEvents/UserEvent';
+import OthersProfile from './Components/OthersProfile/OthersProfile';
+import Friends from './Components/Friends/Friends';
+import FriendsMessage from './Components/Contacts/Friends/Friends';
+import Groups from './Components/Contacts/Groups/Groups';
+import Post from './Components/Feed/Post';
+import LookingBody from './Components/Looking/ManagementLooking/LookingBody';
 import ChooseAuthPath from './Components/Auth0/ChooseAuthPath';
 import Loading from './Components/Loading';
 
@@ -29,16 +38,25 @@ const App = () => {
 
     return(
       <Router>
-       
-          <div className="App"> 
-              <Navigation></Navigation>    
-              <Routes>
-                <Route path='/' element={<ChooseAuthPath></ChooseAuthPath>}></Route>
-                <Route path='/x' element={<Home></Home>}></Route>
-                <Route path='/m' element={<Map></Map>}></Route>
-                <Route path='/events' element={isAuthenticated?< Events></Events> : <LogIn></LogIn>}></Route>
-                <Route path='/logIn' element={<LogIn></LogIn>}></Route>
-              </Routes>          
+        <div className="App">       
+          <NavLog></NavLog>
+          <Routes>
+            <Route path='/' element={<Home></Home>}></Route>
+            <Route path='/map' element={<Map></Map>}></Route>
+            <Route path='/events' element={<Events></Events>}></Route>
+            <Route path='/signUp' element={<CreateUser></CreateUser>}></Route>
+            <Route path='/logIn' element={<LogIn></LogIn>}></Route>
+            <Route path='/profile' element={<Profile></Profile>}></Route>
+            <Route path='/profileSearch' element={<ProfileSearch></ProfileSearch>}></Route>
+            <Route path='/userEvents' element={<UserEvent></UserEvent>}></Route>
+            <Route path='/profile/:id' element={<OthersProfile></OthersProfile>}></Route>
+            <Route path='/friends' element={<Friends></Friends>}></Route>
+            <Route path='/groups' element={<Groups></Groups>}></Route>
+            <Route path='/friendsMessage' element={<FriendsMessage></FriendsMessage>}></Route>
+            <Route path='/feed' element={<Post></Post>}></Route>
+            <Route path='/lookingForPlayers' element={<LookingBody></LookingBody>} ></Route>
+          </Routes>
+
           <Footer/>
           </div>
       </Router>

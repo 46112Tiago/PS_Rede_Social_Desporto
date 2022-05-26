@@ -1,0 +1,196 @@
+.anchorBtn {
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #a4afa8;
+    color: black;
+}
+
+.anchorBtn:hover {
+    border: 3px solid black;
+}
+
+.anchorBtn:active {
+    border: 1px solid black;
+}
+
+.modalEdit {
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(77, 77, 77, .7);
+    transition: all .4s;
+    z-index: 2;
+  }
+  
+  .modalEdit:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .modal_content_Edit {
+    border-radius: 4px;
+    position: relative;
+    min-width: 500px;
+    background: #fff;
+    padding: 1em 2em;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: #585858;
+    text-decoration: none;
+    font-size: 40px;
+  }
+
+  .modal__close:hover {
+      color: #d51414;
+  }
+
+
+  .toggle-button-cover
+{
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+
+.button-cover:before
+{
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+}
+
+.button-cover, .knobs, .layer
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.button
+{
+    position: relative;
+    top: 20%;
+    width: 74px;
+    height: 36px;
+}
+
+.button.r .layer
+{
+    border-radius: 100px;
+}
+
+
+.checkbox
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+
+}
+
+.knobs
+{
+    z-index: 2;
+
+}
+
+.layer
+{
+    width: 100%;
+    background-color: #cbc4c4;
+    transition: 0.3s ease all;
+    z-index: 1;
+
+}
+
+#button .knobs:before
+{
+    content: 'NO';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #d51414;
+    border-radius: 50%;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button .checkbox:active + .knobs:before
+{
+    width: 46px;
+    border-radius: 100px;
+}
+
+#button .checkbox:checked:active + .knobs:before
+{
+    margin-left: -26px;
+}
+
+#button .checkbox:checked + .knobs:before
+{
+    content: 'YES';
+    left: 42px;
+    background-color: #159944;
+}
+
+#button .checkbox:checked ~ .layer
+{
+    background-color: #cbc4c4;
+}
+
+#editDiv {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#subEdit {
+    border-radius: 20px;
+    width: 100px;
+    cursor: pointer;
+    background-color: #c0b5b5;
+    color: rgb(29, 27, 27);
+}
+
+#subEdit:hover {
+    color: #c0b5b5;
+    background-color: rgb(29, 27, 27);
+}
+
+#subEdit:active {
+    background-color: #c0b5b5;
+    color: rgb(29, 27, 27);
+}

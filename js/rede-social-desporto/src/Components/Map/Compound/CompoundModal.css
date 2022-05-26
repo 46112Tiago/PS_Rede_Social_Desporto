@@ -1,0 +1,85 @@
+.modalCompoundBody {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.addBtn {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    color: rgb(230, 220, 220);
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.addBtn:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
+.addBtn:active {
+    cursor: pointer;
+    background-color: rgb(185, 179, 179);
+    color: gray;
+}
+
+
+
+
+
+
+
+#activateModal_compound {
+    text-decoration: none;
+}
+
+.modal_compound {
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .4s;
+    background-color: #6565657a;
+    background-size:contain;
+  }
+  
+  .modal_compound:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .modal__content_compound {
+    border-radius: 4px;
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+    height: 75%;
+    overflow-y: scroll;
+    background: #fff;
+    padding: 1em 2em;
+    color: black;
+    z-index: 1;
+  }
+  
+  .modal__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #585858;
+    text-decoration: none;
+  }
+
+  #modalCheck {
+    background-color: transparent;
+}
+
