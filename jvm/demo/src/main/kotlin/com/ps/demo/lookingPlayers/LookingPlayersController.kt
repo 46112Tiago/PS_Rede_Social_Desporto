@@ -39,6 +39,7 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService)
 
     @GetMapping("/lookingPlayers/{lookingId}")
     fun getLookingPlayers(@PathVariable("lookingId") lookingId: Int,
+                          //Change tp path param, get doesn't have body
                           @RequestBody lookingPlayers: LookingPlayers): ResponseEntity<List<LookingPlayers>> {
         val lookingPlayersList = lookingPlayersService.getLookingPlayers(lookingId, lookingPlayers.state!!)
         return ResponseEntity(lookingPlayersList,HttpStatus.OK)    }

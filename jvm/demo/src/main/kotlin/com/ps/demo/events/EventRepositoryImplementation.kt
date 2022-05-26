@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 @Repository
 class EventRepositoryImplementation (val jdbi: Jdbi){
 
-    fun getActiveEvents(): List<Event>? {
+    fun getActiveEvents(page:Int): List<Event>? {
 
         val now = LocalDateTime.now()
         val timestamp: Timestamp = Timestamp.valueOf(now)
@@ -21,9 +21,12 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
             handle.createQuery("Select EVENT.id, startDate, plannedfinishDate, EVENT.name, limitParticipants, " +
                     "sportId, EVENT.compoundId, fieldId " +
                     "from EVENT JOIN FIELD ON EVENT.fieldId = FIELD.id  " +
-                    "WHERE active = ? AND startDate < ?")
+                    "WHERE active = ? AND startDate < ? " +
+                    "LIMIT 2 OFFSET ? "
+            )
                     .bind(0,true)
                     .bind(1, timestamp)
+                    .bind(2,page*2)
                     .mapTo<Event>()
                     .list()
         }
@@ -45,11 +48,15 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "ON sports.id  = event.sportID " +
                     "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
                     "JOIN USER_PROFILE userProfile on eventParticipant.participantId = userProfile.userid " +
-                    "WHERE active = ? AND startDate < ? AND userProfile.userid = ? AND event.id")
+                    "WHERE active = ? AND startDate < ? AND userProfile.userid = ? AND event.id " +
+                    "LIMIT 2 OFFSET ? "
+
+            )
                     .bind(0,true)
                     .bind(1, timestamp)
                     .bind(2,userId)
                     .bind(3,eventId)
+                    .bind(4,1)
                     .mapTo<Event>()
                     .list()
         }

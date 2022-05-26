@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service
 @Service
 class EventsService(val eventRepo: EventRepositoryImplementation) {
 
-    fun getActiveEvents() : List<Event>? {
-        return eventRepo.getActiveEvents()
+    fun getActiveEvents(page : Int) : List<Event>? {
+        return eventRepo.getActiveEvents(page)
     }
 
     fun getUserEvents(userId : Int,eventId: Int) : List<Event>? {

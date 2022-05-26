@@ -1,22 +1,5 @@
 begin;
 
-INSERT INTO user_profile(firstname, lastname, city, birthdate, profilepic, email, available, gender)
-VALUES ('Diogo','Fernandes','Lisboa',null,null,'diogotag@gmail.com',true,'Male');
-
-INSERT INTO SPORTS(name) values ('football');
-
-select * from compound;
-
-Delete from sports where name = 'football'
-
-commit;
-
-SELECT id,ownerid,picture,name FROM user_group INNER JOIN group_participant as gp ON user_group.id = gp.groupid AND gp.participantid = 1
-
-SELECT post.id as p_id FROM POST INNER JOIN user_profile on post.userid = user_profile.userid AND post.id = 1
-
-
-
 /* COMPOUND */
 --1)
 INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
@@ -33,6 +16,7 @@ VALUES ('Tenis Algarve Center','Some generic description','Some generic summary'
 --5)
 INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
 VALUES ('Padel Center','Some generic description','Some generic summary',POINT(-71.060316,48.432044),'N',false,false);
+
 
 
 /* FIELD */
@@ -300,10 +284,6 @@ VALUES (5,'5ª','08:00:00','20:00:00');
 INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
 VALUES (5,'6ª','08:00:00','20:00:00');
 
-
-<<<<<<< HEAD
-commit;
-=======
 /* MATERIALS */
 --1)
 INSERT INTO MATERIALS(name)
@@ -320,8 +300,6 @@ VALUES ('cone');
 --5)
 INSERT INTO MATERIALS(name)
 VALUES ('padel racket');
-
->>>>>>> 81bd293647f044697bc39e7298ce6bbe722f9a2d
 
 /* MATERIAL_COMPOUND */
 --1)
@@ -340,6 +318,7 @@ VALUES (3,5);
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (5,5);
 
+commit;
 
 
 

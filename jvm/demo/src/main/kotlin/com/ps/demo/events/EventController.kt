@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
+import javax.websocket.server.PathParam
 
 
 @RestController
@@ -17,8 +18,8 @@ import javax.servlet.http.HttpServletResponse
 class EventController (val eventService: EventsService) {
 
     @GetMapping("/event")
-    fun getActiveEvents() : ResponseEntity<List<Event>?> {
-        val event : List<Event>? = eventService.getActiveEvents()
+    fun getActiveEvents(@RequestParam(required = false) page : Int) : ResponseEntity<List<Event>?> {
+        val event : List<Event>? = eventService.getActiveEvents(page)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
