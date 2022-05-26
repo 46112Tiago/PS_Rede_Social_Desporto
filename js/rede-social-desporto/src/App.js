@@ -5,10 +5,10 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 
 import Navigation from './Components/Navigation/Navigation';
 import SearchBar from './Components/SearchBar/SearchBar';
-import NavLog from './Components/Navigation/NavLog';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import Map from './Components/Map/Map';
@@ -25,9 +25,13 @@ import Groups from './Components/Contacts/Groups/Groups';
 import Post from './Components/Feed/Post';
 import LookingBody from './Components/Looking/ManagementLooking/LookingBody';
 
-class App extends Component {
+const App = () => {
 
-  render(){
+  const { isLoading, isAuthenticated  } = useAuth0()
+    if(isLoading){
+      return <Loading />
+    }
+
     return(
       <Router>
         <div className="App">       
@@ -50,8 +54,9 @@ class App extends Component {
           </Routes>
 
           <Footer/>
-        </div>
+          </div>
       </Router>
       );
   };
-} export default App;
+
+   export default App;

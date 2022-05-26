@@ -1,8 +1,9 @@
 import React from "react";
 import './NavLog.css'
 import { FaSortDown, FaUserAlt } from 'react-icons/fa';
-import { BsChatDotsFill } from 'react-icons/bs';
-import { FiLogOut } from 'react-icons/fi';
+import { RiSettings5Fill } from 'react-icons/ri';
+import LogOutOAuth from './LogOutOAuth';
+
 
 
 /* When the user clicks on the button, 
@@ -35,7 +36,7 @@ class NavLog extends React.Component {
                 <div className="dropdown-content" id="myDropdown">
                     <a href="/profile"><FaUserAlt></FaUserAlt> Perfil</a>
                     <a href="/groups"><BsChatDotsFill></BsChatDotsFill> Contacts</a>
-                    <a href="#"><FiLogOut></FiLogOut> LogOut</a>
+                    <LogOutOAuth></LogOutOAuth>
                 </div>
             </div> 
         </div>
