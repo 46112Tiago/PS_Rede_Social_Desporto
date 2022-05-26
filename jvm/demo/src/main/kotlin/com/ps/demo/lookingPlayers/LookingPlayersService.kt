@@ -23,7 +23,8 @@ class LookingPlayersService(val lookingPlayersRepo: LookingPlayersRepoImplementa
     }
 
     fun getLookingPlayers(lookingId : Int, state: String) : List<LookingPlayers> {
-        return lookingPlayersRepo.getLookingPlayers(lookingId,state)
+        val lookingPlayers = lookingPlayersRepo.getLookingPlayers(lookingId,state)
+        return lookingPlayers
     }
 
     fun getLookingCreated(creatorId: Int) : List<LookingPlayers> {

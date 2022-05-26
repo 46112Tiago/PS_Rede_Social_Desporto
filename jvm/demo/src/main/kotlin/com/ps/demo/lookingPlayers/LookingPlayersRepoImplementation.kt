@@ -1,6 +1,7 @@
 package com.ps.demo.lookingPlayers
 
 import com.ps.data.Event
+import com.ps.data.Field
 import com.ps.data.LookingPlayers
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
@@ -60,11 +61,59 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
         }    }
 
      fun getLookingPlayers(lookingId: Int, state: String): List<LookingPlayers> {
-        TODO("Not yet implemented")
+         val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
+             handle.createQuery("Select startDateTime, participantId " +
+                     "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
+                     "LP.id = LPP.lookingId" +
+                     "WHERE id = ? AND state = ?")
+                 .bind(0,lookingId)
+                 .bind(1,state)
+                 .mapTo<LookingPlayers>()
+                 .list()
+         }
+
+         return toReturn
     }
 
      fun getLookingCreated(creatorId: Int): List<LookingPlayers> {
-        TODO("Not yet implemented")
+         val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
+             handle.createQuery("Select id, startDateTime " +
+                     "from LOOKINGPLAYERS " +
+                     "WHERE creatorId = ? ")
+                 .bind(0,creatorId)
+                 .mapTo<LookingPlayers>()
+                 .list()
+         }
+
+         return toReturn
+    }
+
+    fun getLookingNavigate(creatorId: Int): List<LookingPlayers> {
+        val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select startDateTime, participantId " +
+                    "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
+                    "LP.id = LPP.lookingId" +
+                    "WHERE participantId <> ? ")
+                .bind(0,creatorId)
+                .mapTo<LookingPlayers>()
+                .list()
+        }
+
+        return toReturn
+    }
+
+    fun getLookingAccept(creatorId: Int): List<LookingPlayers> {
+        val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select startDateTime, participantId " +
+                    "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
+                    "LP.id = LPP.lookingId" +
+                    "WHERE creatorId = ? ")
+                .bind(0,creatorId)
+                .mapTo<LookingPlayers>()
+                .list()
+        }
+
+        return toReturn
     }
 
 }
