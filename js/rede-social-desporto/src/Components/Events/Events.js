@@ -5,21 +5,31 @@ import Paging from '../Paging/Paging';
 import { event } from '../../Model/Model';
 
 const Events = () => {
+
+  const setPaging = (offset) => {
+    setPage(offset)
+  }
   
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-    
   const [eventArray, setEvent] = React.useState([event]);
+  const [page, setPage] = React.useState(0);
+  const [forward, setForward] = React.useState(true);
+
   
     React.useEffect(() => {
       const makeRequest = async () => {
         setError(null);
         setIsLoading(true);
         try {
-          const req =  await fetch("http://localhost:8080/event");
+          const req =  await fetch(`http://localhost:8080/event?page=${page}`);
           const resp = await req.json();
           setEvent(resp);
-          
+          if(!resp[0]){
+            setForward(false)
+          }else{
+            setForward(true)
+          }
         } catch (err) {
           setError(err);
           //console.log(err);
@@ -30,7 +40,7 @@ const Events = () => {
       };
   
       if (!isLoading) makeRequest();
-    },[]);
+    },[page]);
 
 
       return (
@@ -42,7 +52,7 @@ const Events = () => {
             )}
             </div>
           </div>
-          <Paging/>
+          <Paging paging={setPaging} page={page} forward={forward}/>
         </>
       );
     }

@@ -14,22 +14,22 @@ const EventCard = (props) => {
                 </div>
                 <div id='eventCardContent'>
                     <div id='eventCardLeft'>
-                        <p><FaMapMarker></FaMapMarker><b> Instituto Superior de Engenharia de Lisboa </b></p> 
-                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b> 01/04/2022</b>  <b>- 03/04/2022</b></p>  
+                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{props.eventObj.startDate}</b></p>  
+                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{props.eventObj.plannedfinishDate}</b></p>  
                         <p className='inline' id='modalidade'><FaRunning></FaRunning> <b> Modalidade </b> </p>
-                        <p className='inline'><FaUserCheck></FaUserCheck> <b> 8 / 30 </b> </p>
+                        <p className='inline'><FaUserCheck></FaUserCheck> <b> {props.eventObj.limitParticipants} </b> </p>
                     </div>
 
                     <div id='eventCardRight'>
+                    <p><FaMapMarker></FaMapMarker><b> Instituto Superior de Engenharia de Lisboa </b></p> 
                         <h4>Summary</h4>
-                        <p>A little summary about the event that will be realized</p>
+                        <p>{props.eventObj.summary}</p>
                     </div>
                 </div>
 
                 <div id='eventBtnContainer'>
                     <div className='btnEvent'>
                         <EventModal eventId={1}></EventModal>
-                        
                     </div>
                     <br></br>
                     <div>
