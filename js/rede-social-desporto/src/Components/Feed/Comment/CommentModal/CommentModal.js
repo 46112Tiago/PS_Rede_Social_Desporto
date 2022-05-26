@@ -3,13 +3,19 @@ import  './CommentModal.css'
 import MakeComment from "../MakeComment/MakeComment";
 import {comment} from '../../../../Model/Model'
 import {RiArrowDownSFill} from 'react-icons/ri'
+import PagingText from "../../../Paging/PagingText";
 
 const CommentModal = (props) => {
+
+  const setNewLimit = (newLimit) => {
+    setLimit(newLimit)
+  }
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [commentArray, setComment] = React.useState([comment]);
-    
+    const [limit, setLimit] = React.useState(10);
+
       // Keep the above values in sync, this will fire
       // every time the component rerenders, ie when
       // it first mounts, and then when any of the above
@@ -19,7 +25,7 @@ const CommentModal = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-            const req =  await fetch(`http://localhost:8080/user/1/post/${props.key}/comment`);
+            const req =  await fetch(`http://localhost:8080/user/1/post/${props.key}/comment?limit=?${limit}`);
             const resp = await req.json();
             setComment(resp);
           } catch (err) {
@@ -32,7 +38,7 @@ const CommentModal = (props) => {
         };
     
         if (!isLoading) makeRequest();
-      },[]);
+      },[limit]);
 
       return (
         <div id="modalComment">
@@ -56,8 +62,8 @@ const CommentModal = (props) => {
                             </div>    
                         </div>
                     )}
+                    <PagingText limit={limit} setNewLimit={setNewLimit}/>
                 </div>
-
             </div>
         </div>
 

@@ -4,8 +4,6 @@ import {MdArrowForwardIos, MdArrowBackIos} from 'react-icons/md'
 
 const Paging = (props) => {
 
-
-
   function pageForward() {
     props.paging(props.page+1)
   }
