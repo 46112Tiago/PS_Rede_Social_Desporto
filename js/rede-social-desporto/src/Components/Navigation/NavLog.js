@@ -1,7 +1,6 @@
 import React from "react";
 import './NavLog.css'
 import { FaSortDown, FaUserAlt } from 'react-icons/fa';
-import { RiSettings5Fill } from 'react-icons/ri';
 import LogOutOAuth from './LogOutOAuth';
 
 

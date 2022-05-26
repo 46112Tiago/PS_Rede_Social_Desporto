@@ -1,10 +1,11 @@
-package com.ps.demo.data
+package com.ps.data
 
-import java.sql.Date
+import java.sql.Timestamp
 
 data class PrivateMessage(
-    val id : Int,
-    val text : String,
-    val date : Date,
-    val receiver : User
+    val id : Int?,
+    val message : String?,
+    val date : Timestamp?,
+    val receiver : User?,
+    val sender : User?
 )

@@ -1,5 +1,6 @@
 import './App.css';
 import React,{Component} from "react";
+import ReactDOM from "react-dom/client";
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,10 +25,13 @@ import FriendsMessage from './Components/Contacts/Friends/Friends';
 import Groups from './Components/Contacts/Groups/Groups';
 import Post from './Components/Feed/Post';
 import LookingBody from './Components/Looking/ManagementLooking/LookingBody';
+import ChooseAuthPath from './Components/Auth0/ChooseAuthPath';
+import Loading from './Components/Loading';
 
 const App = () => {
 
-  const { isLoading, isAuthenticated  } = useAuth0()
+    const { isLoading, isAuthenticated  } = useAuth0()
+
     if(isLoading){
       return <Loading />
     }
