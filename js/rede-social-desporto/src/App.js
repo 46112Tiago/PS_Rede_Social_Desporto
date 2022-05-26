@@ -27,6 +27,7 @@ import Post from './Components/Feed/Post';
 import LookingBody from './Components/Looking/ManagementLooking/LookingBody';
 import ChooseAuthPath from './Components/Auth0/ChooseAuthPath';
 import Loading from './Components/Loading';
+import NavLog from './Components/Navigation/NavLog';
 
 const App = () => {
 
