@@ -6,40 +6,43 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 
 import Navigation from './Components/Navigation/Navigation';
 import SearchBar from './Components/SearchBar/SearchBar';
-import NavLog from './Components/Navigation/NavLog';
 import Footer from './Components/Footer/Footer';
 import Home from './Components/Home/Home';
 import Map from './Components/Map/Map';
 import Events from './Components/Events/Events';
 import SignUp from './Components/Sign_Up/Sign_Up';
 import LogIn from './Components/LogIn/LogIn';
-import Contacts from './Components/Contacts/Contacts';
-import Profile from './Components/Profile/StaticProfile/StaticProfile';
-import CompoundPostTest from './Components/Map/CompoundPostTest';
+import ChooseAuthPath from './Components/Auth0/ChooseAuthPath';
+import Loading from './Components/Loading';
 
-export default function App() {
+const App = () => {
+
+    const { isLoading, isAuthenticated  } = useAuth0()
+
+    if(isLoading){
+      return <Loading />
+    }
 
     return(
       <Router>
-        <div className="App">       
-          <NavLog></NavLog>
-          <Routes>
-            <Route path='/' element={<Home></Home>}></Route>
-            <Route path='/map' element={<Map></Map>}></Route>
-            <Route path='/events' element={<Events></Events>}></Route>
-            <Route path='/signUp' element={<SignUp></SignUp>}></Route>
-            <Route path='/logIn' element={<LogIn></LogIn>}></Route>
-            <Route path='/contacts' element={<Contacts></Contacts>}></Route>
-            <Route path='/profile' element={<Profile></Profile>}></Route>
-            <Route path='/compoundPost' element={<CompoundPostTest></CompoundPostTest>}></Route>
-          </Routes>
-
+       
+          <div className="App"> 
+              <Navigation></Navigation>    
+              <Routes>
+                <Route path='/' element={<ChooseAuthPath></ChooseAuthPath>}></Route>
+                <Route path='/x' element={<Home></Home>}></Route>
+                <Route path='/m' element={<Map></Map>}></Route>
+                <Route path='/events' element={isAuthenticated?< Events></Events> : <LogIn></LogIn>}></Route>
+                <Route path='/logIn' element={<LogIn></LogIn>}></Route>
+              </Routes>          
           <Footer/>
-        </div>
+          </div>
       </Router>
       );
   };
 
+   export default App;
