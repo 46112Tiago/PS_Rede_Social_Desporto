@@ -5,7 +5,7 @@ const ProfileCards = (props) =>  {
   
       return (
         <div>
-          <div className="card card0">
+          <div className="cardP card0">
               <div className="border">
                   <a href={`/profile/${props.userId}`}><h2 className='name'>{props.userFName} {props.userLName}Name Surname</h2></a>
               </div>

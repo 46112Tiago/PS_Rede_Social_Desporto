@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useForm } from "react-hook-form";import './SearchBar.css'
+import { useForm } from "react-hook-form";
+import './SearchBar.css'
 import { FaSearch, FaTimes } from 'react-icons/fa';
 
 const SearchBar = () => {

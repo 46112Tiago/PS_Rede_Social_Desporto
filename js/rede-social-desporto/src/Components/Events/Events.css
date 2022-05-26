@@ -1,7 +1,13 @@
 #heigthEdit {
     height: 100%;
     overflow:scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+
+#heigthEdit::-webkit-scrollbar {
+	display: none;
+  }
 
 #editContainer {
     display: flex;

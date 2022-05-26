@@ -2,6 +2,7 @@ import React from 'react';
 import './ProfileSearch.css'
 import ProfileCards from './ProfileCards';
 import SearchBar from '../SearchBar/SearchBar'
+import Paging from '../Paging/Paging'
 import { user } from '../../Model/Model';
 
 const ProfileSearch = (props) =>  {
@@ -49,6 +50,7 @@ const ProfileSearch = (props) =>  {
                 <ProfileCards></ProfileCards>
                 <ProfileCards></ProfileCards>
             </div>
+            <Paging/>
         </div>
       );
     }

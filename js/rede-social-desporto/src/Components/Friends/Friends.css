@@ -7,6 +7,13 @@
     justify-content:space-evenly ;
     align-items:flex-start;
     overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.containerCards::-webkit-scrollbar {
+	display: none;
+  }
+

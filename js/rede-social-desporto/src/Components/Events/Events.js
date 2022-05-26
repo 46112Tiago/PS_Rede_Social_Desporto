@@ -1,6 +1,7 @@
 import React from 'react';
 import './Events.css'
 import EventCard from './EventCard';
+import Paging from '../Paging/Paging';
 import { event } from '../../Model/Model';
 
 const Events = () => {
@@ -33,13 +34,16 @@ const Events = () => {
 
 
       return (
-        <div id='heigthEdit'>
-          <div id='editContainer'>
-          {eventArray.map((eventObj,i) => 
-              <EventCard key={i} eventObj={eventObj}></EventCard>
-          )}
+        <>
+          <div id='heigthEdit'>
+            <div id='editContainer'>
+            {eventArray.map((eventObj,i) => 
+                <EventCard key={i} eventObj={eventObj}></EventCard>
+            )}
+            </div>
           </div>
-        </div>
+          <Paging/>
+        </>
       );
     }
 

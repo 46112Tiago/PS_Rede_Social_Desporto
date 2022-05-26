@@ -2,6 +2,7 @@ import React from 'react';
 import './Friends.css'
 import ProfileCards from '../ProfileSearch/ProfileCards';
 import { user } from '../../Model/Model';
+import Paging from '../Paging/Paging';
 
 const Friends = (props) => {
 
@@ -47,6 +48,7 @@ const Friends = (props) => {
                 <ProfileCards></ProfileCards>
                 <ProfileCards></ProfileCards>
             </div>
+            <Paging/>
         </div>
       );
     }
