@@ -1,0 +1,47 @@
+#nameConvo {
+    margin-left: 5%;
+    color: rgb(65, 57, 57);
+}
+
+#lineConvo {
+    width: 90%;
+    opacity: 0.6;
+}
+
+.friendMsg {
+    margin-left: 5%;
+    float: left;
+    background-color: #333;
+    color: whitesmoke;
+    border-radius: 20px;
+    padding: 1%;
+    display: block;
+}
+
+.ownMsg {
+    margin-right: 5%;
+    float: right;
+    background-color: rgb(218, 208, 208);
+    color: #333;
+    border-radius: 20px;
+    padding: 1%;
+    display: block;
+}
+
+#inputTxt {
+    margin-left: 5%;
+    width: 90%;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgb(185, 174, 174);
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#overflowText {
+    height: 600px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+}

@@ -1,17 +1,49 @@
-import React from 'react';
+import React from 'react'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import './Map.css'
+import CompoundPostTest from './CompoundPostTest';
 
-/*Disable button when user is not a sports compound   https://www.w3schools.com/css/css3_buttons.asp */
+const center = {
+  lat: 38.757026,
+  lng: -9.1185779
+};
 
-class Map extends React.Component {
-  
-    render() {
-      return (
-        <div>
+function Map() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "key"
+  })
 
-        </div>
-      );
-    }
-  }
+  const [map, setMap] = React.useState(null)
 
-  export default Map
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+    <div>
+
+      <GoogleMap id='mapGoogle' center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
+        { /* Child components, such as markers, info windows, etc. */ }
+      </GoogleMap>
+      <div id='suggestion'>
+        <h2 id='suggestionTxt'>Suggestions:</h2>
+        <br/>
+        <button className='btnSug' id='compoundBtn'>COMPOUND</button>
+        <button className='btnSug' id='fieldBtn'>FIELD</button>
+      </div>
+    </div>
+
+  ) : 
+  <>
+
+  </>
+}
+
+export default Map

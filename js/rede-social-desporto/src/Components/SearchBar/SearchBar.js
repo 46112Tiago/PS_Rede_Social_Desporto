@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchBar.css'
-import { FaSearch, FaRegUser, FaTimes } from 'react-icons/fa';
+import { FaSearch, FaTimes } from 'react-icons/fa';
 
 class SearchBar extends React.Component {
   

@@ -1,0 +1,49 @@
+#mapGoogle {
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 80%;
+    height: 500px;
+}
+
+#suggestion {
+    background-color: rgb(142, 140, 137);
+    height: 150px;
+    margin-top: 3%;
+}
+
+#suggestionTxt {
+    padding-top: 15px;
+    margin-left: 43%;
+    color: aliceblue;
+    width: 170px;
+    border-radius: 20px;
+}
+
+#compoundBtn {
+    float: left;
+    margin-left: 20%;
+}
+
+#fieldBtn {
+    float: right;
+    margin-right: 20%;
+}
+
+.btnSug {
+    width: 120px;
+    border: none;
+    border-radius: 20px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.btnSug:hover {
+    cursor: pointer;
+    border: rgb(132, 29, 29) solid 4px;
+}
+
+.btnSug:active {
+    cursor: pointer;
+    color: aliceblue;
+    background-color: rgb(48, 47, 47);
+}

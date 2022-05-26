@@ -1,0 +1,42 @@
+package com.ps.demo.review
+
+import com.ps.data.Review
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
+
+@RestController
+@RequestMapping("/compound/{compoundId}")
+@CrossOrigin("https://localhost:3000")
+class ReviewController(val reviewService: ReviewService) {
+
+    @GetMapping("/review")
+    fun getAllReviews(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<List<Review>?> {
+        val reviews : List<Review>? = reviewService.getAllReviews(compoundId)
+        return ResponseEntity(reviews, HttpStatus.OK)
+    }
+
+    @DeleteMapping("/review/{reviewId}")
+    fun deleteReview(@PathVariable("reviewId") reviewId : Int) : ResponseEntity<Any?> {
+        reviewService.deleteReview(reviewId)
+        return ResponseEntity(HttpStatus.OK)
+    }
+
+    @PostMapping("/review")
+    fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
+                             @RequestBody review : Review)
+            : ResponseEntity<Any?> {
+        val reviewKey : Int? = reviewService.createCompoundReview(compoundId,review)
+        return ResponseEntity(reviewKey, HttpStatus.OK)
+    }
+
+    @PostMapping("/field/{fieldId}/review")
+    fun createFieldReview(@PathVariable("compoundId") compoundId : Int,
+                          @PathVariable("fieldId") fieldId : Int,
+                             @RequestBody review : Review)
+            : ResponseEntity<Any?> {
+        val reviewKey : Int? = reviewService.createFieldReview(compoundId,fieldId,review)
+        return ResponseEntity(reviewKey, HttpStatus.OK)
+    }
+
+}

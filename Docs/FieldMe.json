@@ -1,0 +1,2617 @@
+{
+    "openapi" : "3.0.2",
+    "info": {
+        "title": "FieldMe API",
+        "version": "1.0"
+        
+            
+    },
+    "servers": [
+        {
+            "url": "https://localhost:3000"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Signup"
+        },
+        {
+            "name": "Login"
+        },
+        {
+            "name": "Logout"
+        },
+        {
+            "name": "Events"
+        },
+        {
+            "name": "Map"
+        },
+        {
+            "name": "User"
+        }
+
+    ],
+    "paths": {
+        
+        "/signup": {
+            "get":{
+                "tags": ["Signup"],
+                "description": "Get signup page",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": "Signup page"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Signup"],
+                "description": "Register a new account",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "firstName":{
+                                        "type": "string"
+                                    },
+                                    "lastName":{
+                                        "type": "string"
+                                    },
+                                    "birthday":{
+                                        "type": "string"
+                                    }
+                                    ,
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    },
+                                    "rePassword":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Account created",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Account created"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/login":{
+            "get":{
+                "tags": ["Login"],
+                "description": "Get login page",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": "Login page"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Login"],
+                "description": "Enter in the account",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "email":{
+                                        "type": "string"
+                                    },
+                                    "password":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "204": {
+                        "description": "OK"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logout":{
+            "post": {
+                "tags": ["Logout"],
+                "description": "Exit the account",
+                "parameters": [],
+                "responses": {
+                    "204": {
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/events":{
+            "get":{
+                "tags": ["Events"],
+                "description": "Get all the Events that exist",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "All the events were received",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
+                                            "sport":{
+                                                "type": "string"
+                                            },
+                                            "startDate":{
+                                                "type":"string",
+                                                "format": "dd/mm/aa"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "description":{
+                                                "type": "string"
+                                            },
+                                            "limitParticipants":{
+                                                "type": "integer"
+                                            },
+                                            "field":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "compound":{
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id":{
+                                                                "type": "integer"
+                                                            },
+                                                            "name":{
+                                                                "type": "string"
+                                                            },
+                                                            "description":{
+                                                                "type": "string"
+                                                            },
+                                                            "dressinRoom":{
+                                                                "type": "string"
+                                                            },
+                                                            "parking":{
+                                                                "type":"boolean"
+                                                            },
+                                                            "schedule":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type":"object"
+                                                                }
+                                                            },
+                                                            "material":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "location":{
+                                                                "type": "object",
+                                                                "format": "Pair<Float,Float>"
+                                                            },
+                                                            "picture":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "name":{
+                                                        "type": "integer"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "participants":{
+                                                "type": "array",
+                                                "items":{
+                                                    "description": "userId",
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["Events"],
+                "description": "Create a new event",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "sport":{
+                                        "type": "string"
+                                    },
+                                    "startDate":{
+                                        "type":"string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "limitParticipants":{
+                                        "type": "integer"
+                                    },
+                                    "field":{
+                                        "type": "object",
+                                        "properties": {
+                                            "compound":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "name":{
+                                                        "type": "string"
+                                                    },
+                                                    "description":{
+                                                        "type": "string"
+                                                    },
+                                                    "dressinRoom":{
+                                                        "type": "string"
+                                                    },
+                                                    "parking":{
+                                                        "type":"boolean"
+                                                    },
+                                                    "schedule":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type":"object"
+                                                        }
+                                                    },
+                                                    "material":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "location":{
+                                                        "type": "object",
+                                                        "format": "Pair<Float,Float>"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "name":{
+                                                "type": "integer"
+                                            },
+                                            "picture":{
+                                                "type": "array",
+                                                "items":{
+                                                    "type": "object"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Event created",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Event created"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/events/{eventsId}":{
+            "delete":{
+                "tags": ["Events"],
+                "parameters": [
+                        {
+                            "name": "eventId",
+                            "in": "path",
+                            "required": true,
+                            "description": "The id of the event to delete",
+                            "schema":{
+                                "type": "integer",
+                                "format": "int64",
+                                "minimum": 0
+                            }
+                        }
+                    ],
+                "responses":{
+                    "204":{
+                        "description": "Delete specified event with success"
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/map": {
+            "get":{
+                "tags": ["Map"],
+                "description": "Get all markers information",
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "All the markers were adquired with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "description":"array of compounds and fields",
+                                    "items":{
+                                        "properties": {
+                                            "compound":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "name":{
+                                                        "type": "string"
+                                                    },
+                                                    "description":{
+                                                        "type": "string"
+                                                    },
+                                                    "dressinRoom":{
+                                                        "type": "string"
+                                                    },
+                                                    "parking":{
+                                                        "type":"boolean"
+                                                    },
+                                                    "schedule":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type":"object"
+                                                        }
+                                                    },
+                                                    "material":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "location":{
+                                                        "type": "object",
+                                                        "format": "Pair<Float,Float>"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    },
+                                                    "fields":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "name":{
+                                                                    "type": "string"
+                                                                },
+                                                                "pictures":{
+                                                                    "type": "object",
+                                                                    "format": "URL"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags":["Map"],
+                "description": "Creates a new marker",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "dressinRoom":{
+                                        "type": "string"
+                                    },
+                                    "parking":{
+                                        "type":"boolean"
+                                    },
+                                    "schedule":{
+                                        "type": "array",
+                                        "items":{
+                                            "type":"object"
+                                        }
+                                    },
+                                    "material":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "location":{
+                                        "type": "object",
+                                        "format": "Pair<Float,Float>"
+                                    },
+                                    "picture":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object"
+                                        }
+                                    },
+                                    "fields":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object",
+                                            "properties": {
+                                                "name":{
+                                                    "type": "string"
+                                                },
+                                                "pictures":{
+                                                    "type": "object",
+                                                    "format": "URL"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Marker created",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Marker created"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "403":{
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Forbidden"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/map/{markerId}":{
+            "delete":{
+                "tags":["Map"],
+                "description": "Delete a specified marker",
+                "parameters": [
+                    {
+                        "name": "markerId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the marker to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "204":{
+                        "description": "Marker deleted with success"
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "403":{
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Forbidden"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "tags":["Map"],
+                "description": "Edit a specified marker",
+                "parameters": [
+                    {
+                        "name": "markerId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the marker to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "id":{
+                                        "type": "integer"
+                                    },
+                                    "name":{
+                                        "type": "string"
+                                    },
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "dressinRoom":{
+                                        "type": "string"
+                                    },
+                                    "parking":{
+                                        "type":"boolean"
+                                    },
+                                    "schedule":{
+                                        "type": "array",
+                                        "items":{
+                                            "type":"object"
+                                        }
+                                    },
+                                    "material":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "location":{
+                                        "type": "object",
+                                        "format": "Pair<Float,Float>"
+                                    },
+                                    "picture":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object"
+                                        }
+                                    },
+                                    "fields":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object",
+                                            "properties": {
+                                                "name":{
+                                                    "type": "string"
+                                                },
+                                                "pictures":{
+                                                    "type": "object",
+                                                    "format": "URL"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204":{
+                        "description": "Marker edited with success"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    },
+                    "403":{
+                        "description": "Forbidden",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Forbidden"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/map/suggestion":{
+            "post":{
+                "tags":["Map"],
+                "description": "User suggests a new marker",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "fields":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "object",
+                                            "properties": {
+                                                "name":{
+                                                    "type": "string"
+                                                },
+                                                "pictures":{
+                                                    "type": "object",
+                                                    "format": "URL"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Suggestion sended",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Suggestion sended"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        },
+        "/profile":{
+            "get":{
+                "tags": ["User"],
+                "description": "Gets user information",
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "Infromation succesfully received",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "firstName":{
+                                            "type": "string"
+                                        },
+                                        "lastName":{
+                                            "type": "string"
+                                        },
+                                        "profilePic":{
+                                            "type": "object",
+                                            "format": "URL"
+                                        },
+                                        "available":{
+                                            "type": "boolean"
+                                        },
+                                        "birthDay":{
+                                            "type": "string",
+                                            "format": "dd/mm/aa"
+                                        },
+                                        "city":{
+                                            "type": "string"
+                                        },
+                                        "sports":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "string"
+                                            }
+                                        },
+                                        "gender":{
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put":{
+                "tags": ["User"],
+                "description": "Edit user perfil",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "profilePic":{
+                                        "type": "object",
+                                        "format": "URL"
+                                    },
+                                    "available":{
+                                        "type": "boolean"
+                                    },
+                                    "birthDay":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "city":{
+                                        "type": "string"
+                                    },
+                                    "sports":{
+                                        "type": "array",
+                                        "items":{
+                                            "type": "string"
+                                        }
+                                    },
+                                    "gender":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204":{
+                        "description": "Infromation succesfully edited"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags": ["User"],
+                "description": "Delete user account",
+                "parameters": [],
+                "responses": {
+                    "204":{
+                        "description": "Infromation succesfully deleted"
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search?name=":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all accounts with specified name",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "required": true,
+                        "in": "query",
+                        "schema":{
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                            "id":{
+                                                "type": "integer",
+                                                "description": "userId"
+                                            },
+                                            "firstName":{
+                                                "type": "string"
+                                            },
+                                            "lastName":{
+                                                "type": "string"
+                                            },
+                                            "profilePic":{
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/search/{userId}":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get specific account",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "firstName":{
+                                            "type": "string"
+                                        },
+                                        "lastName":{
+                                            "type": "string"
+                                        },
+                                        "profilePic":{
+                                            "type": "object",
+                                            "description": "URL"
+                                        },
+                                        "available":{
+                                            "type": "boolean"
+                                        },
+                                        "city":{
+                                            "type":"string"
+                                        },
+                                        "birthDay":{
+                                            "type": "string",
+                                            "format": "dd/mm/aa"
+                                        },
+                                        "gender":{
+                                            "type":"string"
+                                        },
+                                        "sports":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["User"],
+                "description": "Add a new user to the friend list",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "integer",
+                                "description": "userId"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Friend account added",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Friend account added"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/friends":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all accounts that users is friends with",
+                "parameters": [],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "properties": {
+                                            "firstName":{
+                                                "type": "string"
+                                            },
+                                            "lastName":{
+                                                "type": "string"
+                                            },
+                                            "profilePic":{
+                                                "type": "object"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/friends/{friendsId}":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get specific friend account",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "firstName":{
+                                            "type": "string"
+                                        },
+                                        "lastName":{
+                                            "type": "string"
+                                        },
+                                        "profilePic":{
+                                            "type": "object",
+                                            "description": "URL"
+                                        },
+                                        "available":{
+                                            "type": "boolean"
+                                        },
+                                        "city":{
+                                            "type":"string"
+                                        },
+                                        "birthDay":{
+                                            "type": "string",
+                                            "format": "dd/mm/aa"
+                                        },
+                                        "gender":{
+                                            "type":"string"
+                                        },
+                                        "sports":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags": ["User"],
+                "description": "Unfriend an account",
+                "parameters": [
+                    {
+                        "name": "friendsId",
+                        "required": true,
+                        "in": "path",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204":{
+                        "description": "OK"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/eventsUser":{
+            "get":{
+                "tags": ["User"],
+                "description": "Get all the Events that user is sign",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "All the events were received",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
+                                            "sport":{
+                                                "type": "string"
+                                            },
+                                            "startDate":{
+                                                "type":"string",
+                                                "format": "dd/mm/aa"
+                                            },
+                                            "name":{
+                                                "type": "string"
+                                            },
+                                            "description":{
+                                                "type": "string"
+                                            },
+                                            "limitParticipants":{
+                                                "type": "integer"
+                                            },
+                                            "field":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "compound":{
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "id":{
+                                                                "type": "integer"
+                                                            },
+                                                            "name":{
+                                                                "type": "string"
+                                                            },
+                                                            "description":{
+                                                                "type": "string"
+                                                            },
+                                                            "dressinRoom":{
+                                                                "type": "string"
+                                                            },
+                                                            "parking":{
+                                                                "type":"boolean"
+                                                            },
+                                                            "schedule":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type":"object"
+                                                                }
+                                                            },
+                                                            "material":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "location":{
+                                                                "type": "object",
+                                                                "format": "Pair<Float,Float>"
+                                                            },
+                                                            "picture":{
+                                                                "type": "array",
+                                                                "items":{
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    "name":{
+                                                        "type": "integer"
+                                                    },
+                                                    "picture":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "participants":{
+                                                "type": "array",
+                                                "items":{
+                                                    "description": "userId",
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags": ["User"],
+                "description": "Create a new event in the user events list",
+                "parameters": [],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "integer",
+                                "description": "userId"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The event was added",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"The event was added"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/eventsUser/{eventsId}":{
+            "delete":{
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the event to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "responses":{
+                    "204":{
+                        "description": "Delete specified event with success"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/feed": {
+            "get":{
+                "tags": ["User"],
+                "description": "Get all posts",
+                "parameters": [],
+                "responses":{
+                    "200":{
+                        "description": "Posts obtain with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "id":{
+                                            "type": "integer"
+                                        },
+                                        "posts":{
+                                            "type": "array",
+                                            "items":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "description":{
+                                                        "type": "string"
+                                                    },
+                                                    "date":{
+                                                        "type": "string",
+                                                        "format": "dd/mm/aa"
+                                                    },
+                                                    "pictures":{
+                                                        "type": "object",
+                                                        "format": "URL"
+                                                    },
+                                                    "likes":{
+                                                        "type": "integer"
+                                                    },
+                                                    "comments":{
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "id":{
+                                                                    "type": "integer"
+                                                                },
+                                                                "text":{
+                                                                    "type": "string"
+                                                                },
+                                                                "date":{
+                                                                    "type": "string",
+                                                                    "format": "dd/mm/aa"
+                                                                },
+                                                                "likes":{
+                                                                    "type": "integer"
+                                                                },
+                                                                "users":{
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                        "id":{
+                                                                            "type": "integer"
+                                                                        },
+                                                                        "fName":{
+                                                                            "type": "string"
+                                                                        },
+                                                                        "lName":{
+                                                                            "type": "string"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts":{
+            "post":{
+                "tags": ["User"],
+                "description": "Create a post",
+                "parameters": [],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "description":{
+                                        "type": "string"
+                                    },
+                                    "date":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    },
+                                    "pictures":{
+                                        "type": "object",
+                                        "format": "URL"
+                                    },
+                                    "likes":{
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Post created with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Post created with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/likes":{
+            "put":{
+                "tags": ["User"],
+                "description": "Like a specific post",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the post to like",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "likes":{
+                                        "type": "integer",
+                                        "description": "add 1 to the likes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "Post liked",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Post liked"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments":{
+            "post":{
+                "tags": ["User"],
+                "description": "Create a comment in a specific post",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the post to comment",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "comments":{
+                                        "type": "object",
+                                        "properties": {
+                                            "text":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string",
+                                                "format": "dd/mm/aa"
+                                            },
+                                            "likes":{
+                                                "type": "integer"
+                                            },
+                                            "users":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "id":{
+                                                        "type": "integer"
+                                                    },
+                                                    "fName":{
+                                                        "type": "string"
+                                                    },
+                                                    "lName":{
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Comment created with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Comment created with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/posts/{postId}/comments/{commentId}/likes":{
+            "put":{
+                "tags": ["User"],
+                "description": "Like a comment in a specific post",
+                "parameters": [
+                    {
+                        "name": "postId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the post where is the comment",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "commentId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the comment to like",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "likes":{
+                                        "type": "integer",
+                                        "description": "add 1 to the likes"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "description": "Comment liked",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Comment liked"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{friendId}/messages" : {
+            "get":{
+                "tags": ["User"],
+                "description": "Get all messages for a specific friend",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the friend to get",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "200":{
+                        "description": "Messages obtain with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
+                                            "text":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string",
+                                                "format": "dd/mm/aa"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }, 
+            "post":{
+                "tags": ["User"],
+                "description": "Send a message to a specific friend",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the friend to send",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "text":{
+                                        "type": "string"
+                                    },
+                                    "date":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Messages send with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Messages send with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{firendId}/messages/{messageId}":{
+            "delete":{
+                "tags": ["User"],
+                "description": "Delete a message",
+                "parameters": [
+                    {
+                        "name": "friendId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the friend to chat",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "messageId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the message to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "204":{
+                        "description": "Messages deleted with success"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }  
+        },
+        "/{groupId}/messages" : {
+            "get":{
+                "tags": ["User"],
+                "description": "Get all messages for specific group",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the group to get",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "200":{
+                        "description": "Messages obtain with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties": {
+                                            "id":{
+                                                "type": "integer"
+                                            },
+                                            "text":{
+                                                "type": "string"
+                                            },
+                                            "date":{
+                                                "type": "string",
+                                                "format": "dd/mm/aa"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }, 
+            "post":{
+                "tags": ["User"],
+                "description": "Send a message",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the group to send",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "requestBody":{
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "text":{
+                                        "type": "string"
+                                    },
+                                    "date":{
+                                        "type": "string",
+                                        "format": "dd/mm/aa"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Messages send with success",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Messages send with success"
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Bad Request"
+                                }
+                            }
+                        }
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{groupId}/messages/{messageId}":{
+            "delete":{
+                "tags": ["User"],
+                "description": "Delete a message in the group",
+                "parameters": [
+                    {
+                        "name": "groupId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the group to chat",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    },
+                    {
+                        "name": "messageId",
+                        "in": "path",
+                        "required": true,
+                        "description": "The id of the message to delete",
+                        "schema":{
+                            "type": "integer",
+                            "format": "int64",
+                            "minimum": 0
+                        }
+                    }
+                    ],
+                "responses":{
+                    "204":{
+                        "description": "Messages deleted with success"
+                    },
+                    "401":{
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Unauthorized"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "string",
+                                    "example":"Resource not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }  
+        }
+    }
+}
