@@ -30,7 +30,7 @@ const Map = () => {
       <div id='wrapperContainer'>
         <SearchBox></SearchBox>      
         <Wrapper render={render} apiKey={""}> 
-          <MapComponent center={center} zoom={1}>
+          <MapComponent center={center} zoom={4}>
           </MapComponent>
         </Wrapper>
 

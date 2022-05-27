@@ -18,7 +18,7 @@ const ReviewModal = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-            const req =  await fetch(`http://localhost:8080/compound/1/review`);
+            const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review`);
             const resp = await req.json();
             setReview(resp);
           } catch (err) {

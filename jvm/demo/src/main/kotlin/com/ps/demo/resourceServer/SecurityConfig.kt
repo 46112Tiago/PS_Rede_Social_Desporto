@@ -37,7 +37,7 @@ class SecurityConfig :  WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
             .antMatchers("/event").permitAll()
-            .antMatchers("/location").permitAll()
+            .antMatchers("/compound/location").permitAll()
             .anyRequest().authenticated()
             .and().cors()
             .and().oauth2ResourceServer().jwt()

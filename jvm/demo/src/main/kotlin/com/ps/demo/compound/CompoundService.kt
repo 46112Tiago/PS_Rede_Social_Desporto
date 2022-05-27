@@ -24,7 +24,8 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return compoundRepo.deleteCompound(compoundId)
     }
 
-    fun getCompoundLocations() : List<Compound?>? {
+    fun getCompoundLocations(zoom : Int) : List<Compound?>? {
+
         return compoundRepo.getCompoundLocations()
     }
 
