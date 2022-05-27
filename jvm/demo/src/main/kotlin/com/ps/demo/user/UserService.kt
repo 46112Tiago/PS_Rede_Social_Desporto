@@ -1,5 +1,6 @@
 package com.ps.demo.user
 
+import com.ps.data.Image
 import com.ps.data.User
 import org.springframework.stereotype.Service
 import java.util.*
@@ -48,6 +49,10 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun isFriend(userId: Int, friendId: Int) : User? {
         return userRepo.isFriend(userId,friendId)!!.get()
+    }
+
+    fun postProfilePic(userId: Int, imagePath :  String) : Image {
+        return userRepo.postProfilePic(userId,imagePath);
     }
 
 }

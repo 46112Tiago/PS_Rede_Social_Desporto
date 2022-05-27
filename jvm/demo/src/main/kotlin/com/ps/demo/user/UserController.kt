@@ -1,5 +1,6 @@
 package com.ps.demo.user
 
+import com.ps.data.Image
 import com.ps.data.User
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -66,5 +67,11 @@ class UserController (val userService: UserService) {
     fun getFriends(@PathVariable("userId") userId : Int) : ResponseEntity<List<User?>> {
         val user : List<User?> = userService.getFriends(userId)
         return ResponseEntity.ok().body(user)
+    }
+
+    @PostMapping("/{userId}/picture")
+    fun postPicture(@PathVariable("userId") userId : Int) : ResponseEntity<Image?> {
+        val pic : Image? = userService.postProfilePic(userId,"C;Users;Diogo Fernandes;Pictures;man.png")
+        return ResponseEntity(pic,HttpStatus.OK)
     }
 }

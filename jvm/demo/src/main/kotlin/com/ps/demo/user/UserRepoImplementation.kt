@@ -1,11 +1,16 @@
 package com.ps.demo.user
 
+import com.ps.data.Image
 import com.ps.data.User
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
+import java.awt.image.BufferedImage
+import java.io.InputStream
 import java.util.*
+import javax.imageio.ImageIO
+
 
 @Repository
 class UserRepoImplementation (var jdbi: Jdbi) {
@@ -51,7 +56,7 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun insertUser(user : User): Int {
         val toReturn = jdbi.withHandle<User,RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender) " +
+            handle.createUpdate("insert into USER_PROFILE(firstName,profilepic,lastName,city,birthdate,email,available,gender) " +
                     "values(?,?,?,?,?,?,?)").bind(0,user.firstName)
                                         .bind(1,user.lastName)
                                         .bind(2,user.city)
@@ -103,7 +108,7 @@ class UserRepoImplementation (var jdbi: Jdbi) {
     fun addFriend(userId: Int, friendId: Int): Int {
         jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("INSERT INTO FRIENDS(userId,friendId) " +
-                    "values(?,?")
+                    "values(?,?)")
                 .bind(0,userId)
                 .bind(1,friendId)
                 .execute()
@@ -122,7 +127,25 @@ class UserRepoImplementation (var jdbi: Jdbi) {
                 .bind(1,name[1])
                 .mapTo<User>().list()
         }
-        return toReturn    }
+        return toReturn
+    }
 
+    fun postProfilePic(userId: Int,path : String) : Image{
 
+        lateinit var image : BufferedImage
+
+        try {
+            val input = javaClass.getResourceAsStream(path)
+            image = ImageIO.read(input)
+        } catch (e : Exception) {
+            e.printStackTrace()
+        }
+        val toReturn = jdbi.withHandle<Image,RuntimeException> { handle: Handle ->
+            handle.createUpdate("INSERT INTO IMAGE(image) " +
+                    "values(bytea(?))")
+                .bind(0,image)
+                .executeAndReturnGeneratedKeys("id").mapTo<Image>().one()
+        }
+        return toReturn
+    }
 }
