@@ -3,7 +3,6 @@ import { compound } from '../../../Model/Model';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import "./MapComponent.css";
 import Marker from './Marker/Marker';
-import { compoundId } from '../../../Global/Global';
 
 const MapComponent = (props) => { 
  
@@ -48,7 +47,7 @@ const MapComponent = (props) => {
           });
           marker.id = element.id
           marker.addListener("click", () => {
-            compoundId = element.id
+            //localStorage = element.id
             alert(element.id)
             window.location.href = "#marker-modal"
           });

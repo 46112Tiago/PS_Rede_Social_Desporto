@@ -12,6 +12,10 @@ class UserService(val userRepo : UserRepoImplementation) {
         return userRepo.getUser(email)
     }
 
+    fun getUserInfo(userId : Int) : User? {
+        return userRepo.getUserById(userId)
+    }
+
     fun getUserById(userId : Int) : User? {
         return userRepo.getUserById(userId)
     }

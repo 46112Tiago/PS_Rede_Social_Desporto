@@ -27,6 +27,12 @@ class UserController (val userService: UserService) {
         return ResponseEntity.ok().headers(responseHeaders).body(user)
     }
 
+    @GetMapping("/{userId}")
+    fun getUserInfo(@PathVariable("userId") userId : Int) : ResponseEntity<User> {
+        val user : User? = userService.getUserInfo(userId)
+        return ResponseEntity(user, HttpStatus.OK)
+    }
+
     @GetMapping()
     fun getUser(@RequestParam(required = false) email : String) : ResponseEntity<Int> {
         val user : Int? = userService.getUser(email)

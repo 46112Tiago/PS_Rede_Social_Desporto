@@ -16,23 +16,20 @@ const CreateUser = () => {
 
   const myHeaders = new Headers()
 
-  function submit(data) {
+  async function submit(data) {
     data.email = user.email
-    getAccessTokenSilently().then(
-        token => {
-            myHeaders.append('Content-Type','application/json')
-            myHeaders.append('Authorization',`Bearer ${token}`)
-            const options = {
-                method: "POST",
-                headers: myHeaders,
-                mode: 'cors',
-                body:JSON.stringify(data)
-            };
-            fetch('http://localhost:8080/user', options)
-        }
-    )
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const token = await getAccessTokenSilently()
+    myHeaders.append('Content-Type','application/json')
+    myHeaders.append('Authorization',`Bearer ${token}`)
+    const options = {
+        method: "POST",
+        headers: myHeaders,
+        mode: 'cors',
+        body:JSON.stringify(data)
+    };
+    const response = await fetch('http://localhost:8080/user', options)
+    const responseJson = await response.json()
+    window.name = responseJson
 }
 
   return (

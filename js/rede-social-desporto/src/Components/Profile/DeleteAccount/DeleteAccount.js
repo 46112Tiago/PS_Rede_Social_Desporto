@@ -1,13 +1,12 @@
 import React from 'react';
 import './DeleteAccount.css'
 import {AiFillDelete} from 'react-icons/ai'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DeleteAccount = () => {
 
-    const deleteMethod = {
-        method: 'delete',
-        mode: 'cors'
-    }
+    const {logout,getAccessTokenSilently} = useAuth0()
+    const myHeaders = new Headers()
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -17,12 +16,16 @@ const DeleteAccount = () => {
         const confirmation = window.confirm("Are you sure you want to delete your account ?")
         if(confirmation){
             try {
-                const response = await fetch(`http://localhost:8080/user/5`, deleteMethod);
-                if (!response.ok) {
-                  const message = 'Error with Status Code: ' + response.status;
-                  throw new Error(message);
-                }
-                const data = await response.json();
+              const token = await getAccessTokenSilently()
+              myHeaders.append('Authorization',`Bearer ${token}`)
+              const deleteMethod = {
+                  method: "DELETE",
+                  headers: myHeaders,
+                  mode: 'cors',
+              };
+                const response = await fetch(`http://localhost:8080/user/${window.name}`, deleteMethod);
+                window.name = ''
+                logout({ returnTo: window.location.origin })
                 console.log(data);
               } catch (error) {
                 console.log('Error: ' + error);

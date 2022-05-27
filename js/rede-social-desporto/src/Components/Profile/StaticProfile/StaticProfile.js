@@ -6,7 +6,7 @@ import SportsModal from '../../SportsModal/SportsModal';
 import {ImBinoculars} from 'react-icons/im'
 import {FaUserFriends} from 'react-icons/fa'
 import {MdEmojiEvents} from 'react-icons/md'
-import {user} from '../../../Model/Model'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const StaticProfile = () => {
@@ -14,8 +14,9 @@ const StaticProfile = () => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  
-  const [userObj, setUser] = React.useState(user);
+  const [userObj, setUser] = React.useState({});
+  const {user,getAccessTokenSilently} = useAuth0()
+  const myHeaders = new Headers()
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -26,7 +27,14 @@ const StaticProfile = () => {
       setError(null);
       setIsLoading(true);
       try {
-        const req =  await fetch("http://localhost:8080/user/3");
+        const token = await getAccessTokenSilently()
+        myHeaders.append('Authorization',`Bearer ${token}`)
+        const options = {
+            method: "GET",
+            headers: myHeaders,
+            mode: 'cors',
+        };
+        const req =  await fetch(`http://localhost:8080/user/${window.name}`,options);
         const resp = await req.json();
         setUser(resp);
       } catch (err) {
@@ -55,7 +63,7 @@ const StaticProfile = () => {
               <div id='editModal'>
                 <EditModal></EditModal>
               </div>
-              <div id=''>
+              <div>
                 <DeleteAccount></DeleteAccount>
               </div>
             </div>

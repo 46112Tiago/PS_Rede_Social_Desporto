@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/compound")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://localhost:3000")
 class CompoundController(val compoundService: CompoundService) {
 
     @GetMapping("/location")
