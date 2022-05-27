@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-
-export const userId = 0 
+import Loading from '../Loading/Loading';
 
 const ChooseAuthPath = () => {
   
 
-    
-        const {user, isAuthenticated} = useAuth0()
-        const {getAccessTokenWithPopup,getAccessTokenSilently} = useAuth0();
 
-          const [userArray, setUser] = useState([{}]);
+        const {user, isAuthenticated} = useAuth0()
+        const {getAccessTokenSilently} = useAuth0();
 
           useEffect(() => {
             (async () => {
@@ -25,8 +22,13 @@ const ChooseAuthPath = () => {
                   };
                   
                   const response = await fetch(`http://localhost:8080/user?email=${user.email}`,options);
-                  
-                  setUser(response.data);
+                  const responseJson = await response.json()
+                  console.log(responseJson)
+                  if(responseJson){
+                    window.name = responseJson;
+                  }else {
+                    window.location.href = '/signUp'
+                  }
                 }
 
               } catch (e) {
@@ -35,15 +37,8 @@ const ChooseAuthPath = () => {
             })();
           }, [getAccessTokenSilently]);
 
-          if (!userArray) {
-            return <div>Loading...</div>;
-          }
-        
-          return isAuthenticated && (
-            <div>
-                <h1>Back</h1>
-                <h2>{userArray[0].city}</h2>
-            </div>
+          return  (
+            <></>
           );
         }   
 

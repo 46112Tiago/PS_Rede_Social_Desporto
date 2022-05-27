@@ -1,10 +1,15 @@
 import React from 'react';
 import './Home.css'
 import { FaArrowDown, FaBasketballBall, FaFutbol, FaMapMarked } from 'react-icons/fa';
+import ChooseAuthPath from '../Auth0/ChooseAuthPath';
+import { useAuth0 } from "@auth0/auth0-react";
 
-class Home extends React.Component {
+const Home = () => {
   
-    render() {
+  const {isAuthenticated} = useAuth0()
+  
+  const component = isAuthenticated ? <ChooseAuthPath/> : <></>
+
       return (
         <div>
             <div className="parallax" id='map'>
@@ -42,10 +47,9 @@ class Home extends React.Component {
                   <a href='/signup'><FaBasketballBall className='icons' id='basketball'></FaBasketballBall></a>
                 </div>
             </div>
-
+            {component}
         </div>
       );
     }
-  }
 
   export default Home

@@ -56,7 +56,7 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun insertUser(user : User): Int {
         val toReturn = jdbi.withHandle<User,RuntimeException> { handle: Handle ->
-            handle.createUpdate("insert into USER_PROFILE(firstName,profilepic,lastName,city,birthdate,email,available,gender) " +
+            handle.createUpdate("insert into USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender) " +
                     "values(?,?,?,?,?,?,?)").bind(0,user.firstName)
                                         .bind(1,user.lastName)
                                         .bind(2,user.city)

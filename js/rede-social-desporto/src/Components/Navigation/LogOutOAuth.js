@@ -8,7 +8,7 @@ const LogOutOAuth = () => {
   return (
     <a href='#' onClick={() => 
       {
-        document.cookie = 'userId' + "=; Max-Age=0"
+        window.name = ''
         logout({ returnTo: window.location.origin })
         
       }}>

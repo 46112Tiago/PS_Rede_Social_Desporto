@@ -1,13 +1,9 @@
 import React from 'react';
 import './LogIn.css'
+import '../Sign_Up/Sign_Up.css'
 import LoginButton from '../SignInButton';
 
 class LogIn extends React.Component {
-    constructor(props) {
-      super(props);
-      this.email = {value: ''};
-      this.password = {value: ''};
-    }
   
     render() {
       return (
@@ -19,7 +15,6 @@ class LogIn extends React.Component {
                 </div>
               </div>
               <div  className='item' id='formLogin'>
-                  
                   <LoginButton></LoginButton>
               </div>
         </div>

@@ -3,6 +3,7 @@ import './Events.css'
 import EventCard from './EventCard';
 import Paging from '../Paging/Paging';
 import { event } from '../../Model/Model';
+import  userId  from '../../Global/Global';
 
 const Events = () => {
 

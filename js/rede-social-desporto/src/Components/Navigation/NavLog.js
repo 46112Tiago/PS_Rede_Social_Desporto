@@ -27,7 +27,7 @@ class NavLog extends React.Component {
     render() {
       return (
         <div className="navbar">
-            <a className="leftSide" href="/">Feed</a>
+            <a className="leftSide" href="/feed">Feed</a>
             <a className="leftSide" href="/map">Mapa</a>
             <a className="leftSide" href="/events">Eventos</a>
 
