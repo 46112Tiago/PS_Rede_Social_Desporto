@@ -4,9 +4,11 @@ import {FaCity} from 'react-icons/fa'
 import SportsModal from "../SportsModal/SportsModal";
 import AddFriend from "./AddFriend/AddFriend";
 import { user } from "../../Model/Model";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const OthersProfile = (props) => {
 
+const {getAccessTokenSilently} = useAuth0();
 const [isLoading, setIsLoading] = React.useState(false);
 const [error, setError] = React.useState();
 const [userObj, setUser] = React.useState(user);
@@ -16,8 +18,16 @@ const [userObj, setUser] = React.useState(user);
         setError(null);
         setIsLoading(true);
         try {
+          const token = await getAccessTokenSilently();
+          const myHeaders = new Headers()
+          myHeaders.append('Authorization',`Bearer ${token}`)
+          const options = {
+              method: "GET",
+              headers: myHeaders,
+              mode: 'cors',
+        };
           const friendId = window.location.href.split('/')[4][0]
-          const req =  await fetch(`http://localhost:8080/user/${props.userId}/friend/${friendId}`);
+          const req =  await fetch(`http://localhost:8080/user/${window.name}/friend/${friendId}`,options);
           const resp = await req.json();
           setUser(resp);
           

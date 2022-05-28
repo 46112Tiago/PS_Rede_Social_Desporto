@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import './SearchBar.css'
 import { FaSearch, FaTimes } from 'react-icons/fa';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
   function reset() {
     document.getElementById('searchBarTxt').value = ''
@@ -21,20 +21,9 @@ const SearchBar = () => {
       setTimeout(() => setName(''), 1000);
   }, [name]);
 
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
-
-    const options = {
-        method: "POST",
-        headers: myHeaders,
-        mode: 'cors',
-    };
-
-    fetch(`http://localhost:8080/user/search?name=${data.name}`, options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+  async function submit(data) {
+    props.setName(data)
 }
   
       return (

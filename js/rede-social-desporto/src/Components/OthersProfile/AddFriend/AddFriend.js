@@ -1,22 +1,26 @@
 import React from "react";
 import '../OthersProfile.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const AddFriend = (props) => {
 
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
+  const {getAccessTokenSilently} = useAuth0();
 
-  function friendRequest() {
+  async function friendRequest() {
 
+    const token = await getAccessTokenSilently();
+    const myHeaders = new Headers()
+    myHeaders.append('Authorization',`Bearer ${token}`)
     const options = {
         method: "POST",
         headers: myHeaders,
         mode: 'cors',
-    };
+  };
 
-    fetch('http://localhost:8080/user/3/friend/1', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const response = fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}`, options)
+
 }
 
 

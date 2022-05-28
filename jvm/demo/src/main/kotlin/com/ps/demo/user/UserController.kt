@@ -33,6 +33,12 @@ class UserController (val userService: UserService) {
         return ResponseEntity(user, HttpStatus.OK)
     }
 
+    @GetMapping("/search")
+    fun getUsersByName(@RequestParam(required = false) name : String) : ResponseEntity<List<User?>?> {
+        val user : List<User?>? = userService.getUsersByName(name)
+        return ResponseEntity(user, HttpStatus.OK)
+    }
+
     @GetMapping()
     fun getUser(@RequestParam(required = false) email : String) : ResponseEntity<Int> {
         val user : Int? = userService.getUser(email)

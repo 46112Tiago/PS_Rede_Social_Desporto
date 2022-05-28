@@ -4,13 +4,25 @@ import ProfileCards from './ProfileCards';
 import SearchBar from '../SearchBar/SearchBar'
 import Paging from '../Paging/Paging'
 import { user } from '../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfileSearch = (props) =>  {
 
+  const setQueryName = (nameValue) => {
+    setName(nameValue)
+  }
+
+  const setPaging = (offset) => {
+    setPage(offset)
+  }
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  
+  const {getAccessTokenSilently} = useAuth0();
   const [userArray, setUsers] = React.useState([user]);
+  const [nameV, setName] = React.useState('');
+  const [page, setPage] = React.useState(0);
+  const [forward, setForward] = React.useState(true);
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -21,9 +33,23 @@ const ProfileSearch = (props) =>  {
       setError(null);
       setIsLoading(true);
       try {
-        const req =  await fetch("http://localhost:8080/user/search?name=");
+        if(!nameV) return
+        const token = await getAccessTokenSilently();
+        const myHeaders = new Headers()
+        myHeaders.append('Authorization',`Bearer ${token}`)
+        const options = {
+            method: "GET",
+            headers: myHeaders,
+            mode: 'cors',
+      };
+        const req =  await fetch("http://localhost:8080/user/search?" + new URLSearchParams(nameV),options);
         const resp = await req.json();
         setUsers(resp);
+        if(!resp[0]){
+          setForward(false)
+        }else{
+          setForward(true)
+        }
       } catch (err) {
         setError(err);
         //console.log(err);
@@ -34,23 +60,19 @@ const ProfileSearch = (props) =>  {
     };
 
     if (!isLoading) makeRequest();
-  },[]);
+  },[nameV]);
   
       return (
         <div>
-            <SearchBar></SearchBar>
+            <SearchBar setName={setQueryName}></SearchBar>
             <div className='containerCards'>
               {
                 userArray.map((userObj,key)=>
                   <ProfileCards key={key} userId={userObj.userId} userFName={userObj.firstName} userLName={userObj.lastName}></ProfileCards>
                 )
               }
-                <ProfileCards userId={1}></ProfileCards>
-                <ProfileCards></ProfileCards>
-                <ProfileCards></ProfileCards>
-                <ProfileCards></ProfileCards>
             </div>
-            <Paging/>
+            <Paging paging={setPaging} page={page} forward={forward}/>
         </div>
       );
     }

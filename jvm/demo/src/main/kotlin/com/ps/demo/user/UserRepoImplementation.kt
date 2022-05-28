@@ -117,14 +117,13 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return friendId
     }
 
-    fun getUsersByName(userName: String): List<User?> {
-        val name = userName.split(" ")
-        val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
+    fun getUsersByName(firstName: String, lastNAme: String): List<User?>? {
+        val toReturn = jdbi.withHandle<List<User?>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select userId, firstName, lastName " +
                     "from USER_PROFILE" +
                     " where firstName = ? AND lastName = ?")
-                .bind(0,name[0])
-                .bind(1,name[1])
+                .bind(0,firstName)
+                .bind(1,lastNAme)
                 .mapTo<User>().list()
         }
         return toReturn

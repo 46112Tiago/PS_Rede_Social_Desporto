@@ -47,8 +47,9 @@ class UserService(val userRepo : UserRepoImplementation) {
         return -1
     }
 
-    fun getUsersByName(userName : String) : List<User?> {
-        return userRepo.getUsersByName(userName)
+    fun getUsersByName(userName : String) : List<User?>? {
+        val splitName = userName.split(" ")
+        return userRepo.getUsersByName(splitName[0],splitName[1])
     }
 
     fun isFriend(userId: Int, friendId: Int) : User? {

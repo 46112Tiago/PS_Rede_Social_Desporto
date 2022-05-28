@@ -2,6 +2,7 @@ import React from "react";
 import './NavLog.css'
 import { FaSortDown, FaUserAlt } from 'react-icons/fa';
 import { BsChatDotsFill } from 'react-icons/bs';
+import { BiSearchAlt } from 'react-icons/bi';
 import LogOutOAuth from './LogOutOAuth';
 
 
@@ -36,6 +37,7 @@ class NavLog extends React.Component {
                 <div className="dropdown-content" id="myDropdown">
                     <a href="/profile"><FaUserAlt></FaUserAlt> Perfil</a>
                     <a href="/groups"><BsChatDotsFill></BsChatDotsFill> Contacts</a>
+                    <a href="/profileSearch"><BiSearchAlt></BiSearchAlt> Search</a>
                     <LogOutOAuth></LogOutOAuth>
                 </div>
             </div> 
