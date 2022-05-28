@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { group } from "../../../Model/Model"
+import { useAuth0 } from "@auth0/auth0-react";
 import './CreateGroupBtn.css'
 
 const CreateGroupBtn = () => {
+
+  const {getAccessTokenSilently} = useAuth0();
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
@@ -17,13 +20,11 @@ const CreateGroupBtn = () => {
       setTimeout(() => setGroup({ name: ''}), 1000);
   }, []);
 
-
-
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
-
-  function submit(data) {
-
+  async function submit(data) {
+    const token = await getAccessTokenSilently();
+    const myHeaders = new Headers()
+    myHeaders.append('Content-Type','application/json')
+    myHeaders.append('Authorization',`Bearer ${token}`)
     const options = {
         method: "POST",
         headers: myHeaders,
@@ -31,9 +32,9 @@ const CreateGroupBtn = () => {
         body:JSON.stringify(data)
     };
 
-    fetch('http://localhost:8080/user/1/group', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const response = fetch(`http://localhost:8080/user/${window.name}/group`, options)
+    const responseJson = response.json()
+    console.log(responseJson)
 }
 
   return (

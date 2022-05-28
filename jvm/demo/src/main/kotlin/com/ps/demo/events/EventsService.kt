@@ -27,7 +27,7 @@ class EventsService(val eventRepo: EventRepositoryImplementation) {
     }
 
     fun cancelEvent(eventId : Int) {
-        return cancelEvent(eventId)
+        return eventRepo.cancelEvent(eventId)
     }
 
 

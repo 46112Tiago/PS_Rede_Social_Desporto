@@ -2,21 +2,35 @@ import React from "react";
 import './SportsModal.css'
 import {MdSportsTennis} from 'react-icons/md'
 import {sport} from "../../Model/Model"
+import { useAuth0 } from "@auth0/auth0-react";
 import CreateSportsList from "./CreateSportsList";
 
 const SportsModal = (props) => {
 
+  function deleteSport(id){
+    setDeleteSport(id)
+  }
+
 const [isLoading, setIsLoading] = React.useState(false);
 const [error, setError] = React.useState();
-  
 const [sportArray, setSport] = React.useState([sport]);
+const [sportDeleted, setDeleteSport] = React.useState(0);
+const {getAccessTokenSilently} = useAuth0();
 
   React.useEffect(() => {
     const makeRequest = async () => {
       setError(null);
       setIsLoading(true);
       try {
-        const req =  await fetch("http://localhost:8080/user/3/sports");
+        const token = await getAccessTokenSilently();
+          const myHeaders = new Headers()
+          myHeaders.append('Authorization',`Bearer ${token}`)
+          const options = {
+            method: "GET",
+            headers: myHeaders,
+            mode: 'cors',
+        };
+        const req =  await fetch(`http://localhost:8080/user/${window.name}/sports`,options);
         const resp = await req.json();
         setSport(resp);
         
@@ -30,7 +44,7 @@ const [sportArray, setSport] = React.useState([sport]);
     };
 
     if (!isLoading) makeRequest();
-  },[]);
+  },[sportDeleted]);
 
 
       return (
@@ -44,7 +58,7 @@ const [sportArray, setSport] = React.useState([sport]);
                     <h1>Desportos</h1>
                     <ul id="Sports" >
                         {sportArray.map((sportObj,i) => 
-                            <CreateSportsList otherProfile={props.otherProfile} key={i} sportName={sportObj.name} sportId={sportObj.id}></CreateSportsList>
+                            <CreateSportsList deleteSport={deleteSport} otherProfile={props.otherProfile} key={i} sportName={sportObj.name} sportId={sportObj.id}></CreateSportsList>
                         )}
                     </ul>
                    

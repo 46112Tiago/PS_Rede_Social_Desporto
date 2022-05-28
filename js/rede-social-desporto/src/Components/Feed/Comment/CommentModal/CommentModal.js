@@ -2,6 +2,7 @@ import React from "react";
 import  './CommentModal.css'
 import MakeComment from "../MakeComment/MakeComment";
 import {comment} from '../../../../Model/Model'
+import { useAuth0 } from "@auth0/auth0-react";
 import {RiArrowDownSFill} from 'react-icons/ri'
 import PagingText from "../../../Paging/PagingText";
 
@@ -15,6 +16,7 @@ const CommentModal = (props) => {
     const [error, setError] = React.useState();  
     const [commentArray, setComment] = React.useState([comment]);
     const [limit, setLimit] = React.useState(10);
+    const {getAccessTokenSilently} = useAuth0();
 
       // Keep the above values in sync, this will fire
       // every time the component rerenders, ie when
@@ -25,7 +27,16 @@ const CommentModal = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-            const req =  await fetch(`http://localhost:8080/user/1/post/${props.key}/comment?limit=?${limit}`);
+            const token = await getAccessTokenSilently();
+            const myHeaders = new Headers()
+            myHeaders.append('Authorization',`Bearer ${token}`)
+            const options = {
+                method: "GET",
+                headers: myHeaders,
+                mode: 'cors',
+                body:JSON.stringify(data)
+            };
+            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.key}/comment?limit=?${limit}`,options);
             const resp = await req.json();
             setComment(resp);
           } catch (err) {

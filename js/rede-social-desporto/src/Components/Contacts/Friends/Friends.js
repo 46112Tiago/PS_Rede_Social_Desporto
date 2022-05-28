@@ -5,6 +5,7 @@ import { FaUser, FaUsers } from 'react-icons/fa';
 import Account from '../Account';
 import ConversationIdle from '../ConversationIdle';
 import { user } from '../../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 import ConversationStart from '../ConversationStart';
 
 const FriendsMessage = () => {
@@ -12,7 +13,7 @@ const FriendsMessage = () => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  
+  const {getAccessTokenSilently} = useAuth0();
   const [friendArray, setUser] = React.useState([user]);
   const [id, setId] = React.useState(0);
 
@@ -26,7 +27,16 @@ const FriendsMessage = () => {
       setIsLoading(true);
       try {
         if(id == 0){
-          const req =  await fetch("http://localhost:8080/user/1/friends");
+          const token = await getAccessTokenSilently();
+            const myHeaders = new Headers()
+            myHeaders.append('Authorization',`Bearer ${token}`)
+            myHeaders.append('Content-type',`application/json`)
+            const options = {
+                method: "GET",
+                headers: myHeaders,
+                mode: 'cors',
+            };
+          const req =  await fetch(`http://localhost:8080/user/${window.name}/friend`,options);
           const resp = await req.json();
           setUser(resp);
         }
@@ -63,7 +73,7 @@ const FriendsMessage = () => {
                 <h3 id='contactsH3'>Friends:</h3> 
               </div>
               {friendArray.map((friendObj,i) => 
-                        <Account getConversation={getConversation} key={i} friendName={friendObj.firstName} friendLName={friendObj.lastName} friendId={friendObj.userId} friendPicture={friendObj.profilepic}></Account>
+                        <Account getConversation={getConversation} key={i} name={friendObj.firstName} lastname={friendObj.lastName} accountId={friendObj.userId} picture={friendObj.profilepic}></Account>
               )}
             </div>
             <div className='itemFlex' id='rightItem'>

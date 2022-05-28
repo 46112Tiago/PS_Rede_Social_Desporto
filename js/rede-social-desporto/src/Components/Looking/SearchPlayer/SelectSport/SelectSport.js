@@ -1,5 +1,6 @@
 import React from 'react';
 import { sport } from '../../../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 import '../SearchPlayer.css'
 
 const SelectSport = () => {
@@ -7,13 +8,22 @@ const SelectSport = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
     const [sportArray, setSport] = React.useState([sport]);
-    
+    const {getAccessTokenSilently} = useAuth0();
+
       React.useEffect(() => {
         const makeRequest = async () => {
           setError(null);
           setIsLoading(true);
           try {
-            const req =  await fetch("http://localhost:8080/sports");
+            const token = await getAccessTokenSilently();
+            const myHeaders = new Headers()
+            myHeaders.append('Authorization',`Bearer ${token}`)
+            const options = {
+                method: "GET",
+                headers: myHeaders,
+                mode: 'cors',
+            };
+            const req =  await fetch("http://localhost:8080/sports",options);
             const resp = await req.json();
             setSport(resp);
             

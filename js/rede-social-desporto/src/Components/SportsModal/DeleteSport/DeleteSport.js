@@ -1,14 +1,12 @@
 import React from 'react';
 import './DeleteSport.css'
 import {AiFillDelete} from 'react-icons/ai'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DeleteSport = (props) => {
 
-    const deleteMethod = {
-        method: 'delete',
-        mode: 'cors'
-    }
 
+  const {getAccessTokenSilently} = useAuth0();
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
   // it first mounts, and then when any of the above
@@ -16,13 +14,20 @@ const DeleteSport = (props) => {
     const makeRequest = async () => {
 
         try {
-            const response = await fetch(`http://localhost:8080/user/3/sports/${props.sportId}`, deleteMethod);
+            const token = await getAccessTokenSilently();
+            const myHeaders = new Headers()
+            myHeaders.append('Authorization',`Bearer ${token}`)
+            const options = {
+              method: "DELETE",
+              headers: myHeaders,
+              mode: 'cors',
+            };
+            const response = await fetch(`http://localhost:8080/user/${window.name}/sports/${props.sportId}`, options);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);
             }
-            const data = await response.json();
-            console.log(data);
+            props.deleteSport(props.sportId)
           } catch (error) {
             console.log('Error: ' + error);
           }

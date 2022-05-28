@@ -23,7 +23,7 @@ const ConversationIdle = (props) => {
         setError(null);
         setIsLoading(true);
         try {
-          const req =  await fetch(`${props.href}`);
+          const req =  await fetch(`http://localhost:8080/user/1/group/${window.localStorage.getItem("groupId")}/message`);
           const resp = await req.json();
           setMessage(resp);
         } catch (err) {
@@ -36,7 +36,7 @@ const ConversationIdle = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[]);
+    },[window.localStorage.getItem("groupId")]);
 
       return (
         <div>

@@ -17,7 +17,7 @@ const UserEventParticipating = () => {
         setError(null);
         setIsLoading(true);
         try {
-          const req =  await fetch("http://localhost:8080/user/1/event/participating");
+          const req =  await fetch(`http://localhost:8080/user/${window.name}/event/participating`);
           const resp = await req.json();
           setEvent(resp);
           

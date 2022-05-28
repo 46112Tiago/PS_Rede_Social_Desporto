@@ -29,11 +29,11 @@ const EventCard = (props) => {
 
                 <div id='eventBtnContainer'>
                     <div className='btnEvent'>
-                        <EventModal eventId={1}></EventModal>
+                        <EventModal eventId={props.eventObj.id}></EventModal>
                     </div>
                     <br></br>
                     <div>
-                        <ParticipateEvent eventId={1}></ParticipateEvent>
+                        <ParticipateEvent eventId={props.eventObj.id}></ParticipateEvent>
                     </div>
 
                 </div>

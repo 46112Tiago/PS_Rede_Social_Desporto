@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import './CreatePost.css'
 import { post } from '../../../Model/Model';
 import {IoSend} from 'react-icons/io5'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const CreatePost = (props) => {
 
@@ -18,13 +19,14 @@ const CreatePost = (props) => {
       setTimeout(() => setPost({ description: ''}), 1000);
   }, []);
 
-
+  const {getAccessTokenSilently} = useAuth0();
 
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
-    
+  async function submit(data) {
+    const token = await getAccessTokenSilently();
+    myHeaders.append('Authorization',`Bearer ${token}`)
     const options = {
         method: "POST",
         headers: myHeaders,
@@ -32,9 +34,8 @@ const CreatePost = (props) => {
         body:JSON.stringify(data)
     };
 
-    fetch('http://localhost:8080/user/1/post', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const response = await fetch(`http://localhost:8080/user/${window.name}/post`, options)
+
 }
 
       return (

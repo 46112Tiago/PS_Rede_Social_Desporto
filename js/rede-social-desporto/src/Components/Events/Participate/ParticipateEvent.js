@@ -1,19 +1,21 @@
 import React from 'react';
 import '../EventCard.css'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ParticipateEvent = (props) => {
 
   const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
+  const {getAccessTokenSilently} = useAuth0();
 
-  function participate() {
-
+  async function participate() {
+    const token = await getAccessTokenSilently();
+    myHeaders.append('Authorization',`Bearer ${token}`)
     const options = {
-        method: "POST",
-        mode: 'cors',
+      method: "POST",
+      headers: myHeaders,
+      mode: 'cors',
     };
-
-    fetch(`http://localhost:8080/user/1/event/${props.eventId}`, options)
+    const response = await fetch(`http://localhost:8080/user/1/event/${props.eventId}`, options)
 
 }
 

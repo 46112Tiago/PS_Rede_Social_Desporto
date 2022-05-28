@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { materials } from '../../../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Materials = (props) => {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
     const [materialsArray, setMaterials] = React.useState([materials]);
-    const [materialsObj, setMaterial] = React.useState(materials);
-
-  
+    const {getAccessTokenSilently} = useAuth0();
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
     // it first mounts, and then when any of the above
@@ -20,7 +19,12 @@ const Materials = (props) => {
         setIsLoading(true);
         try {
             if(materialsArray[0].name) return 
-            const req =  await fetch("http://localhost:8080/material");
+            const token = await getAccessTokenSilently();
+            var options = {
+              method: 'GET',
+              headers: {authorization: `Bearer ${token}`}
+            };
+            const req =  await fetch("http://localhost:8080/material",options);
             const resp = await req.json();
             setMaterials(resp);
         } catch (err) {
@@ -53,13 +57,9 @@ const Materials = (props) => {
                     materialsArray.map((materialObj,i)=>
                     <div>
                         <div className='checkDiv'>
-                            <label for={`check_1${i}`} >{materialsObj.name} Name</label>
-                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={1} {...register('id')}/>
+                            <label for={`check_${i}`} >{materialObj.name}</label>
+                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={materialObj.id} {...register('id')}/>
                         </div>
-                        <div className='checkDiv'>
-                            <label for={`check_2${i}`} >{materialObj.name} Name </label>
-                            <input type="checkbox"  className="checkboxCn" id={`check_2${i}`} name='materials' value={2} {...register('id')}/>
-                        </div>    
                     </div>
 
                     )

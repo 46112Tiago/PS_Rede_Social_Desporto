@@ -9,7 +9,7 @@ const CreateSportsList = (props) => {
             <li key={props.key}>
                 {props.sportName}
             </li>
-            {props.otherProfile ? <></> : <DeleteSport sportId={props.sportId}></DeleteSport> }
+            {props.otherProfile ? <></> : <DeleteSport deleteSport={props.deleteSport} sportId={props.sportId}></DeleteSport> }
         </div>
       );
     }
