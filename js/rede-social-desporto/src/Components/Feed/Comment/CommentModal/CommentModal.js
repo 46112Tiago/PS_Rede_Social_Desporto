@@ -34,7 +34,6 @@ const CommentModal = (props) => {
                 method: "GET",
                 headers: myHeaders,
                 mode: 'cors',
-                body:JSON.stringify(data)
             };
             const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.key}/comment?limit=?${limit}`,options);
             const resp = await req.json();

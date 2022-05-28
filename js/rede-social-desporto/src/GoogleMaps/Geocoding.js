@@ -1,17 +1,10 @@
 import Geocode from "react-geocode";
 
-export function convertLocationToCoordinate(location) {
+export async function convertLocationToCoordinate(location) {
     Geocode.setApiKey("")
     Geocode.enableDebug();
-    Geocode.fromAddress(location).then(
-        (response) => {
-            const { lat, lng } = response.results[0].geometry.location;
-            console.log(lat, lng);
-            },
-        (error) => {
-            console.error(error);
-        }
-    );
+    const response = await Geocode.fromAddress(location)
+    return response.results[0].geometry.location;
 }
 
 export function convertCoordinateToLocation(lat,lng) {

@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
-import { field } from '../../../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 import './FieldSuggestion.css'
+import {convertLocationToCoordinate} from '../../../../GoogleMaps/Geocoding'
 
 const FieldSuggestion = () => {
 
-      // get functions to build form with useForm() hook
-  const { register, handleSubmit } = useForm();
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
+    // get functions to build form with useForm() hook
+    const { register, handleSubmit } = useForm();
+    const myHeaders = new Headers()
+    myHeaders.append('Content-Type','application/json')
+    const {getAccessTokenSilently} = useAuth0();
 
-  function submit(data) {
+    async function submit(data) {
 
-    const options = {
-        method: "POST",
-        headers: myHeaders,
-        mode: 'cors',
-        body:JSON.stringify(data)
-    };
-
-    fetch('http://localhost:8080/field', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
+        const token = await getAccessTokenSilently();
+        myHeaders.append('Authorization',`Bearer ${token}`)
+        const geoLocation = await convertLocationToCoordinate(data.location)
+        data.compound.location = {x:geoLocation.lat, y:geoLocation.lng}
+        const options = {
+            method: "POST",
+            headers: myHeaders,
+            mode: 'cors',
+            body:JSON.stringify(data)
+        };
+        const response = await fetch('http://localhost:8080/field', options)
+    }
 
       return (
         <div>
@@ -30,10 +33,10 @@ const FieldSuggestion = () => {
                 <h3>Suggest Field</h3>
                 <div className="form-row">
                     <div className="form-group col">
-                        <input name="compoundName" type="text" {...register('compound.name')} className="form-control" placeholder='Compound Name' required />
+                        <input name="fieldName" type="text" {...register('name')} className="form-control" placeholder='Field Name' required />
                     </div>
                     <div className="form-group col">
-                        <input name="fieldName" type="text" {...register('name')} className="form-control" placeholder='Field Name' required />
+                        <input name="location" type="text" {...register('location')} className="form-control" placeholder='Location' required />
                     </div>
                     <div className="form-group col">
                         <h4>Parking lot</h4>

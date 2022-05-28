@@ -29,7 +29,6 @@ const Post = (props) => {
                 method: "GET",
                 headers: myHeaders,
                 mode: 'cors',
-                body:JSON.stringify(data)
           };
           const req =  await fetch(`http://localhost:8080/user/${window.name}/post`,options);
           const resp = await req.json();

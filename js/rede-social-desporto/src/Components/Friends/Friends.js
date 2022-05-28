@@ -2,14 +2,15 @@ import React from 'react';
 import './Friends.css'
 import ProfileCards from '../ProfileSearch/ProfileCards';
 import { user } from '../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 import Paging from '../Paging/Paging';
 
 const Friends = (props) => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  
   const [friendArray, setFriends] = React.useState([user]);
+  const {getAccessTokenSilently} = useAuth0();
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -20,7 +21,15 @@ const Friends = (props) => {
       setError(null);
       setIsLoading(true);
       try {
-        const req =  await fetch("http://localhost:8080/user/3/friend");
+        const token = await getAccessTokenSilently();
+        const myHeaders = new Headers()
+        myHeaders.append('Authorization',`Bearer ${token}`)
+        const options = {
+            method: "GET",
+            headers: myHeaders,
+            mode: 'cors',
+      };
+        const req =  await fetch(`http://localhost:8080/user/${window.name}/friend`,options);
         const resp = await req.json();
         setFriends(resp);
       } catch (err) {

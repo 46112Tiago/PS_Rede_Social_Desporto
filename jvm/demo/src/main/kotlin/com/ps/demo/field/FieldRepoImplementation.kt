@@ -15,11 +15,12 @@ class FieldRepoImplementation(val jdbi : Jdbi){
     fun createField(field: Field): Int? {
         val compoundId = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "compound(name,parking,accepted) " +
-                    "values(?,?,?)")
-                    .bind(0,field.compound!!.name)
-                    .bind(1, field.compound.parking)
+                    "compound(name,parking,accepted,location) " +
+                    "values(?,?,?,POINT(?))")
+                    .bind(0,field.name)
+                    .bind(1, field.compound!!.parking)
                     .bind(2,false)
+                    .bind(3,field.compound!!.location)
                     .executeAndReturnGeneratedKeys("id").mapTo<Compound>().one()
         }
 

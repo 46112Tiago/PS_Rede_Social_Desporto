@@ -16,14 +16,15 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
 
         val toReturn : Compound = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "compound(name,description,summary,dressingRoom,parking,accepted) " +
-                    "values(?,?,?,?,?,?)")
+                    "compound(name,description,summary,dressingRoom,parking,accepted,location) " +
+                    "values(?,?,?,?,?,?,POINT(?))")
                     .bind(0,compound.name)
                     .bind(1,compound.description)
                     .bind(2,compound.summary)
                     .bind(3,compound.dressingRoom)
                     .bind(4,compound.parking)
                     .bind(5,false)
+                    .bind(6,compound.location)
                     .executeAndReturnGeneratedKeys("id").mapTo<Compound>().one()
         }
 
