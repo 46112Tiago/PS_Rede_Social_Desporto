@@ -11,54 +11,47 @@ const MapComponent = (props) => {
   
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
-    const [locationArray, setLocations] = React.useState([compound]);
-    const [zoomEffect,setZoom] = React.useState([props.zoom]);
-    const mapOptions = {
-      zoom : props.zoom,
-      center : props.center
-    }
+    const [markersArray, setMarkers] = React.useState([]);
+    const [zoomEffect,setZoom] = React.useState(props.zoom);
+
     React.useEffect(() => {
-     
-      let map = new window.google.maps.Map(document.getElementById("mapComponent"), mapOptions);
-        
+      const mapOptions = {
+        zoom : zoomEffect,
+        center : props.center
+      }
+      let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
+      markersArray.forEach(element => {
+        const point = { lat : element.location.x, lng : element.location.y};
+        const marker = new window.google.maps.Marker({
+            position: point,
+            map,
+            title: element.name,
+        });
+        marker.id = element.id
+        marker.addListener("click", () => {
+          window.localStorage.setItem("compound_id",JSON.stringify(element.id))
+          alert(element.id)
+          window.location.href = "#marker-modal"
+        });
+      })
       setIsLoading(true);
-     
-    
 
+      const options = {
+          method: "GET",
+          mode: 'cors',
+      };
 
-    const options = {
-        method: "GET",
-        mode: 'cors',
-    };
-
-    
     const makeRequest = async () => {
       setError(null);
       setIsLoading(true);
       try {
         map.addListener('zoom_changed', async function() {
           var zoom = map.getZoom();
-          setZoom(zoom);
+          setZoom(zoom)
           const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}`,options);
           const resp = await req.json();
-          setLocations(resp);
-          resp.forEach(element => {
-            const point = { lat : element.location.x, lng : element.location.y};
-           const marker = new window.google.maps.Marker({
-                position: point,
-                map,
-                title: element.name,
-            });
-            marker.id = element.id
-            marker.addListener("click", () => {
-              window.localStorage.setItem("compound_id",JSON.stringify(element.id))
-              alert(element.id)
-              window.location.href = "#marker-modal"
-            });
-        });
-        
-      
-        });
+          setMarkers(resp)
+      });
       } catch (err) {
         setError(err);
         /*console.log(err); */
@@ -73,7 +66,7 @@ const MapComponent = (props) => {
     }
 
        
-    },[zoomEffect]);
+    },[markersArray]);
     return (
         <>
             <Marker/>

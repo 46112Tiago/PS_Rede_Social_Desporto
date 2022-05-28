@@ -25,7 +25,7 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
     }
 
     fun getCompoundLocations(zoom : Int) : List<Compound?>? {
-
+        if (zoom < 2) return listOf()
         return compoundRepo.getCompoundLocations()
     }
 
