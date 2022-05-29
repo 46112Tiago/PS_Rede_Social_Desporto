@@ -13,11 +13,18 @@ const MapComponent = (props) => {
     const [error, setError] = React.useState();
     const [markersArray, setMarkers] = React.useState([]);
     const [zoomEffect,setZoom] = React.useState(props.zoom);
+    const [centerVal, setCenter] = React.useState(props.center);
 
     React.useEffect(() => {
+      
+      
+      
       const mapOptions = {
         zoom : zoomEffect,
-        center : props.center
+        center : centerVal,
+        minZoom : 3,
+        maxZoom : 15,
+        mapTypeId:google.maps.MapTypeId.SATELLITE
       }
       let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
       markersArray.forEach(element => {
@@ -47,8 +54,18 @@ const MapComponent = (props) => {
       try {
         map.addListener('zoom_changed', async function() {
           var zoom = map.getZoom();
-          setZoom(zoom)
-          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}`,options);
+          setZoom(zoom);
+          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${centerVal.lat}&centerLng=${centerVal.lng}`,options);
+          const resp = await req.json();
+          setMarkers(resp)
+      });
+        map.addListener('center_changed', async function() {
+          var center = map.getCenter().toJSON();
+          setCenter(
+            center
+          );
+          console.log(center);
+          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoomEffect}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
           const resp = await req.json();
           setMarkers(resp)
       });

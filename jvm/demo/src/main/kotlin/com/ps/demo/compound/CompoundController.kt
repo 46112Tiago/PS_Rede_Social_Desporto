@@ -1,6 +1,7 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
+import org.postgresql.geometric.PGpoint
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.*
 class CompoundController(val compoundService: CompoundService) {
 
     @GetMapping("/location")
-    fun getLocations(@RequestParam(required = false) zoom: Int) : ResponseEntity<List<Compound?>?> {
+    fun getLocations(@RequestParam(required = true) zoom: Int = 0,
+                     @RequestParam(required = false) centerLat : Float,
+                     @RequestParam(required = false) centerLng : Float) : ResponseEntity<List<Compound?>?> {
         val locations : List<Compound?>? = compoundService.getCompoundLocations(zoom)
         return ResponseEntity(locations, HttpStatus.OK)
     }
