@@ -98,3 +98,13 @@ export let compound = {
     schedule : {},
     materials : {}
 }
+
+export let lookingPlayers = {
+    id : 0,
+    compound : {},
+    sports : {},
+    creator : {},
+    startDateTime : '',
+    participants : [],
+    state : ''
+}

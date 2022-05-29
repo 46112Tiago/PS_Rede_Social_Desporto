@@ -3,7 +3,12 @@ import { compound } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import '../SearchPlayer.css'
 
-const SelectCompound = () => {
+const SelectCompound = (props) => {
+
+  function compoundId(value) {
+    console.log(value.target.value)
+    props.getCompound(value.target.value)
+  }
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
@@ -23,7 +28,7 @@ const SelectCompound = () => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/compound/location?zoom=0`,options);
+            const req =  await fetch(`http://localhost:8080/compound/location?zoom=2`,options);
             const resp = await req.json();
             setCompound(resp);
             
@@ -41,7 +46,8 @@ const SelectCompound = () => {
     return (
     <>
         <label for='compound'>Compound/Field</label>
-        <select name="compound" id="selectCompound" className='inputForm'>
+        <select name="compound" id="selectCompound" className='inputForm' onChange={compoundId} required>
+          <option></option>
             {
                 compoundArray.map((compoundObj,key)=>
                     <option key={key} value={`${compoundObj.id}`}>{compoundObj.name}</option>
