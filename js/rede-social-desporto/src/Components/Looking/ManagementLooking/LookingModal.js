@@ -8,8 +8,8 @@ const LookingModal = (props) => {
             <div id="looking-modal" className="modalLooking">
                 <div className="modal_looking_content">
                     <h1>Info:</h1>
-
-                   
+                    <p>Date/Hour:</p>
+                    <p>{props.lookingInfo.startDateTime}</p>
                     <a href="#" className="modal__close">&times;</a>
                 </div>
 

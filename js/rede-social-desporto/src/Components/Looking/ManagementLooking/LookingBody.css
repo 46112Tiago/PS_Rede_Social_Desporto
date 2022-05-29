@@ -46,7 +46,7 @@
     background: #fff;
     padding: 1em 2em;
     color: black;
-    z-index: 1;
+    z-index: 10000;
   }
   
   .modal__close {

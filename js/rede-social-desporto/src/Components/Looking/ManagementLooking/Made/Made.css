@@ -133,3 +133,9 @@
     color: #585858;
     text-decoration: none;
   }
+
+  #pagingMade {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+  }

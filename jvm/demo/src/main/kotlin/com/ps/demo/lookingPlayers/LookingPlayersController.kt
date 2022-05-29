@@ -45,8 +45,9 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService)
         return ResponseEntity(lookingPlayersList,HttpStatus.OK)    }
 
     @GetMapping("/lookingPlayers/creator/{creatorId}")
-    fun getLookingCreated(@PathVariable("creatorId") creatorId: Int): ResponseEntity<List<LookingPlayers>> {
-        val lookingPlayers = lookingPlayersService.getLookingCreated(creatorId)
+    fun getLookingCreated(@PathVariable("creatorId") creatorId: Int,
+                          @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers>> {
+        val lookingPlayers = lookingPlayersService.getLookingCreated(creatorId,page)
         return ResponseEntity(lookingPlayers,HttpStatus.OK)
     }
 

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*
 class CompoundController(val compoundService: CompoundService) {
 
     @GetMapping("/location")
-    fun getLocations(@RequestParam(required = true) zoom: Int = 0,
-                     @RequestParam(required = false) centerLat : Float,
-                     @RequestParam(required = false) centerLng : Float) : ResponseEntity<List<Compound?>?> {
-        val locations : List<Compound?>? = compoundService.getCompoundLocations(zoom)
+    fun getLocations(@RequestParam(required = true) zoom: Int? = 0,
+                     @RequestParam(required = false) centerLat : Float? = 0.0f,
+                     @RequestParam(required = false) centerLng : Float? = 0.0f) : ResponseEntity<List<Compound?>?> {
+        val locations : List<Compound?>? = compoundService.getCompoundLocations(zoom!!)
         return ResponseEntity(locations, HttpStatus.OK)
     }
 

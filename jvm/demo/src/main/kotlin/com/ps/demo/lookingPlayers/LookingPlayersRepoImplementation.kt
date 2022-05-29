@@ -75,12 +75,14 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
          return toReturn
     }
 
-     fun getLookingCreated(creatorId: Int): List<LookingPlayers> {
+     fun getLookingCreated(creatorId: Int, page: Int): List<LookingPlayers> {
          val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
              handle.createQuery("Select id, startDateTime " +
                      "from LOOKINGPLAYERS " +
-                     "WHERE creatorId = ? ")
+                     "WHERE creatorId = ? " +
+                     "LIMIT 2 OFFSET ? ")
                  .bind(0,creatorId)
+                 .bind(1,2*page)
                  .mapTo<LookingPlayers>()
                  .list()
          }

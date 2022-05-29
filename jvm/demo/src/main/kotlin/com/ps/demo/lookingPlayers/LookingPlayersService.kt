@@ -27,8 +27,8 @@ class LookingPlayersService(val lookingPlayersRepo: LookingPlayersRepoImplementa
         return lookingPlayers
     }
 
-    fun getLookingCreated(creatorId: Int) : List<LookingPlayers> {
-        return lookingPlayersRepo.getLookingCreated(creatorId)
+    fun getLookingCreated(creatorId: Int, page: Int) : List<LookingPlayers> {
+        return lookingPlayersRepo.getLookingCreated(creatorId, page)
     }
 
 }
