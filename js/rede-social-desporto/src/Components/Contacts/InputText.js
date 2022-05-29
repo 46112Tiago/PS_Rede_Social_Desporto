@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { message } from '../../Model/Model';
+import { useAuth0 } from "@auth0/auth0-react";
 import './ConversationIdle.css'
 
 const InputText = (props) => {
@@ -12,7 +13,7 @@ const InputText = (props) => {
      */
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-
+  const {getAccessTokenSilently} = useAuth0();
   // user state for form
   const [messageObj, setMessage] = useState(message);
 
@@ -22,11 +23,12 @@ const InputText = (props) => {
       setTimeout(() => setMessage(message), 1000);
   }, []);
 
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
-
+  async function submit(data) {
+    const token = await getAccessTokenSilently();
+    const myHeaders = new Headers()
+    myHeaders.append('Authorization',`Bearer ${token}`)
+    myHeaders.append('Content-Type','application/json')
     const options = {
         method: "POST",
         headers: myHeaders,
@@ -34,9 +36,8 @@ const InputText = (props) => {
         body:JSON.stringify(data)
     };
 
-    fetch(`${props.url}`, options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const req =  await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+
 }
 
       return (

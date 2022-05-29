@@ -16,13 +16,18 @@ const Groups = () => {
   const getConversation = (idMsg) => {
     window.localStorage.setItem('groupId',idMsg)
     setId(idMsg)
+    groupArray.forEach(groupObj=>{
+      if(groupObj.owner.userId == window.name){
+        setOwner(groupObj.owner.userId)
+      }
+    })
   }
   
-    const owner = false
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
     const [id, setId] = React.useState(0);
     const [groupArray, setGroup] = React.useState([group]);
+    const [owner,setOwner] = React.useState(0);
     const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
@@ -60,7 +65,7 @@ const Groups = () => {
       if (!isLoading) makeRequest();
     },[id]);
 
-    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner.userId} groupId={id} dropdown={true}/>
+    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner} groupId={id} dropdown={true}/>
 
       return (
           <div>
@@ -76,7 +81,7 @@ const Groups = () => {
                     <hr id='line'/>
                     <h3 id='contactsH3'>Groups:</h3>
                     <GroupModal></GroupModal>
-                    <ParticipantModal owner={owner}/>
+                    <ParticipantModal owner={owner} groupId={id}/>
                       {groupArray.map((groupObj,i) => 
                           <Account getConversation={getConversation} key={i} name={groupObj.name}  accountId={groupObj.id} picture={groupObj.picture}></Account>
                       )}

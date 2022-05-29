@@ -1,7 +1,7 @@
 begin;
 
 DELETE from user_profile where userId = 13
-Select * from user_profile
+Select * from Group_participant
 
 /* COMPOUND */
 --1)

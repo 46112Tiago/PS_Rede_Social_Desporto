@@ -8,7 +8,7 @@ import DeleteGroup from './DeleteGroup/DeleteGroup';
 
 const DropDownGroup = (props) => {
 
-  const deleteGroup = props.owner ? <DeleteGroup></DeleteGroup> : <></>
+  const deleteGroup = props.owner ? <DeleteGroup groupId={props.groupId}></DeleteGroup> : <></>
 
       return (  
         <div class="navbarG">
@@ -17,7 +17,7 @@ const DropDownGroup = (props) => {
             <div class="dropdown-contentG">
               <a href="#add-participant-modal" >Participant</a>
               {deleteGroup}
-              <ExitGroup/>
+              <ExitGroup groupId={props.groupsId}/>
             </div>
           </div> 
         </div>

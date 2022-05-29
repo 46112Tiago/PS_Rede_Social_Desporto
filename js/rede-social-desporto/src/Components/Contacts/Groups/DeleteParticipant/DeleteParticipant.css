@@ -33,3 +33,7 @@
 #deleteParticipant:active {
     border: solid 3px rgb(6, 140, 49); 
 }
+
+#deleteGroup {
+    cursor: pointer;
+}
