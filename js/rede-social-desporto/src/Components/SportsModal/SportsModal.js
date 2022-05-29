@@ -16,6 +16,7 @@ const [error, setError] = React.useState();
 const [sportArray, setSport] = React.useState([sport]);
 const [sportDeleted, setDeleteSport] = React.useState(0);
 const {getAccessTokenSilently} = useAuth0();
+const userId = props.otherProfile ? window.location.href.split('/')[4][0] : window.name
 
   React.useEffect(() => {
     const makeRequest = async () => {
@@ -30,7 +31,7 @@ const {getAccessTokenSilently} = useAuth0();
             headers: myHeaders,
             mode: 'cors',
         };
-        const req =  await fetch(`http://localhost:8080/user/${window.name}/sports`,options);
+        const req =  await fetch(`http://localhost:8080/user/${userId}/sports`,options);
         const resp = await req.json();
         setSport(resp);
         

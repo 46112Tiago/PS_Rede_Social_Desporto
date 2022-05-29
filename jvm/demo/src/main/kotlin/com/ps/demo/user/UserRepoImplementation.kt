@@ -93,13 +93,15 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return userId
     }
 
-    fun getFriends(userId: Int): List<User?> {
+    fun getFriends(userId: Int,page:Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select friendId as userId, firstName, lastName " +
                     "from FRIENDS f " +
-                    "JOIN USER_PROFILE u on f.userId = u.userId " +
-                    " where u.userId = ?")
+                    "JOIN USER_PROFILE u on f.friendId = u.userId " +
+                    " where f.userId = ? " +
+                    "LIMIT 2 OFFSET ?")
                 .bind(0,userId)
+                .bind(1,2*page)
                 .mapTo<User>().list()
         }
         return toReturn
@@ -117,13 +119,15 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return friendId
     }
 
-    fun getUsersByName(firstName: String, lastNAme: String): List<User?>? {
+    fun getUsersByName(firstName: String, lastNAme: String,page : Int): List<User?>? {
         val toReturn = jdbi.withHandle<List<User?>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select userId, firstName, lastName " +
                     "from USER_PROFILE" +
-                    " where firstName = ? AND lastName = ?")
+                    " where firstName = ? AND lastName = ? " +
+                    "LIMIT 2 OFFSET ? ")
                 .bind(0,firstName)
                 .bind(1,lastNAme)
+                .bind(2,page)
                 .mapTo<User>().list()
         }
         return toReturn

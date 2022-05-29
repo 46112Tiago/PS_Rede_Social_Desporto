@@ -36,24 +36,24 @@ class UserService(val userRepo : UserRepoImplementation) {
         return userRepo.editUserProfile(userId,user)
     }
 
-    fun getFriends(userId: Int) : List<User?> {
-        return userRepo.getFriends(userId)
+    fun getFriends(userId: Int,page:Int) : List<User?> {
+        return userRepo.getFriends(userId,page)
     }
 
     fun addFriend(userId: Int, friendId: Int) : Int {
-        if(userRepo.isFriend(userId,friendId)!!.isPresent) {
+        if(userRepo.isFriend(userId,friendId)!!.isEmpty) {
             return userRepo.addFriend(userId,friendId)
         }
         return -1
     }
 
-    fun getUsersByName(userName : String) : List<User?>? {
+    fun getUsersByName(userName : String,page : Int) : List<User?>? {
         val splitName = userName.split(" ")
-        return userRepo.getUsersByName(splitName[0],splitName[1])
+        return userRepo.getUsersByName(splitName[0],splitName[1],page)
     }
 
-    fun isFriend(userId: Int, friendId: Int) : User? {
-        return userRepo.isFriend(userId,friendId)!!.get()
+    fun isFriend(userId: Int, friendId: Int) : Optional<User>? {
+        return userRepo.isFriend(userId,friendId)
     }
 
     fun postProfilePic(userId: Int, imagePath :  String) : Image {

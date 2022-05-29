@@ -20,7 +20,7 @@ const ProfileSearch = (props) =>  {
   const [error, setError] = React.useState();
   const {getAccessTokenSilently} = useAuth0();
   const [userArray, setUsers] = React.useState([user]);
-  const [nameV, setName] = React.useState('');
+  const [nameV, setName] = React.useState("");
   const [page, setPage] = React.useState(0);
   const [forward, setForward] = React.useState(true);
 
@@ -42,7 +42,7 @@ const ProfileSearch = (props) =>  {
             headers: myHeaders,
             mode: 'cors',
       };
-        const req =  await fetch("http://localhost:8080/user/search?" + new URLSearchParams(nameV),options);
+        const req =  await fetch(`http://localhost:8080/user/search?page=${page}&name=${nameV.name}`,options);
         const resp = await req.json();
         setUsers(resp);
         if(!resp[0]){
@@ -60,7 +60,7 @@ const ProfileSearch = (props) =>  {
     };
 
     if (!isLoading) makeRequest();
-  },[nameV]);
+  },[nameV,page]);
   
       return (
         <div>

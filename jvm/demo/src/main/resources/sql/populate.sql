@@ -1,7 +1,8 @@
 begin;
 
 DELETE from user_profile where userId = 13
-Select * from Group_participant
+Select  f.userId, friendId, firstName, lastName from FRIENDS f JOIN USER_PROFILE u on f.friendId = u.userId
+where f.userId = 18
 
 /* COMPOUND */
 --1)

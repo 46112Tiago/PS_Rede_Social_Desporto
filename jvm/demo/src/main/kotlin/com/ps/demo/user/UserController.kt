@@ -6,6 +6,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 @RequestMapping("/user")
@@ -20,9 +21,9 @@ class UserController (val userService: UserService) {
 
     ) : ResponseEntity<User?> {
         val user : User? = userService.getUserById(friendId)
-        val friend : User? = userService.isFriend(userId,friendId)
-
-        user?.friends = listOf(friend!!)
+        val friend : Optional<User>? = userService.isFriend(userId,friendId)
+        if (friend!!.isPresent)
+            user?.friends = listOf(friend!!.get())
         val responseHeaders = HttpHeaders()
         return ResponseEntity.ok().headers(responseHeaders).body(user)
     }
@@ -34,8 +35,9 @@ class UserController (val userService: UserService) {
     }
 
     @GetMapping("/search")
-    fun getUsersByName(@RequestParam(required = false) name : String) : ResponseEntity<List<User?>?> {
-        val user : List<User?>? = userService.getUsersByName(name)
+    fun getUsersByName(@RequestParam(required = false) name : String,
+                       @RequestParam(required = false) page : Int) : ResponseEntity<List<User?>?> {
+        val user : List<User?>? = userService.getUsersByName(name,page)
         return ResponseEntity(user, HttpStatus.OK)
     }
 
@@ -76,8 +78,9 @@ class UserController (val userService: UserService) {
     }
 
     @GetMapping("/{userId}/friend")
-    fun getFriends(@PathVariable("userId") userId : Int) : ResponseEntity<List<User?>> {
-        val user : List<User?> = userService.getFriends(userId)
+    fun getFriends(@PathVariable("userId") userId : Int,
+                   @RequestParam(required = false) page : Int) : ResponseEntity<List<User?>> {
+        val user : List<User?> = userService.getFriends(userId,page)
         return ResponseEntity.ok().body(user)
     }
 

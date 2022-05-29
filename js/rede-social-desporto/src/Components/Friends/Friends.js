@@ -7,10 +7,16 @@ import Paging from '../Paging/Paging';
 
 const Friends = (props) => {
 
+  const setPaging = (offset) => {
+    setPage(offset)
+  }
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [friendArray, setFriends] = React.useState([user]);
   const {getAccessTokenSilently} = useAuth0();
+  const [page, setPage] = React.useState(0);
+  const [forward, setForward] = React.useState(true);
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -29,9 +35,14 @@ const Friends = (props) => {
             headers: myHeaders,
             mode: 'cors',
       };
-        const req =  await fetch(`http://localhost:8080/user/${window.name}/friend`,options);
+        const req =  await fetch(`http://localhost:8080/user/${window.name}/friend?page=${page}`,options);
         const resp = await req.json();
         setFriends(resp);
+        if(!resp[0]){
+          setForward(false)
+        }else{
+          setForward(true)
+        }
       } catch (err) {
         setError(err);
         //console.log(err);
@@ -42,7 +53,7 @@ const Friends = (props) => {
     };
 
     if (!isLoading) makeRequest();
-  },[]);
+  },[page]);
   
       return (
         <div>
@@ -57,7 +68,7 @@ const Friends = (props) => {
                 <ProfileCards></ProfileCards>
                 <ProfileCards></ProfileCards>
             </div>
-            <Paging/>
+            <Paging paging={setPaging} page={page} forward={forward}/>
         </div>
       );
     }

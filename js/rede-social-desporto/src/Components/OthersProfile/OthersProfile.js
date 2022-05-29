@@ -41,7 +41,7 @@ const [userObj, setUser] = React.useState(user);
       };
   
       if (!isLoading) makeRequest();
-    },[]);
+    },[userObj]);
 
       return (
         <div id="body">
@@ -56,9 +56,9 @@ const [userObj, setUser] = React.useState(user);
                     </div>
                     <div className="rightProfile" id="rightInfo">
                         <h4><FaCity></FaCity> {userObj.city}</h4>
-                        <SportsModal otherProfile={true}></SportsModal>
+                        <SportsModal otherProfile={true} userId={userObj.userId}></SportsModal>
                     </div>
-                    {userObj.friends[0] == null ? <AddFriend></AddFriend> : <></> }
+                    {userObj.friends == null ? <AddFriend friendId={userObj.userId}></AddFriend> : <></> }
                 </div>
 
             </div>
