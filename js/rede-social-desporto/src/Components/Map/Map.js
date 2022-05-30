@@ -29,8 +29,8 @@ const Map = () => {
     <div id='wrapper'>
       <div id='wrapperContainer'>
         <SearchBox></SearchBox>      
-        <Wrapper render={render} apiKey={""}> 
-          <MapComponent center={center} zoom={4}>
+        <Wrapper render={render} apiKey={"AIzaSyD8pWoSG8UcJavV-ZQOGTI30nseIgQyFrU"}> 
+          <MapComponent center={center} zoom={5}>
           </MapComponent>
         </Wrapper>
 

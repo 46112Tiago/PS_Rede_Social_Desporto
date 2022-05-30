@@ -14,9 +14,9 @@ class CompoundController(val compoundService: CompoundService) {
 
     @GetMapping("/location")
     fun getLocations(@RequestParam(required = true) zoom: Int? = 0,
-                     @RequestParam(required = false) centerLat : Float? = 0.0f,
-                     @RequestParam(required = false) centerLng : Float? = 0.0f) : ResponseEntity<List<Compound?>?> {
-        val locations : List<Compound?>? = compoundService.getCompoundLocations(zoom!!)
+                     @RequestParam(required = false) centerLat : Double? = 0.0,
+                     @RequestParam(required = false) centerLng : Double? = 0.0) : ResponseEntity<List<Compound?>?> {
+        val locations : List<Compound?>? = compoundService.getCompoundLocations(zoom!!,centerLat!!,centerLng!!)
         return ResponseEntity(locations, HttpStatus.OK)
     }
 

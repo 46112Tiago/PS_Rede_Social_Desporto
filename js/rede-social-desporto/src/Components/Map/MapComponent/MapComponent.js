@@ -57,8 +57,12 @@ const MapComponent = (props) => {
           setZoom(zoom);
           const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${centerVal.lat}&centerLng=${centerVal.lng}`,options);
           const resp = await req.json();
-          setMarkers(resp)
-      });
+          if(resp.length == 0) {
+            if(markersArray.length > 0) setMarkers(resp)
+            return
+          }setMarkers(resp)
+          
+        });
         map.addListener('center_changed', async function() {
           var center = map.getCenter().toJSON();
           setCenter(
@@ -67,7 +71,13 @@ const MapComponent = (props) => {
           console.log(center);
           const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoomEffect}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
           const resp = await req.json();
+          if(resp.length == 0) {
+            if(markersArray.length > 0) setMarkers(resp)
+            return
+          }
           setMarkers(resp)
+          
+          
       });
       } catch (err) {
         setError(err);

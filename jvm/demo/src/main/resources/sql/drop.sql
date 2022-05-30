@@ -1,5 +1,7 @@
 begin;
 
+drop table IF EXISTS image CASCADE ;
+
 drop table IF EXISTS lookingplayers_participants CASCADE ;
 
 drop table IF EXISTS lookingplayers CASCADE ;
@@ -39,5 +41,7 @@ drop table IF EXISTS materials CASCADE ;
 drop table IF EXISTS compound CASCADE ;
 
 drop table IF EXISTS user_profile CASCADE ;
+
+
 
 commit;
