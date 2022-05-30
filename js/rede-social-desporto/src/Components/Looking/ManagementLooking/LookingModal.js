@@ -10,6 +10,7 @@ const LookingModal = (props) => {
                     <h1>Info:</h1>
                     <p>Date/Hour:</p>
                     <p>{props.lookingInfo.startDateTime}</p>
+                    <p>Sport: {props.sport}</p>
                     <a href="#" className="modal__close">&times;</a>
                 </div>
 

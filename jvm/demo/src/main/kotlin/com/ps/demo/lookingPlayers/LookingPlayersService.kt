@@ -22,13 +22,17 @@ class LookingPlayersService(val lookingPlayersRepo: LookingPlayersRepoImplementa
         return lookingPlayersRepo.cancelState(lookingId, userId)
     }
 
-    fun getLookingPlayers(lookingId : Int, state: String) : List<LookingPlayers> {
-        val lookingPlayers = lookingPlayersRepo.getLookingPlayers(lookingId,state)
+    fun getLookingPlayersByState(userId : Int, state: String, page: Int) : List<LookingPlayers?> {
+        val lookingPlayers = lookingPlayersRepo.getLookingPlayersByState(userId,state,page)
         return lookingPlayers
     }
 
-    fun getLookingCreated(creatorId: Int, page: Int) : List<LookingPlayers> {
+    fun getLookingCreated(creatorId: Int, page: Int) : List<LookingPlayers?> {
         return lookingPlayersRepo.getLookingCreated(creatorId, page)
+    }
+
+    fun getLookingNavigate(userId: Int, page: Int) : List<LookingPlayers?> {
+        return lookingPlayersRepo.getLookingNavigate(userId, page)
     }
 
 }

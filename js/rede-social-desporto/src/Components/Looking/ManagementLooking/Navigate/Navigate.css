@@ -1,7 +1,7 @@
 
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-#pendingBody::-webkit-scrollbar {
+.pendingBody::-webkit-scrollbar {
   display: none;
 }
  
@@ -80,8 +80,18 @@
 }
 
 
-#participateLooking {
+.participateLooking {
+    padding: 5px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: help;
     margin-bottom: 10px;
+}
+
+.participateLooking:hover {
+    border: white solid 3px;
+    color: rgb(9, 9, 9)
 }
 
 .modalPending {

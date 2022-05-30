@@ -1,7 +1,7 @@
 begin;
 
 DELETE from user_profile where userId = 13
-Select  * from lookingPlayers
+Select  * from lookingPlayers JOIN LOOKINGPLAYERS_PARTICIPANTS on id = lookingId join User_profile on userId = creatorId
 
 /* COMPOUND */
 --1)
@@ -308,18 +308,54 @@ VALUES ('padel racket');
 --1)
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (1,1);
---1)
+--2)
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (2,1);
---1)
+--3)
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (3,1);
---1)
+--4)
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (3,5);
---1)
+--5)
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (5,5);
+
+
+/* LOOKINGPLAYERS */
+--1)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (1,1,1,'22/07/2019 12:24:59');
+--2)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (1,2,1,'23/07/2019 12:24:59');
+--3)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (2,5,4,'24/07/2019 12:24:59');
+--4)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (3,3,3,'25/07/2019 12:24:59');
+--5)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (3,5,2,'26/07/2019 12:24:59');
+
+
+/* LOOKINGPLAYERS_PARTICIPANTS */
+--1)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (1,2,'pending');
+--2)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (1,3,'pending');
+--3)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (3,1,'pending');
+--4)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (4,1,'pending');
+--5)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (5,2,'pending');
 
 commit;
 

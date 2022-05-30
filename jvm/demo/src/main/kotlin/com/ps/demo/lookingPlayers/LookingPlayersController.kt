@@ -37,17 +37,24 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService)
         return ResponseEntity(lookingId,HttpStatus.OK)
     }
 
-    @GetMapping("/lookingPlayers/{lookingId}")
-    fun getLookingPlayers(@PathVariable("lookingId") lookingId: Int,
-                          //Change tp path param, get doesn't have body
-                          @RequestBody lookingPlayers: LookingPlayers): ResponseEntity<List<LookingPlayers>> {
-        val lookingPlayersList = lookingPlayersService.getLookingPlayers(lookingId, lookingPlayers.state!!)
+    @GetMapping("/lookingPlayers/{userId}")
+    fun getLookingPlayersByState(@PathVariable("userId") userId: Int,
+                                 @RequestParam(required = false) state : String,
+                                 @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+        val lookingPlayersList = lookingPlayersService.getLookingPlayersByState(userId,state,page)
         return ResponseEntity(lookingPlayersList,HttpStatus.OK)    }
 
     @GetMapping("/lookingPlayers/creator/{creatorId}")
     fun getLookingCreated(@PathVariable("creatorId") creatorId: Int,
-                          @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers>> {
+                          @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
         val lookingPlayers = lookingPlayersService.getLookingCreated(creatorId,page)
+        return ResponseEntity(lookingPlayers,HttpStatus.OK)
+    }
+
+    @GetMapping("/lookingPlayers/navigate/{userId}")
+    fun getLookingNavigate(@PathVariable("userId") userId: Int,
+                          @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+        val lookingPlayers = lookingPlayersService.getLookingNavigate(userId,page)
         return ResponseEntity(lookingPlayers,HttpStatus.OK)
     }
 
