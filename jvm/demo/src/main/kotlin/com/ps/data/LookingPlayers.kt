@@ -8,6 +8,6 @@ data class LookingPlayers(
     var sports: Sports?,
     var creator: User?,
     val startDateTime: Timestamp?,
-    val participants: List<User>?,
+    val participants: MutableList<User>? = mutableListOf(),
     val state: String?
 )

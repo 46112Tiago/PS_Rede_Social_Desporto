@@ -31,35 +31,74 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
      fun participateRequest(lookingId: Int, participantId: Int): Int {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId) " +
-                    "values(?,?)")
+                    "LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state) " +
+                    "values(?,?,?)")
                 .bind(0,lookingId)
                 .bind(1,participantId)
+                .bind(2,"pending")
                 .execute()
         }
         return participantId
     }
 
-     fun updateState(state: String, lookingId: Int, participantId: Int) {
+     fun confirmState(lookingId: Int, participantId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" UPDATE LOOKINGPLAYERS_PARTICIPANTS " +
                     "SET state = ?" +
                     "WHERE lookingId = ? AND participantId = ?")
-                .bind(0, state)
+                .bind(0, "accepted")
                 .bind(1,lookingId)
                 .bind(2,participantId)
                 .execute()
         }
     }
 
-     fun cancelState(lookingId: Int, userId: Int) {
+     fun cancelState(lookingId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate(" DELETE FROM LOOKINGPLAYERS " +
-                    "WHERE lookingId = ? AND creatorId = ?")
+                    "WHERE id = ?")
                 .bind(0,lookingId)
-                .bind(1,userId)
                 .execute()
-        }    }
+        }
+     }
+
+    fun getLookingPlayersAccept(userId: Int, page: Int): List<LookingPlayers?> {
+        val toReturn = jdbi.withHandle<List<LookingPlayers?>,RuntimeException> { handle: Handle ->
+            handle.createQuery(
+                "Select U.userId as u_userId, LP.id as lp_id, startDateTime as lp_startDateTime, participantId as u_participantId, " +
+                        "firstName as u_firstName, lastName as u_lastName, " +
+                        "sportId as s_sportId, S.name as s_name " +
+                        "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
+                        "LP.id = LPP.lookingId " +
+                        "JOIN USER_PROFILE U ON U.userId = LPP.participantId " +
+                        "JOIN SPORTS S ON S.id = LP.sportId " +
+                        "WHERE creatorId = ? AND LPP.state = ? " +
+                        "LIMIT 2 OFFSET ? "
+            )
+                .bind(0, userId)
+                .bind(1, "pending")
+                .bind(2, 2 * page)
+                .registerRowMapper(factory(LookingPlayers::class.java, "lp"))
+                .registerRowMapper(factory(User::class.java, "u"))
+                .registerRowMapper(factory(Sports::class.java, "s"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, LookingPlayers?>, rowView: RowView ->
+                    val looking = map.computeIfAbsent(rowView.getColumn("lp_id", Int::class.javaObjectType)) {
+                        rowView.getRow(LookingPlayers::class.java)
+                    }
+
+                    if (rowView.getColumn("u_participantId", Int::class.javaObjectType) != null) {
+                        looking!!.participants!!.add(rowView.getRow(User::class.java))
+                    }
+
+                    if (rowView.getColumn("s_sportId", Int::class.javaObjectType) != null) {
+                        looking!!.sports = rowView.getRow(Sports::class.java)
+                    }
+
+                    map
+                }.values.toList()
+        }
+        return toReturn
+    }
 
      fun getLookingPlayersByState(userId: Int, state: String, page: Int): List<LookingPlayers?> {
          val toReturn = jdbi.withHandle<List<LookingPlayers?>,RuntimeException> { handle: Handle ->

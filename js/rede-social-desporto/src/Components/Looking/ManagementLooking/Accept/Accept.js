@@ -1,20 +1,83 @@
 import React from 'react';
 import './Accept.css'
+import { useAuth0 } from "@auth0/auth0-react";
+import { lookingPlayers, user } from '../../../../Model/Model';
+import Paging from '../../../Paging/Paging';
+import AcceptBtn from './AcceptBtn/AcceptBtn';
 
+const Accept = (props) => {
 
-const Accept = () => {
+    const setPaging = (offset) => {
+        setPage(offset)
+      }
+    
+      const [page, setPage] = React.useState(0);
+      const [forward, setForward] = React.useState(true);
+      const [isLoading, setIsLoading] = React.useState(false);
+      const [error, setError] = React.useState();
+      const [lookingMadeArray, setLooking] = React.useState([user]);
+      const [lookingInfo, setLookingInfo] = React.useState(lookingPlayers);
+      const [sport, setSport] = React.useState('')
+      const {getAccessTokenSilently} = useAuth0();
+    
+      React.useEffect(() => {
+          const makeRequest = async () => {
+            setError(null);
+            setIsLoading(true);
+            try {
+              const token = await getAccessTokenSilently();
+              const myHeaders = new Headers()
+              myHeaders.append('Authorization',`Bearer ${token}`)
+              const options = {
+                  method: "GET",
+                  headers: myHeaders,
+                  mode: 'cors',
+            };
+              const req =  await fetch(`http://localhost:8080/lookingPlayers/accept/${window.name}?page=${page}`,options);
+              const resp = await req.json();
+              const response = resp[0]
+              if(!response) return
+              setLookingInfo(response)
+              setLooking(response.participants)
+              setSport(response.sports.name)
+              if(!response.participants[0]){
+                setForward(false)
+              }else{
+                setForward(true)
+              }
+            } catch (err) {
+              setError(err);
+              //console.log(err);
+            } finally {
+              setIsLoading(false);
+              
+            }
+          };
+      
+          if (!isLoading) makeRequest();
+        },[lookingMadeArray,page]);
 
     return (
     <>
-        <div className='cardContainer'>
-            <div className="card accept">
-                <p>Name Surname</p>
-                <img src={require('../../img/default_profile.jpg')} id='photoLooking'></img>
-                <div className='btnContainer'>
-                    <button id="activateModal_pending" className='Looking' onClick={()=>{window.location.href = "#looking-modal"}}>Info</button>
-                    <button id='acceptLooking' className='Looking'>Accept</button>
-                </div>            
-            </div>
+            {lookingMadeArray.map((lookingObj,key)=>{
+                return(
+                    <div className='cardContainer' key={key}>
+                        <div className="card accept">
+                        <p>{lookingObj.firstName} {lookingObj.lastName}</p>
+                            <img src={require('../../img/default_profile.jpg')}></img>
+                            <div className='btnContainer'>
+                              <button className='infoLooking'onClick={()=>{
+                                  props.getLookingPlayers(lookingInfo)
+                                  props.getSports(sport)
+                                  window.location.href = "#looking-modal"}}>Info</button>
+                              <AcceptBtn lookingId={lookingInfo.id} userId={lookingObj.userId}/>      
+                            </div>            
+                        </div>
+                    </div>
+            )})}
+
+        <div id='pagingMade'>
+            <Paging paging={setPaging} page={page} forward={forward}/>     
         </div>
     </>
       

@@ -14,12 +14,12 @@ class LookingPlayersService(val lookingPlayersRepo: LookingPlayersRepoImplementa
         return lookingPlayersRepo.participateRequest(lookingId, participantId)
     }
 
-    fun updateState(state : String, lookingId : Int, participantId : Int) {
-        return lookingPlayersRepo.updateState(state, lookingId, participantId)
+    fun confirmState(lookingId : Int, participantId : Int) {
+        return lookingPlayersRepo.confirmState(lookingId, participantId)
     }
 
-    fun cancelState(lookingId : Int, userId: Int) {
-        return lookingPlayersRepo.cancelState(lookingId, userId)
+    fun cancelState(lookingId : Int) {
+        return lookingPlayersRepo.cancelState(lookingId)
     }
 
     fun getLookingPlayersByState(userId : Int, state: String, page: Int) : List<LookingPlayers?> {
@@ -33,6 +33,10 @@ class LookingPlayersService(val lookingPlayersRepo: LookingPlayersRepoImplementa
 
     fun getLookingNavigate(userId: Int, page: Int) : List<LookingPlayers?> {
         return lookingPlayersRepo.getLookingNavigate(userId, page)
+    }
+
+    fun getLookingPlayersAccept(userId: Int, page: Int) : List<LookingPlayers?> {
+        return lookingPlayersRepo.getLookingPlayersAccept(userId, page)
     }
 
 }

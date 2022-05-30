@@ -3,6 +3,7 @@ import './Navigate.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { lookingPlayers } from '../../../../Model/Model';
 import Paging from '../../../Paging/Paging';
+import Participate from './Participate/Participate';
 
 const Navigate = (props) => {
 
@@ -63,7 +64,7 @@ const Navigate = (props) => {
                                 props.getLookingPlayers(lookingMadeObj)
                                 props.getSports(lookingMadeObj.sports.name)
                                 window.location.href = "#looking-modal"}}>Info</button>
-                            <button className='participateLooking'>Participate</button>
+                            <Participate lookingId={lookingMadeObj.id}/>
                         </div>            
                     </div>
                 </div>

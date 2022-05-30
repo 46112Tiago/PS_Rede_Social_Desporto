@@ -23,17 +23,15 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService)
     }
 
     @PutMapping("/lookingPlayers/{lookingId}/participant/{participantId}")
-    fun updateState(@RequestBody lookingPlayers: LookingPlayers,
-                    @PathVariable("lookingId") lookingId: Int,
+    fun confirmState(@PathVariable("lookingId") lookingId: Int,
                     @PathVariable("participantId") participantId: Int) : ResponseEntity<Any> {
-        lookingPlayersService.updateState(lookingPlayers.state!!,lookingId, participantId)
+        lookingPlayersService.confirmState(lookingId, participantId)
         return ResponseEntity(lookingId,HttpStatus.OK)
     }
 
-    @DeleteMapping("/lookingPlayers/{lookingId}/participant/{participantId}")
-    fun cancelState(@PathVariable("lookingId") lookingId: Int,
-                    @PathVariable("participantId") participantId: Int) : ResponseEntity<Any> {
-        lookingPlayersService.cancelState(lookingId, participantId)
+    @DeleteMapping("/lookingPlayers/{lookingId}")
+    fun cancelState(@PathVariable("lookingId") lookingId: Int) : ResponseEntity<Any> {
+        lookingPlayersService.cancelState(lookingId)
         return ResponseEntity(lookingId,HttpStatus.OK)
     }
 
@@ -42,7 +40,15 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService)
                                  @RequestParam(required = false) state : String,
                                  @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
         val lookingPlayersList = lookingPlayersService.getLookingPlayersByState(userId,state,page)
-        return ResponseEntity(lookingPlayersList,HttpStatus.OK)    }
+        return ResponseEntity(lookingPlayersList,HttpStatus.OK)
+    }
+
+    @GetMapping("/lookingPlayers/accept/{userId}")
+    fun getLookingPlayersAccept(@PathVariable("userId") userId: Int,
+                                 @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+        val lookingPlayersList = lookingPlayersService.getLookingPlayersAccept(userId,page)
+        return ResponseEntity(lookingPlayersList,HttpStatus.OK)
+    }
 
     @GetMapping("/lookingPlayers/creator/{creatorId}")
     fun getLookingCreated(@PathVariable("creatorId") creatorId: Int,

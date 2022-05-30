@@ -77,12 +77,19 @@
     color: rgb(9, 9, 9)
 }
 
-#acceptLooking {
-    margin-bottom: 10px;
+.acceptLooking {
+    padding: 5px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: help;
+    margin-bottom: 15px;
 }
 
-
-
+.acceptLooking:hover {
+    border: white solid 3px;
+    color: rgb(9, 9, 9)
+}
 
 
 .modalPending {

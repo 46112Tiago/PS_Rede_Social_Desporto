@@ -1,8 +1,5 @@
 begin;
 
-DELETE from user_profile where userId = 13
-Select  * from lookingPlayers JOIN LOOKINGPLAYERS_PARTICIPANTS on id = lookingId join User_profile on userId = creatorId
-
 /* COMPOUND */
 --1)
 INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)

@@ -3,6 +3,7 @@ import './Made.css'
 import { useAuth0 } from "@auth0/auth0-react";
 import { lookingPlayers } from '../../../../Model/Model';
 import Paging from '../../../Paging/Paging';
+import Cancel from './Cancel/Cancel';
 
 const Made = (props) => {
 
@@ -64,7 +65,7 @@ const Made = (props) => {
                   props.getLookingPlayers(lookingMadeObj)
                   props.getSports(lookingMadeObj.sports.name)
                   window.location.href = "#looking-modal"}}>Info</button>
-                <button className='cancelLooking'>Cancel</button>
+                <Cancel lookingId={lookingMadeObj.id}/>
             </div>            
         </div>
       </div>

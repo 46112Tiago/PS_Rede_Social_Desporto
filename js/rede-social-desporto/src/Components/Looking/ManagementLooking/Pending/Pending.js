@@ -60,10 +60,10 @@ const Pending = (props) => {
                     <p>{lookingObj.creator.firstName} {lookingObj.creator.lastName}</p>
                     <img src={require('../../img/default_profile.jpg')} id='photoLooking'></img>
                     <div>
-                        <button id="activateModal_pending" className='infoLooking'onClick={()=>{
-                  props.getLookingPlayers(lookingObj)
-                  props.getSports(lookingObj.sports.name)
-                  window.location.href = "#looking-modal"}}>Info</button>
+                    <button id="activateModal_pending" className='infoLooking'onClick={()=>{
+                    props.getLookingPlayers(lookingObj)
+                    props.getSports(lookingObj.sports.name)
+                    window.location.href = "#looking-modal"}}>Info</button>
                     </div>            
                 </div>
             </div>
@@ -71,7 +71,7 @@ const Pending = (props) => {
 
         <div id='pagingMade'>
             <Paging paging={setPaging} page={page} forward={forward}/>     
-      </div>
+        </div>
     </>
     );
   }
