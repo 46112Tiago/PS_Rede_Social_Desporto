@@ -10,4 +10,8 @@ class MaterialService(val materialRepo: MaterialRepoImplementation) {
         return materialRepo.getMaterials()
     }
 
+    fun getCompoundMaterials(compoundId: Int): List<Material>? {
+        return materialRepo.getCompoundMaterials(compoundId)
+    }
+
 }

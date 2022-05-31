@@ -3,10 +3,7 @@ package com.ps.demo.material
 import com.ps.data.Material
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/material")
@@ -16,6 +13,12 @@ class MaterialController(val materialService: MaterialService) {
     @GetMapping
     fun getMaterials(): ResponseEntity<List<Material>?> {
         val materials = materialService.getMaterials()
+        return ResponseEntity(materials, HttpStatus.OK)
+    }
+
+    @GetMapping("/compound/{compoundId}")
+    fun getCompoundMaterials(@PathVariable("compoundId") compoundId: Int): ResponseEntity<List<Material>?> {
+        val materials = materialService.getCompoundMaterials(compoundId)
         return ResponseEntity(materials, HttpStatus.OK)
     }
 }

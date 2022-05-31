@@ -353,9 +353,8 @@ VALUES (4,1,'pending');
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (5,2,'pending');
 
-Select id from LOOKINGPLAYERS join LOOKINGPLAYERS_PARTICIPANTS on id = lookingId EXCEPT
-Select id from LOOKINGPLAYERS join LOOKINGPLAYERS_PARTICIPANTS on id = lookingId
-where creatorId = 18 OR participantId = 18
+Select * from compound
+Select * from MATERIAL_COMPOUND
 
 commit;
 

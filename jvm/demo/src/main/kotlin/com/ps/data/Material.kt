@@ -2,6 +2,7 @@ package com.ps.data
 
 data class Material(
     val id : Int?,
-    val name : String?
+    val name : String?,
+    val other : String?
 )
 

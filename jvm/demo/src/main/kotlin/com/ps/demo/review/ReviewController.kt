@@ -22,11 +22,12 @@ class ReviewController(val reviewService: ReviewService) {
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping("/review")
+    @PostMapping("/user/{userId}/review")
     fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
+                             @PathVariable("userId") userId : Int,
                              @RequestBody review : Review)
             : ResponseEntity<Any?> {
-        val reviewKey : Int? = reviewService.createCompoundReview(compoundId,review)
+        val reviewKey : Int? = reviewService.createCompoundReview(compoundId,userId,review)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 

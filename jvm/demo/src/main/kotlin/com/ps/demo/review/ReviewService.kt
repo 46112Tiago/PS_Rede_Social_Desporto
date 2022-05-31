@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service
 @Service
 class ReviewService(val reviewRepo : ReviewRepoImplementation) {
 
-    fun createCompoundReview(compoundId : Int, review : Review) : Int? {
-        return reviewRepo.createCompoundReview(compoundId,review)
+    fun createCompoundReview(compoundId : Int, userId:Int, review : Review) : Int? {
+        return reviewRepo.createCompoundReview(compoundId,userId,review)
     }
 
     fun createFieldReview(compoundId : Int, fieldId : Int, review : Review) : Int? {

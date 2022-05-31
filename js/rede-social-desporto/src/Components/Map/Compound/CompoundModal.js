@@ -39,7 +39,7 @@ const CompoundModal = () => {
 
         async function submit() {
       
-          compoundObj.materials = materialObj
+          compoundObj.material = materialObj
           compoundObj.schedule = scheduleObj
           const token = await getAccessTokenSilently();
           myHeaders.append('Authorization',`Bearer ${token}`)

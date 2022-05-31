@@ -11,15 +11,16 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
     private val AREA_MAP = mapOf(16 to 8, 15 to 16,14 to 32,13 to 64, 12 to 128);
 
     fun createCompound(compound : Compound) : Int? {
-        return compoundRepo.createCompound(compound)
-    }
-
-    fun addMaterial(compoundId: Int, material: Material) : Int? {
-        return compoundRepo.addMaterial(compoundId,material)
-    }
-
-    fun addSchedule(compoundId: Int, schedule: Schedule) : Int? {
-        return compoundRepo.addSchedule(compoundId,schedule)
+        val compoundId = compoundRepo.createCompound(compound)
+        if (compound.material == null || compound.material.isEmpty()) return compoundId
+        for (material in compound.material) {
+            compoundRepo.addMaterial(compoundId!!,material.id!!)
+        }
+        if (compound.schedule == null || compound.schedule.isEmpty()) return compoundId
+        for (schedule in compound.schedule) {
+            compoundRepo.addSchedule(compoundId!!,schedule)
+        }
+        return compoundId
     }
 
     fun deleteCompound(compoundId : Int) {

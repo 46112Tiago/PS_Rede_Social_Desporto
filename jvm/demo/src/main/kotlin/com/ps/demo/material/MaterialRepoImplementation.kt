@@ -16,4 +16,16 @@ class MaterialRepoImplementation (var jdbi: Jdbi) {
         }
         return toReturn
     }
+
+    fun getCompoundMaterials(compoundId: Int ): List<Material>? {
+        val toReturn = jdbi.withHandle<List<Material>?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select M.id, M.name " +
+                    "from MATERIALS M JOIN MATERIAL_COMPOUND ON materialId = M.id " +
+                    "JOIN COMPOUND C ON compoundId = C.id " +
+                    "WHERE C.id = ?")
+                .bind(0, compoundId)
+                .mapTo<Material>().list()
+        }
+        return toReturn
+    }
 }

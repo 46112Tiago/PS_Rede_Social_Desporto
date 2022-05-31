@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import './MakeReview.css'
 import { review } from '../../../../Model/Model';
 import {IoSend} from 'react-icons/io5'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MakeReview = (props) => {
 
@@ -18,21 +19,24 @@ const MakeReview = (props) => {
       setTimeout(() => setReview({ review: ''}), 1000);
   }, []);
 
+  const {getAccessTokenSilently} = useAuth0();
 
+  async function submit(data) {
 
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
+    const token = await getAccessTokenSilently();
+    const myHeaders = new Headers()
+    myHeaders.append('Authorization',`Bearer ${token}`)
+    myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
-    
     const options = {
         method: "POST",
         headers: myHeaders,
         mode: 'cors',
         body:JSON.stringify(data)
     };
+    
 
-    fetch('http://localhost:8080/compound/1/review', options)
+    fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/user/${window.name}/review`, options)
     .then(response => response.json())
     .then(data => console.log(data));
 }
@@ -41,6 +45,7 @@ const MakeReview = (props) => {
         <div id='createReview'>
             <form id='formReview' onSubmit={handleSubmit(submit)}>
                 <textarea maxlength="100" id='textareaReview' {...register('description')} placeholder='Write your review...'/>
+                <input type={'number'} step=".1" {...register('rating')}></input>
                 <div id='formSbm'>
                     <button type={'submit'} id='sendReview' ><IoSend></IoSend></button>
                 </div>

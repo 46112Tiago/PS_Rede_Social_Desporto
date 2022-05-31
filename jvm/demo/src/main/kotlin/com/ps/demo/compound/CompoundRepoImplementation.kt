@@ -31,21 +31,20 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         return toReturn.id
     }
 
-    fun addMaterial(compoundId: Int, material: Material): Int? {
-        val toReturn : Material = jdbi.withHandle<Material,RuntimeException> { handle: Handle ->
+    fun addMaterial(compoundId: Int, materialId: Int) {
+         jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "Materials(name,compoundId) " +
+                    "MATERIAL_COMPOUND(compoundId,materialId) " +
                     "values(?,?)")
-                    .bind(0,material.name)
-                    .bind(1,compoundId)
-                    .executeAndReturnGeneratedKeys("id").mapTo<Material>().one()
+                    .bind(0,compoundId)
+                    .bind(1,materialId)
+                    .execute()
         }
 
-        return toReturn.id
     }
 
-    fun addSchedule(compoundId: Int, schedule: Schedule): Int? {
-        val toReturn : Schedule = jdbi.withHandle<Schedule,RuntimeException> { handle: Handle ->
+    fun addSchedule(compoundId: Int, schedule: Schedule){
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "Schedule(compoundId,weekday,openingHour,closingHour,optionalDescription) " +
                     "values(?,?,?,?,?)")
@@ -54,10 +53,9 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
                     .bind(2,schedule.openingHour)
                     .bind(3,schedule.closingHour)
                     .bind(4,schedule.optionalDescription)
-                    .executeAndReturnGeneratedKeys("id").mapTo<Schedule>().one()
+                    .execute()
         }
 
-        return toReturn.id
     }
 
     fun deleteCompound(compoundId : Int) {

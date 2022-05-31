@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { materials } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
+import { filterMaterials } from '../../../../Functions/Functions';
 
 const Materials = (props) => {
 
@@ -43,8 +44,10 @@ const Materials = (props) => {
   const { register, handleSubmit } = useForm();
 
   function submit(data) {
-    props.getMaterials(data)
-    console.log(data)
+    const materials = data.materials.filter(filterMaterials)
+    materials.other = data.other
+    console.log(materials)
+    props.getMaterials(materials)
   }
 
       return (
@@ -56,9 +59,9 @@ const Materials = (props) => {
                 {
                     materialsArray.map((materialObj,i)=>
                     <div>
-                        <div className='checkDiv'>
+                        <div className='checkDiv' key={i}>
                             <label for={`check_${i}`} >{materialObj.name}</label>
-                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={materialObj.id} {...register('id')}/>
+                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={materialObj.id} {...register(`materials[${i}][id]`)}/>
                         </div>
                     </div>
 
@@ -66,7 +69,7 @@ const Materials = (props) => {
                 }
                 <div className='checkDiv'>
                     <label for={`more`} > Others: </label>
-                    <textarea  name='more'  {...register('extra')}/>
+                    <textarea  name='more'  {...register('other')}/>
                 </div>   
             </fieldset>
             <div id='participantbtn'>

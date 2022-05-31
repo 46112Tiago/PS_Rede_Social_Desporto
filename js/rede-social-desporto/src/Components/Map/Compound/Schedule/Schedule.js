@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { filterSchedule } from '../../../../Functions/Functions';
 import { schedule } from '../../../../Model/Model';
 import './Schedule.css'
 
@@ -13,8 +14,9 @@ const Schedule = (props) => {
   myHeaders.append('Content-Type','application/json')
 
   function submit(data) {
-      props.getSchedule(data)
-      console.log(data)
+    const schedule = data.schedules.filter(filterSchedule)
+    props.getSchedule(schedule)
+    console.log(data)
   }
 
       return (
@@ -35,7 +37,7 @@ const Schedule = (props) => {
                       }
                     <div className='weekDaysBody'>
                         <label for={`optionalDescription`} > Others: </label>
-                        <textarea  name='optionalDescription'  {...register('optionalDescription')} placeholder='More informations: Holidays ... '/>
+                        <textarea  name='optionalDescription'  {...register('schedules[0][optionalDescription]')} placeholder='More informations: Holidays ... '/>
                     </div>   
             </fieldset>
             <div id='participantbtn'>
