@@ -3,6 +3,7 @@ import { compound } from '../../../Model/Model';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import "./MapComponent.css";
 import Marker from './Marker/Marker';
+import { verifyNewMarkers } from '../../../GoogleMaps/Geocoding';
 
 const MapComponent = (props) => { 
  
@@ -54,27 +55,30 @@ const MapComponent = (props) => {
       try {
         map.addListener('zoom_changed', async function() {
           var zoom = map.getZoom();
-          setZoom(zoom);
-          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${centerVal.lat}&centerLng=${centerVal.lng}`,options);
-          const resp = await req.json();
-          if(resp.length == 0) {
-            if(markersArray.length > 0) setMarkers(resp)
-            return
-          }setMarkers(resp)
-          
-        });
-        map.addListener('center_changed', async function() {
           var center = map.getCenter().toJSON();
-          setCenter(
-            center
-          );
-          console.log(center);
-          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoomEffect}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+          setZoom(zoom);
+          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
           const resp = await req.json();
           if(resp.length == 0) {
             if(markersArray.length > 0) setMarkers(resp)
             return
           }
+          if(markersArray.length > 0 && !verifyNewMarkers(markersArray,resp)) return
+          setMarkers(resp)
+          
+        });
+        map.addListener('center_changed', async function() {
+          var center = map.getCenter().toJSON();
+          var zoom = map.getZoom();
+          setCenter(center);
+          console.log(center);
+          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+          const resp = await req.json();
+          if(resp.length == 0) {
+            if(markersArray.length > 0) setMarkers(resp)
+            return
+          }
+          if(!verifyNewMarkers(markersArray,resp)) return
           setMarkers(resp)
           
           

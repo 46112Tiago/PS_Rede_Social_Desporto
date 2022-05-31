@@ -1,5 +1,5 @@
 begin;
-
+Select * from compound
 /* COMPOUND */
 --1)
 INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)

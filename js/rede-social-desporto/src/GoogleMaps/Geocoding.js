@@ -21,5 +21,14 @@ export function convertCoordinateToLocation(lat,lng) {
     );
 }
 
+export function verifyNewMarkers(currMarkerArray,newMarkerArray) {
+  if(currMarkerArray.length == newMarkerArray.length) {
+    currMarkerArray.map((compoundObj,key)=>{
+      if(compoundObj.id != newMarkerArray[key].id) return true
+    })
+  }
+  return false
+}
+
 
 
