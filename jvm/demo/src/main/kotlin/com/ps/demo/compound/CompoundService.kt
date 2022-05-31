@@ -17,7 +17,7 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
             compoundRepo.addMaterial(compoundId!!,material.id!!)
         }
         for (schedule in compound.schedule!!) {
-            if (schedule.id==null) break
+            if (schedule.weekday==null) break
             compoundRepo.addSchedule(compoundId!!,schedule)
         }
         return compoundId
