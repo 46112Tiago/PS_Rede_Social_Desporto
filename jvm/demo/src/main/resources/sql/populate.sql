@@ -355,7 +355,7 @@ VALUES (5,2,'pending');
 
 Select * from Schedule
 Select * from MATERIAL_COMPOUND
-
+Select * from compound
 commit;
 
 

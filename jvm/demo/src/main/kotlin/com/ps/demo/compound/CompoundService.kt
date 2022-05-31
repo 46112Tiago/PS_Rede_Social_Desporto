@@ -12,12 +12,12 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
 
     fun createCompound(compound : Compound) : Int? {
         val compoundId = compoundRepo.createCompound(compound)
-        if (compound.material == null || compound.material.isEmpty()) return compoundId
-        for (material in compound.material) {
+        for (material in compound.material!!) {
+            if (material.id==null) break
             compoundRepo.addMaterial(compoundId!!,material.id!!)
         }
-        if (compound.schedule == null || compound.schedule.isEmpty()) return compoundId
-        for (schedule in compound.schedule) {
+        for (schedule in compound.schedule!!) {
+            if (schedule.id==null) break
             compoundRepo.addSchedule(compoundId!!,schedule)
         }
         return compoundId

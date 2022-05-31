@@ -5,7 +5,7 @@ import "./MapComponent.css";
 import Marker from './Marker/Marker';
 import { verifyNewMarkers } from '../../../GoogleMaps/Geocoding';
 
-export let mapGlobal;
+export var mapGlobal;
 
 
 const MapComponent = (props) => { 
@@ -32,8 +32,7 @@ const MapComponent = (props) => {
         mapTypeId:google.maps.MapTypeId.SATELLITE
       }
       let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
-      mapGlobal = map;
-      
+      props.getMap(map)      
       markersArray.forEach(element => {
         const point = { lat : element.location.x, lng : element.location.y};
         const marker = new window.google.maps.Marker({

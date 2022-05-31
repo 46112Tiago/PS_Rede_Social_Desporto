@@ -14,7 +14,22 @@ const center = {
 };
 
 
+
+
+
 const Map = () => {
+
+  const getMap = (map) => {
+    setMap(map)
+  }
+  
+
+  const [map, setMap] = React.useState({});
+
+    React.useEffect(() => {
+   
+  },[map]);
+
   const render = (status) => {
     switch (status) {
       case Status.LOADING:
@@ -30,7 +45,7 @@ const Map = () => {
       <div id='wrapperContainer'>
         <SearchBox></SearchBox>      
         <Wrapper render={render} apiKey={""}> 
-          <MapComponent center={center} zoom={5}>
+          <MapComponent center={center} zoom={5} getMap={getMap}>
           </MapComponent>
         </Wrapper>
 
@@ -40,7 +55,7 @@ const Map = () => {
         <br/>
         <div id='suggestionBtn'>
           <div id='suggestionBtns'>
-            <CompoundModal></CompoundModal>
+            <CompoundModal map={map}></CompoundModal>
             <FieldModal></FieldModal>
           </div>
         </div>

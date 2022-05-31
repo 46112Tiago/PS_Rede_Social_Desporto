@@ -108,3 +108,7 @@ export let lookingPlayers = {
     participants : [],
     state : ''
 }
+
+export let mapGlobal = {
+    
+}

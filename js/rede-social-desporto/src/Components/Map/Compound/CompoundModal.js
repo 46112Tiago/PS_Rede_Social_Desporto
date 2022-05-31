@@ -7,7 +7,7 @@ import Materials from "./Materials/Materials";
 import Schedule from "./Schedule/Schedule";
 import './Confirm/ConfirmCompound.css'
 
-const CompoundModal = () => {
+const CompoundModal = (props) => {
 
 
   const getSchedule = (schedule) => {
@@ -22,7 +22,7 @@ const CompoundModal = () => {
     setCompound(compoundInfo)
   }
 
-  const [component, setComponent] = React.useState(<CompoundSuggestion getCompound={getCompound}/>);
+  const [component, setComponent] = React.useState(<></>);
   const [scheduleObj, setSchedule] = React.useState([{}]);
   const [materialObj, setMaterials] = React.useState([{}]);
   const [compoundObj, setCompound] = React.useState({});
@@ -43,9 +43,8 @@ const CompoundModal = () => {
           compoundObj.schedule = scheduleObj
           const token = await getAccessTokenSilently();
           myHeaders.append('Authorization',`Bearer ${token}`)
-          const geoLocation = await convertLocationToCoordinate(compoundObj.location)
          
-          compoundObj.location = {x:geoLocation.lat, y:geoLocation.lng}
+          compoundObj.location = {x:JSON.parse(compoundObj.location).lat, y:JSON.parse(compoundObj.location).lng}
           const options = {
               method: "POST",
               headers: myHeaders,
@@ -66,7 +65,7 @@ const CompoundModal = () => {
                 <div className="modal__content_compound">                   
                     <a href="#" className="modal__close">&times;</a>
                     <div className="radio" id="modalCheck" >
-                      <input label="Information" type="radio" id="information" name="compoundModal" value="information" onChange={() => {setComponent(<CompoundSuggestion getCompound={getCompound}/>)}} defaultChecked />
+                      <input label="Information" type="radio" id="information" name="compoundModal" value="information" onChange={() => {setComponent(<CompoundSuggestion map={props.map} getCompound={getCompound}/>)}}/>
                       <input label="Materials" type="radio" id="materials" name="compoundModal" value="materials" onChange={() => {setComponent(<Materials getMaterials={getMaterials}/>)}} />
                       <input label="Schedule" type="radio" id="schedule" name="compoundModal" value="schedule" onChange={() => {setComponent(<Schedule getSchedule={getSchedule}/>)}} />
                       <input label="Confirm" type="radio" id="confirm" name="compoundModal" value="confirm" onChange={() => {setComponent(<div id='submitCompound'><button onClick={submit} id='submitCompoundBtn'>CONFIRM</button></div>)}} />
