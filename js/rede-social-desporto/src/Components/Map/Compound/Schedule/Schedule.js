@@ -29,9 +29,9 @@ const Schedule = (props) => {
                         week.map((weekDay,key) => 
                           <div className='weekDaysBody'>
                             <label {...register(`schedules[${key}][weekday]`, {value : weekDay})}>{weekDay}</label>
-                            <input type='time' name="schedules[][openingHour]"  {...register(`schedules[${key}][openingHour]`)}/>
+                            <input type='time' name="schedules[][openingHour]" step={1}  {...register(`schedules[${key}][openingHour]`)}/>
                             <label>to</label>
-                            <input type='time' name={`schedules[][closingHour]`} {...register(`schedules[${key}][closingHour]`)}/>
+                            <input type='time' name={`schedules[][closingHour]`} step={1} {...register(`schedules[${key}][closingHour]`)}/>
                           </div>
                         )
                       }
