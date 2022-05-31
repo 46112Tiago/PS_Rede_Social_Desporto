@@ -1,5 +1,4 @@
 begin;
-Select * from compound
 /* COMPOUND */
 --1)
 INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
@@ -353,6 +352,10 @@ VALUES (4,1,'pending');
 --5)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (5,2,'pending');
+
+Select id from LOOKINGPLAYERS join LOOKINGPLAYERS_PARTICIPANTS on id = lookingId EXCEPT
+Select id from LOOKINGPLAYERS join LOOKINGPLAYERS_PARTICIPANTS on id = lookingId
+where creatorId = 18 OR participantId = 18
 
 commit;
 

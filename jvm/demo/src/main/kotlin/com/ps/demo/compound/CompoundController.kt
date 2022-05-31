@@ -20,6 +20,13 @@ class CompoundController(val compoundService: CompoundService) {
         return ResponseEntity(locations, HttpStatus.OK)
     }
 
+    @GetMapping("/looking/location")
+    fun getLookingLocations() : ResponseEntity<List<Compound?>?> {
+        val locations : List<Compound?>? = compoundService.getLookingLocations()
+        return ResponseEntity(locations, HttpStatus.OK)
+    }
+
+
     @GetMapping("/{compoundId}")
     fun getCompoundInfo(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<Compound?> {
         val compound : Compound = compoundService.getCompoundInformation(compoundId)

@@ -62,7 +62,7 @@ const Navigate = (props) => {
                         <div className='btnContainer'>
                             <button className='Looking activateModal_pending' onClick={()=>{
                                 props.getLookingPlayers(lookingMadeObj)
-                                props.getSports(lookingMadeObj.sports.name)
+                                props.getCompound(lookingMadeObj.compound)
                                 window.location.href = "#looking-modal"}}>Info</button>
                             <Participate lookingId={lookingMadeObj.id}/>
                         </div>            

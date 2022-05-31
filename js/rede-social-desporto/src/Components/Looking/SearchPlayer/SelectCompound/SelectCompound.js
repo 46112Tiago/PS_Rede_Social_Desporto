@@ -28,7 +28,7 @@ const SelectCompound = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/compound/location?zoom=2`,options);
+            const req =  await fetch(`http://localhost:8080/compound/looking/location`,options);
             const resp = await req.json();
             setCompound(resp);
             

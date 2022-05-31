@@ -61,7 +61,7 @@ const Confirmed = (props) => {
                     <div>
                         <button id="activateModal_pending" className='infoLooking'onClick={()=>{
                   props.getLookingPlayers(lookingObj)
-                  props.getSports(lookingObj.sports.name)
+                  props.getCompound(lookingObj.compound)
                   window.location.href = "#looking-modal"}}>Info</button>
                     </div>            
                 </div>

@@ -34,6 +34,10 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return locs;
     }
 
+    fun getLookingLocations() : List<Compound?>? {
+        return compoundRepo.getCompoundLocations()
+    }
+
     fun getCompoundInformation(compoundId : Int) : Compound? {
         return compoundRepo.getCompoundInformation(compoundId)
     }
