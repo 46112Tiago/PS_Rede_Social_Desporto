@@ -7,5 +7,5 @@ data class Schedule(
         val weekday : String?,
         val openingHour : Time?,
         val closingHour : Time?,
-        val optionalDescription : String?
+        val optionalDescription : String? = ""
 )

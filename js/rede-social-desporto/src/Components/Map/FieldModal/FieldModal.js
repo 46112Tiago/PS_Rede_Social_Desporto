@@ -4,6 +4,8 @@ import FieldSuggestion from "./FieldSuggestion/FieldSuggestion";
 
 class FieldModal extends React.Component {
 
+  
+
     render() {
       return (
         <div className="modalFieldBody">

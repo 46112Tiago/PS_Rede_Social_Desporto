@@ -44,6 +44,7 @@ const CompoundModal = () => {
           const token = await getAccessTokenSilently();
           myHeaders.append('Authorization',`Bearer ${token}`)
           const geoLocation = await convertLocationToCoordinate(compoundObj.location)
+         
           compoundObj.location = {x:geoLocation.lat, y:geoLocation.lng}
           const options = {
               method: "POST",

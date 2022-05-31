@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class CompoundService(val compoundRepo : CompoundRepoImplementation) {
 
-    private val AREA_MAP = mapOf(16 to 8, 15 to 16,14 to 32,13 to 64, 12 to 128);
+    private val AREA_MAP = mapOf(18 to 2, 17 to 4, 16 to 8, 15 to 16,14 to 32,13 to 64, 12 to 128);
 
     fun createCompound(compound : Compound) : Int? {
         val compoundId = compoundRepo.createCompound(compound)

@@ -5,7 +5,7 @@ import PostOText from './PostOText';
 
 const PostTemplate = (props) => {
 
-    let postTempaltes = props.images[0] ? <PostWImage post={props}/> : <PostOText post={props}/>
+    let postTempaltes = props.images ? <PostWImage post={props}/> : <PostOText post={props}/>
 
       return (
           <>

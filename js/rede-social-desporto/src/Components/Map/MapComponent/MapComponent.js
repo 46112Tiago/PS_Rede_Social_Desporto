@@ -5,9 +5,12 @@ import "./MapComponent.css";
 import Marker from './Marker/Marker';
 import { verifyNewMarkers } from '../../../GoogleMaps/Geocoding';
 
+export let mapGlobal;
+
+
 const MapComponent = (props) => { 
  
-
+    
     const ref = React.useRef();
   
     const [isLoading, setIsLoading] = React.useState(false);
@@ -15,6 +18,7 @@ const MapComponent = (props) => {
     const [markersArray, setMarkers] = React.useState([]);
     const [zoomEffect,setZoom] = React.useState(props.zoom);
     const [centerVal, setCenter] = React.useState(props.center);
+
 
     React.useEffect(() => {
       
@@ -24,10 +28,12 @@ const MapComponent = (props) => {
         zoom : zoomEffect,
         center : centerVal,
         minZoom : 3,
-        maxZoom : 15,
+        maxZoom : 17,
         mapTypeId:google.maps.MapTypeId.SATELLITE
       }
       let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
+      mapGlobal = map;
+      
       markersArray.forEach(element => {
         const point = { lat : element.location.x, lng : element.location.y};
         const marker = new window.google.maps.Marker({
@@ -71,7 +77,6 @@ const MapComponent = (props) => {
           var center = map.getCenter().toJSON();
           var zoom = map.getZoom();
           setCenter(center);
-          console.log(center);
           const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
           const resp = await req.json();
           if(resp.length == 0) {

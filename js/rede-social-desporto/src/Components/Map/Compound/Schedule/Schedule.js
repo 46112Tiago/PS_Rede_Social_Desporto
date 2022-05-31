@@ -37,7 +37,7 @@ const Schedule = (props) => {
                       }
                     <div className='weekDaysBody'>
                         <label for={`optionalDescription`} > Others: </label>
-                        <textarea  name='optionalDescription'  {...register('schedules[0][optionalDescription]')} placeholder='More informations: Holidays ... '/>
+                        <textarea  name='optionalDescription'  {...register('schedules[7][optionalDescription]')} placeholder='More informations: Holidays ... '/>
                     </div>   
             </fieldset>
             <div id='participantbtn'>

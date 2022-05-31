@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { compound } from '../../../../Model/Model';
+import { mapGlobal } from '../../MapComponent/MapComponent';
 import './CompoundSuggestion.css'
 
 const CompoundSuggestion = (props) => {
@@ -15,6 +16,32 @@ const CompoundSuggestion = (props) => {
         console.log(data)
     }
 
+    function pickLocation() {
+        window.location.href = "#";
+        let infoWindow;
+        let loc;
+        // Configure the click listener.
+        if(!mapGlobal) {
+            mapGlobal.addListener("click", (mapsMouseEvent) => {
+            // Close the current InfoWindow.
+            if(infoWindow != null) infoWindow.close(mapGlobal);
+
+            // Create a new InfoWindow.
+            infoWindow = new google.maps.InfoWindow({
+            position: mapsMouseEvent.latLng,
+            });
+            infoWindow.setContent(
+            JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+            );
+            loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
+            infoWindow.open(mapGlobal);
+            });
+        } 
+
+            
+        window.location.href = "#demo-modal";
+    }
+
       return (
         <div>
                 <h3>Suggest Compound</h3>
@@ -26,7 +53,8 @@ const CompoundSuggestion = (props) => {
                     </div>
                     <div className="form-group col">
                         <label>Location:</label>
-                        <input name="compoundLocation" type="text" {...register('location')} className="form-control" placeholder='Compound Location' required />
+                        <input type={'button'} className="form-control" name="compoundLocation" value="pick location" onClick={pickLocation}/>
+                        {/*<input name="compoundLocation" type="text" {...register('location')} className="form-control" placeholder='Compound Location' required />*/}
                     </div>
                     <div className="form-group col">
                         <label>Description:</label>
