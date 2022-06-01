@@ -5,14 +5,16 @@ import { FaCalendarDay, FaMapMarker, FaRunning } from 'react-icons/fa';
 
 const UserEventCard = (props) => {
 
-    const cancel = props.created == 'created' ? <CancelBtn id={props.id}/> : <></>
-  
+    const name = props.eventObj ? props.eventObj.name : ''
+    const id = props.eventObj ? props.eventObj.id : 0 
+    const cancel = props.created == 'created' ? <CancelBtn id={id}/> : <></>
+
       return (
         <div>
               <div className="cardEvents">
                 <div className="face face1">
                   <div className="contentEvent">
-                    <h3>Event name</h3>
+                    <h3>{name}</h3>
                     <p> <FaMapMarker></FaMapMarker> Localização</p> 
                     <p> <FaCalendarDay></FaCalendarDay> 01/04/2022</p>  
                     <p> <FaRunning></FaRunning> Modalidade</p>

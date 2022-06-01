@@ -353,7 +353,7 @@ VALUES (4,1,'pending');
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (5,2,'pending');
 
-Select * from Schedule
+Select * from EVENT
 Select * from MATERIAL_COMPOUND
 Select * from compound
 commit;

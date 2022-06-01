@@ -1,9 +1,15 @@
 package com.ps.demo.events
 
+import com.ps.data.Compound
 import com.ps.data.Event
+import com.ps.data.Post
+import com.ps.data.User
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
+import org.jdbi.v3.core.kotlin.KotlinMapper
 import org.jdbi.v3.core.kotlin.mapTo
+import org.jdbi.v3.core.mapper.RowMapperFactory
+import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.time.LocalDateTime
@@ -64,18 +70,83 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getEventDescription(eventId: Int): String? {
+    fun getUserEventsParticipating(userId : Int): List<Event>? {
 
-        val toReturn = jdbi.withHandle<Event,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select description " +
-                    "from EVENT " +
-                    "WHERE id = ?")
-                    .bind(0,eventId)
-                    .mapTo<Event>()
-                    .one()
+        val now = LocalDateTime.now()
+        val timestamp: Timestamp = Timestamp.valueOf(now)
+
+        val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select E.id, startDate, " +
+                    "plannedfinishDate, " +
+                    "E.name, limitParticipants, " +
+                    "S.name as sportName " +
+                    "from SPORTS S JOIN EVENT E " +
+                    "ON S.id  = E.sportID " +
+                    "JOIN EVENT_PARTICIPANT EP ON E.id = EP.eventId " +
+                    "JOIN USER_PROFILE U on EP.participantId = U.userid " +
+                    "WHERE active = ? AND startDate < ? AND participantId = ? "
+            )
+                .bind(0,true)
+                .bind(1, timestamp)
+                .bind(2,userId)
+                .mapTo<Event>()
+                .list()
         }
 
-        return toReturn.description
+        return toReturn
+    }
+
+    fun getUserEventsCreated(userId : Int): List<Event>? {
+
+        val now = LocalDateTime.now()
+        val timestamp: Timestamp = Timestamp.valueOf(now)
+
+        val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select E.id, startDate, " +
+                    "plannedfinishDate, " +
+                    "E.name, limitParticipants, " +
+                    "S.name as sportName " +
+                    "from SPORTS S JOIN EVENT E " +
+                    "ON S.id  = E.sportID " +
+                    "WHERE active = ? AND startDate > ? AND creatorId = ? "
+            )
+                .bind(0,true)
+                .bind(1, timestamp)
+                .bind(2,userId)
+                .mapTo<Event>()
+                .list()
+        }
+
+        return toReturn
+    }
+
+    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
+        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
+    }
+
+    fun getEventDescription(eventId: Int): Event? {
+
+        val toReturn = jdbi.withHandle<Event,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select E.description as e_description, E.id as e_id, " +
+                    "location as c_location, C.id as c_id " +
+                    "from EVENT E JOIN COMPOUND C ON compoundId = C.id " +
+                    "WHERE E.id = ?")
+                    .bind(0,eventId)
+                .registerRowMapper(factory(Event::class.java, "e"))
+                .registerRowMapper(factory(Compound::class.java, "c"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Event?>, rowView: RowView ->
+                    val event = map.computeIfAbsent(rowView.getColumn("e_id", Int::class.javaObjectType)) {
+                        rowView.getRow(Event::class.java)
+                    }
+
+                    if (rowView.getColumn("c_id", Int::class.javaObjectType) != null) {
+                        event!!.compound = rowView.getRow(Compound::class.java)
+                    }
+                    map
+                }[eventId]
+        }
+
+        return toReturn
     }
 
 

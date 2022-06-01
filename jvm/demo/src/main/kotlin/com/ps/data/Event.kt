@@ -7,14 +7,14 @@ import java.sql.Timestamp
 
 data class Event(
     val id : Int?,
-    val field : Field?,
-    val compound : Compound?,
+    var field : Field?,
+    var compound : Compound?,
     val startDate : Timestamp?,
     val plannedfinishDate : Timestamp?,
     val name : String?,
-    val sport : Sports?,
+    var sport : Sports?,
     val description : String?,
-    val participants : List<User>?,
-    val creator : User?,
+    var participants : List<User>?,
+    var creator : User?,
     val limitParticipants : Int?
 )

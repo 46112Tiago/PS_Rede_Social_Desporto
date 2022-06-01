@@ -15,7 +15,7 @@ const ParticipateEvent = (props) => {
       headers: myHeaders,
       mode: 'cors',
     };
-    const response = await fetch(`http://localhost:8080/user/1/event/${props.eventId}`, options)
+    const response = await fetch(`http://localhost:8080/user/${window.name}/event/${props.eventId}`, options)
 
 }
 

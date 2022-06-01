@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { event } from "../../../Model/Model"
+import { useAuth0 } from "@auth0/auth0-react";
 import './UserEventForm.css'
+import SelectCompound from '../../Looking/SearchPlayer/SelectCompound/SelectCompound';
+import SelectSport from '../../Looking/SearchPlayer/SelectSport/SelectSport';
 
 const UserEventForm = () => {
 
+    const getCompound = (compound) => {
+        setCompound(compound)
+    }
+    
+    const getSport = (sport) => {
+        setSport(sport)
+    }
+
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-
+  const [compoundObj, setCompound] = React.useState("");
+  const [sportObj, setSport] = React.useState("");
   // user state for form
   const [eventObj, setEvent] = useState(event);
+  const {getAccessTokenSilently} = useAuth0();
 
   // effect runs on component mount
   useEffect(() => {
@@ -20,8 +33,14 @@ const UserEventForm = () => {
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
+  async function submit(data) {
 
+    data.sport = {id:parseInt(sportObj)}
+    data.compound = {id:parseInt(compoundObj)}
+    data.creator = {userId:parseInt(window.name)}
+    data.field = {id:5}
+    const token = await getAccessTokenSilently();
+    myHeaders.append('Authorization',`Bearer ${token}`)
     const options = {
         method: "POST",
         headers: myHeaders,
@@ -45,11 +64,11 @@ const UserEventForm = () => {
                           </div>
                           <div className="eventInput">
                               <label className='labelEvent'>Starting day</label>
-                              <input name="startDate" type="text" {...register('startDate')}  placeholder='Start Date' required></input>
+                              <input name="startDate" type="text" {...register('startDate')}  placeholder='23/05/2019 11:00:00' required></input>
                           </div>
                           <div className="eventInput">
                               <label className='labelEvent'>Ending day</label>
-                              <input name="plannedfinishDate" type="text" {...register('plannedfinishDate')}  placeholder='End Date' required></input>
+                              <input name="plannedfinishDate" type="text" {...register('plannedfinishDate')}  placeholder='23/05/2019 11:00:00' required></input>
                           </div>
                           <div className="eventInput">
                               <label className='labelEvent'>Description</label>
@@ -61,19 +80,11 @@ const UserEventForm = () => {
                           </div>
                           {/*Pass this to a component andd use a get to retrieve all the fields to include as options*/}
                           <div className="eventInput">
-                              <label className='labelEvent'>Location</label>
-                            <input list='field' name="field" type="text" {...register('field')}/>
-                              <datalist id='field' required>
-                                <option value={'Lisbon'}></option>
-                              </datalist>
+                            <SelectCompound getCompound={getCompound}></SelectCompound>
                           </div>
                           {/*Pass this to a component andd use a get to retrieve all the sports to include as options*/}
                           <div className="eventInput">
-                              <label className='labelEvent'>Sport</label>
-                            <input list='sports' name="sport" type="text" {...register('sport')}/>
-                              <datalist id='sports'  required>
-                                <option value={'Tenis'}></option>
-                              </datalist>
+                            <SelectSport getSport={getSport}></SelectSport>
                           </div>
                       <div className="form-row" id='submitEvent'>
                           <button type="submit" id='submitEventBtn'>Submit</button>
