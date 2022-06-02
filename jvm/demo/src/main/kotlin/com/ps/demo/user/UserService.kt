@@ -33,6 +33,10 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun editUserProfile(userId: Int, user: User) : Int {
+        if (user.sports!!.isNotEmpty()) {
+            for (sport in user.sports!!)
+                userRepo.addUserSport(userId,sport.id!!)
+        }
         return userRepo.editUserProfile(userId,user)
     }
 
@@ -49,7 +53,10 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun getUsersByName(userName : String,page : Int) : List<User?>? {
         val splitName = userName.split(" ")
-        return userRepo.getUsersByName(splitName[0],splitName[1],page)
+        val firstName = splitName[0]
+        var lastName = ""
+        if (splitName.size > 1) lastName =  splitName[1]
+        return userRepo.getUsersByName(firstName,lastName,page)
     }
 
     fun isFriend(userId: Int, friendId: Int) : Optional<User>? {

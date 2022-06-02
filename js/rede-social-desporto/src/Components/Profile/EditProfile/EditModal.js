@@ -2,19 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import './EditModal.css'
 import {MdEdit} from 'react-icons/md'
+import { useAuth0 } from "@auth0/auth0-react";
+import { sport } from '../../../Model/Model';
+import AddSportUser from './AddSportUser/AddSportUser';
+import { converttoSportsArray } from '../../../Functions/Functions';
+import { sportArrayId } from './AddSportUser/AddSportUser';
 
-
-const EditModal = () => {
-
+const EditModal = (props) => {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-
+  const {getAccessTokenSilently} = useAuth0()
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
-  function submit(data) {
 
+  async function submit(data) {
+
+    const token = await getAccessTokenSilently()
+    myHeaders.append('Authorization',`Bearer ${token}`)
+    const newEditSport = converttoSportsArray(sportArrayId)
+    data.sports = newEditSport
     const options = {
         method: "PUT",
         headers: myHeaders,
@@ -22,10 +30,10 @@ const EditModal = () => {
         body:JSON.stringify(data)
     };
     console.log(options.body)
-
-    fetch('http://localhost:8080/user/3', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const response = await fetch(`http://localhost:8080/user/${window.name}`, options)
+    props.edit(true)
+    window.location.href = "#"
+    
 }
 
   
@@ -44,16 +52,7 @@ const EditModal = () => {
                         <br/><br/>
                         <label>Desportos:</label>
                         <br/><br/>
-                        <fieldset>
-                            <label>Basketball</label>
-                            <input type={'checkbox'} name="sports" value="Basketball"/>
-                            <label>Football</label>
-                            <input type={'checkbox'} name="sports" value="Football"/>
-                            <label>Tenis</label>
-                            <input type={'checkbox'} name="sports" value="Tenis"/>
-                            <label>Padel</label>
-                            <input type={'checkbox'} name="sports" value="Padel"/>
-                        </fieldset>
+                        <AddSportUser />
                         <br/><br/>
                         <label>Available:</label>
                         <br/><br/>

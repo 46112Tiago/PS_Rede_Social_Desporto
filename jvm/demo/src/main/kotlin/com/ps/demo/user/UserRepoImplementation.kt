@@ -1,6 +1,7 @@
 package com.ps.demo.user
 
 import com.ps.data.Image
+import com.ps.data.Sports
 import com.ps.data.User
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
@@ -81,6 +82,17 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         }
     }
 
+    fun addUserSport(userId: Int, sportId: Int) {
+        jdbi.useHandle<RuntimeException> { handle: Handle ->
+                handle.createUpdate("insert into " +
+                        "USER_SPORTS(userId,sportId) " +
+                        "values(?,?)")
+                    .bind(0,userId)
+                    .bind(1,sportId)
+                    .execute()
+        }
+    }
+
     fun editUserProfile(userId: Int, user: User) : Int {
         jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("UPDATE USER_PROFILE SET city = ? , available = ? WHERE userId = ?")
@@ -119,14 +131,14 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return friendId
     }
 
-    fun getUsersByName(firstName: String, lastNAme: String,page : Int): List<User?>? {
+    fun getUsersByName(firstName: String, lastName: String,page : Int): List<User?>? {
         val toReturn = jdbi.withHandle<List<User?>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select userId, firstName, lastName " +
                     "from USER_PROFILE" +
-                    " where firstName = ? AND lastName = ? " +
+                    " where firstName LIKE ? AND lastName LIKE ? " +
                     "LIMIT 2 OFFSET ? ")
-                .bind(0,firstName)
-                .bind(1,lastNAme)
+                .bind(0, "$firstName%")
+                .bind(1, "$lastName%")
                 .bind(2,page)
                 .mapTo<User>().list()
         }

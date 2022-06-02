@@ -4,8 +4,8 @@ import java.sql.Timestamp
 
 data class User constructor(
     val userId : Int?,
-    val firstName : String?,//= "unknown",
-    val lastName : String?, //= "unknown",
+    val firstName : String? = "",//= "unknown",
+    val lastName : String? = "", //= "unknown",
     val city : String?, //= "unknown",
     val birthdate : Timestamp?, //= Date(20000603),
     //val profilepic : String?,   //? = "unknown",
@@ -13,7 +13,7 @@ data class User constructor(
     val available : Boolean?, //= false,
     val gender : String?, //= "unknown",
     //TODO
-    //val sports : List<String>?, //= listOf(),
+    var sports : List<Sports>? = listOf(),
     ///val groups : List<Group>?, //= listOf(),
     var friends : List<User>?, //= listOf(),
     //val events : List<Event>? //= listOf(),

@@ -27,7 +27,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
             handle.createQuery("Select EVENT.id, startDate, plannedfinishDate, EVENT.name, limitParticipants, " +
                     "sportId, EVENT.compoundId, fieldId " +
                     "from EVENT JOIN FIELD ON EVENT.fieldId = FIELD.id  " +
-                    "WHERE active = ? AND startDate < ? " +
+                    "WHERE active = ? AND startDate > ? " +
                     "LIMIT 2 OFFSET ? "
             )
                     .bind(0,true)
@@ -54,7 +54,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "ON sports.id  = event.sportID " +
                     "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
                     "JOIN USER_PROFILE userProfile on eventParticipant.participantId = userProfile.userid " +
-                    "WHERE active = ? AND startDate < ? AND userProfile.userid = ? AND event.id " +
+                    "WHERE active = ? AND startDate > ? AND userProfile.userid = ? AND event.id " +
                     "LIMIT 2 OFFSET ? "
 
             )
@@ -84,7 +84,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "ON S.id  = E.sportID " +
                     "JOIN EVENT_PARTICIPANT EP ON E.id = EP.eventId " +
                     "JOIN USER_PROFILE U on EP.participantId = U.userid " +
-                    "WHERE active = ? AND startDate < ? AND participantId = ? "
+                    "WHERE active = ? AND startDate > ? AND participantId = ? "
             )
                 .bind(0,true)
                 .bind(1, timestamp)

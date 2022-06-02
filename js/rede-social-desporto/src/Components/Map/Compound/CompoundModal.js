@@ -53,6 +53,7 @@ const CompoundModal = (props) => {
           };
       
           const response = fetch('http://localhost:8080/compound', options)
+          window.location.reload()
       }
 
       return (

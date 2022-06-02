@@ -11,10 +11,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const StaticProfile = () => {
 
+  const editResponse = (data) => {
+    setEdit(data)
+  } 
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [userObj, setUser] = React.useState({});
+  const [edit, setEdit] = React.useState(false)
   const {user,getAccessTokenSilently} = useAuth0()
   const myHeaders = new Headers()
 
@@ -47,7 +51,7 @@ const StaticProfile = () => {
     };
 
     if (!isLoading) makeRequest();
-  },[]);
+  },[edit]);
 
     return (
       <div id='Profile'>
@@ -61,7 +65,7 @@ const StaticProfile = () => {
             </div>
             <div id='modifyProfileBtn'>
               <div id='editModal'>
-                <EditModal></EditModal>
+                <EditModal edit={editResponse}></EditModal>
               </div>
               <div>
                 <DeleteAccount></DeleteAccount>
@@ -75,7 +79,7 @@ const StaticProfile = () => {
               <h3>Info:</h3>
               <p>{userObj.birthdate}</p>
               <p>{userObj.city}</p>
-              <p>Disponibilidade: {userObj.available}</p>
+              <p>Disponibilidade: {userObj.available?'Yes':'No'}</p>
               <SportsModal></SportsModal>
 
             </div>
