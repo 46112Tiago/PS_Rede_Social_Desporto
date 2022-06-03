@@ -23,6 +23,7 @@ export let group = {
 }
 
 export let event = {
+    id : 0,
     field : {},
     compound : {},
     startDate : '',

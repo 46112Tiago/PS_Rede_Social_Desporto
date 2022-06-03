@@ -2,34 +2,54 @@ import React from 'react';
 import './UserEventCard.css'
 import CancelBtn from './CancelBtn/CancelBtn';
 import { FaCalendarDay, FaMapMarker, FaRunning } from 'react-icons/fa';
+import ReadModal from './ReadModal/ReadModal';
+import ReadBtn from './ReadModal/ReadBtn/ReadBtn';
 
 const UserEventCard = (props) => {
+
+    const getInfo = (data) => {
+      setInfo(data)
+    }
+
+    const getLocation = (data) => {
+      setLocation(data)
+    }
+
+    const [location, setLocation] = React.useState("");
+    const [info, setInfo] = React.useState({});
+
+    React.useEffect(() => {
+
+    },[]);
 
     const name = props.eventObj ? props.eventObj.name : ''
     const id = props.eventObj ? props.eventObj.id : 0 
     const cancel = props.created == 'created' ? <CancelBtn id={id}/> : <></>
-
+    const sport = props.eventObj.sport ? props.eventObj.sport.name : ''
+    const readMe = <ReadModal eventObj={info} locationEvent={location}/>   
+    
       return (
-        <div>
+        <>
+          <div>
               <div className="cardEvents">
                 <div className="face face1">
                   <div className="contentEvent">
                     <h3>{name}</h3>
-                    <p> <FaMapMarker></FaMapMarker> Localização</p> 
-                    <p> <FaCalendarDay></FaCalendarDay> 01/04/2022</p>  
-                    <p> <FaRunning></FaRunning> Modalidade</p>
+                    <p> <FaRunning></FaRunning> {sport}</p>
                   </div>
                 </div>
                 <div className="face face2">
                       <div className="contentEvent">
-                        <p>Summary</p>
                         {/*Add in the read me the image and the description in a pop up */}
-                        <a href="#">Read me</a>
+                        <ReadBtn eventId={id} getLocation={getLocation} getInfo={getInfo}/>
                         {cancel}
                       </div>
                   </div>
               </div>              
-        </div>
+          </div>
+          {readMe}
+          
+        </>
       );
     }
   

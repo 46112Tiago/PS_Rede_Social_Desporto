@@ -8,14 +8,14 @@ import PagingText from "../../../Paging/PagingText";
 
 const CommentModal = (props) => {
 
-  const setNewLimit = (newLimit) => {
-    setLimit(newLimit)
+  const setNewPage = (pageN) => {
+    setPage(pageN)
   }
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [commentArray, setComment] = React.useState([comment]);
-    const [limit, setLimit] = React.useState(10);
+    const [page, setPage] = React.useState(0);
     const {getAccessTokenSilently} = useAuth0();
 
       // Keep the above values in sync, this will fire
@@ -35,9 +35,10 @@ const CommentModal = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.key}/comment?limit=?${limit}`,options);
+            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.key}/comment?page=${page}`,options);
             const resp = await req.json();
-            setComment(resp);
+            const newCommentArray = commentArray.concat(resp)
+            setComment(newCommentArray);
           } catch (err) {
             setError(err);
             //console.log(err);
@@ -48,7 +49,7 @@ const CommentModal = (props) => {
         };
     
         if (!isLoading) makeRequest();
-      },[limit]);
+      },[page]);
 
       return (
         <div id="modalComment">
@@ -72,7 +73,7 @@ const CommentModal = (props) => {
                             </div>    
                         </div>
                     )}
-                    <PagingText limit={limit} setNewLimit={setNewLimit}/>
+                    <PagingText page={page} setPage={setNewPage}/>
                 </div>
             </div>
         </div>

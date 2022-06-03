@@ -3,13 +3,13 @@ import './PagingText.css'
 
 const PagingText = (props) => {
 
-    function limit() {
-        props.setNewLimit(props.limit+10)
+    function page() {
+        props.setNewPage(props.page+1)
     }
 
     return (
       <div id="pagingTextBody">
-        <button id="pagingMore" onClick={limit}>More</button>
+        <button id="pagingMore" onClick={page}>More</button>
       </div>
     );
   }

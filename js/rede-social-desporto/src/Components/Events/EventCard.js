@@ -6,6 +6,9 @@ import ParticipateEvent from './Participate/ParticipateEvent';
 
 const EventCard = (props) => {
   
+    const participate = window.name ? <ParticipateEvent eventId={props.eventObj.id}></ParticipateEvent> : <></>
+
+
       return (
           <div id='evnetCardCon'>
             <div id='eventCardContainer'>
@@ -33,7 +36,7 @@ const EventCard = (props) => {
                     </div>
                     <br></br>
                     <div>
-                        <ParticipateEvent eventId={props.eventObj.id}></ParticipateEvent>
+                        {participate}
                     </div>
 
                 </div>

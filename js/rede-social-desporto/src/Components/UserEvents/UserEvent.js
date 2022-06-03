@@ -7,17 +7,21 @@ import Paging from '../Paging/Paging';
 const UserEvent = () => {
   
 const [component, setComponent] = React.useState(<UserEventCreated/>);
-
+const [changeComponent, setChange] = React.useState(0);
 
   React.useEffect(() => {
-
-  },[component]);
+    console.log(1)
+  },[changeComponent]);
 
       return (
         <div>
           <div className="radio" >
-            <input label="Created" type="radio" id="created" name="eventUser" value="created" onChange={() => {setComponent(<UserEventCreated/>)}} defaultChecked/>
-            <input label="Participating" type="radio" id="participating" name="eventUser" value="participating" onChange={() => {setComponent(<UserEventParticipating/>)}}/>
+            <input label="Created" type="radio" id="created" name="eventUser" value="created" onChange={() => {
+              setChange(1)
+              setComponent(<UserEventCreated/>)}} defaultChecked/>
+            <input label="Participating" type="radio" id="participating" name="eventUser" value="participating" onChange={() => {
+              setChange(2)
+              setComponent(<UserEventParticipating/>)}}/>
           </div>
           {component}
           <Paging/>

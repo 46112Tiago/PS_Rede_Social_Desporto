@@ -10,6 +10,11 @@ import ConversationStart from '../ConversationStart';
 
 const FriendsMessage = () => {
   
+  const getConversation = (idMsg) => {
+    setId(idMsg)
+    console.log(idMsg)
+  }
+
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
@@ -36,7 +41,7 @@ const FriendsMessage = () => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/friend`,options);
+          const req =  await fetch(`http://localhost:8080/user/${window.name}/friend?page=0`,options);
           const resp = await req.json();
           setUser(resp);
         }
@@ -52,11 +57,7 @@ const FriendsMessage = () => {
     if (!isLoading) makeRequest();
   },[id]);
 
-  let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle dropdown={false} href={`http://localhost:8080/user/1/message/${id}`}/>
-
-  const getConversation = (idMsg) => {
-    setId(idMsg)
-  }
+  let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle dropdown={false} friendId={id} messageType={"friend"}/>
 
       return (
         <div>

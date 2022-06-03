@@ -46,9 +46,10 @@ const UserEventCreated = () => {
 
         
             <div className='containerEvents'>
-              {eventArray.map((eventObj,i) => 
+              {eventArray.map((eventObj,i) => {
+                if(eventObj.id != 0){
                   <UserEventCard key={i} created={'created'} eventObj={eventObj}></UserEventCard>
-              )}
+                }})}
                 <UserCreateEvent></UserCreateEvent>
             </div>
       );

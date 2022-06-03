@@ -7,18 +7,12 @@ export async function convertLocationToCoordinate(location) {
     return response.results[0].geometry.location;
 }
 
-export function convertCoordinateToLocation(lat,lng) {
-    Geocode.setApiKey("AIzaSyB0tHJzsQnA8ouGvVxgEFXwMf-DZOIB74Y")
+export async function convertCoordinateToLocation(lat,lng) {
+    Geocode.setApiKey("AIzaSyAVSmVENW74eRGPzPmTe5yru9TppT6SLpY")
     Geocode.enableDebug();
-    Geocode.fromLatLng(lat, lng).then(
-        (response) => {
-          const address = response.results[0].formatted_address;
-          console.log(address);
-        },
-        (error) => {
-          console.error(error);
-        }
-    );
+    const response = await Geocode.fromLatLng(lat, lng)
+    const resp = await response.results[0].formatted_address
+    return resp;
 }
 
 export function verifyNewMarkers(currMarkerArray,newMarkerArray) {

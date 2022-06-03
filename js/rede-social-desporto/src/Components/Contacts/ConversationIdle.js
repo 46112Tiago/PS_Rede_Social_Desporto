@@ -35,8 +35,12 @@ const ConversationIdle = (props) => {
               headers: myHeaders,
               mode: 'cors',
           };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
-          const resp = await req.json();
+          let req
+          if(props.messageType == "group")
+            req = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+          else
+            req = await fetch(`http://localhost:8080/user/${window.name}/message/${props.friendId}`,options);
+            const resp = await req.json();
           setMessage(resp);
         } catch (err) {
           setError(err);
@@ -56,7 +60,7 @@ const ConversationIdle = (props) => {
             <h3 id='nameConvo'>Friend/Group name</h3>
             <hr id='lineConvo'/>
             <div id='containercontact'>
-              <InputText groupId={props.groupId}></InputText>
+              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType}></InputText>
               <div id='overflowText'>
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}

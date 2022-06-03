@@ -14,7 +14,6 @@ import ParticipantModal from './ParticipantModal/ParticipantModal';
 const Groups = () => {
 
   const getConversation = (idMsg) => {
-    window.localStorage.setItem('groupId',idMsg)
     setId(idMsg)
     groupArray.forEach(groupObj=>{
       if(groupObj.owner.userId == window.name){
@@ -65,7 +64,7 @@ const Groups = () => {
       if (!isLoading) makeRequest();
     },[id]);
 
-    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner} groupId={id} dropdown={true}/>
+    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner} groupId={id} dropdown={true} messageType={"group"}/>
 
       return (
           <div>

@@ -85,7 +85,7 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                             post!!.user = rowView.getRow(User::class.java)
                         }
                         map
-                    }[1]
+                    }[postId]
         }
 
         return toReturn

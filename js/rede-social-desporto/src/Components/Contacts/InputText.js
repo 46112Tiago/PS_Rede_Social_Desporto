@@ -35,9 +35,10 @@ const InputText = (props) => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-
-    const req =  await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
-
+    if(props.sendTo == "group")
+      await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+    else
+    await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
 }
 
       return (
