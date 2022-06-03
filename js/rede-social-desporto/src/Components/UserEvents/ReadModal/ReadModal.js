@@ -7,11 +7,6 @@ const ReadModal = (props) => {
   const lat = props.eventObj.compound ? props.eventObj.compound.location.x : 0
   const lng = props.eventObj.compound ? props.eventObj.compound.location.y : 0
 
-  React.useEffect(() => {
-    
-
-  },[props.eventObj.id]);
-
       return (
         <div>
             <div id="user-event" className="modal">

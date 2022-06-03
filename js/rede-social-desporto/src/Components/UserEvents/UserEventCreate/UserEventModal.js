@@ -3,9 +3,8 @@ import { HiPlus } from 'react-icons/hi';
 import './UserEventModal.css'
 import UserEventForm from "./UserEventForm";
 
-class UserEventModal extends React.Component {
+const UserEventModal = (props) => {
 
-    render() {
       return (
         <div>
             <div>
@@ -14,7 +13,7 @@ class UserEventModal extends React.Component {
             
             <div id="demo-modal" className="modal_userEvent">
                 <div className="modal__content_userEvent">
-                   <UserEventForm></UserEventForm>
+                   <UserEventForm created={props.created}></UserEventForm>
                     <a href="#" className="modal__close">&times;</a>
                 </div>
 
@@ -23,6 +22,5 @@ class UserEventModal extends React.Component {
 
       );
     }
-  }
 
   export default UserEventModal

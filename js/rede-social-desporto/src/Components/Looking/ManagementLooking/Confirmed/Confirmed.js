@@ -55,7 +55,7 @@ const Confirmed = (props) => {
         {lookingMadeArray.map((lookingObj,key)=>{
             return(
             <div className='cardContainer' key={key}>
-                <div className="card pending">
+                <div className="card confirmed">
                     <p>{lookingObj.creator.firstName} {lookingObj.creator.lastName}</p>
                     <img src={require('../../img/default_profile.jpg')} id='photoLooking'></img>
                     <div>

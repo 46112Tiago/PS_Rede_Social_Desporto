@@ -36,15 +36,16 @@ const Accept = (props) => {
               const req =  await fetch(`http://localhost:8080/lookingPlayers/accept/${window.name}?page=${page}`,options);
               const resp = await req.json();
               const response = resp[0]
-              if(!response) return
+              if(!response) {
+                setForward(false)
+                return
+              }
+
               setLookingInfo(response)
               setLooking(response.participants)
               setSport(response.sports.name)
-              if(!response.participants[0]){
-                setForward(false)
-              }else{
-                setForward(true)
-              }
+              setForward(true)
+              
             } catch (err) {
               setError(err);
               //console.log(err);
@@ -60,7 +61,7 @@ const Accept = (props) => {
     return (
     <>
             {lookingMadeArray.map((lookingObj,key)=>{
-                return(
+              if(lookingObj.id != 0){
                     <div className='cardContainer' key={key}>
                         <div className="card accept">
                         <p>{lookingObj.firstName} {lookingObj.lastName}</p>
@@ -74,7 +75,7 @@ const Accept = (props) => {
                             </div>            
                         </div>
                     </div>
-            )})}
+            }})}
 
         <div id='pagingMade'>
             <Paging paging={setPaging} page={page} forward={forward}/>     

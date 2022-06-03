@@ -6,7 +6,7 @@ import './UserEventForm.css'
 import SelectCompound from '../../Looking/SearchPlayer/SelectCompound/SelectCompound';
 import SelectSport from '../../Looking/SearchPlayer/SelectSport/SelectSport';
 
-const UserEventForm = () => {
+const UserEventForm = (props) => {
 
     const getCompound = (compound) => {
         setCompound(compound)
@@ -48,9 +48,10 @@ const UserEventForm = () => {
         body:JSON.stringify(data)
     };
 
-    fetch('http://localhost:8080/event', options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const response = await fetch('http://localhost:8080/event', options)
+    const resp = await response.json()
+    props.created(resp)
+    window.location.href = "#"
 }
 
   return (

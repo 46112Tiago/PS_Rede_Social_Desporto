@@ -1,15 +1,13 @@
 import React from 'react';
 import './UserCreateEvent.css'
 import UserEventModal from './UserEventModal';
-class UserCreateEvent extends React.Component {
+const UserCreateEvent = (props) => {
   
-    render() {
       return (
             <div className="cardCreateEvents">
-                <UserEventModal></UserEventModal>
+                <UserEventModal created={props.created}></UserEventModal>
             </div>
       );
     }
-  }
 
   export default UserCreateEvent

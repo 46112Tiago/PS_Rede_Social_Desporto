@@ -64,6 +64,7 @@ const Made = (props) => {
                 <button className='Looking' onClick={()=>{
                   props.getLookingPlayers(lookingMadeObj)
                   props.getCompound(lookingMadeObj.compound)
+                  props.getParticipants(lookingMadeObj.participants)
                   window.location.href = "#looking-modal"}}>Info</button>
                 <Cancel lookingId={lookingMadeObj.id}/>
             </div>            

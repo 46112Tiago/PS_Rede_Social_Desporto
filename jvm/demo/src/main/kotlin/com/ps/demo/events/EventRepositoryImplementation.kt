@@ -67,7 +67,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getUserEventsParticipating(userId : Int): List<Event?>? {
+    fun getUserEventsParticipating(userId : Int, page: Int): List<Event?>? {
 
         val now = LocalDateTime.now()
         val timestamp: Timestamp = Timestamp.valueOf(now)
@@ -83,11 +83,13 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "JOIN COMPOUND C ON C.id = E.compoundId " +
                     "JOIN EVENT_PARTICIPANT EP ON E.id = EP.eventId " +
                     "JOIN USER_PROFILE U on EP.participantId = U.userid " +
-                    "WHERE active = ? AND startDate > ? AND participantId = ? "
+                    "WHERE active = ? AND startDate > ? AND participantId = ? " +
+                    "LIMIT 10 OFFSET ?"
             )
                 .bind(0,true)
                 .bind(1, timestamp)
                 .bind(2,userId)
+                .bind(3,page*10)
                 .registerRowMapper(factory(Event::class.java, "e"))
                 .registerRowMapper(factory(Sports::class.java, "s"))
                 .registerRowMapper(factory(Compound::class.java, "c"))
@@ -111,7 +113,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getUserEventsCreated(userId : Int): List<Event?>? {
+    fun getUserEventsCreated(userId : Int, page: Int): List<Event?>? {
 
         val now = LocalDateTime.now()
         val timestamp: Timestamp = Timestamp.valueOf(now)
@@ -125,11 +127,13 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "from SPORTS S JOIN EVENT E " +
                     "ON S.id  = E.sportID " +
                     "JOIN COMPOUND C ON C.id = E.compoundId " +
-                    "WHERE active = ? AND startDate > ? AND creatorId = ? "
+                    "WHERE active = ? AND startDate > ? AND creatorId = ? " +
+                    "LIMIT 9 OFFSET ?"
             )
                 .bind(0,true)
                 .bind(1, timestamp)
                 .bind(2,userId)
+                .bind(3,page*9)
                 .registerRowMapper(factory(Event::class.java, "e"))
                 .registerRowMapper(factory(Sports::class.java, "s"))
                 .registerRowMapper(factory(Compound::class.java, "c"))

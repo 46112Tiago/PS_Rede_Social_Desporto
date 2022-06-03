@@ -351,11 +351,11 @@ INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (4,1,'pending');
 --5)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
-VALUES (5,2,'pending');
+VALUES (2,2,'pending');
 
 Select * from User_profile where firstName LIKE 'T%' AND lastName LIKE '%'
 Select * from MATERIAL_COMPOUND
-Select * from compound
+Select * from LOOKINGPLAYERS L JOIN LOOKINGPLAYERS_PARTICIPANTS LP ON L.id = LP.lookingId
 commit;
 
 

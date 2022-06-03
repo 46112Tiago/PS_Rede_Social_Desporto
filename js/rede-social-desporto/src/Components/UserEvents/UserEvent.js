@@ -2,7 +2,6 @@ import React from 'react';
 import './UserEvent.css'
 import UserEventParticipating from './UserEventParticipating/UserEventParticipating';
 import UserEventCreated from './UserEventCreated/UserEventCreated';
-import Paging from '../Paging/Paging';
 
 const UserEvent = () => {
   
@@ -24,7 +23,6 @@ const [changeComponent, setChange] = React.useState(0);
               setComponent(<UserEventParticipating/>)}}/>
           </div>
           {component}
-          <Paging/>
         </div>
       );
     }

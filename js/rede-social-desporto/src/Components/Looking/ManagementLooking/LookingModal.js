@@ -8,6 +8,7 @@ const LookingModal = (props) => {
       const parking = props.compound.parking ? 'Yes' : 'No'
       const dressingRoom = props.compound.dressingRoom == "N" ? 'No' : 'Yes'
       const sportName = props.sport ? props.sport.name : ''
+      const participants = props.participants ? props.participants : []
 
       return (
         <div>
@@ -20,6 +21,12 @@ const LookingModal = (props) => {
                     <p>Compound: <a href={`https://www.google.com/maps/@${lat},${lng},15z`} target='_blank'>{props.compound.name}</a></p>
                     <p>Parking: {parking}</p>
                     <p>Dressing Room: {dressingRoom}</p>
+                    <h4>Participants:</h4>
+                    <ul>
+                    {participants.map((participantsObj,key)=>
+                      <li>{participantsObj.firstName} {participantsObj.lastName}</li>
+                    )}
+                    </ul>
                     <a href="#" className="modal__close">&times;</a>
                 </div>
 

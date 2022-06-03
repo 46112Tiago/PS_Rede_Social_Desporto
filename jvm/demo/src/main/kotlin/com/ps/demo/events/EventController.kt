@@ -30,16 +30,18 @@ class EventController (val eventService: EventsService) {
     }
 
     @GetMapping("/user/{userId}/event/participating")
-    fun getUserEventsParticipating(@PathVariable("userId") userId : Int)
+    fun getUserEventsParticipating(@PathVariable("userId") userId : Int,
+                                   @RequestParam(required = false) page : Int)
     : ResponseEntity<List<Event?>?> {
-        val event : List<Event?>? = eventService.getUserEventsParticipating(userId)
+        val event : List<Event?>? = eventService.getUserEventsParticipating(userId,page)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
     @GetMapping("/user/{userId}/event/created")
-    fun getUserEventsCreated(@PathVariable("userId") userId : Int)
+    fun getUserEventsCreated(@PathVariable("userId") userId : Int,
+                             @RequestParam(required = false) page : Int)
             : ResponseEntity<List<Event?>?> {
-        val event : List<Event?>? = eventService.getUserEventsCreated(userId)
+        val event : List<Event?>? = eventService.getUserEventsCreated(userId, page)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
