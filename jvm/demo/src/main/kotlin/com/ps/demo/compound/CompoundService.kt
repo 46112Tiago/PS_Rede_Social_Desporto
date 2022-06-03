@@ -20,6 +20,9 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
             if (schedule.weekday==null) break
             compoundRepo.addSchedule(compoundId!!,schedule)
         }
+        for (field in compound.fields!!) {
+            compoundRepo.addFieldToCompound(compoundId!!,field.name!!)
+        }
         return compoundId
     }
 

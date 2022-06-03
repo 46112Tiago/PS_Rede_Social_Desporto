@@ -1,14 +1,18 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import {convertLocationToCoordinate} from '../../../GoogleMaps/Geocoding'
 import './CompoundModal.css'
 import CompoundSuggestion from "./CompoundSuggestion/CompoundSuggestion";
 import Materials from "./Materials/Materials";
 import Schedule from "./Schedule/Schedule";
 import './Confirm/ConfirmCompound.css'
+import Field from "./Field/Field";
 
 const CompoundModal = (props) => {
 
+  const getFields = (fields) => {
+    console.log(fields)
+    setFields(fields)
+  }
 
   const getSchedule = (schedule) => {
     setSchedule(schedule)
@@ -26,8 +30,7 @@ const CompoundModal = (props) => {
   const [scheduleObj, setSchedule] = React.useState([{}]);
   const [materialObj, setMaterials] = React.useState([{}]);
   const [compoundObj, setCompound] = React.useState({});
-
-
+  const [fields, setFields] = React.useState({});
 
   React.useEffect(() => {
 
@@ -41,6 +44,7 @@ const CompoundModal = (props) => {
       
           compoundObj.material = materialObj
           compoundObj.schedule = scheduleObj
+          compoundObj.fields = fields
           const token = await getAccessTokenSilently();
           myHeaders.append('Authorization',`Bearer ${token}`)
          
@@ -53,7 +57,7 @@ const CompoundModal = (props) => {
           };
       
           const response = fetch('http://localhost:8080/compound', options)
-          window.location.reload()
+          window.location.href = "#"
       }
 
       return (
@@ -67,6 +71,7 @@ const CompoundModal = (props) => {
                     <a href="#" className="modal__close">&times;</a>
                     <div className="radio" id="modalCheck" >
                       <input label="Information" type="radio" id="information" name="compoundModal" value="information" onChange={() => {setComponent(<CompoundSuggestion map={props.map} getCompound={getCompound}/>)}}/>
+                      <input label="Fields" type="radio" id="fields" name="compoundModal" value="fields" onChange={() => {setComponent(<Field getFields={getFields}/>)}} />
                       <input label="Materials" type="radio" id="materials" name="compoundModal" value="materials" onChange={() => {setComponent(<Materials getMaterials={getMaterials}/>)}} />
                       <input label="Schedule" type="radio" id="schedule" name="compoundModal" value="schedule" onChange={() => {setComponent(<Schedule getSchedule={getSchedule}/>)}} />
                       <input label="Confirm" type="radio" id="confirm" name="compoundModal" value="confirm" onChange={() => {setComponent(<div id='submitCompound'><button onClick={submit} id='submitCompoundBtn'>CONFIRM</button></div>)}} />

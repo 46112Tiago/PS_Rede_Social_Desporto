@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { mapGlobal } from '../../../../Model/Model';
 import './CompoundSuggestion.css'
 
 const CompoundSuggestion = (props) => {
@@ -10,6 +9,7 @@ const CompoundSuggestion = (props) => {
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
   let loc;
+  let infoWindow;
 
     function submit(data) {
         data.location=loc
@@ -19,24 +19,25 @@ const CompoundSuggestion = (props) => {
 
     function pickLocation() {
         window.location.href = "#";
-        let infoWindow;
+        loc = null
         // Configure the click listener.
         if(props.map) {
-            props.map.addListener("click", (mapsMouseEvent) => {
-            // Close the current InfoWindow.
             if(infoWindow != null) infoWindow.close(props.map);
+            props.map.addListener("click", (mapsMouseEvent) => {
+            if(!loc){    
+                // Close the current InfoWindow.
 
-            // Create a new InfoWindow.
-            infoWindow = new google.maps.InfoWindow({
-            position: mapsMouseEvent.latLng,
-            });
-            infoWindow.setContent(
-            JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
-            );
-            loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
-            infoWindow.open(props.map);
-            if(loc) window.location.href = "#demo-modal";
-            });
+                // Create a new InfoWindow.
+                infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+                });
+                infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                );
+                loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
+                infoWindow.open(props.map);
+                if(loc) window.location.href = "#demo-modal";
+            }});
         } 
 
     }

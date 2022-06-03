@@ -13,5 +13,17 @@ export function converttoSportsArray(sportsId) {
     })
     return sports
 }
+
+export function convertToFieldArray(htmlFields) {
+    let fields = []
+    for(let i = 0; i < htmlFields.length; i++){
+        const nameValue = htmlFields[i].value
+        if(nameValue != ''){
+            fields.push({name:nameValue})
+        }
+        
+    }
+    return fields
+}
   
   

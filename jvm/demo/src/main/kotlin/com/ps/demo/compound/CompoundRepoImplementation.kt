@@ -1,6 +1,7 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
+import com.ps.data.Field
 import com.ps.data.Material
 import com.ps.data.Schedule
 import org.jdbi.v3.core.Handle
@@ -41,6 +42,19 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
                     .execute()
         }
 
+    }
+
+    fun addFieldToCompound(compoundId: Int, fieldName: String) {
+
+        jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "field(compoundId,name,accepted) " +
+                    "values(?,?,?)")
+                .bind(0,compoundId)
+                .bind(1,fieldName)
+                .bind(2,false)
+                .execute()
+        }
     }
 
     fun addSchedule(compoundId: Int, schedule: Schedule){

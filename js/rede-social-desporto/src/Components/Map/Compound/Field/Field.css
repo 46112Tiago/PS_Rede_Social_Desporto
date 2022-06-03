@@ -1,0 +1,15 @@
+#addFields {
+    border: solid black 3px;
+    border-radius: 50%;
+    font-size: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 50px;
+}
+
+#addFields:hover {
+    color: rgb(90, 93, 96);
+    border: solid rgb(90, 93, 96) 3px;
+} 
