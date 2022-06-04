@@ -11,6 +11,10 @@ const CompoundSuggestion = (props) => {
   let loc;
   let infoWindow;
 
+  React.useEffect(() => {
+
+    },[]);
+
     function submit(data) {
         data.location=loc
         props.getCompound(data)

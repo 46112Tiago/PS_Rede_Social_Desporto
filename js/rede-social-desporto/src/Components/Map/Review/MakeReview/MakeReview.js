@@ -9,14 +9,24 @@ const MakeReview = (props) => {
 
       // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-
   // user state for form
   const [reviewObj, setReview] = useState(review);
+
 
   // effect runs on component mount
   useEffect(() => {
       // simulate async api call with set timeout
       setTimeout(() => setReview({ review: ''}), 1000);
+      
+  var elem = document.getElementById('ratingReview');
+
+  var rangeValue = function(){
+    var newValue = elem.value;
+    var target = document.querySelector('.value');
+    target.innerHTML = "Rating: " + newValue;
+  }
+  
+  elem.addEventListener("input", rangeValue);
   }, []);
 
   const {getAccessTokenSilently} = useAuth0();
@@ -36,16 +46,18 @@ const MakeReview = (props) => {
     };
     
 
-    fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/user/${window.name}/review`, options)
-    .then(response => response.json())
-    .then(data => console.log(data));
+    const response = await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/user/${window.name}/review`, options)
+    
 }
 
       return (
         <div id='createReview'>
             <form id='formReview' onSubmit={handleSubmit(submit)}>
-                <textarea maxlength="100" id='textareaReview' {...register('description')} placeholder='Write your review...'/>
-                <input type={'number'} step=".1" {...register('rating')}></input>
+                <div id='inputReview'>
+                    <textarea maxLength="100" id='textareaReview' {...register('description')} placeholder='Write your review...' required/>
+                    <input type={'range'} step=".1" {...register('rating')} placeholder='5' id='ratingReview' min={0} max={5} ></input>
+                    <h5 id='showRating' className='value'>Rating: 0</h5>
+                </div>
                 <div id='formSbm'>
                     <button type={'submit'} id='sendReview' ><IoSend></IoSend></button>
                 </div>

@@ -12,7 +12,7 @@ const Suggestion = (props) => {
             <div id='suggestionBtn'>
               <div id='suggestionBtns'>
                 <CompoundModal map={props.map}></CompoundModal>
-                <FieldModal></FieldModal>
+                <FieldModal map={props.map}></FieldModal>
               </div>
             </div>
         </div>

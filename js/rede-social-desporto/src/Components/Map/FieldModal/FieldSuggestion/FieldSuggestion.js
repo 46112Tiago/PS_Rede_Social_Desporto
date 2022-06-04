@@ -4,7 +4,35 @@ import { useAuth0 } from "@auth0/auth0-react";
 import './FieldSuggestion.css'
 import {convertLocationToCoordinate} from '../../../../GoogleMaps/Geocoding'
 
-const FieldSuggestion = () => {
+const FieldSuggestion = (props) => {
+
+    let loc;
+    let infoWindow;
+
+    function pickLocation() {
+        window.location.href = "#";
+        loc = null
+        // Configure the click listener.
+        if(props.map) {
+            if(infoWindow != null) infoWindow.close(props.map);
+            props.map.addListener("click", (mapsMouseEvent) => {
+            if(!loc){    
+                // Close the current InfoWindow.
+
+                // Create a new InfoWindow.
+                infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+                });
+                infoWindow.setContent(
+                JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
+                );
+                loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
+                infoWindow.open(props.map);
+                if(loc) window.location.href = "#demo-modal";
+            }});
+        } 
+
+    }
 
     // get functions to build form with useForm() hook
     const { register, handleSubmit } = useForm();
@@ -33,10 +61,12 @@ const FieldSuggestion = () => {
                 <h3>Suggest Field</h3>
                 <div className="form-row">
                     <div className="form-group col">
+                        <labe>Field NAme</labe>
                         <input name="fieldName" type="text" {...register('name')} className="form-control" placeholder='Field Name' required />
                     </div>
                     <div className="form-group col">
-                        <input name="location" type="text" {...register('location')} className="form-control" placeholder='Location' required />
+                        <label>Location:</label>
+                        <input type={'button'} className="form-control" name="compoundLocation" value="pick location" onClick={pickLocation}/>
                     </div>
                     <div className="form-group col">
                         <h4>Parking lot</h4>
