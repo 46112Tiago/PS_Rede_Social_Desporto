@@ -9,6 +9,7 @@ const FieldSuggestion = (props) => {
     let loc;
     let infoWindow;
 
+
     function pickLocation() {
         window.location.href = "#";
         loc = null
@@ -28,7 +29,7 @@ const FieldSuggestion = (props) => {
                 );
                 loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
                 infoWindow.open(props.map);
-                if(loc) window.location.href = "#demo-modal";
+                if(loc) window.location.href = "#field-modal";
             }});
         } 
 
@@ -44,8 +45,7 @@ const FieldSuggestion = (props) => {
 
         const token = await getAccessTokenSilently();
         myHeaders.append('Authorization',`Bearer ${token}`)
-        const geoLocation = await convertLocationToCoordinate(data.location)
-        data.compound.location = {x:geoLocation.lat, y:geoLocation.lng}
+        data.compound.location = {x:JSON.parse(loc).lat, y:JSON.parse(loc).lng}
         const options = {
             method: "POST",
             headers: myHeaders,
@@ -61,7 +61,7 @@ const FieldSuggestion = (props) => {
                 <h3>Suggest Field</h3>
                 <div className="form-row">
                     <div className="form-group col">
-                        <labe>Field NAme</labe>
+                        <labe>Field Name</labe>
                         <input name="fieldName" type="text" {...register('name')} className="form-control" placeholder='Field Name' required />
                     </div>
                     <div className="form-group col">

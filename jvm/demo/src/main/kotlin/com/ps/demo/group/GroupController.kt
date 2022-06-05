@@ -23,6 +23,13 @@ class GroupController (val groupService: GroupService) {
         return ResponseEntity(users,HttpStatus.OK)
     }
 
+    @GetMapping("user/{userId}/group/{groupId}/participant")
+    fun getGroupNotParticipants(@PathVariable("groupId") groupId: Int,
+                                @PathVariable("userId") userId: Int) : ResponseEntity<List<User?>> {
+        val users : List<User?> = groupService.getGroupNotParticipants(groupId,userId)
+        return ResponseEntity(users,HttpStatus.OK)
+    }
+
     @DeleteMapping("user/{userId}/group/{groupId}")
     fun deleteGroup(@PathVariable("groupId") groupId : Int,
                     @PathVariable("userId") userId: Int ) : ResponseEntity<Any?> {
@@ -47,7 +54,7 @@ class GroupController (val groupService: GroupService) {
     }
 
     @PostMapping("/group/{groupid}/participant")
-    fun createGroupParticipant(@PathVariable("groupid") groupId: Int,
+    fun insertGroupParticipant(@PathVariable("groupid") groupId: Int,
                                @RequestBody participantsId : List<String>): ResponseEntity<Any?> {
         val participant = groupService.insertGroupParticipant(groupId,participantsId)
         return ResponseEntity(participant,HttpStatus.OK)

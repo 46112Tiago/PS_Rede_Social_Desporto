@@ -41,7 +41,7 @@ const FriendsMessage = () => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/friend?page=0`,options);
+          const req =  await fetch(`http://localhost:8080/user/${window.name}/friends`,options);
           const resp = await req.json();
           setUser(resp);
         }

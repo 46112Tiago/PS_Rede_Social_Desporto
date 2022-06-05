@@ -78,7 +78,28 @@ class GroupRepoImplementation (var jdbi: Jdbi){
                 }.values.toList()
         }
         return toReturn
+    }
 
+    fun getGroupNotParticipants(groupId : Int,userId: Int): List<User?> {
+        val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
+            handle.createQuery(
+                "SELECT " +
+                    "U.userId," +
+                    "U.firstname, " +
+                    "U.lastname " +
+                    "FROM user_profile U " +
+                    "JOIN Friends F on U.userId = F.friendId " +
+                    "WHERE F.userId = ? " +
+                    "EXCEPT " +
+                    "Select U.userId, U.firstName, U.lastName " +
+                    "from Group_Participant GP JOIN User_Profile U " +
+                    "ON GP.participantId = U.userId " +
+                    "WHERE GP.groupId = ?")
+                .bind(0,userId)
+                .bind(1,groupId)
+                .mapTo<User>().list()
+        }
+        return toReturn
     }
 
 
@@ -131,20 +152,14 @@ class GroupRepoImplementation (var jdbi: Jdbi){
         }
     }
 
-    fun insertGroupParticipant(groupId: Int, participantsId: List<String>){
+    fun insertGroupParticipant(groupId: Int, participantId: Int){
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            for (participantId: String in participantsId) {
-                insertGroupParticipantAux(groupId, participantId, handle)
-            }
-        }
+            handle.createUpdate("insert into group_participant(groupid, participantid) values (?,?)")
+                .bind(0,groupId)
+                .bind(1,participantId)
+                .execute()        }
     }
 
-    fun insertGroupParticipantAux(groupId: Int, participantId: String, handle: Handle) {
-        handle.createUpdate("insert into group_participant(groupid, participantid) values (?,?)")
-            .bind(0,groupId)
-            .bind(1,participantId)
-            .execute()
-    }
 
     fun getUserGroups(userId : Int): List<Group?> {
         val toReturn = jdbi.withHandle<List<Group?>,RuntimeException> { handle : Handle ->

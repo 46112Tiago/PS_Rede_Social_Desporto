@@ -18,13 +18,12 @@ const AddParticipant = (props) => {
     const myHeaders = new Headers()
     myHeaders.append('Content-Type','application/json')
     myHeaders.append('Authorization',`Bearer ${token}`)
-    console.log(JSON.stringify(data))
 
     const options = {
         method: "POST",
         headers: myHeaders,
         mode: 'cors',
-        body:JSON.stringify(data)
+        body:JSON.stringify(data.friends)
     };
 
     const response = await fetch(`http://localhost:8080/group/${props.groupId}/participant`, options)
@@ -38,15 +37,11 @@ const AddParticipant = (props) => {
                   <legend>Add more participants:</legend>
                   {
                       friendsArray.map((friendObj,i)=>
-                      <div>
+                      <div key={i}>
                           <div className='checkDiv'>
-                              <label for={`check_1${i}`} >{friendObj.firstname} {friendObj.lastname} Name Surname</label>
-                              <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={1} {...register('friends')}/>
-                          </div>
-                          <div className='checkDiv'>
-                              <label for={`check_2${i}`} >{friendObj.firstname} {friendObj.lastname} Name Surname</label>
-                              <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={2} {...register('friends')}/>
-                          </div>    
+                              <label for={`check_1${i}`} >{friendObj.firstName} {friendObj.lastName}</label>
+                              <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={friendObj.userId} {...register('friends')}/>
+                          </div> 
                       </div>
 
                       )

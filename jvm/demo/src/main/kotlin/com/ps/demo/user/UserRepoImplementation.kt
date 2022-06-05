@@ -119,6 +119,18 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return toReturn
     }
 
+    fun getAllFriends(userId: Int): List<User?> {
+        val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select friendId as userId, firstName, lastName " +
+                    "from FRIENDS f " +
+                    "JOIN USER_PROFILE u on f.friendId = u.userId " +
+                    " where f.userId = ? ")
+                .bind(0,userId)
+                .mapTo<User>().list()
+        }
+        return toReturn
+    }
+
     fun addFriend(userId: Int, friendId: Int): Int {
         jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("INSERT INTO FRIENDS(userId,friendId) " +

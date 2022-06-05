@@ -84,6 +84,12 @@ class UserController (val userService: UserService) {
         return ResponseEntity.ok().body(user)
     }
 
+    @GetMapping("/{userId}/friends")
+    fun getAllFriends(@PathVariable("userId") userId : Int) : ResponseEntity<List<User?>> {
+        val user : List<User?> = userService.getAllFriends(userId)
+        return ResponseEntity.ok().body(user)
+    }
+
     @PostMapping("/{userId}/picture")
     fun postPicture(@PathVariable("userId") userId : Int) : ResponseEntity<Image?> {
         val pic : Image? = userService.postProfilePic(userId,"C;Users;Diogo Fernandes;Pictures;man.png")

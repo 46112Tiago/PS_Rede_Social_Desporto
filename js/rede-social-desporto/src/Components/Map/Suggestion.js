@@ -4,6 +4,8 @@ import FieldModal from "./FieldModal/FieldModal"
 
 const Suggestion = (props) => {
 
+  console.log(props.map)
+
     
     return(
         <div id='suggestion'>

@@ -16,6 +16,10 @@ class GroupService(val groupRepo : GroupRepoImplementation) {
         return groupRepo.getGroupParticipants(groupId)
     }
 
+    fun getGroupNotParticipants(groupId : Int, userId: Int) : List<User?> {
+        return groupRepo.getGroupNotParticipants(groupId, userId)
+    }
+
     fun getUserGroups(userId: Int) : List<Group?> {
         return groupRepo.getUserGroups(userId)
     }
@@ -29,7 +33,9 @@ class GroupService(val groupRepo : GroupRepoImplementation) {
     }
 
     fun insertGroupParticipant(groupId : Int, participantsId : List<String>) {
-        return groupRepo.insertGroupParticipant(groupId, participantsId)
+        for (participantId: String in participantsId) {
+            groupRepo.insertGroupParticipant(groupId, participantId.toInt())
+        }
     }
 
     fun deleteGroupParticipant(groupId: Int,userId: Int) : Int {

@@ -2,11 +2,10 @@ import React from "react";
 import './FieldModal.css'
 import FieldSuggestion from "./FieldSuggestion/FieldSuggestion";
 
-class FieldModal extends React.Component {
+const FieldModal =(props)=> {
 
   
 
-    render() {
       return (
         <div className="modalFieldBody">
             <div className="modalFieldBody">
@@ -15,7 +14,7 @@ class FieldModal extends React.Component {
             
             <div id="field-modal" className="modal_field">
                 <div className="modal__content_field">
-                    <FieldSuggestion></FieldSuggestion>                   
+                    <FieldSuggestion map={props.map}></FieldSuggestion>                   
                     <a href="#" className="modal__close">&times;</a>
                 </div>
 
@@ -24,6 +23,5 @@ class FieldModal extends React.Component {
 
       );
     }
-  }
 
   export default FieldModal

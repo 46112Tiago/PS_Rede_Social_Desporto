@@ -6,8 +6,6 @@ const CompoundSuggestion = (props) => {
 
       // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-  const myHeaders = new Headers()
-  myHeaders.append('Content-Type','application/json')
   let loc;
   let infoWindow;
 

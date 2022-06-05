@@ -354,7 +354,14 @@ INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (2,2,'pending');
 
 Select * from User_profile where firstName LIKE 'T%' AND lastName LIKE '%'
-Select * from Review
+
+Select U.userId, firstName, lastName from USER_PROFILE U
+JOIN FRIENDS F ON F.friendId = U.userId where F.userId = 18
+Except
+Select U.userId, firstName, lastName from Group_Participant GP join User_Profile U ON GP.participantId = U.userId
+where GP.groupId = 8
+
+delete from group_participant where groupId = 8 and participantId = 1
 Select * from LOOKINGPLAYERS L JOIN LOOKINGPLAYERS_PARTICIPANTS LP ON L.id = LP.lookingId
 commit;
 
