@@ -47,12 +47,12 @@ const EventModal = (props) => {
               <button id="activateModalEvent" onClick={(e) => {
                                 e.preventDefault();
                                 setId(props.eventId)
-                                window.location.href="#demo-modal";
+                                window.location.href=`#demo-modal-${props.eventId}`;
                                 }}className = 'eventBtn'>                 
                                 Descrição</button>
             </div>
             
-            <div id="demo-modal" className="modalEvent">
+            <div id={`demo-modal-${props.eventId}`} className="modalEvent">
                 <div className="modal__content_Event">
                 <div id='eventCardImage'>
                     <a href={`https://www.google.com/maps/@${lat},${lng},15z`} target={'_blank'}><img className='local_image' src={require('./mock_image/Isel_test_events.PNG')} alt='localization' title='google maps direções'></img></a>

@@ -6,12 +6,13 @@ const ReadModal = (props) => {
 
   const lat = props.eventObj.compound ? props.eventObj.compound.location.x : 0
   const lng = props.eventObj.compound ? props.eventObj.compound.location.y : 0
+  const location = props.eventObj.compound ? props.eventObj.compound.name : '' 
 
       return (
         <div>
-            <div id="user-event" className="modal">
+            <div id={`user-event-${props.eventObj.id}`} className="modal">
                 <div className="modal__content">
-                    <a href={`https://www.google.com/maps/@${lat},${lng},15z`} target='_blank'> <FaMapMarker></FaMapMarker> {props.locationEvent}</a> 
+                    <a href={`https://www.google.com/maps/@${lat},${lng},15z`} target='_blank'> <FaMapMarker></FaMapMarker> {location}</a> 
                     <p> <FaCalendarDay></FaCalendarDay>Start: {props.eventObj.startDate}</p>  
                     <p> <FaCalendarDay></FaCalendarDay>End: {props.eventObj.plannedfinishDate}</p>
                     <h5>Description:</h5>

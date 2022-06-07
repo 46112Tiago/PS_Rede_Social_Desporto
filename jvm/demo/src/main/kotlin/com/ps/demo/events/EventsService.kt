@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 @Service
 class EventsService(val eventRepo: EventRepositoryImplementation) {
 
-    fun getActiveEvents(page : Int) : List<Event>? {
+    fun getActiveEvents(page : Int) : List<Event?>? {
         return eventRepo.getActiveEvents(page)
     }
 
@@ -36,6 +36,10 @@ class EventsService(val eventRepo: EventRepositoryImplementation) {
 
     fun cancelEvent(eventId : Int) {
         return eventRepo.cancelEvent(eventId)
+    }
+
+    fun getEventsNotParticipating(userId : Int, page: Int) : List<Event?>? {
+        return eventRepo.getEventsNotParticipating(page,userId)
     }
 
 

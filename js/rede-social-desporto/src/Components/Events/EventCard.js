@@ -19,12 +19,12 @@ const EventCard = (props) => {
                     <div id='eventCardLeft'>
                         <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{props.eventObj.startDate}</b></p>  
                         <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{props.eventObj.plannedfinishDate}</b></p>  
-                        <p className='inline' id='modalidade'><FaRunning></FaRunning> <b> Modalidade </b> </p>
+                        <p className='inline' id='modalidade'><FaRunning></FaRunning> <b>{props.eventObj.sport.name}</b> </p>
                         <p className='inline'><FaUserCheck></FaUserCheck> <b> {props.eventObj.limitParticipants} </b> </p>
                     </div>
 
                     <div id='eventCardRight'>
-                    <p><FaMapMarker></FaMapMarker><b> Instituto Superior de Engenharia de Lisboa </b></p> 
+                    <p><FaMapMarker></FaMapMarker><b>{props.eventObj.compound.name}</b></p> 
                         <h4>Summary</h4>
                         <p>{props.eventObj.summary}</p>
                     </div>

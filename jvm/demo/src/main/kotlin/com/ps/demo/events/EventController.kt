@@ -18,8 +18,8 @@ import javax.websocket.server.PathParam
 class EventController (val eventService: EventsService) {
 
     @GetMapping("/event")
-    fun getActiveEvents(@RequestParam(required = false) page : Int) : ResponseEntity<List<Event>?> {
-        val event : List<Event>? = eventService.getActiveEvents(page)
+    fun getActiveEvents(@RequestParam(required = false) page : Int) : ResponseEntity<List<Event?>?> {
+        val event  = eventService.getActiveEvents(page)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
@@ -27,6 +27,14 @@ class EventController (val eventService: EventsService) {
     fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<Event?> {
         val description : Event? = eventService.getEventDescription(eventID)
         return ResponseEntity(description,HttpStatus.OK)
+    }
+
+    @GetMapping("/user/{userId}/event")
+    fun getEventsNotParticipating(@PathVariable("userId") userId : Int,
+                                   @RequestParam(required = false) page : Int)
+            : ResponseEntity<List<Event?>?> {
+        val event : List<Event?>? = eventService.getEventsNotParticipating(userId,page)
+        return ResponseEntity(event,HttpStatus.OK)
     }
 
     @GetMapping("/user/{userId}/event/participating")

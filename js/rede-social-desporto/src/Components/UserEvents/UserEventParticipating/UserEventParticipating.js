@@ -58,7 +58,7 @@ const UserEventParticipating = () => {
                 if(eventObj.id != 0){
                   return(
                     <>
-                      <UserEventCard key={i} eventObj={eventObj}></UserEventCard>
+                      <UserEventCard eventObj={eventObj}></UserEventCard>
                     </>
               )}
               })}
@@ -66,7 +66,6 @@ const UserEventParticipating = () => {
           <div id='pagingMade'>
             <Paging paging={setPaging} page={page} forward={forward}/>     
           </div>
-          <ReadModal/>
         </>
       );
     }

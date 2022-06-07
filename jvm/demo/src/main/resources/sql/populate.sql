@@ -364,6 +364,10 @@ where GP.groupId = 8
 delete from group_participant where groupId = 8 and participantId = 1
 Select * from Post_comment join User_profile on commentcreatorId = userId
 
+Select * from event join event_participant on id = eventId
+
+select * from field
+
 commit;
 
 

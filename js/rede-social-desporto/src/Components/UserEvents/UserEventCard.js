@@ -29,6 +29,7 @@ const UserEventCard = (props) => {
     
       return (
         <>
+          <ReadModal eventObj={props.eventObj}></ReadModal>
           <div>
               <div className="cardEvents">
                 <div className="face face1">
@@ -40,7 +41,7 @@ const UserEventCard = (props) => {
                 <div className="face face2">
                       <div className="contentEvent">
                         {/*Add in the read me the image and the description in a pop up */}
-                        <ReadBtn eventId={id} getLocation={getLocation} getInfo={getInfo}/>
+                        <ReadBtn eventId={id}></ReadBtn>
                         {cancel}
                       </div>
                   </div>
