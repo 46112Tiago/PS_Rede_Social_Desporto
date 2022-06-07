@@ -4,6 +4,9 @@ import CommentModal from '../Comment/CommentModal/CommentModal';
 
 const PostOText = (props) => {
 
+  const firstName = props.post.user ? props.post.user.firstName : '' 
+  const lastName = props.post.user ? props.post.user.lastName : ''
+
       return (
         <div id='posComment'>
         <div id='postOnlyText'>
@@ -11,11 +14,11 @@ const PostOText = (props) => {
               <img id='userPost' src={require('./images/default_profile.jpg')}></img>
             </div>  
             <div id='rightPostTemplate'>
-                <h4>FName LName</h4>
-                <p className='letters'>vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv</p>
+                <h4>{firstName} {lastName}</h4>
+                <p className='letters'>{props.post.description}</p>
             </div>
         </div>
-                    <CommentModal></CommentModal>
+                    <CommentModal postId={props.post.id}></CommentModal>
                     </div>
         
       );

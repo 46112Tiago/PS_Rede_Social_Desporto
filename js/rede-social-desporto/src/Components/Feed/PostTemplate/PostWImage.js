@@ -13,7 +13,7 @@ const PostWImage = (props) => {
           <div id='imagePostContainer'>
             <img id='post_image' src={require('./images/route_template_post.jpg')} onClick={test}></img>
           </div>
-          <PostOText></PostOText>
+          <PostOText post={props.post}></PostOText>
         </div>
       );
     }

@@ -43,7 +43,7 @@ const CreatePost = (props) => {
             <form id='form' onSubmit={handleSubmit(submit)}>
                 <textarea maxLength="100" id='textarea' {...register('description')} placeholder='What are you thinking righ now?'/>
                 <div id='formSbm'>
-                    <label for="file-upload" className="custom-file-upload">
+                    <label htmlFor="file-upload" className="custom-file-upload">
                         <img id='postImg' src={require('./images/1200px-Antu_insert-image.svg.png')}></img>
                     </label>
                     <input id="file-upload" type="file" accept="image/*" {...register('pictures')} multiple/>                    

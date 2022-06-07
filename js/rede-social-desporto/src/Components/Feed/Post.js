@@ -43,7 +43,7 @@ const Post = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[]);
+    },[postArray]);
   
 
       return (
@@ -53,8 +53,15 @@ const Post = (props) => {
                     <CreatePost></CreatePost>
                 </div>
                 <div id='postTemplate'>
-                  {postArray.map((postObj,i) => 
-                    <PostTemplate key={i} description={postObj.description} images={postObj.pictures}/>
+                  {postArray.map((postObj,i) => {
+                    if(postObj.id != 0) {
+                      return(
+                        <>
+                          <PostTemplate key={i} post={postObj} images={postObj.pictures}/>
+                        </>
+                      )
+                    }
+                  }
                   )}
                 </div>
             </div>

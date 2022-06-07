@@ -16,8 +16,16 @@ class CommentService(val commentRepo : CommentRepoImplementation) {
         return commentRepo.deleteComment(postId,commentId)
     }
 
-    fun getAllComments(postId: Int) : LinkedHashMap<Int, Comment>? {
-        return commentRepo.getAllComments(postId)
+    fun getAllComments(postId: Int, page: Int) : List<Comment?>? {
+        return commentRepo.getAllComments(postId,page)
     }
+
+    fun getCommentsId(postId: Int, page: Int) : List<Comment?>? {
+        return commentRepo.getCommentsId(postId,page)
+    }
+
+    /*fun getCommentById(postId: Int, commentId: Int) : Comment? {
+        return commentRepo.getCommentById(postId,commentId)
+    }*/
 
 }

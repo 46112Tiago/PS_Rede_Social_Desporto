@@ -42,7 +42,7 @@ const MakeComment = (props) => {
       return (
         <div id='createComment'>
             <form id='formComment' onSubmit={handleSubmit(submit)}>
-                <textarea maxlength="100" id='textareaComment' {...register('comment')} placeholder='Make your comment...'/>
+                <textarea maxLength="100" id='textareaComment' {...register('comment')} placeholder='Make your comment...'/>
                 <div id='formSbm'>
                     <button type={'submit'} id='sendComment' ><IoSend></IoSend></button>
                 </div>

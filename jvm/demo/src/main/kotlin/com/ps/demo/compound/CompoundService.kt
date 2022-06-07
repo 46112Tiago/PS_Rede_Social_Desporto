@@ -30,14 +30,6 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return compoundRepo.deleteCompound(compoundId)
     }
 
-    fun getCompoundLocations(zoom : Int, centerLat: Double, centerLng: Double) : List<Compound?>? {
-        if (zoom < 12) return listOf()
-        var locs = compoundRepo.getCompoundLocations()!!.filter {
-            it -> checkArea(zoom,centerLat,centerLng,it!!.location!!.x,it.location!!.y)
-        }
-        return locs;
-    }
-
     fun getLookingLocations() : List<Compound?>? {
         return compoundRepo.getCompoundLocations()
     }
@@ -50,7 +42,16 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return compoundRepo.acceptCompound(compoundId)
     }
 
-    fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double) : Boolean {
+    fun getCompoundLocations(zoom : Int, centerLat: Double, centerLng: Double) : List<Compound?>? {
+        if (zoom < 12) return listOf()
+        var locs = compoundRepo.getCompoundLocations()!!.filter {
+                it -> checkArea(zoom,centerLat,centerLng,it!!.location!!.x,it.location!!.y)
+        }
+        return locs;
+    }
+
+    fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double)
+    : Boolean {
         val neededCoverage = AREA_MAP.get(zoom)
         val theta: Double = centerLng - pointLng
         var dist = (Math.sin(deg2rad(centerLat))
@@ -61,12 +62,11 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         dist = Math.acos(dist)
         dist = rad2deg(dist)
         dist = dist * 60 * 1.1515
+        dist = dist * 1.609344
         if(dist < neededCoverage!!.toDouble()) {
             return true;
         }
-
         return false;
-
     }
 
     private fun deg2rad(deg: Double): Double {

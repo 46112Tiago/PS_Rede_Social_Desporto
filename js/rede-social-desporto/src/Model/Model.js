@@ -65,7 +65,11 @@ export let field = {
 
 export let comment = {
     id : 0,
-    comment : ''
+    comment : '',
+    user : {
+        firstName : '',
+        lastName : ''
+    }
 }
 
 export let review = {

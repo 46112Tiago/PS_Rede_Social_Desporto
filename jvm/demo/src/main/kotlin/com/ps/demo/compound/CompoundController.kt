@@ -43,8 +43,6 @@ class CompoundController(val compoundService: CompoundService) {
         return ResponseEntity.ok().headers(responseHeaders).body(1)
     }
 
-    //TODO:Add capability to add schedule and materials
-
     @PostMapping
     fun createCompound(@RequestBody compound : Compound)
             : ResponseEntity<Any?> {

@@ -29,7 +29,7 @@
 #postTemplate {
   margin-top: 5%;
   display: flex;
-  justify-content: center;
   align-items: center;
   border-radius: 10px;
+  flex-direction: column;
 }

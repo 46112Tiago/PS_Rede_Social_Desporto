@@ -362,7 +362,8 @@ Select U.userId, firstName, lastName from Group_Participant GP join User_Profile
 where GP.groupId = 8
 
 delete from group_participant where groupId = 8 and participantId = 1
-Select * from LOOKINGPLAYERS L JOIN LOOKINGPLAYERS_PARTICIPANTS LP ON L.id = LP.lookingId
+Select * from Post_comment join User_profile on commentcreatorId = userId
+
 commit;
 
 
