@@ -18,8 +18,8 @@ class ReviewService(val reviewRepo : ReviewRepoImplementation) {
         return reviewRepo.deleteReview(reviewId)
     }
 
-    fun getAllReviews(compoundId: Int) : List<Review>? {
-        return reviewRepo.getAllReviews(compoundId)
+    fun getAllReviews(compoundId: Int, page: Int) : List<Review>? {
+        return reviewRepo.getAllReviews(compoundId,page)
     }
 
 }

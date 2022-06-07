@@ -17,8 +17,8 @@ const CommentModal = (props) => {
     const [error, setError] = React.useState();  
     const [commentArray, setComment] = React.useState([comment]);
     const [page, setPage] = React.useState(0);
+    const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {getAccessTokenSilently} = useAuth0();
-    const paging = commentArray/5 == 0 ? <PagingText page={page} setNewPage={setNewPage}/> : <></>
 
     React.useEffect(() => {
       const makeRequest = async () => {
@@ -35,6 +35,10 @@ const CommentModal = (props) => {
           };
           const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment?page=${page}`,options);
           const resp = await req.json();
+          resp.length%5 == 0 ?
+          setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
+          :
+          setPaging(<></>)
           const newCommentArray = commentArray.concat(resp)
           setComment(newCommentArray);
         } catch (err) {

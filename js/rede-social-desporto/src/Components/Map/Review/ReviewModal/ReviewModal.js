@@ -3,13 +3,21 @@ import  './ReviewModal.css'
 import Makereview from "../MakeReview/MakeReview";
 import {review} from '../../../../Model/Model'
 import { useAuth0 } from "@auth0/auth0-react";
+import PagingText from "../../../Paging/PagingText";
 
 const ReviewModal = (props) => {
+
+  const setNewPage = (pageN) => {
+    setPage(pageN)
+  }
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [reviewArray, setReview] = React.useState([review]);
+    const [page, setPage] = React.useState(0);
+    const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {getAccessTokenSilently} = useAuth0();
+
 
       // Keep the above values in sync, this will fire
       // every time the component rerenders, ie when
@@ -30,9 +38,14 @@ const ReviewModal = (props) => {
               mode: 'cors',
             };
 
-            const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review`,options);
+            const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review?page=${page}`,options);
             const resp = await req.json();
-            setReview(resp);
+            resp.length%5 == 0 ?
+              setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
+              :
+              setPaging(<></>)
+            const newReviewArray = reviewArray.concat(resp)
+            setReview(newReviewArray);
           } catch (err) {
             setError(err);
             //console.log(err);
@@ -43,14 +56,16 @@ const ReviewModal = (props) => {
         };
     
         if (!isLoading) makeRequest();
-      },[]);
+      },[page]);
 
       return (
         <div id="modalReview">
             <h2>Reviews</h2>
             <Makereview/>
-            {reviewArray.map((reviewObj,i) => 
-                <div id="review_body" key={i}>
+            {reviewArray.map((reviewObj,i) => {
+              if(reviewObj.id != 0){
+                return(
+                  <div id="review_body" key={i}>
                     <div id="leftSideReview">
                         <img img id='userPost' src={require('../images/default_profile.jpg')}></img>
                     </div>
@@ -59,8 +74,13 @@ const ReviewModal = (props) => {
                         <p id="review">{reviewObj.description}</p>
                         <p>Rating: {reviewObj.rating}</p>
                     </div>    
-                </div>
+                  </div>
+                )
+              }
+            }
+
             )}
+            {paging}
         </div>
       );
   }

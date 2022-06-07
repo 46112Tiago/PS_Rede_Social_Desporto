@@ -57,14 +57,16 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
     }
 
 
-    fun getAllReviews(compoundId: Int): List<Review>? {
+    fun getAllReviews(compoundId: Int, page: Int): List<Review>? {
 
         val toReturn = jdbi.withHandle<List<Review>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select rating as r_rating, description as r_description, R.id as r_id, " +
                     "U.userId as u_userId, firstName as u_firstName, lastName as u_lastName " +
                     "from REVIEW R JOIN USER_PROFILE U ON U.userid = R.userid " +
-                    "Where compoundId = ?")
+                    "Where compoundId = ? " +
+                    "LIMIT 5 OFFSET ?")
                     .bind(0,compoundId)
+                    .bind(1,page*5)
                 .registerRowMapper(factory(Review::class.java, "r"))
                 .registerRowMapper(factory(User::class.java, "u"))
                 .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Review>, rowView: RowView ->

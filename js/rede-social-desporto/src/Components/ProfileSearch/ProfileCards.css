@@ -45,8 +45,6 @@
 } 
 
 .name {
-    color: white;
+    color: black;
     margin: 20px;
-    opacity: 0;
-    transition: opacity 1s;
 }
