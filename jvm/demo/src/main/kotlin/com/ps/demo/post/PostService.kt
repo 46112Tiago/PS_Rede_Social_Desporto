@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service
 @Service
 class PostService(val postRepo : PostRepoImplementation) {
 
-    fun getPosts(userId: Int) : List<Post?> {
-        return postRepo.getPosts(userId)
+    fun getPosts(userId: Int, page: Int) : List<Post?> {
+        return postRepo.getPosts(userId,page)
     }
 
     fun getPostById(postId : Int) : Post? {

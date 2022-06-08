@@ -14,15 +14,16 @@ class PostController (val postService: PostService) {
 
 
     @GetMapping("/user/{userId}/post")
-    fun getPosts(@PathVariable("userId") userId : Int) : ResponseEntity<List<Post?>> {
-        val groups = postService.getPosts(userId).toList()
-        return ResponseEntity(groups, HttpStatus.OK)
+    fun getPosts(@PathVariable("userId") userId : Int,
+                 @RequestParam(required = false) page : Int) : ResponseEntity<List<Post?>> {
+        val posts = postService.getPosts(userId,page).toList()
+        return ResponseEntity(posts, HttpStatus.OK)
     }
 
     @GetMapping("/post/{postId}")
     fun getPostById(@PathVariable("postId") postId : Int) : ResponseEntity<Post?> {
-        val group : Post? = postService.getPostById(postId)
-        return ResponseEntity(group, HttpStatus.OK)
+        val post : Post? = postService.getPostById(postId)
+        return ResponseEntity(post, HttpStatus.OK)
     }
 
     /*

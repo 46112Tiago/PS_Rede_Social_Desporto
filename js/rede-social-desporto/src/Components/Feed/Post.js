@@ -11,6 +11,7 @@ const Post = (props) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
   const [postArray, setPost] = React.useState([post]);
+  const [page, setPage] = React.useState(0);
   const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
@@ -18,6 +19,22 @@ const Post = (props) => {
     // it first mounts, and then when any of the above
     // values change
     React.useEffect(() => {
+
+
+
+      document.getElementById('postContent').onscroll =
+        
+        function()
+        {
+          var scrollTop = document.getElementById('postContent').scrollTop;
+          var offsetHeight = document.getElementById('postContent').offsetHeight;
+          var clientHeight = document.getElementById('postContent').clientHeight;
+          if (offsetHeight <= scrollTop + clientHeight)
+          {
+            setPage(page+1)
+          }        
+        }     
+
       const makeRequest = async () => {
         setError(null);
         setIsLoading(true);
@@ -30,7 +47,7 @@ const Post = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
           };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/post`,options);
+          const req =  await fetch(`http://localhost:8080/user/${window.name}/post?page=${page}`,options);
           const resp = await req.json();
           setPost(resp);
         } catch (err) {
@@ -43,7 +60,7 @@ const Post = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[postArray]);
+    },[page]);
   
 
       return (
@@ -62,7 +79,7 @@ const Post = (props) => {
                       )
                     }
                   }
-                  )}
+                )}
                 </div>
             </div>
 

@@ -151,7 +151,7 @@ class UserRepoImplementation (var jdbi: Jdbi) {
                     "LIMIT 2 OFFSET ? ")
                 .bind(0, "$firstName%")
                 .bind(1, "$lastName%")
-                .bind(2,page)
+                .bind(2,page*2)
                 .mapTo<User>().list()
         }
         return toReturn

@@ -216,18 +216,17 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
     fun createEvent(event : Event): Int {
         val toReturn : Event = jdbi.withHandle<Event,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
-                    "values(?,?,?,?,?,?,?,?,?,?)")
-                    .bind(0,event.field!!.id)
-                    .bind(1,event.compound!!.id)
-                    .bind(2,event.startDate)
-                    .bind(3,event.plannedfinishDate)
-                    .bind(4,event.name)
-                    .bind(5,event.sport!!.id)
-                    .bind(6,event.description)
-                    .bind(7,event.limitParticipants)
-                    .bind(8,event.creator!!.userId)
-                    .bind(9,true)
+                    "EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
+                    "values(?,?,?,?,?,?,?,?,?)")
+                    .bind(0,event.compound!!.id)
+                    .bind(1,event.startDate)
+                    .bind(2,event.plannedfinishDate)
+                    .bind(3,event.name)
+                    .bind(4,event.sport!!.id)
+                    .bind(5,event.description)
+                    .bind(6,event.limitParticipants)
+                    .bind(7,event.creator!!.userId)
+                    .bind(8,true)
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo<Event>().one()
         }

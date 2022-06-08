@@ -18,7 +18,7 @@ import kotlin.collections.LinkedHashMap
 @Repository
 class PostRepoImplementation (var jdbi: Jdbi) {
 
-     fun getPosts(userId: Int): List<Post?> {
+     fun getPosts(userId: Int, page: Int): List<Post?> {
         val toReturn = jdbi.withHandle<List<Post?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "post.id as p_id," +
@@ -31,8 +31,11 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                     "user_profile.lastname as u_lastname, " +
                     "user_profile.profilepic as u_profilepic " +
                     "FROM FRIENDS  JOIN POST ON  Friends.friendId = Post.userId  JOIN user_profile on Friends.friendId = user_profile.userId " +
-                    "Where friends.userId = ?")
+                    "Where friends.userId = ? " +
+                    "ORDER BY postDate DESC " +
+                    "LIMIT 10 OFFSET ?")
                 .bind(0,userId)
+                .bind(1,page*10)
                 .registerRowMapper(factory(User::class.java, "u"))
                 .registerRowMapper(factory(Post::class.java, "p"))
                 .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Post?>, rowView: RowView ->

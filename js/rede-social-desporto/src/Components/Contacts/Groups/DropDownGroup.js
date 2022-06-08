@@ -15,7 +15,7 @@ const DropDownGroup = (props) => {
           <div class="dropdownG">
             <button class="dropbtnG"><HiDotsVertical/></button>
             <div class="dropdown-contentG">
-              <a href="#add-participant-modal" >Participant</a>
+              <a href={`#add-participant-modal-${props.groupId}`} >Participant</a>
               {deleteGroup}
               <ExitGroup groupId={props.groupsId}/>
             </div>

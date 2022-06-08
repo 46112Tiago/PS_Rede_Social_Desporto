@@ -280,7 +280,7 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
                     "LIMIT 2 OFFSET ? ")
                 .bind(0,creatorId)
                 .bind(1,creatorId)
-                .bind(2,page)
+                .bind(2,page*2)
                 .mapTo<LookingPlayers>()
                 .list()
         }
