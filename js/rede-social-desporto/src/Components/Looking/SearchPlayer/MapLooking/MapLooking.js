@@ -1,6 +1,9 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import './MapLooking.css'
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import '../../../Map/Map.css'
+import MapContainerLooking from './MapContainerLooking';
 
 const center = {
   lat: 38.757026,
@@ -8,35 +11,37 @@ const center = {
 };
 
 
-function MapLooking() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: ""
-  })
+const MapLooking = () => {
 
-  const [map, setMap] = React.useState(null)
-
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
+  const getMap = (map) => {
     setMap(map)
-  }, [])
+  }
+  
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+  const [map, setMap] = React.useState({});
 
-  return isLoaded ? (
+    React.useEffect(() => {
+   
+  },[map]);
+
+
+  const render = (status) => {
+    switch (status) {
+      case Status.LOADING:
+        return <></>;
+      case Status.FAILURE:
+        return <></>;
+      case Status.SUCCESS:
+        return <></>;
+    }
+  };
+  return(
     <div id='mapLooking'>
-      <GoogleMap id='mapGoogleLooking' center={center} zoom={10} onLoad={onLoad} onUnmount={onUnmount}>
-        { /* Child components, such as markers, info windows, etc. */ }
-      </GoogleMap>
+        <Wrapper render={render} apiKey={""}> 
+          <MapContainerLooking center={center} zoom={2}></MapContainerLooking>
+        </Wrapper>
     </div>
 
-  ) : 
-  <>
-
-  </>
-}
+  )}
 
 export default MapLooking

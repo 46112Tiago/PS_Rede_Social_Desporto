@@ -6,7 +6,6 @@ import '../SearchPlayer.css'
 const SelectCompound = (props) => {
 
   function compoundId(value) {
-    console.log(value.target.value)
     props.getCompound(value.target.value)
   }
 

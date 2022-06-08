@@ -4,9 +4,7 @@
     justify-content: center;
 }
 
-#mapGoogleLooking {
-    margin-top: 10%;
-    width: 80%;
-    height: 70%;
+#mapComponent {
+    width: 100%;
 }
 

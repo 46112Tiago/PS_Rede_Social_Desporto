@@ -82,7 +82,7 @@ const MapComponent = (props) => {
             if(markersArray.length > 0) setMarkers(resp)
             return
           }
-          if(!verifyNewMarkers(markersArray,resp)) return
+          if(markersArray.length > 0 && !verifyNewMarkers(markersArray,resp)) return
           setMarkers(resp)
           
           
