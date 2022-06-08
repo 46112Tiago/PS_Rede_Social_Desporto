@@ -16,7 +16,7 @@ const ReviewModal = (props) => {
     const [reviewArray, setReview] = React.useState([review]);
     const [page, setPage] = React.useState(0);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
-    const {getAccessTokenSilently} = useAuth0();
+    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
 
 
       // Keep the above values in sync, this will fire
@@ -61,7 +61,7 @@ const ReviewModal = (props) => {
       return (
         <div id="modalReview">
             <h2>Reviews</h2>
-            <Makereview/>
+            {isAuthenticated ? <Makereview/> : <></>}
             {reviewArray.map((reviewObj,i) => {
               if(reviewObj.id != 0){
                 return(

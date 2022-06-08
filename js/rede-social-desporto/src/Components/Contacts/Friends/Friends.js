@@ -7,6 +7,7 @@ import ConversationIdle from '../ConversationIdle';
 import { user } from '../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import ConversationStart from '../ConversationStart';
+import { Link } from 'react-router-dom';
 
 const FriendsMessage = () => {
   
@@ -64,10 +65,10 @@ const FriendsMessage = () => {
           <div className='flex-container' >
             <div className='itemFlex' id='leftItem'>
               <div className='messageOption'>
-                <button className='btnMessage' id='private'><FaUser></FaUser> Friends</button> 
+                <button className='btnMessage' id='private'><FaUser></FaUser> Friends</button>
               </div>
               <div className='messageOption'>
-                <button className='btnMessage' onClick={() => {window.location.replace('./groups')}}><FaUsers></FaUsers> Groups</button>
+                <Link className='btnMessage' to='/groups'><FaUsers></FaUsers> Groups</Link>  
               </div>
               <div id='contacts'>
                 <hr id='line'/>

@@ -55,8 +55,8 @@ const MakeReview = (props) => {
             <form id='formReview' onSubmit={handleSubmit(submit)}>
                 <div id='inputReview'>
                     <textarea maxLength="100" id='textareaReview' {...register('description')} placeholder='Write your review...' required/>
-                    <input type={'range'} step=".1" {...register('rating')} placeholder='5' id='ratingReview' min={0} max={5} ></input>
-                    <h5 id='showRating' className='value'>Rating: 0</h5>
+                    <input type={'range'} step=".1" {...register('rating')} placeholder='0' id='ratingReview' min={0} max={5} ></input>
+                    <h5 id='showRating' className='value'>Rating: 5</h5>
                 </div>
                 <div id='formSbm'>
                     <button type={'submit'} id='sendReview' ><IoSend></IoSend></button>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProfileCards.css'
 
 const ProfileCards = (props) =>  {
@@ -8,7 +9,7 @@ const ProfileCards = (props) =>  {
         <div>
           <div className="cardP card0">
               <div className="border">
-                  <a href={`/profile/${props.userId}`}><h2 className='name'>{props.userFName} {props.userLName}</h2></a>
+                  <Link to={`/profile/${props.userId}`}><h2 className='name'>{props.userFName} {props.userLName}</h2></Link>
               </div>
           </div>
         </div>

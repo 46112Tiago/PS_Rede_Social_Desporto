@@ -9,6 +9,7 @@ import { group } from '../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import ConversationStart from '../ConversationStart';
 import ParticipantModal from './ParticipantModal/ParticipantModal';
+import { Link } from 'react-router-dom';
 
 
 const Groups = () => {
@@ -71,7 +72,7 @@ const Groups = () => {
               <div className='flex-container' >
                   <div className='itemFlex' id='leftItem'>
                       <div className='messageOption'>
-                          <button className='btnMessage' onClick={() => {window.location.replace('./friendsMessage')}}><FaUser></FaUser> Friends</button> 
+                          <Link className='btnMessage' to='/friendsMessage'><FaUser></FaUser> Friends</Link> 
                       </div>
                   <div className='messageOption'>
                       <button className='btnMessage' id='group' ><FaUsers></FaUsers> Groups</button>

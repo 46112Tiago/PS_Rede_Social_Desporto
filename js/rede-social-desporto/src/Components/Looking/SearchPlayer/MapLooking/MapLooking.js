@@ -13,18 +13,6 @@ const center = {
 
 const MapLooking = () => {
 
-  const getMap = (map) => {
-    setMap(map)
-  }
-  
-
-  const [map, setMap] = React.useState({});
-
-    React.useEffect(() => {
-   
-  },[map]);
-
-
   const render = (status) => {
     switch (status) {
       case Status.LOADING:

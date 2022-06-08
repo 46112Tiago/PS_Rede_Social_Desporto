@@ -7,6 +7,7 @@ import {ImBinoculars} from 'react-icons/im'
 import {FaUserFriends} from 'react-icons/fa'
 import {MdEmojiEvents} from 'react-icons/md'
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from 'react-router-dom';
 
 
 const StaticProfile = () => {
@@ -77,6 +78,7 @@ const StaticProfile = () => {
           <div id='rightSide'>
             <div id='infoProfile'>
               <h3>Info:</h3>
+              {/*TODO date is taking one hour to the real one*/}
               <p>{userObj.birthdate}</p>
               <p>{userObj.city}</p>
               <p>Disponibilidade: {userObj.available?'Yes':'No'}</p>
@@ -85,15 +87,15 @@ const StaticProfile = () => {
             </div>
             <div id='btnProfile'>
               <div className='tooltip lookingTool'>
-                  <a href='/lookingForPlayers'><ImBinoculars></ImBinoculars></a>
+                  <Link to='/lookingForPlayers'><ImBinoculars></ImBinoculars></Link>
                   <span className="tooltiptext">Looking</span>
               </div>
               <div className='tooltip eventsTool'>
-                <a href='/userEvents'><MdEmojiEvents></MdEmojiEvents></a>                    
+                <Link to='/userEvents'><MdEmojiEvents></MdEmojiEvents></Link>                    
                 <span className="tooltiptext">Eventos</span>
               </div>
               <div className='tooltip friendsTool'>
-                <a href='/friends'><FaUserFriends></FaUserFriends></a>
+                <Link to='/friends'><FaUserFriends></FaUserFriends></Link>
                 <span className="tooltiptext friends">Amigos</span>
               </div>
 

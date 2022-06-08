@@ -366,7 +366,9 @@ Select * from Post_comment join User_profile on commentcreatorId = userId
 
 Select * from event join event_participant on id = eventId
 
-select * from field
+select * from user_profile
+
+update  user_profile set birthdate = '23/06/2000' where userId = 18
 
 commit;
 
