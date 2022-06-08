@@ -1,6 +1,5 @@
 import React from "react";
 import  '../Review/ReviewModal/ReviewModal.css'
-import { useAuth0 } from "@auth0/auth0-react";
 import { compound } from "../../../Model/Model";
 
 const CompoundMarkerModal = () => {
@@ -8,7 +7,6 @@ const CompoundMarkerModal = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [compoundInfo, setCompound] = React.useState(compound);
-    const {getAccessTokenSilently} = useAuth0();
 
       // Keep the above values in sync, this will fire
       // every time the component rerenders, ie when
@@ -19,13 +17,9 @@ const CompoundMarkerModal = () => {
           setError(null);
           setIsLoading(true);
           try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
 
             const options = {
               method: "GET",
-              headers: myHeaders,
               mode: 'cors',
             };
 

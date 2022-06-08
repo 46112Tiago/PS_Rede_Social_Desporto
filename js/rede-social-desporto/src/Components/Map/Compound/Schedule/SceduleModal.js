@@ -1,7 +1,6 @@
 import React from "react";
 import  '../../Review/ReviewModal/ReviewModal.css'
 import {schedule} from '../../../../Model/Model'
-import { useAuth0 } from "@auth0/auth0-react";
 
 const ScheduleModal = () => {
 
@@ -9,7 +8,6 @@ const ScheduleModal = () => {
     const [error, setError] = React.useState();  
     const [scheduleArray, setSchedule] = React.useState([schedule]);
     const [optionDescription, setOptionalDescription] = React.useState("")
-    const {getAccessTokenSilently} = useAuth0();
 
       // Keep the above values in sync, this will fire
       // every time the component rerenders, ie when
@@ -20,13 +18,9 @@ const ScheduleModal = () => {
           setError(null);
           setIsLoading(true);
           try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
 
             const options = {
               method: "GET",
-              headers: myHeaders,
               mode: 'cors',
             };
 

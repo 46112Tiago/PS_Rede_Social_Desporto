@@ -7,7 +7,7 @@
 
 #leftItem {
     background-color: rgb(79, 77, 77);
-    min-width: 10%;
+    min-width: 200px;
     width: 20%;
     overflow-y: scroll;
 }
@@ -21,6 +21,7 @@
 .messageOption {
     height: 30px;
     padding: 7px;
+    text-align: center;
 }
 
 .btnMessage {
@@ -30,6 +31,7 @@
     background-color: transparent;
     border: none;
     border-radius: 20px;
+    text-decoration: none;
 }
 
 .btnMessage:hover {

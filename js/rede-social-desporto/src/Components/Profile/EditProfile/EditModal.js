@@ -31,7 +31,7 @@ const EditModal = (props) => {
     };
     console.log(options.body)
     const response = await fetch(`http://localhost:8080/user/${window.name}`, options)
-    props.edit(true)
+    props.edit(response)
     window.location.href = "#"
     
 }

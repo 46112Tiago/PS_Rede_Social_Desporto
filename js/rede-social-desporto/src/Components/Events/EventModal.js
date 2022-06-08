@@ -2,14 +2,12 @@ import React from "react";
 import './EventModal.css'
 import './EventCard.css'
 import {event} from '../../Model/Model'
-import { useAuth0 } from "@auth0/auth0-react";
 
 const EventModal = (props) => {
 
 
     const [err, setError] = React.useState();
     const [isLoading, setIsLoading] = React.useState(false);
-    const {getAccessTokenSilently} = useAuth0();
     const [eventObj, setDescription] = React.useState(event);
     const [lat, setLat] = React.useState(0);
     const [lng, setLng] = React.useState(0);
@@ -20,12 +18,8 @@ const EventModal = (props) => {
       const makeRequest = async () => {
         setError(null);
         try {
-          const token = await getAccessTokenSilently();
-          const myHeaders = new Headers()
-          myHeaders.append('Authorization',`Bearer ${token}`)
           const options = {
             method: "GET",
-            headers: myHeaders,
             mode: 'cors',
           };
           const req =  await fetch(`http://localhost:8080/event/${props.eventId}`,options);

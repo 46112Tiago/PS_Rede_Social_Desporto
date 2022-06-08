@@ -1,14 +1,12 @@
 import React from "react";
 import  '../../Review/ReviewModal/ReviewModal.css'
 import {field} from '../../../../Model/Model'
-import { useAuth0 } from "@auth0/auth0-react";
 
 const FieldModal = () => {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [fieldArray, setField] = React.useState([field]);
-    const {getAccessTokenSilently} = useAuth0();
 
       // Keep the above values in sync, this will fire
       // every time the component rerenders, ie when
@@ -19,13 +17,9 @@ const FieldModal = () => {
           setError(null);
           setIsLoading(true);
           try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
 
             const options = {
               method: "GET",
-              headers: myHeaders,
               mode: 'cors',
             };
 

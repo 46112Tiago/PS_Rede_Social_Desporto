@@ -16,7 +16,7 @@ const ReviewModal = (props) => {
     const [reviewArray, setReview] = React.useState([review]);
     const [page, setPage] = React.useState(0);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
-    const {isAuthenticated, getAccessTokenSilently} = useAuth0();
+    const {isAuthenticated} = useAuth0();
 
 
       // Keep the above values in sync, this will fire
@@ -28,13 +28,9 @@ const ReviewModal = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
 
             const options = {
               method: "GET",
-              headers: myHeaders,
               mode: 'cors',
             };
 

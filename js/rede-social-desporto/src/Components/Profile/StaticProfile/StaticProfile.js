@@ -23,10 +23,6 @@ const StaticProfile = () => {
   const {user,getAccessTokenSilently} = useAuth0()
   const myHeaders = new Headers()
 
-  // Keep the above values in sync, this will fire
-  // every time the component rerenders, ie when
-  // it first mounts, and then when any of the above
-  // values change
   React.useEffect(() => {
     const makeRequest = async () => {
       setError(null);

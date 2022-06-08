@@ -1,31 +1,22 @@
 import React from "react";
 import  '../../Review/ReviewModal/ReviewModal.css'
 import {materials,} from '../../../../Model/Model'
-import { useAuth0 } from "@auth0/auth0-react";
 
 const MaterialModal = () => {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [materialArray, setMaterial] = React.useState([materials]);
-    const {getAccessTokenSilently} = useAuth0();
-
-      // Keep the above values in sync, this will fire
-      // every time the component rerenders, ie when
-      // it first mounts, and then when any of the above
-      // values change
-      React.useEffect(() => {
+    
+    
+    React.useEffect(() => {
         const makeRequest = async () => {
           setError(null);
           setIsLoading(true);
           try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
 
             const options = {
               method: "GET",
-              headers: myHeaders,
               mode: 'cors',
             };
 
