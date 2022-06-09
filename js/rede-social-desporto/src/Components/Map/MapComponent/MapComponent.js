@@ -18,10 +18,15 @@ const MapComponent = (props) => {
     const [markersArray, setMarkers] = React.useState([]);
     const [zoomEffect,setZoom] = React.useState(props.zoom);
     const [centerVal, setCenter] = React.useState(props.center);
-
+    const [centerInput, setCenterInput] = React.useState(props.center);
 
     React.useEffect(() => {
       
+      if(props.center != centerInput){
+        setCenter(props.center)
+        setCenterInput(props.center)
+      }
+
       const mapOptions = {
         zoom : zoomEffect,
         center : centerVal,
@@ -99,7 +104,7 @@ const MapComponent = (props) => {
     }
 
        
-    },[markersArray,props.center]);
+    },[markersArray,props.center,centerInput]);
     return (
         <>
             <Marker/>

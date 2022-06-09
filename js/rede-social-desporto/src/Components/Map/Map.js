@@ -30,7 +30,8 @@ const Map = () => {
   const [newCenter, setCenter] = React.useState(center);
 
     React.useEffect(() => {
-  },[map]);
+
+  },[map,newCenter]);
 
   const suggestion = window.name ? <Suggestion map={map}/> : <></>
 
