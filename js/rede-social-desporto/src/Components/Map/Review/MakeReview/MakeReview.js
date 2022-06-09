@@ -47,7 +47,8 @@ const MakeReview = (props) => {
     
 
     const response = await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/user/${window.name}/review`, options)
-    
+    const resp = await response.json()
+    props.newReview(resp)
 }
 
       return (

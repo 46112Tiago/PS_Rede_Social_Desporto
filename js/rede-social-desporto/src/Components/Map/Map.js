@@ -20,12 +20,16 @@ const Map = () => {
   const getMap = (map) => {
     setMap(map)
   }
+
+  const getCenter = (newCenter) => {
+    setCenter(newCenter)
+  }
   
 
   const [map, setMap] = React.useState({});
+  const [newCenter, setCenter] = React.useState(center);
 
     React.useEffect(() => {
-   
   },[map]);
 
   const suggestion = window.name ? <Suggestion map={map}/> : <></>
@@ -43,9 +47,9 @@ const Map = () => {
   return(
     <div id='wrapper'>
       <div id='wrapperContainer'>
-        <SearchBox></SearchBox>      
+        <SearchBox center={getCenter}></SearchBox>      
         <Wrapper render={render} apiKey={""}> 
-          <MapComponent center={center} zoom={5} getMap={getMap}>
+          <MapComponent center={newCenter} zoom={5} getMap={getMap}>
           </MapComponent>
         </Wrapper>
 

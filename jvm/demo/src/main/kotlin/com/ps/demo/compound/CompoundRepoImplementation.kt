@@ -32,7 +32,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         return toReturn.id
     }
 
-    fun addMaterial(compoundId: Int, materialId: Int) {
+    fun addMaterialToCompound(compoundId: Int, materialId: Int) {
          jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
                     "MATERIAL_COMPOUND(compoundId,materialId) " +
@@ -41,7 +41,17 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
                     .bind(1,materialId)
                     .execute()
         }
+    }
 
+    fun addMaterial(materialName: String) : Int {
+        val toReturn = jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "MATERIALS(name) " +
+                    "values(?)")
+                .bind(0,materialName)
+                .executeAndReturnGeneratedKeys("id").mapTo<Int>().one()
+        }
+        return toReturn
     }
 
     fun addFieldToCompound(compoundId: Int, fieldName: String) {

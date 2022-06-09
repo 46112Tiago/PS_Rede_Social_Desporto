@@ -20,7 +20,7 @@ const AddFriend = (props) => {
   };
 
     const response = fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}`, options)
-
+    props.request(true)
 }
 
 

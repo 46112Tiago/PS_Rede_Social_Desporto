@@ -11,10 +11,15 @@ const ReviewModal = (props) => {
     setPage(pageN)
   }
 
+  const newReviewProp = (data) => {
+    setNewReview(data)
+  }
+
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [reviewArray, setReview] = React.useState([review]);
     const [page, setPage] = React.useState(0);
+    const [newReview, setNewReview] = React.useState(0);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {isAuthenticated} = useAuth0();
 
@@ -52,12 +57,12 @@ const ReviewModal = (props) => {
         };
     
         if (!isLoading) makeRequest();
-      },[page]);
+      },[page,newReview]);
 
       return (
         <div id="modalReview">
             <h2>Reviews</h2>
-            {isAuthenticated ? <Makereview/> : <></>}
+            {isAuthenticated ? <Makereview newReview={newReviewProp}/> : <></>}
             {reviewArray.map((reviewObj,i) => {
               if(reviewObj.id != 0){
                 return(

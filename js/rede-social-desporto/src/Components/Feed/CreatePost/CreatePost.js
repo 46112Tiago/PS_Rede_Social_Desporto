@@ -4,6 +4,7 @@ import './CreatePost.css'
 import { post } from '../../../Model/Model';
 import {IoSend} from 'react-icons/io5'
 import { useAuth0 } from "@auth0/auth0-react";
+import { userId } from '../../../Global_Variables/Variables';
 
 const CreatePost = (props) => {
 

@@ -17,8 +17,15 @@ const Marker = () => {
       return (
             <div id="marker-modal" className="modal_marker">
                 <div className="modal__content_marker">                   
-                    <a href="#" className="modal__close">&times;</a>
-                    <div className="radio" id="modalCheck" >
+                <a href="#" className="modal__close" onClick={()=>{
+                      document.getElementById('compoundInfo').checked=false
+                      document.getElementById('fields').checked=false
+                      document.getElementById('materials').checked=false
+                      document.getElementById('schedule').checked=false
+                      document.getElementById('reviews').checked=false
+                      setComponent(<></>)
+                      
+                      }}>&times;</a>                    <div className="radio" id="modalCheck" >
                       <input label="Info" type="radio" id="compoundInfo" name="markerModal" value="information" onChange={() => {setComponent(<CompoundMarkerModal></CompoundMarkerModal>)}}/>
                       <input label="Fields" type="radio" id="fields" name="markerModal" value="fields" onChange={() => {setComponent(<FieldModal></FieldModal>)}}  />
                       <input label="Materials" type="radio" id="materials" name="markerModal" value="materials" onChange={() => {setComponent(<MaterialModal></MaterialModal>)}}  />

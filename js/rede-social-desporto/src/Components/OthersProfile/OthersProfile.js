@@ -8,12 +8,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const OthersProfile = (props) => {
 
+  const friendRequest = (data) => {
+    setRequest(data)
+  }
+
 const {getAccessTokenSilently} = useAuth0();
 const [isLoading, setIsLoading] = React.useState(false);
 const [error, setError] = React.useState();
 const [userObj, setUser] = React.useState(user);
+const [request, setRequest] = React.useState(false);
   
-    React.useEffect(() => {
+  React.useEffect(() => {
       const makeRequest = async () => {
         setError(null);
         setIsLoading(true);
@@ -41,7 +46,7 @@ const [userObj, setUser] = React.useState(user);
       };
   
       if (!isLoading) makeRequest();
-    },[userObj]);
+    },[userObj,request]);
 
       return (
         <div id="body">
@@ -58,7 +63,7 @@ const [userObj, setUser] = React.useState(user);
                         <h4><FaCity></FaCity> {userObj.city}</h4>
                         <SportsModal otherProfile={true} userId={userObj.userId}></SportsModal>
                     </div>
-                    {userObj.friends == null ? <AddFriend friendId={userObj.userId}></AddFriend> : <></> }
+                    {userObj.friends == null ? <AddFriend request={friendRequest} friendId={userObj.userId}></AddFriend> : <></> }
                 </div>
 
             </div>

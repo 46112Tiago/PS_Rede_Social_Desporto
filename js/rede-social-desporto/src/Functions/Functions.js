@@ -1,5 +1,5 @@
 export function filterMaterials(material) {
-    return material.id
+    return material.id || material.other
 }
 
 export function filterSchedule(schedule) {

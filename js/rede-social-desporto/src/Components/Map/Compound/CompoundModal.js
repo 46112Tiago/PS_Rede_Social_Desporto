@@ -30,7 +30,7 @@ const CompoundModal = (props) => {
   const [scheduleObj, setSchedule] = React.useState([{}]);
   const [materialObj, setMaterials] = React.useState([{}]);
   const [compoundObj, setCompound] = React.useState({});
-  const [fields, setFields] = React.useState({});
+  const [fields, setFields] = React.useState([{}]);
 
   React.useEffect(() => {
 

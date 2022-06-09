@@ -366,7 +366,9 @@ Select * from Post_comment join User_profile on commentcreatorId = userId
 
 Select * from event join event_participant on id = eventId
 
-select * from user_profile
+select * from material_compound
+
+delete from friends where friendId = 3 AND userId = 18
 
 update  user_profile set birthdate = '23/06/2000' where userId = 18
 

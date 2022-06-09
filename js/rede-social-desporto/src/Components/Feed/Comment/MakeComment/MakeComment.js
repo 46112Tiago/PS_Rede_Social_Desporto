@@ -35,8 +35,9 @@ const MakeComment = (props) => {
         body:JSON.stringify(data)
     };
 
-    const response = await fetch(`http://localhost:8080/user/${window.name}/post/1/comment`, options)
-
+    const response = await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment`, options)
+    const resp = await response.json()
+    props.newComment(resp)
 }
 
       return (

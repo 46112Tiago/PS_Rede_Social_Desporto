@@ -24,7 +24,7 @@ const SearchBar = (props) => {
 
   async function submit(data) {
     props.setName(data)
-}
+  }
   
       return (
         <div id='searchBar'>

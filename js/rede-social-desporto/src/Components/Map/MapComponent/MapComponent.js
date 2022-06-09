@@ -22,8 +22,6 @@ const MapComponent = (props) => {
 
     React.useEffect(() => {
       
-      
-      
       const mapOptions = {
         zoom : zoomEffect,
         center : centerVal,
@@ -101,7 +99,7 @@ const MapComponent = (props) => {
     }
 
        
-    },[markersArray]);
+    },[markersArray,props.center]);
     return (
         <>
             <Marker/>

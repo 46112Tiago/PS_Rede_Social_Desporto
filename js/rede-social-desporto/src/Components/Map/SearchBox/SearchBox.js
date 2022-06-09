@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";import './SearchBox.css'
 import { FaSearch, FaTimes } from 'react-icons/fa';
+import { convertLocationToCoordinate } from '../../../GoogleMaps/Geocoding';
 
-const SearchBox = () => {
-
-  function reset() {
-    //document.getElementById('searchBarTxt').value = ''
-  }
-
-  // get functions to build form with useForm() hook
-  const { register, handleSubmit } = useForm();
+const SearchBox = (props) => {
 
   // user state for form
   const [name, setName] = useState('');
+  const { register, handleSubmit } = useForm();
 
   // effect runs on component mount
   useEffect(() => {
@@ -20,14 +15,24 @@ const SearchBox = () => {
       setTimeout(() => setName(''), 1000);
     }, [name]);
 
+    async function submit(data) {
+      const resp = await convertLocationToCoordinate(data.name)
+      props.center({lat:resp.lat, lng:resp.lng})
+    }
+    
 
     return (
     <div id='searchBox'>
-        <a className='sport'>Modalidade</a>
-        <a className='town'>Município</a>
-        <a className='activeEvents'>Eventos Ativos</a>
-        <a className='open'>Abertos agora</a>
-    </div>
+        <p className='sport'>Modalidade</p>
+        <p className='town'>Município</p>
+        <p className='activeEvents'>Eventos Ativos</p>
+        <p className='open'>Abertos agora</p>
+        <div id='searchBarCompound'>
+          <form onSubmit={handleSubmit(submit)}>
+            <button className='searchBarCompoundItem' id='searchBtn' ><FaSearch></FaSearch></button>
+            <input name='name' className='searchBarCompoundItem' id='searchBarCompoundTxt' type="text" {...register('name')} placeholder='Search...' required/>
+          </form>
+        </div>    </div>
     );
 }
   

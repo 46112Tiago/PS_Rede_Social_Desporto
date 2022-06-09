@@ -12,15 +12,25 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
 
     fun createCompound(compound : Compound) : Int? {
         val compoundId = compoundRepo.createCompound(compound)
-        for (material in compound.material!!) {
-            if (material.id==null) break
-            compoundRepo.addMaterial(compoundId!!,material.id!!)
+
+        if (compound.material!!.isNotEmpty() && compound.material[0].other != null) {
+            val newMaterials = compound.material[0].other!!.split(";")
+            for (materialName in newMaterials) {
+                val newMaterialId = compoundRepo.addMaterial(materialName)
+                compoundRepo.addMaterialToCompound(compoundId!!,newMaterialId)
+            }
+        }
+
+        for (material in compound.material) {
+            if (material.other!=null) continue
+            compoundRepo.addMaterialToCompound(compoundId!!,material.id!!)
         }
         for (schedule in compound.schedule!!) {
             if (schedule.weekday==null) break
             compoundRepo.addSchedule(compoundId!!,schedule)
         }
         for (field in compound.fields!!) {
+            if (field.id==null) break
             compoundRepo.addFieldToCompound(compoundId!!,field.name!!)
         }
         return compoundId

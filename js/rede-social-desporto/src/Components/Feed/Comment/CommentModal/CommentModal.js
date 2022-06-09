@@ -13,9 +13,14 @@ const CommentModal = (props) => {
     setPage(pageN)
   }
 
+  const setNewCommentProps = (commentId) => {
+    setNewComment(commentId)
+  }
+
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [commentArray, setComment] = React.useState([comment]);
+    const [newComment, setNewComment] = React.useState(0);
     const [page, setPage] = React.useState(0);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {getAccessTokenSilently} = useAuth0();
@@ -35,7 +40,7 @@ const CommentModal = (props) => {
           };
           const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment?page=${page}`,options);
           const resp = await req.json();
-          resp.length%5 == 0 ?
+          resp.length%5 == 0 && resp.length > 0 ?
           setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
           :
           setPaging(<></>)
@@ -51,7 +56,7 @@ const CommentModal = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[page]);
+    },[page,newComment]);
 
         const makeRequest = async () => {
           setError(null);
@@ -87,7 +92,7 @@ const CommentModal = (props) => {
                 <div className="modal__content_Comment">
                     <a href="#" className="modal__close">&times;</a>
                     <h2>Comments</h2>
-                    <MakeComment/>
+                    <MakeComment newComment={setNewCommentProps} postId={props.postId}/>
                     {commentArray.map((commentObj,i) => {
                       if(commentObj.id != 0) {
                         return(

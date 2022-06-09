@@ -45,7 +45,6 @@ const Materials = (props) => {
 
   function submit(data) {
     const materials = data.materials.filter(filterMaterials)
-    materials.other = data.other
     console.log(materials)
     props.getMaterials(materials)
   }
@@ -61,7 +60,7 @@ const Materials = (props) => {
                     <div>
                         <div className='checkDiv' key={i}>
                             <label for={`check_${i}`} >{materialObj.name}</label>
-                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={materialObj.id} {...register(`materials[${i}][id]`)}/>
+                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={materialObj.id} {...register(`materials[${i+1}][id]`)}/>
                         </div>
                     </div>
 
@@ -69,7 +68,7 @@ const Materials = (props) => {
                 }
                 <div className='checkDiv'>
                     <label for={`more`} > Others: </label>
-                    <textarea  name='more'  {...register('other')}/>
+                    <textarea  name='more'  {...register('materials[0][other]')} placeholder='Insert all the values separated by ;'/>
                 </div>   
             </fieldset>
             <div id='participantbtn'>
