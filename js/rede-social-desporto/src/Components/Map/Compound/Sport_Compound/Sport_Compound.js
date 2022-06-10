@@ -1,14 +1,14 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { materials } from '../../../../Model/Model';
+import { sport } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
-import { filterMaterials } from '../../../../Functions/Functions';
+import { filterSports } from '../../../../Functions/Functions';
 
-const Materials = (props) => {
+const Sport_Compound = (props) => {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
-    const [materialsArray, setMaterials] = React.useState([materials]);
+    const [sportsArray, setSports] = React.useState([sport]);
     const {getAccessTokenSilently} = useAuth0();
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
@@ -19,15 +19,14 @@ const Materials = (props) => {
         setError(null);
         setIsLoading(true);
         try {
-            if(materialsArray[0].name) return 
             const token = await getAccessTokenSilently();
             var options = {
               method: 'GET',
               headers: {authorization: `Bearer ${token}`}
             };
-            const req =  await fetch("http://localhost:8080/material",options);
+            const req =  await fetch("http://localhost:8080/sports",options);
             const resp = await req.json();
-            setMaterials(resp);
+            setSports(resp);
         } catch (err) {
           setError(err);
           //console.log(err);
@@ -44,32 +43,28 @@ const Materials = (props) => {
   const { register, handleSubmit } = useForm();
 
   function submit(data) {
-    const materials = data.materials.filter(filterMaterials)
-    console.log(materials)
-    props.getMaterials(materials)
+    const sports = data.sports.filter(filterSports)
+    console.log(sports)
+    props.getSports(sports)
   }
 
       return (
         <>  
-        <h1>Materials:</h1>
+        <h1>Sports:</h1>
         <form onSubmit={handleSubmit(submit)} id='formParticipant'>
             <fieldset>
-                <legend>Choose the available materials:</legend>
+                <legend>Choose the available sports:</legend>
                 {
-                    materialsArray.map((materialObj,i)=>
+                    sportsArray.map((sportObj,i)=>
                     <div>
                         <div className='checkDiv' key={i}>
-                            <label for={`check_${i}`} >{materialObj.name}</label>
-                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='materials' value={materialObj.id} {...register(`materials[${i+1}][id]`)}/>
+                            <label for={`check_${i}`} >{sportObj.name}</label>
+                            <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='sports' value={sportObj.id} {...register(`sports[${i}][id]`)}/>
                         </div>
                     </div>
 
                     )
                 }
-                <div className='checkDiv'>
-                    <label for={`more`} > Others: </label>
-                    <textarea  name='more'  {...register('materials[0][other]')} placeholder='Insert all the values separated by ;'/>
-                </div>   
             </fieldset>
             <div id='participantbtn'>
                 <input type={'submit'} id='addParticipant' value={'Save'}/>
@@ -80,4 +75,4 @@ const Materials = (props) => {
       );
     }
 
-  export default Materials
+  export default Sport_Compound

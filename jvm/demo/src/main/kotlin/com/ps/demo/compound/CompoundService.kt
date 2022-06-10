@@ -21,8 +21,13 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
             }
         }
 
+        for (sport in compound.sports!!) {
+            if (sport.id==null) break
+            compoundRepo.addSportToCompound(compoundId!!,sport.id!!)
+        }
         for (material in compound.material) {
             if (material.other!=null) continue
+            if (material.id==null) break
             compoundRepo.addMaterialToCompound(compoundId!!,material.id!!)
         }
         for (schedule in compound.schedule!!) {

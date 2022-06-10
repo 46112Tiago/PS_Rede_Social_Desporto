@@ -2,6 +2,10 @@ export function filterMaterials(material) {
     return material.id || material.other
 }
 
+export function filterSports(sports) {
+    return sports.id 
+}
+
 export function filterSchedule(schedule) {
     return schedule.openingHour && schedule.closingHour
 }

@@ -6,6 +6,7 @@ import Materials from "./Materials/Materials";
 import Schedule from "./Schedule/Schedule";
 import './Confirm/ConfirmCompound.css'
 import Field from "./Field/Field";
+import Sport_Compound from "./Sport_Compound/Sport_Compound";
 
 const CompoundModal = (props) => {
 
@@ -22,6 +23,10 @@ const CompoundModal = (props) => {
     setMaterials(material)
   }
 
+  const getSports = (sports) => {
+    setSports(sports)
+  }
+
   const getCompound = (compoundInfo) => {
     setCompound(compoundInfo)
   }
@@ -29,6 +34,7 @@ const CompoundModal = (props) => {
   const [component, setComponent] = React.useState(<></>);
   const [scheduleObj, setSchedule] = React.useState([{}]);
   const [materialObj, setMaterials] = React.useState([{}]);
+  const [sportsObj, setSports] = React.useState([{}]);
   const [compoundObj, setCompound] = React.useState({});
   const [fields, setFields] = React.useState([{}]);
 
@@ -45,9 +51,14 @@ const CompoundModal = (props) => {
           compoundObj.material = materialObj
           compoundObj.schedule = scheduleObj
           compoundObj.fields = fields
+          compoundObj.sports = sportsObj
           const token = await getAccessTokenSilently();
           myHeaders.append('Authorization',`Bearer ${token}`)
-         
+          if(!compoundObj.location) { 
+            alert("Insert a location")
+            return
+          }
+
           compoundObj.location = {x:JSON.parse(compoundObj.location).lat, y:JSON.parse(compoundObj.location).lng}
           const options = {
               method: "POST",
@@ -72,6 +83,7 @@ const CompoundModal = (props) => {
                     <div className="radio" id="modalCheck" >
                       <input label="Information" type="radio" id="information" name="compoundModal" value="information" onChange={() => {setComponent(<CompoundSuggestion map={props.map} getCompound={getCompound}/>)}}/>
                       <input label="Fields" type="radio" id="fields" name="compoundModal" value="fields" onChange={() => {setComponent(<Field getFields={getFields}/>)}} />
+                      <input label="Sports" type="radio" id="sports" name="compoundModal" value="sports" onChange={() => {setComponent(<Sport_Compound getSports={getSports}/>)}} />
                       <input label="Materials" type="radio" id="materials" name="compoundModal" value="materials" onChange={() => {setComponent(<Materials getMaterials={getMaterials}/>)}} />
                       <input label="Schedule" type="radio" id="schedule" name="compoundModal" value="schedule" onChange={() => {setComponent(<Schedule getSchedule={getSchedule}/>)}} />
                       <input label="Confirm" type="radio" id="confirm" name="compoundModal" value="confirm" onChange={() => {setComponent(<div id='submitCompound'><button onClick={submit} id='submitCompoundBtn'>CONFIRM</button></div>)}} />

@@ -11,6 +11,7 @@ data class Compound(
         val summary : String?,
         val pictures : URL?,
         val location : PGpoint?,
+        val sports : List<Sports>?,
         val material : List<Material>?,
         val schedule: List<Schedule>?,
         val fields: List<Field>?,

@@ -824,7 +824,7 @@ Select * from Post_comment join User_profile on commentcreatorId = userId
 
 Select * from event join event_participant on id = eventId
 
-select * from post
+select * from sport_compound
 
 delete from friends where friendId = 3 AND userId = 18
 

@@ -43,6 +43,17 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         }
     }
 
+    fun addSportToCompound(compoundId: Int, sportId: Int) {
+        jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into " +
+                    "SPORT_COMPOUND(compoundId,sportId) " +
+                    "values(?,?)")
+                .bind(0,compoundId)
+                .bind(1,sportId)
+                .execute()
+        }
+    }
+
     fun addMaterial(materialName: String) : Int {
         val toReturn = jdbi.withHandle<Int,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
