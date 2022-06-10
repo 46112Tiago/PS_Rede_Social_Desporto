@@ -297,13 +297,48 @@ INSERT INTO SPORTS(name)
 VALUES ('Surf');
 --8)
 INSERT INTO SPORTS(name)
-VALUES ('Paddle');
+VALUES ('Paddle(SUP)');
 --9)
 INSERT INTO SPORTS(name)
 VALUES ('Skate');
 --10)
 INSERT INTO SPORTS(name)
 VALUES ('BodyBoard');
+--10)
+INSERT INTO SPORTS(name)
+VALUES ('Swimming');
+
+/* SPORT_COMPOUND */
+--1)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (6,6);
+--2)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (7,7);
+--3)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (8,7);
+--4)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (9,7);
+--5)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (10,7);
+--6)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (3,8);
+--7)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (4,8);
+--9)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (3,9);
+--9)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (11,9);
+--10)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (2,10);
 
 /* USER_SPORTS */
 --1)
@@ -353,6 +388,19 @@ VALUES (6,'10/09/2022 08:00:00','10/09/2022 19:00:00','V Ordem Mérito - Cat A',
 --7)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
 VALUES (6,'01/10/2022 08:00:00','05/10/2022 17:00:00','Taça FPG 2022',6,'A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.','Taça Federação Portuguesa de Golf',32,2,true);
+--8)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (7,'01/08/2022 08:00:00','03/08/2022 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
+'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região.',40,3,true);
+--9)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (7,'15/08/2022 08:00:00','16/08/2022 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
+'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região.',30,3,true);
+--10)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (8,'23/09/2022 08:00:00','24/08/2022 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
 
 
 /* EVENT_PARTICIPANT */
@@ -390,38 +438,96 @@ VALUES (4,7);
 /* POST */
 --1)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (1,'Post','22/06/2022 12:24:59',4);
+VALUES (1,'Post 1','22/06/2021 12:24:59',4);
 --2)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post','22/06/2022 22:09:11',2);
+VALUES (2,'Post 2','22/06/2021 22:09:11',2);
 --3)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (5,'Post','22/12/2022 14:11:50',5);
+VALUES (5,'Post 3','24/06/2021 14:11:50',5);
 --4)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post','17/11/2022 12:24:59',11);
+VALUES (2,'Post 4','25/06/2021 12:24:59',11);
 --5)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (4,'Post','29/06/2022 12:30:59',9);
-
+VALUES (4,'Post 5','25/06/2021 12:30:59',9);
+--6)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (7,'Post 6','30/06/2021 20:24:59',4);
+--7)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (9,'Post 7','01/07/2021 22:09:11',2);
+--8)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (7,'Post 8','04/07/2021 08:11:50',5);
+--9)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (8,'Post 9','04/07/2021 12:24:59',11);
+--10)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 10','04/07/2021 17:30:59',9);
+--11)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (7,'Post 11','04/07/2021 23:24:59',4);
+--12)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (2,'Post 12','05/07/2021 22:09:11',2);
+--13)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 13','05/07/2021 23:40:50',5);
+--14)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (11,'Post 14','07/07/2021 12:24:59',11);
+--15)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (9,'Post 15','07/07/2021 12:30:59',9);
 
 /* POST_COMMENT */
 --1)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (1,'22/06/2022 12:24:59','Comment',4);
+VALUES (1,'22/06/2022 12:24:59','Comment 1',4);
 --2)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (1,'22/07/2022 12:24:59','Comment',2);
+VALUES (1,'22/07/2022 12:24:59','Comment 2',2);
 --3)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (3,'23/12/2022 14:11:50','Comment',1);
+VALUES (3,'23/12/2022 14:11:50','Comment 3',1);
 --4)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (4,'19/11/2022 12:24:59','Comment',5);
+VALUES (4,'19/11/2022 12:24:59','Comment 4',5);
 --5)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (3,'24/12/2022 14:11:50','Comment',2);
-
+VALUES (3,'24/12/2022 14:11:50','Comment 5',2);
+--6)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'02/07/2021 12:24:59','Comment 6',11);
+--7)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'02/07/2021 12:54:59','Comment 7',10);
+--8)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'03/07/2021 14:11:50','Comment 8',5);
+--9)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'06/07/2021 12:24:59','Comment 9',3);
+--10)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'09/07/2021 14:11:50','Comment 10',1);
+--11)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'10/07/2021 12:24:59','Comment 11',4);
+--12)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'10/07/2021 22:24:59','Comment 12',2);
+--13)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'14/07/2021 09:11:50','Comment 13',9);
+--14)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'14/07/2021 12:24:59','Comment 14',1);
+--15)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (7,'14/07/2021 14:11:50','Comment 15',8);
 
 /* REVIEW */
 --1)

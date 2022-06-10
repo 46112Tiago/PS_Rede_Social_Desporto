@@ -1,5 +1,7 @@
 begin;
 
+drop table IF EXISTS sport_compound CASCADE ; 
+
 drop table IF EXISTS image CASCADE ;
 
 drop table IF EXISTS lookingplayers_participants CASCADE ;

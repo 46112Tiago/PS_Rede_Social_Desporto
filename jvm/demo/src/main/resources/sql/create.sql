@@ -106,6 +106,13 @@ CREATE TABLE SPORTS(
 );
 
 
+CREATE TABLE SPORT_COMPOUND(
+                       sportId INT,
+                       compoundId INT,
+                       PRIMARY KEY(sportId,compoundId)
+);
+
+
 CREATE TABLE USER_SPORTS(
                             userId INT,
                             sportId INT,
