@@ -28,11 +28,9 @@ const Post = (props) => {
         {
           var scrollTop = document.getElementById('postContent').scrollTop;
           var offsetHeight = document.getElementById('postContent').offsetHeight;
-          var clientHeight = document.getElementById('postContent').clientHeight;
-          if (offsetHeight <= scrollTop + clientHeight)
-          {
+          if(offsetHeight*(page+1) < scrollTop){
             setPage(page+1)
-          }        
+          }       
         }     
 
       const makeRequest = async () => {
@@ -49,7 +47,8 @@ const Post = (props) => {
           };
           const req =  await fetch(`http://localhost:8080/user/${window.name}/post?page=${page}`,options);
           const resp = await req.json();
-          setPost(resp);
+          const newPostArray = postArray.concat(resp)
+          setPost(newPostArray);
         } catch (err) {
           setError(err);
           //console.log(err);
