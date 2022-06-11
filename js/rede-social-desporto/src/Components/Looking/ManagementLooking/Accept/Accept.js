@@ -70,6 +70,7 @@ const Accept = (props) => {
                               <button className='infoLooking'onClick={()=>{
                                   props.getLookingPlayers(lookingInfo)
                                   props.getCompound(lookingInfo.compound)
+                                  props.getParticipants(lookingObj.participants)
                                   window.location.href = "#looking-modal"}}>Info</button>
                               <AcceptBtn lookingId={lookingInfo.id} userId={lookingObj.userId}/>      
                             </div>            

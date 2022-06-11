@@ -38,11 +38,11 @@ const LookingBody = () => {
    return (
    <>      
       <div className="radio" >
-         <input label="Navigate" type="radio" id="navigate" name="looking" value="navigate" onChange={() => {setComponent(<Navigate getCompound={getCompound} getLookingPlayers={getLookingPlayers}/>)}} />
+         <input label="Navigate" type="radio" id="navigate" name="looking" value="navigate" onChange={() => {setComponent(<Navigate getCompound={getCompound} getLookingPlayers={getLookingPlayers} getParticipants={getParticipants}/>)}} />
          <input label="Made" type="radio" id="made" name="looking" value="made" onChange={() => {setComponent(<Made getCompound={getCompound} getLookingPlayers={getLookingPlayers} getParticipants={getParticipants}/>)}} />
-         <input label="Accept" type="radio" id="accept" name="looking" value="accept" onChange={() => {setComponent(<Accept getCompound={getCompound} getLookingPlayers={getLookingPlayers}/>)}} />
-         <input label="Pending" type="radio" id="pending" name="looking" value="pending" onChange={() => {setComponent(<Pending getCompound={getCompound} getLookingPlayers={getLookingPlayers}/>)}} />
-         <input label="Participating" type="radio" id="confirmed" name="looking" value="confirmed" onChange={() => {setComponent(<Confirmed getCompound={getCompound} getLookingPlayers={getLookingPlayers}/>)}} />
+         <input label="Accept" type="radio" id="accept" name="looking" value="accept" onChange={() => {setComponent(<Accept getCompound={getCompound} getLookingPlayers={getLookingPlayers} getParticipants={getParticipants}/>)}} />
+         <input label="Pending" type="radio" id="pending" name="looking" value="pending" onChange={() => {setComponent(<Pending getCompound={getCompound} getLookingPlayers={getLookingPlayers} getParticipants={getParticipants}/>)}} />
+         <input label="Participating" type="radio" id="confirmed" name="looking" value="confirmed" onChange={() => {setComponent(<Confirmed getCompound={getCompound} getLookingPlayers={getLookingPlayers} getParticipants={getParticipants}/>)}} />
          <input label="Create" type="radio" id="create" name="looking" value="create" onChange={() => {setComponent(<SearchPlayer/>)}} defaultChecked />
       </div>
       <div id='pendingBody'>

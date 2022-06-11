@@ -6,7 +6,10 @@ import './LogIn/LogIn.css'
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  return <button id="googleBtn" onClick={() => loginWithRedirect()}><AiFillGoogleCircle></AiFillGoogleCircle></button>;
+  return <button id="googleBtn" onClick={() => {
+    sessionStorage.setItem('login', 'yes');
+    loginWithRedirect()
+  }}><AiFillGoogleCircle></AiFillGoogleCircle></button>;
 };
 
 export default LoginButton;

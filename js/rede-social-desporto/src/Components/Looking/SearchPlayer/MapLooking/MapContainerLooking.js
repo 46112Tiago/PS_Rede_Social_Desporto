@@ -8,7 +8,8 @@ const MapContainerLooking = (props) => {
     const ref = React.useRef();
 
     window.addEventListener('change', (compound) => {
-        setCompoundId(compound.target.value)
+        if(compound.target.id == "selectCompound")
+          setCompoundId(compound.target.value)
       });
 
     const [isLoading, setIsLoading] = React.useState(false);
@@ -49,14 +50,15 @@ const MapContainerLooking = (props) => {
         
         mapOptions.zoom = 15
         mapOptions.center = point
-
+        
         map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);       
         const marker = new window.google.maps.Marker({
-            position: point,
-            map,
-            title: resp.name,
+          position: point,
+          map,
+          title: resp.name,
         });
-        resp.id = resp.id      
+        
+        
           
       } catch (err) {
         setError(err);

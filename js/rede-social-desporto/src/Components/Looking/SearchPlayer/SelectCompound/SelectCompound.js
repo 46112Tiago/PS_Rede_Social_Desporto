@@ -9,12 +9,21 @@ const SelectCompound = (props) => {
     props.getCompound(value.target.value)
   }
 
+
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
     const [compoundArray, setCompound] = React.useState([compound]);
     const {getAccessTokenSilently} = useAuth0();
 
       React.useEffect(() => {
+
+        if(!props.sport) {
+          document.getElementById('selectCompound').disabled = true
+        }else {
+          document.getElementById('selectCompound').disabled = false
+        }
+      
+
         const makeRequest = async () => {
           setError(null);
           setIsLoading(true);
@@ -40,7 +49,7 @@ const SelectCompound = (props) => {
         };
     
         if (!isLoading) makeRequest();
-      },[]);
+      },[props.sport]);
 
     return (
     <>

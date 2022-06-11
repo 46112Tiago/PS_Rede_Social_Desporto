@@ -30,8 +30,14 @@ import { userId } from './Global_Variables/Variables';
 
 const App = () => {
 
-    const { isLoading, isAuthenticated  } = useAuth0()
+    const { isLoading, isAuthenticated, logout  } = useAuth0()
     const navBar = isAuthenticated ? <NavLog/> : <Navigation/>
+
+    if(isAuthenticated && !sessionStorage.getItem('login')){
+      window.name = ''
+      logout({ returnTo: window.location.origin })
+    }
+
     if(isLoading){
       return <Loading />
     }

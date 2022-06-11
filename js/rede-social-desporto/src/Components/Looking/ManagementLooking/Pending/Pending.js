@@ -63,6 +63,7 @@ const Pending = (props) => {
                     <button id="activateModal_pending" className='infoLooking'onClick={()=>{
                     props.getLookingPlayers(lookingObj)
                     props.getCompound(lookingObj.compound)
+                    props.getParticipants(lookingObj.participants)
                     window.location.href = "#looking-modal"}}>Info</button>
                     </div>            
                 </div>
