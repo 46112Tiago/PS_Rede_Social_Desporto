@@ -23,8 +23,8 @@ const SelectCompound = (props) => {
           document.getElementById('selectCompound').disabled = false
         }
       
-
         const makeRequest = async () => {
+          if(!props.sport) return
           setError(null);
           setIsLoading(true);
           try {
@@ -36,7 +36,7 @@ const SelectCompound = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/compound/sport/${props.sportId}`,options);
+            const req =  await fetch(`http://localhost:8080/compound/sport/${props.sport}`,options);
             const resp = await req.json();
             setCompound(resp);
             

@@ -33,6 +33,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                 "ON S.id  = E.sportID " +
                 "JOIN COMPOUND C ON C.id = E.compoundId " +
                 "WHERE active = ? AND startDate > ?  " +
+                "ORDER BY E.startDate " +
                 "LIMIT 2 OFFSET ?"
         )
             .bind(0,true)
@@ -75,6 +76,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
                     "JOIN USER_PROFILE userProfile on eventParticipant.participantId = userProfile.userid " +
                     "WHERE active = ? AND startDate > ? AND userProfile.userid = ? AND event.id " +
+                    "ORDER BY E.startDate " +
                     "LIMIT 2 OFFSET ? "
 
             )
@@ -109,6 +111,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "JOIN EVENT_PARTICIPANT EP ON E.id = EP.eventId " +
                     "JOIN USER_PROFILE U on EP.participantId = U.userid " +
                     "WHERE active = ? AND startDate > ? AND participantId = ? " +
+                    "ORDER BY E.startDate " +
                     "LIMIT 10 OFFSET ?"
             )
                 .bind(0,true)
@@ -153,6 +156,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "ON S.id  = E.sportID " +
                     "JOIN COMPOUND C ON C.id = E.compoundId " +
                     "WHERE active = ? AND startDate > ? AND creatorId = ? " +
+                    "ORDER BY E.startDate " +
                     "LIMIT 9 OFFSET ?"
             )
                 .bind(0,true)

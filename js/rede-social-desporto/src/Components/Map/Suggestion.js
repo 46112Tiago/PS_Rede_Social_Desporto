@@ -1,3 +1,4 @@
+import React from 'react';
 import CompoundModal from "./Compound/CompoundModal"
 import FieldModal from "./FieldModal/FieldModal"
 

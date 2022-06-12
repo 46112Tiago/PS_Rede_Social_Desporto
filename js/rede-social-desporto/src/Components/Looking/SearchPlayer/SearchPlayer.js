@@ -53,7 +53,7 @@ const SearchPlayer = () => {
                             <label>Starting Hour</label>
                             <input className='inputForm' type='datetime-loca' name="startDateTime" placeholder='2018-06-12T19:30'  {...register(`startDateTime`)} required/>
                             <SelectSport getSport={getSport}></SelectSport>
-                            <SelectCompound getCompound={getCompound} sportId={sportObj}></SelectCompound>
+                            <SelectCompound getCompound={getCompound} sport={sportObj}></SelectCompound>
                             <input type='submit' id='btnLooking'></input>
                         </fieldset>
                     </form>

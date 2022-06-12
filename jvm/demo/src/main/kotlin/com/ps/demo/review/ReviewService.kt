@@ -22,4 +22,8 @@ class ReviewService(val reviewRepo : ReviewRepoImplementation) {
         return reviewRepo.getAllReviews(compoundId,page)
     }
 
+    fun getReviewById(compoundId: Int, reviewId: Int) : Review? {
+        return reviewRepo.getReviewById(compoundId,reviewId)
+    }
+
 }

@@ -101,13 +101,11 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         }
     }
 
-    /* TODO: Bring only x locations */
-    fun getCompoundLocations(sportId: Int): List<Compound?>? {
+    fun getCompoundLocations(): List<Compound?>? {
         val toReturn = jdbi.withHandle<List<Compound?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select location, id, name from COMPOUND JOIN SPORT_COMPOUND ON id = compoundId " + 
-                        "where accepted = ? AND sportId = ?")
+            handle.createQuery("Select location, id, name from COMPOUND " +
+                        "where accepted = ? ")
                     .bind(0,true)
-                    .bind(1,sportId)
                     .mapTo<Compound>()
                     .list()
         }
@@ -115,7 +113,19 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         return toReturn
     }
 
-    /* TODO: See which attributes should retrieve for the info */
+    fun getCompoundLooking(sportId: Int): List<Compound?>? {
+        val toReturn = jdbi.withHandle<List<Compound?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select location, id, name from COMPOUND JOIN SPORT_COMPOUND ON id = compoundId " +
+                    "where accepted = ? AND sportId = ?")
+                .bind(0,true)
+                .bind(1,sportId)
+                .mapTo<Compound>()
+                .list()
+        }
+
+        return toReturn
+    }
+
     fun getCompoundInformation(compoundId : Int): Compound? {
         val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, description, location, dressingRoom, summary, parking " +

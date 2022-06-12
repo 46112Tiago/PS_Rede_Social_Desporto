@@ -12,6 +12,7 @@ const ReviewModal = (props) => {
   }
 
   const newReviewProp = (data) => {
+    setNewReviewChange(true)
     setNewReview(data)
   }
 
@@ -20,6 +21,8 @@ const ReviewModal = (props) => {
     const [reviewArray, setReview] = React.useState([review]);
     const [page, setPage] = React.useState(0);
     const [newReview, setNewReview] = React.useState(0);
+    const [newReviewChange, setNewReviewChange] = React.useState(false);
+    const [end, setEnd] = React.useState(false);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {isAuthenticated} = useAuth0();
 
@@ -38,15 +41,24 @@ const ReviewModal = (props) => {
               method: "GET",
               mode: 'cors',
             };
-
-            const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review?page=${page}`,options);
-            const resp = await req.json();
-            resp.length%5 == 0 ?
-              setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
-              :
-              setPaging(<></>)
-            const newReviewArray = reviewArray.concat(resp)
-            setReview(newReviewArray);
+            if(end){
+              const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review/${newReview}`,options);
+              const resp = await req.json();
+              const newReviewArray = reviewArray.concat(resp)
+              setReview(newReviewArray);
+              return    
+            }
+            if(!newReviewChange){
+              const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review?page=${page}`,options);
+              const resp = await req.json();
+              resp.length%5 == 0 && resp.length > 0 ?
+                setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
+                :
+                setPaging(<></>)
+              const newReviewArray = reviewArray.concat(resp)
+              setReview(newReviewArray);
+            }
+            setNewReviewChange(false)
           } catch (err) {
             setError(err);
             //console.log(err);

@@ -62,6 +62,7 @@ const Accept = (props) => {
     <>
             {lookingMadeArray.map((lookingObj,key)=>{
               if(lookingObj.id != 0){
+                return(
                     <div className='cardContainer' key={key}>
                         <div className="card accept">
                         <p>{lookingObj.firstName} {lookingObj.lastName}</p>
@@ -75,7 +76,7 @@ const Accept = (props) => {
                               <AcceptBtn lookingId={lookingInfo.id} userId={lookingObj.userId}/>      
                             </div>            
                         </div>
-                    </div>
+                    </div>)
             }})}
 
         <div id='pagingMade'>

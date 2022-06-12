@@ -24,8 +24,8 @@ class CommentService(val commentRepo : CommentRepoImplementation) {
         return commentRepo.getCommentsId(postId,page)
     }
 
-    /*fun getCommentById(postId: Int, commentId: Int) : Comment? {
+    fun getCommentById(postId: Int, commentId: Int) : Comment? {
         return commentRepo.getCommentById(postId,commentId)
-    }*/
+    }
 
 }

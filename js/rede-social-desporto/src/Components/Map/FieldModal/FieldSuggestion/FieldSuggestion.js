@@ -21,7 +21,7 @@ const FieldSuggestion = (props) => {
                 // Close the current InfoWindow.
 
                 // Create a new InfoWindow.
-                infoWindow = new google.maps.InfoWindow({
+                infoWindow = new window.google.maps.InfoWindow({
                 position: mapsMouseEvent.latLng,
                 });
                 infoWindow.setContent(

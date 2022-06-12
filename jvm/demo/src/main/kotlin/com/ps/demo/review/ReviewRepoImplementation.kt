@@ -8,6 +8,8 @@ import org.jdbi.v3.core.kotlin.mapTo
 import org.jdbi.v3.core.mapper.RowMapperFactory
 import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
+import java.sql.Timestamp
+import java.time.LocalDateTime
 
 @Repository
 class ReviewRepoImplementation(val jdbi:Jdbi)  {
@@ -29,14 +31,19 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
     }
 
      fun createFieldReview(compoundId: Int, fieldId: Int, review : Review): Int? {
+
+         val current = LocalDateTime.now()
+         val timestamp : Timestamp = Timestamp.valueOf(current)
+
         val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "review(fieldId,compoundId,rating,description) " +
-                    "values(?,?,?,?)")
+                    "review(fieldId,compoundId,rating,description,reviewDate) " +
+                    "values(?,?,?,?,?)")
                     .bind(0,fieldId)
                     .bind(1,compoundId)
                     .bind(2,review.rating)
                     .bind(3,review.description)
+                    .bind(4,timestamp)
                     .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
         }
 
@@ -64,6 +71,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
                     "U.userId as u_userId, firstName as u_firstName, lastName as u_lastName " +
                     "from REVIEW R JOIN USER_PROFILE U ON U.userid = R.userid " +
                     "Where compoundId = ? " +
+                    "ORDER BY reviewDate " +
                     "LIMIT 5 OFFSET ?")
                     .bind(0,compoundId)
                     .bind(1,page*5)
@@ -82,6 +90,34 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
                 }.values.toList()
         }
          return toReturn
+    }
+
+    fun getReviewById(compoundId: Int, reviewId: Int): Review? {
+
+        val toReturn = jdbi.withHandle<Review?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select rating as r_rating, description as r_description, R.id as r_id, " +
+                    "U.userId as u_userId, firstName as u_firstName, lastName as u_lastName " +
+                    "from REVIEW R JOIN USER_PROFILE U ON U.userid = R.userid " +
+                    "Where compoundId = ? AND R.id = ?" +
+                    "ORDER BY rating DESC " +
+                    "LIMIT 5 OFFSET ?")
+                .bind(0,compoundId)
+                .bind(1,reviewId)
+                .registerRowMapper(factory(Review::class.java, "r"))
+                .registerRowMapper(factory(User::class.java, "u"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Review>, rowView: RowView ->
+                    val review = map.computeIfAbsent(rowView.getColumn("r_id", Int::class.javaObjectType)) {
+                        rowView.getRow(Review::class.java)
+                    }
+
+                    if (rowView.getColumn("u_userId", Int::class.javaObjectType) != null) {
+                        review.user = rowView.getRow(User::class.java)
+                    }
+
+                    map
+                }[reviewId]
+        }
+        return toReturn
     }
 
 }

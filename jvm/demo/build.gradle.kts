@@ -28,6 +28,7 @@ dependencies {
 	implementation("org.jdbi:jdbi3-postgres:3.9.1")
 	implementation("org.jdbi:jdbi3-kotlin-sqlobject:3.2.1")
 	implementation("org.postgresql:postgresql:42.2.16")
+	implementation("org.springframework.boot:spring-boot-starter-websocket")
 }
 
 tasks.withType<KotlinCompile> {

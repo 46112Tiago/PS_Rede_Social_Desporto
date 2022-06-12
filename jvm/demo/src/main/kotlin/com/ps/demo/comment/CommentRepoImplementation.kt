@@ -66,6 +66,7 @@ class CommentRepoImplementation(val jdbi: Jdbi){
                     "from POST_COMMENT join USER_PROFILE " +
                     "ON commentCreatorId = USER_PROFILE.userId  " +
                     "WHERE postId = ? " +
+                    "ORDER BY commentDate " +
                     "LIMIT 5 OFFSET ?")
                     .bind(0,postId)
                     .bind(1,page*5)
@@ -97,7 +98,7 @@ class CommentRepoImplementation(val jdbi: Jdbi){
         }
         return toReturn
     }
-/*
+
     fun getCommentById(postId: Int, commentId: Int) : Comment? {
         val toReturn : Comment? =
             jdbi.withHandle<Comment?,RuntimeException> { handle : Handle ->
@@ -109,7 +110,7 @@ class CommentRepoImplementation(val jdbi: Jdbi){
                         "user_profile.firstName as u_firstName, " +
                         "user_profile.lastName as u_lastName " +
                         "from POST_COMMENT join USER_PROFILE " +
-                        "ON commentCreatorId = USER_PROFILE.userId  " +
+                        "ON commentCreatorId = USER_PROFILE.userId " +
                         "WHERE postId = ? AND POST_COMMENT.id = ? ")
                     .bind(0,postId)
                     .bind(1,commentId)
@@ -129,5 +130,5 @@ class CommentRepoImplementation(val jdbi: Jdbi){
 
         return toReturn
     }
-*/
+
 }

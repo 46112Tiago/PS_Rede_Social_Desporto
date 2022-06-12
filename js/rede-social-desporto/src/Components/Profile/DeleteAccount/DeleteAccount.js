@@ -26,7 +26,6 @@ const DeleteAccount = () => {
                 const response = await fetch(`http://localhost:8080/user/${window.name}`, deleteMethod);
                 window.name = ''
                 logout({ returnTo: window.location.origin })
-                console.log(data);
               } catch (error) {
                 console.log('Error: ' + error);
               }

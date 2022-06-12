@@ -58,7 +58,8 @@ class SportsRepoImplementation(val jdbi : Jdbi)  {
             handle.createQuery("Select name , s.id " +
                     "from USER_SPORTS us " +
                     "join SPORTS s ON us.sportId = s.id " +
-                    "WHERE userId = ? ")
+                    "WHERE userId = ? " +
+                    "ORDER BY name")
                     .bind(0,userId)
                     .mapTo<Sports>()
                     .list()
@@ -70,7 +71,8 @@ class SportsRepoImplementation(val jdbi : Jdbi)  {
      fun getSports(): List<Sports>? {
         val toReturn = jdbi.withHandle<List<Sports>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, id " +
-                    "from SPORTS ")
+                    "from SPORTS " +
+                    "ORDER BY name")
                     .mapTo<Sports>()
                     .list()
         }

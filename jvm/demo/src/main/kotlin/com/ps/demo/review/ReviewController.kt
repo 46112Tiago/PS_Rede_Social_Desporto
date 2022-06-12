@@ -17,6 +17,13 @@ class ReviewController(val reviewService: ReviewService) {
         return ResponseEntity(reviews, HttpStatus.OK)
     }
 
+    @GetMapping("/review/{reviewId}")
+    fun getReviewById(@PathVariable("compoundId") compoundId : Int,
+                      @PathVariable("reviewId") reviewId: Int) : ResponseEntity<Review?> {
+        val reviews : Review? = reviewService.getReviewById(compoundId,reviewId)
+        return ResponseEntity(reviews, HttpStatus.OK)
+    }
+
     @DeleteMapping("/review/{reviewId}")
     fun deleteReview(@PathVariable("reviewId") reviewId : Int) : ResponseEntity<Any?> {
         reviewService.deleteReview(reviewId)

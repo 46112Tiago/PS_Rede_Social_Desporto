@@ -30,7 +30,7 @@ const CompoundSuggestion = (props) => {
                 // Close the current InfoWindow.
 
                 // Create a new InfoWindow.
-                infoWindow = new google.maps.InfoWindow({
+                infoWindow = new window.google.maps.InfoWindow({
                 position: mapsMouseEvent.latLng,
                 });
                 infoWindow.setContent(
@@ -53,10 +53,13 @@ const CompoundSuggestion = (props) => {
                         <label>Name:</label>
                         <input name="compoundName" type="text" {...register('name')} className="form-control" placeholder='Compound Name' required />
                     </div>
+                    <div >
+                        <label>Contact:</label>
+                        <input name="compoundContact" type={'text'} {...register('contact')} className="form-control" placeholder='Compound Contact' required />
+                    </div>
                     <div className="form-group col">
                         <label>Location:</label>
                         <input type={'button'} className="form-control" name="compoundLocation" value="pick location" onClick={pickLocation}/>
-                        {/*<input name="compoundLocation" type="text" {...register('location')} className="form-control" placeholder='Compound Location' required />*/}
                     </div>
                     <div className="form-group col">
                         <label>Description:</label>
@@ -88,7 +91,6 @@ const CompoundSuggestion = (props) => {
                 </div>
             </form>
         </div>
-
       );
     }
 

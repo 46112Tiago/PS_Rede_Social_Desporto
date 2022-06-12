@@ -1,4 +1,3 @@
-import React from 'react';
 import './ConversationIdle.css'
 import FriendMsg from './Messages/FriendMsg';
 import OwnMsg from './Messages/OwnMsg';
@@ -6,6 +5,7 @@ import InputText from './InputText';
 import { message } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import DropDownGroup from './Groups/DropDownGroup';
+import React, { useState } from 'react';
 
 const ConversationIdle = (props) => {
   
@@ -14,6 +14,7 @@ const ConversationIdle = (props) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
   const [messageArray, setMessage] = React.useState([message]);
+  const [messageReceived, setReceivedMessage] = useState('');
   const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
@@ -52,7 +53,8 @@ const ConversationIdle = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[props.groupId]);
+    },[props.groupId,props.friendId]);
+
 
       return (
         <div>
@@ -85,6 +87,7 @@ const ConversationIdle = (props) => {
               </div>
 
             </div>
+
         </div>
       );
     }

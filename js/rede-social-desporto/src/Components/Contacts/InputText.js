@@ -34,11 +34,12 @@ const InputText = (props) => {
         headers: myHeaders,
         mode: 'cors',
         body:JSON.stringify(data)
-    };
-    if(props.sendTo == "group")
+    }
+    if(props.sendTo == "group"){
       await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
-    else
-    await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+    }else{
+      await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+    }
 }
 
       return (

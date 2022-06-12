@@ -94,6 +94,7 @@ export let materials = {
 export let compound = {
     id : 0,
     name : '',
+    contact : '',
     description : '',
     summary : '',
     dressingRoom : '',

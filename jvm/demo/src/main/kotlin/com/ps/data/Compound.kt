@@ -7,6 +7,7 @@ import java.net.URL
 data class Compound(
         val id : Int?,
         val name :String?,
+        val contact: String?,
         val description : String?,
         val summary : String?,
         val pictures : URL?,

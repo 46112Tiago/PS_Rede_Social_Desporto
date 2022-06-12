@@ -79,13 +79,13 @@ const UserEventForm = (props) => {
                               <label className='labelEvent'>Number of participants</label>
                               <input name="limitParticipants" type='number' {...register('limitParticipants')}  placeholder='Limit Participants' required></input>
                           </div>
-                          {/*Pass this to a component andd use a get to retrieve all the fields to include as options*/}
-                          <div className="eventInput">
-                            <SelectCompound getCompound={getCompound}></SelectCompound>
-                          </div>
                           {/*Pass this to a component andd use a get to retrieve all the sports to include as options*/}
                           <div className="eventInput">
                             <SelectSport getSport={getSport}></SelectSport>
+                          </div>
+                          {/*Pass this to a component andd use a get to retrieve all the fields to include as options*/}
+                          <div className="eventInput">
+                            <SelectCompound getCompound={getCompound} sport={sportObj}></SelectCompound>
                           </div>
                       <div className="form-row" id='submitEvent'>
                           <button type="submit" id='submitEventBtn'>Submit</button>

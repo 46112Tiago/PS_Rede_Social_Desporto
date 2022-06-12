@@ -4,6 +4,7 @@ begin;
 CREATE TABLE COMPOUND(
                          id SERIAL PRIMARY KEY,
                          name VARCHAR(32),
+                         contact Varchar(20),
                          description VARCHAR(540),
                          summary VARCHAR(64),
                          location POINT,
@@ -181,6 +182,7 @@ CREATE TABLE REVIEW(
                        rating FLOAT,
                        userId INT,
                        description VARCHAR(128),
+                       reviewDate TIMESTAMP,
                        PRIMARY KEY(id),
                        FOREIGN KEY(fieldId,compoundId) REFERENCES FIELD(id,compoundId)  ON DELETE CASCADE,
                        FOREIGN KEY(compoundId) REFERENCES COMPOUND(id)  ON DELETE CASCADE,

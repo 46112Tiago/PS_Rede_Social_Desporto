@@ -32,7 +32,7 @@ const MapComponent = (props) => {
         center : centerVal,
         minZoom : 3,
         maxZoom : 17,
-        mapTypeId:google.maps.MapTypeId.SATELLITE
+        mapTypeId: window.google.maps.MapTypeId.SATELLITE
       }
       let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
       props.getMap(map)      

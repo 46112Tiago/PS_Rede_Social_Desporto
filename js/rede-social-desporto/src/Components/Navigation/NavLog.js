@@ -7,26 +7,24 @@ import LogOutOAuth from './LogOutOAuth';
 import { Link } from "react-router-dom";
 
 
+const NavLog = () => {
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(e) {
-    if (!e.target.matches('.dropbtn')) {
-    var myDropdown = document.getElementById("myDropdown");
-      if (myDropdown.classList.contains('show')) {
-        myDropdown.classList.remove('show');
-      }
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown != null && myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
     }
   }
-
-class NavLog extends React.Component {
-
-    render() {
+}
+ 
       return (
         <div className="navbar">
             <Link className="leftSide" to="/feed">Feed</Link>
@@ -45,6 +43,6 @@ class NavLog extends React.Component {
         </div>
       );
     }
-  }
+  
 
   export default NavLog

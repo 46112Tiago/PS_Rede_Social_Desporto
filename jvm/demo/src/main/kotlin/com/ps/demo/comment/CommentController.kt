@@ -35,13 +35,13 @@ class CommentController(val commentService: CommentService) {
         return ResponseEntity(comments, HttpStatus.OK)
     }
 */
-    /*
+
     @GetMapping("/{commentId}")
     fun getCommentById(@PathVariable("postId") postId : Int,
-                       @PathVariable("postId") commentId : Int) : ResponseEntity<Comment? > {
+                       @PathVariable("commentId") commentId : Int) : ResponseEntity<Comment? > {
         val comments = commentService.getCommentById(postId,commentId)
         return ResponseEntity(comments, HttpStatus.OK)
-    }*/
+    }
 
     @DeleteMapping("/{commentId}")
     fun deleteComment(@PathVariable("postId") postId : Int, @PathVariable("commentId") commentId : Int) : ResponseEntity<Any?> {

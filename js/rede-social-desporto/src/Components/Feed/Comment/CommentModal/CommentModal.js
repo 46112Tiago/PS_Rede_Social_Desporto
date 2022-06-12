@@ -14,14 +14,18 @@ const CommentModal = (props) => {
   }
 
   const setNewCommentProps = (commentId) => {
+    setNewCommentChange(true)
     setNewComment(commentId)
   }
-
+    let commentSend = ''
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();  
     const [commentArray, setComment] = React.useState([comment]);
     const [newComment, setNewComment] = React.useState(0);
+    const [newCommentChange, setNewCommentChange] = React.useState(false);
     const [page, setPage] = React.useState(0);
+    const [modal, setCommentModal] = React.useState(false);
+    const [end, setEnd] = React.useState(false);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {getAccessTokenSilently} = useAuth0();
 
@@ -38,20 +42,31 @@ const CommentModal = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
           };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment?page=${page}`,options);
-          const resp = await req.json();
-          resp.length%5 == 0 && resp.length > 0 ?
-          setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
-          :
-          setPaging(<></>)
-          const newCommentArray = commentArray.concat(resp)
-          setComment(newCommentArray);
+          if(end){
+            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment/${newComment}`,options);
+            const resp = await req.json();
+            const newCommentArray = commentArray.concat(resp)
+            setComment(newCommentArray);
+            return    
+          }
+          if(!newCommentChange){
+            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment?page=${page}`,options);
+            const resp = await req.json();
+            if(resp.length%5 == 0 && resp.length > 0)
+              setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
+            else{
+              setPaging(<></>)
+              setEnd(true)
+            }
+            const newCommentArray = commentArray.concat(resp)
+            setComment(newCommentArray);
+          }
+          setNewCommentChange(false)
         } catch (err) {
           setError(err);
           //console.log(err);
         } finally {
           setIsLoading(false);
-          
         }
       };
   
@@ -59,26 +74,7 @@ const CommentModal = (props) => {
     },[page,newComment]);
 
         const makeRequest = async () => {
-          setError(null);
-          setIsLoading(true);
-          try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
-            const options = {
-                method: "GET",
-                headers: myHeaders,
-                mode: 'cors',
-            };
-            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment?page=${page}`,options);
-            const resp = await req.json();
-          } catch (err) {
-            setError(err);
-            //console.log(err);
-          } finally {
-            setIsLoading(false);
-            
-          }
+          setCommentModal(true)
         };
 
 

@@ -25,7 +25,7 @@ const MapContainerLooking = (props) => {
         center : center,
         minZoom : 2,
         maxZoom : 17,
-        mapTypeId:google.maps.MapTypeId.SATELLITE
+        mapTypeId: window.google.maps.MapTypeId.SATELLITE
       }
       let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
 
