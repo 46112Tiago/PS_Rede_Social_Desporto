@@ -32,9 +32,27 @@ VALUES ('Clube Ténis e Padel de Portimão','Clube de ténis e padel de portimã
 INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
 VALUES ('Complexo Desportivo Alvor','Este equipamento tem como valências uma piscina coberta com seis pistas, dois campos de ténis em piso sintético, um campo polidesportivo, um equipamento de Fitness Workout, um Parque Vit’Avó (gerontomotricidade), uma parede bate-bolas e um cesto de basquetebol. No Complexo Desportivo encontra-se integrado, igualmente, um parque de merendas. Neste equipamento municipal é possível praticar diversas atividades desportivas: aquáticas (com aulas de natação dirigidas a todas as idades; hidroginástica e utilização livre da piscina), ténis (com aulas de ténis, possível reserva dos campos de ténis para prática da modalidade em regime livre com os amigos ou família e a utilização livre da parede bate-bolas), gímnicas (nos nossos equipamentos de fitness workout e gerontomotricidade, pode efetuar exercícios com diferentes níveis de dificuldade para se manter em forma).',
 'A proximidade com a praia e com o mar torna o Complexo Desportivo de Alvor único.',POINT(37.12608582312724, -8.595445154787202),'A',true,true);
---9)
+--10)
 INSERT INTO COMPOUND(name,location,parking,accepted)
 VALUES ('Campo de Basquetebol Alvor',POINT(37.125772790904946, -8.596372387909131),true,true);
+--11)
+INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
+VALUES ('Vilamoura Tennis & Padel Academy','A Vilamoura Tennis e Padel Academy dispõe de 5 campos de padel descobertos, 9 campos de ténis, pro-shop e aiinda uma zona para as crianças poderem passar o tempo.',
+'A Vilamoura Tennis e Padel Academy dispõe de 5 campos de padel descobertos, 9 campos de ténis.',POINT(37.08479567513542, -8.118321902325842),'A',true,true);
+--12)
+INSERT INTO COMPOUND(name,location,parking,accepted)
+VALUES ('SkatePark Albufeira',POINT(37.10004377069428, -8.238575291802338),true,true);
+--13)
+INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
+VALUES ('Salgados Clube de ténis','Oferecemos aos nossos clientes tudo o que um coração de ténis deseja. Alugue um campo de ténis, reserve uma hora com um dos nossos treinadores ou torne-se membro e beneficie das vastas ofertas. De iniciantes a jogadores de torneios, oferecemos o programa certo para todos.',
+'Somos uma empresa com dois clubes de ténis em Albufeira.',POINT(37.089404297490525, -8.322193752633607),'A',true,true);
+--14)
+INSERT INTO COMPOUND(name,description,summary,location,dressingRoom,parking,accepted)
+VALUES ('Vale de Milho Golf','VALE DE MILHO GOLF has the ambience of a full-sized course and is maintained to high standards all year round. With its large contoured greens, tall trees, lakes and bunkers, it provides a real challenge whatever standard of golf you play.',
+'VALE DE MILHO GOLF is a beautiful 9-hole course, close to the village of Carvoeiro, in the Algarve.',POINT(37.096947091201436, -8.447659078451316),'A',true,true);
+--15)
+INSERT INTO COMPOUND(name,location,parking,accepted)
+VALUES ('R. dos Pescadores campo Basquetebol',POINT(37.1316387229116, -8.536115163511038),true,true);
 
 
 /* FIELD */
@@ -119,6 +137,90 @@ VALUES ('Piscina-Pista-6',9,true);
 --27)
 INSERT INTO FIELD(name,compoundId,accepted)
 VALUES ('Campo de Basquetebol Alvor',10,true);
+--28)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Padel-Descoberto-1',11,true);
+--29)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Padel-Descoberto-2',11,true);
+--30)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Padel-Descoberto-3',11,true);
+--31)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Padel-Descoberto-4',11,true);
+--32)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Padel-Descoberto-5',11,true);
+--33)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-1',11,true);
+--34)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-2',11,true);
+--35)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-3',11,true);
+--36)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-4',11,true);
+--37)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-5',11,true);
+--38)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-6',11,true);
+--39)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-7',11,true);
+--40)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-8',11,true);
+--41)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-Descoberto-9',11,true);
+--42)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('SkatePark Albufeira',12,true);
+--43)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-1',13,true);
+--44)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-2',13,true);
+--45)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Tenis-3',13,true);
+--46)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-1',14,true);
+--47)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-2',14,true);
+--48)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-3',14,true);
+--49)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-4',14,true);
+--50)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-5',14,true);
+--51)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-6',14,true);
+--52)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-7',14,true);
+--53)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-8',14,true);
+--54)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('Hole-9',14,true);
+--55)
+INSERT INTO FIELD(name,compoundId,accepted)
+VALUES ('R. dos Pescadores campo Basquetebol',15,true);
 
 /* USER_PROFILE */
 --1)
@@ -304,7 +406,7 @@ VALUES ('Skate');
 --10)
 INSERT INTO SPORTS(name)
 VALUES ('BodyBoard');
---10)
+--11)
 INSERT INTO SPORTS(name)
 VALUES ('Swimming');
 
@@ -339,6 +441,24 @@ VALUES (11,9);
 --10)
 INSERT INTO SPORT_COMPOUND(sportId,compoundId)
 VALUES (2,10);
+--11)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (3,11);
+--12)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (4,11);
+--13)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (9,12);
+--14)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (3,13);
+--14)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (6,14);
+--15)
+INSERT INTO SPORT_COMPOUND(sportId,compoundId)
+VALUES (2,14);
 
 /* USER_SPORTS */
 --1)
@@ -587,6 +707,40 @@ VALUES (8,4.4,2,'Great location and fields.')
 --19)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
 VALUES (9,4.3,2,'Nice establishment.')
+--19)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (11,3.2,2,'Nice grounds could use new landscaping updates.')
+--20)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (11,4.6,2,'Excellent tennis and padel facilities, nice bar/restaurant.')
+--21)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (11,3.5,2,'Lack of anywhere to fill a water bottle requiring you to purchase bottled water.')
+--22)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (12,4.8,2,'Perfect skatepark and all the space you need to fulfill your potential.')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.5,2,'Owners are lovely! Very polite and accommodating.')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.5,2,'What a fun course!')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.1,2,'Staff was super helpful getting us tourists set up with clubs and balls.')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.0,2,'Nice little 9-holes course with par 3 holes.')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.9,2,' Prices are ok.')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.2,2,'Very friendly place, welcoming tourist visitors.')
+--23)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.3,2,'Lovely,well maintained par 3 course.')
+
 
 
 /* SCHEDULE */
@@ -657,38 +811,83 @@ INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
 VALUES (9,'6ª','08:00:00','21:30:00');
 INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
 VALUES (9,'Sat','09:00:00','13:00:00');
+--6)
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'2ª','09:00:00','21:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'3ª','09:00:00','21:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'4ª','09:00:00','21:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'5ª','09:00:00','21:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'6ª','09:00:00','21:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'Sat','09:00:00','21:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (11,'Sun','09:00:00','21:00:00');
+--7)
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'2ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'3ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'4ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'5ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'6ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'Sat','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (13,'Sun','09:00:00','20:00:00');
+--8)
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'2ª','09:00:00','17:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'3ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'4ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'5ª','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'6ª','09:00:00','23:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'Sat','09:00:00','20:00:00');
+INSERT INTO SCHEDULE(compoundId,weekday,openingHour,closingHour)
+VALUES (14,'Sun','09:00:00','20:00:00');
 
 /* MATERIALS */
 --1)
 INSERT INTO MATERIALS(name)
-VALUES ('tenis racket');
+VALUES ('Tennis racket');
 --2)
 INSERT INTO MATERIALS(name)
-VALUES ('tenis balls');
+VALUES ('Tennis balls');
 --3)
 INSERT INTO MATERIALS(name)
-VALUES ('padel balls');
+VALUES ('Padel balls');
 --4)
 INSERT INTO MATERIALS(name)
-VALUES ('cone');
+VALUES ('Cone');
 --5)
 INSERT INTO MATERIALS(name)
-VALUES ('padel racket');
+VALUES ('Padel racket');
 --6)
 INSERT INTO MATERIALS(name)
-VALUES ('golf tee');
+VALUES ('Golf tee');
 --7)
 INSERT INTO MATERIALS(name)
-VALUES ('golf buggy');
+VALUES ('Golf buggy');
 --8)
 INSERT INTO MATERIALS(name)
-VALUES ('golf trolley');
+VALUES ('Golf trolley');
 --9)
 INSERT INTO MATERIALS(name)
-VALUES ('golf clubs');
+VALUES ('Golf clubs');
 --10)
 INSERT INTO MATERIALS(name)
-VALUES ('golf balls');
+VALUES ('Golf balls');
 --11)
 INSERT INTO MATERIALS(name)
 VALUES ('Wetsuit');
@@ -775,6 +974,39 @@ VALUES (16,9);
 --21)
 INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
 VALUES (17,9);
+--22)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (5,11);
+--23)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (4,11);
+--24)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (3,11);
+--25)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (2,11);
+--26)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (1,11);
+--27)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (2,13);
+--28)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (1,13);
+--25)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (6,14);
+--26)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (8,14);
+--27)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (9,14);
+--28)
+INSERT INTO MATERIAL_COMPOUND(materialId,compoundId)
+VALUES (10,14);
 
 /* LOOKINGPLAYERS */
 --1)

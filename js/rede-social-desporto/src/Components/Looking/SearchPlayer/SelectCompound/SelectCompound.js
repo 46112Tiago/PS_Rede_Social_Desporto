@@ -36,7 +36,7 @@ const SelectCompound = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/compound/looking/location`,options);
+            const req =  await fetch(`http://localhost:8080/compound/sport/${props.sportId}`,options);
             const resp = await req.json();
             setCompound(resp);
             

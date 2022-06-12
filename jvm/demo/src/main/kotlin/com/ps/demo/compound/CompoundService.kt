@@ -41,12 +41,12 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return compoundId
     }
 
-    fun deleteCompound(compoundId : Int) {
+    fun deleteCompound(compoundId: Int) {
         return compoundRepo.deleteCompound(compoundId)
     }
 
-    fun getLookingLocations() : List<Compound?>? {
-        return compoundRepo.getCompoundLocations()
+    fun getLookingLocations(sportId: Int) : List<Compound?>? {
+        return compoundRepo.getCompoundLocations(sportId)
     }
 
     fun getCompoundInformation(compoundId : Int) : Compound? {

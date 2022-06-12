@@ -20,9 +20,9 @@ class CompoundController(val compoundService: CompoundService) {
         return ResponseEntity(locations, HttpStatus.OK)
     }
 
-    @GetMapping("/looking/location")
-    fun getLookingLocations() : ResponseEntity<List<Compound?>?> {
-        val locations : List<Compound?>? = compoundService.getLookingLocations()
+    @GetMapping("/sport/{sportId}")
+    fun getLookingLocations(@PathVariable("sportId") sportId : Int) : ResponseEntity<List<Compound?>?> {
+        val locations : List<Compound?>? = compoundService.getLookingLocations(sportId)
         return ResponseEntity(locations, HttpStatus.OK)
     }
 
