@@ -512,12 +512,12 @@ VALUES (6,'01/10/2022 08:00:00','05/10/2022 17:00:00','Taça FPG 2022',6,'A Taç
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
 VALUES (7,'01/08/2022 08:00:00','03/08/2022 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
 O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
-'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região.',40,3,true);
+'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',40,3,true);
 --9)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
 VALUES (7,'15/08/2022 08:00:00','16/08/2022 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
 O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
-'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região.',30,3,true);
+'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',30,3,true);
 --10)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
 VALUES (8,'23/09/2022 08:00:00','24/08/2022 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
@@ -685,62 +685,61 @@ INSERT INTO REVIEW(compoundId,rating,userId,description)
 VALUES (7,5.0,1,'Me and my friends took a one day surf lessons trip and it was one of the best experiences here in Portugal.');
 --12)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (7,4.8,2,'The spot is great for beginners and advanced surfer (at the regular season).');
+VALUES (7,4.8,2,'The spot is great for beginners and advanced surfer at the regular season.');
 --13)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (8,4.8,2,'Fully recommend it as it is well located for parking and with fair prices.')
+VALUES (8,4.8,2,'Fully recommend it as it is well located for parking and with fair prices.');
 --14)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (8,4.5,2,'Nice customer service,  a beauty of location in Portimão.Wish there were more in town.')
+VALUES (8,4.5,2,'Nice customer service,  a beauty of location in Portimão.Wish there were more in town.');
 --15)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (8,3.2,2,'Great place to get a workout and a meal after, although the restaurant could offer better prices for the quality.')
+VALUES (8,3.2,2,'Great place to get a workout and a meal after, although the restaurant could offer better prices for the quality.');
 --16)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (8,4.2,2,'Great facilities for tennis, padel and dining.')
+VALUES (8,4.2,2,'Great facilities for tennis, padel and dining.');
 --17)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (8,2.9,2,'Tennis club is fantastic,pity the restaurant cannot keep up...')
+VALUES (8,2.9,2,'Tennis club is fantastic,pity the restaurant cannot keep up...');
 --18)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (8,4.4,2,'Great location and fields.')
+VALUES (8,4.4,2,'Great location and fields.');
 --19)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (9,4.3,2,'Nice establishment.')
---19)
-INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (11,3.2,2,'Nice grounds could use new landscaping updates.')
+VALUES (9,4.3,2,'Nice establishment.');
 --20)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (11,4.6,2,'Excellent tennis and padel facilities, nice bar/restaurant.')
+VALUES (11,3.2,2,'Nice grounds could use new landscaping updates.');
 --21)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (11,3.5,2,'Lack of anywhere to fill a water bottle requiring you to purchase bottled water.')
+VALUES (11,4.6,2,'Excellent tennis and padel facilities, nice bar/restaurant.');
 --22)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (12,4.8,2,'Perfect skatepark and all the space you need to fulfill your potential.')
+VALUES (11,3.5,2,'Lack of anywhere to fill a water bottle requiring you to purchase bottled water.');
 --23)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.5,2,'Owners are lovely! Very polite and accommodating.')
---23)
+VALUES (12,4.8,2,'Perfect skatepark and all the space you need to fulfill your potential.');
+--24)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.5,2,'What a fun course!')
---23)
+VALUES (14,4.5,2,'Owners are lovely! Very polite and accommodating.');
+--25)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.1,2,'Staff was super helpful getting us tourists set up with clubs and balls.')
---23)
+VALUES (14,4.5,2,'What a fun course!');
+--26)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.0,2,'Nice little 9-holes course with par 3 holes.')
---23)
+VALUES (14,4.1,2,'Staff was super helpful getting us tourists set up with clubs and balls.');
+--27)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.9,2,' Prices are ok.')
---23)
+VALUES (14,4.0,2,'Nice little 9-holes course with par 3 holes.');
+--28)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.2,2,'Very friendly place, welcoming tourist visitors.')
---23)
+VALUES (14,4.9,2,'Prices are ok.');
+--29)
 INSERT INTO REVIEW(compoundId,rating,userId,description)
-VALUES (14,4.3,2,'Lovely,well maintained par 3 course.')
-
+VALUES (14,4.2,2,'Very friendly place, welcoming tourist visitors.');
+--30)
+INSERT INTO REVIEW(compoundId,rating,userId,description)
+VALUES (14,4.3,2,'Lovely,well maintained par 3 course.');
 
 
 /* SCHEDULE */

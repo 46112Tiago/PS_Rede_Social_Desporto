@@ -9,8 +9,7 @@ const EventModal = (props) => {
     const [err, setError] = React.useState();
     const [isLoading, setIsLoading] = React.useState(false);
     const [eventObj, setDescription] = React.useState(event);
-    const [lat, setLat] = React.useState(0);
-    const [lng, setLng] = React.useState(0);
+    const [coordinate, setCoordinate] = React.useState({lat:0.0,lng:0.0});
     const [eventId, setId] = React.useState(0)
 
     React.useEffect(() => {
@@ -25,8 +24,10 @@ const EventModal = (props) => {
           const req =  await fetch(`http://localhost:8080/event/${props.eventId}`,options);
           const resp = await req.json();
           setDescription(resp);
-          lat = setLat(resp.compound.location.x)
-          lng = setLng(resp.compound.location.y)
+          setCoordinate({
+            lat:resp.compound.location.x,
+            lng:resp.compound.location.y
+          })
         } catch (err) {
           setError(err);
           //console.log(err);
@@ -49,7 +50,7 @@ const EventModal = (props) => {
             <div id={`demo-modal-${props.eventId}`} className="modalEvent">
                 <div className="modal__content_Event">
                 <div id='eventCardImage'>
-                    <a href={`https://www.google.com/maps/@${lat},${lng},15z`} target={'_blank'}><img className='local_image' src={require('./mock_image/Isel_test_events.PNG')} alt='localization' title='google maps direções'></img></a>
+                    <a href={`https://www.google.com/maps/@${coordinate.lat},${coordinate.lng},15z`} target={'_blank'}><img className='local_image' src={require('./mock_image/Isel_test_events.PNG')} alt='localization' title='google maps direções'></img></a>
                 </div>
 
                     <h4 id="descriptionTitle">Descrição</h4>
