@@ -1011,56 +1011,216 @@ VALUES (10,14);
 /* LOOKINGPLAYERS */
 --1)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (1,1,1,'22/08/2022 12:24:59');
+VALUES (11,3,1,'22/08/2022 12:24:59');
 --2)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (1,2,1,'23/08/2022 12:24:59');
+VALUES (8,4,1,'23/08/2022 12:24:59');
 --3)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (2,5,4,'24/09/2022 12:24:59');
+VALUES (9,3,4,'24/09/2022 12:24:59');
 --4)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (3,3,3,'25/09/2022 12:24:59');
+VALUES (6,6,3,'25/09/2022 12:24:59');
 --5)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (3,5,2,'26/08/2022 12:24:59');
-
+VALUES (14,6,2,'26/08/2022 12:24:59');
+--6)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (6,6,1,'22/08/2022 12:24:59');
+--7)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,1,'23/08/2022 12:24:59');
+--8)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,4,4,'24/09/2022 12:24:59');
+--9)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (9,3,3,'25/09/2022 12:24:59');
+--10)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,6,2,'26/08/2022 12:24:59');
+--11)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,3,1,'22/08/2022 12:24:59');
+--12)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,4,1,'23/08/2022 12:24:59');
+--13)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,4,'24/09/2022 12:24:59');
+--14)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (9,3,3,'25/09/2022 12:24:59');
+--15)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,3,2,'26/08/2022 12:24:59');
+--16)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,6,1,'22/08/2022 12:24:59');
+--17)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,2,1,'23/08/2022 12:24:59');
+--18)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (6,6,4,'24/09/2022 12:24:59');
+--19)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,3,'25/09/2022 12:24:59');
+--20)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,2,'26/08/2022 12:24:59');
+--21)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,4,1,'22/08/2022 12:24:59');
+--22)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,4,1,'23/08/2022 12:24:59');
+--23)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,6,4,'24/09/2022 12:24:59');
+--24)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,3,3,'25/09/2022 12:24:59');
+--25)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,2,2,'26/08/2022 12:24:59');
+--26)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (6,6,1,'22/08/2022 12:24:59');
+--27)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,4,1,'23/08/2022 12:24:59');
+--28)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,4,'24/09/2022 12:24:59');
+--29)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (9,3,3,'25/09/2022 12:24:59');
+--30)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,4,2,'26/08/2022 12:24:59');
+--31)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,3,1,'22/08/2022 12:24:59');
+--32)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,2,1,'23/08/2022 12:24:59');
+--33)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,4,'24/09/2022 12:24:59');
+--34)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (6,6,3,'25/09/2022 12:24:59');
+--35)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,4,2,'26/08/2022 12:24:59');
+--36)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (9,3,1,'22/08/2022 12:24:59');
+--37)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,2,1,'23/08/2022 12:24:59');
+--38)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,4,4,'24/09/2022 12:24:59');
+--39)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,2,3,'25/09/2022 12:24:59');
+--40)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,4,2,'26/08/2022 12:24:59');
+--41)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (6,6,1,'22/08/2022 12:24:59');
+--42)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (9,3,1,'23/08/2022 12:24:59');
+--43)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (9,3,4,'24/09/2022 12:24:59');
+--44)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,4,3,'25/09/2022 12:24:59');
+--45)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,3,2,'26/08/2022 12:24:59');
+--46)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (8,3,1,'22/08/2022 12:24:59');
+--47)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (6,6,1,'23/08/2022 12:24:59');
+--48)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (11,4,4,'24/09/2022 12:24:59');
+--49)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,6,3,'25/09/2022 12:24:59');
+--50)
+INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
+VALUES (14,2,2,'26/08/2022 12:24:59');
 
 /* LOOKINGPLAYERS_PARTICIPANTS */
 --1)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
-VALUES (1,2,'pending');
+VALUES (41,2,'pending');
 --2)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
-VALUES (1,3,'pending');
+VALUES (42,3,'pending');
 --3)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
-VALUES (3,1,'pending');
+VALUES (43,1,'pending');
 --4)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
-VALUES (4,1,'pending');
+VALUES (44,1,'pending');
 --5)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
-VALUES (2,2,'pending');
-
-Select * from User_profile where firstName LIKE 'T%' AND lastName LIKE '%'
-
-Select U.userId, firstName, lastName from USER_PROFILE U
-JOIN FRIENDS F ON F.friendId = U.userId where F.userId = 18
-Except
-Select U.userId, firstName, lastName from Group_Participant GP join User_Profile U ON GP.participantId = U.userId
-where GP.groupId = 8
-
-delete from group_participant where groupId = 8 and participantId = 1
-Select * from Post_comment join User_profile on commentcreatorId = userId
-
-Select * from event join event_participant on id = eventId
-
-select * from post_comment
-
-delete from friends where friendId = 3 AND userId = 18
-
-update  user_profile set birthdate = '23/06/2000' where userId = 18
+VALUES (45,4,'pending');
+--6)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (46,2,'pending');
+--7)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (47,3,'pending');
+--8)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (48,1,'pending');
+--9)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (49,1,'pending');
+--10)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (50,3,'pending');
+--1)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (31,2,'accepted');
+--2)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (32,3,'accepted');
+--3)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (33,1,'accepted');
+--4)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (34,1,'accepted');
+--5)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (35,4,'accepted');
+--6)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (36,2,'accepted');
+--7)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (37,3,'accepted');
+--8)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (38,1,'accepted');
+--9)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (39,1,'accepted');
+--10)
+INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
+VALUES (40,3,'accepted');
 
 commit;
 
