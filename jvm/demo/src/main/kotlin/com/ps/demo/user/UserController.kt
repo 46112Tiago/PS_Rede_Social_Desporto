@@ -10,7 +10,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 // For simplicity of this sample, allow all origins. Real applications should configure CORS for their use case.
 class UserController (val userService: UserService) {
 

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/material")
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class MaterialController(val materialService: MaterialService) {
 
     @GetMapping

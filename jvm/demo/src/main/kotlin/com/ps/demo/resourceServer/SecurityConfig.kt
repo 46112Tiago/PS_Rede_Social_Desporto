@@ -44,6 +44,7 @@ class SecurityConfig :  WebSecurityConfigurerAdapter() {
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}/field").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}/review").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}").permitAll()
+            .antMatchers("/ws-message/**").permitAll()
             .anyRequest().authenticated()
             .and().cors()
             .and().oauth2ResourceServer().jwt()

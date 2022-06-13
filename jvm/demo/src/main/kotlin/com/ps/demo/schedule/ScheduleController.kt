@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/schedule")
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class ScheduleController(val scheduleService: ScheduleService) {
 
     @GetMapping("/compound/{compoundId}")

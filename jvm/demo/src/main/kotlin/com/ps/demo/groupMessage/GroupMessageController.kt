@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class GroupMessageController(val groupMsgService : GroupMessageService) {
 
     @GetMapping("/user/{userId}/group/{groupId}/message")

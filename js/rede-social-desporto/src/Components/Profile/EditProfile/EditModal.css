@@ -36,9 +36,12 @@
   }
   
   .modal_content_Edit {
+    overflow-y: scroll;
+    height: 70%;
+    width: 500px;
     border-radius: 4px;
     position: relative;
-    min-width: 500px;
+    min-width: 200px;
     background: #fff;
     padding: 1em 2em;
   }
@@ -193,4 +196,9 @@
 #subEdit:active {
     background-color: #c0b5b5;
     color: rgb(29, 27, 27);
+}
+
+#editSportBody {
+    height: 100px;
+    overflow-y: scroll;
 }

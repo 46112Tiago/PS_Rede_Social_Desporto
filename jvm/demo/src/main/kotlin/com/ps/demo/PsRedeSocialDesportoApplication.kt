@@ -14,6 +14,12 @@ import java.util.*
 import java.lang.Object.*
 import org.jdbi.v3.*
 import org.jdbi.v3.core.kotlin.useHandleUnchecked
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+
+
+
 
 @SpringBootApplication
 class DemoApplication
@@ -23,6 +29,15 @@ fun main(args: Array<String>) {
 
 
 
+}
+
+@Bean
+fun corsConfigurer(): WebMvcConfigurer? {
+	return object : WebMvcConfigurer {
+		override fun addCorsMappings(registry: CorsRegistry) {
+			registry.addMapping("/**").allowCredentials(true).allowedOrigins("*").allowedMethods("*")
+		}
+	}
 }
 
 @SpringBootApplication

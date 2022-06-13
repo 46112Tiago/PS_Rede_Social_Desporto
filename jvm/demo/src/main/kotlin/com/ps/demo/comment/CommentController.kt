@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/user/{userId}/post/{postId}/comment")
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class CommentController(val commentService: CommentService) {
 
     @PostMapping

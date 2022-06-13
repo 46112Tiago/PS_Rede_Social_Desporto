@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { message } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
+import SockJsClient from 'react-stomp';
 import './ConversationIdle.css'
+
+const SOCKET_URL = 'http://localhost:8080/ws-message';
 
 const InputText = (props) => {
   
@@ -22,6 +25,16 @@ const InputText = (props) => {
       // simulate async api call with set timeout
       setTimeout(() => setMessage(message), 1000);
   }, []);
+
+
+
+      let onConnected = () => {
+        console.log("Connected!!")
+      }
+
+      let onMessageReceived = (msg) => {
+        setMessage(msg.message);
+      }
 
 
   async function submit(data) {
@@ -46,6 +59,14 @@ const InputText = (props) => {
         <div>
           <form onSubmit={handleSubmit(submit)}>
             <input name='message' type={'text'} id='inputTxt' placeholder='Write your message' {...register('message')} required></input>
+            <SockJsClient
+        url={SOCKET_URL}
+        topics={['/topic/message']}
+        onConnect={onConnected}
+        onDisconnect={console.log("Disconnected!")}
+        onMessage={msg => onMessageReceived(messageObj)}
+        debug={false}
+      />
           </form>
         </div>
       );

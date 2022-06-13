@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { sport } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
-import { filterMaterials } from '../../../../Functions/Functions';
 export let sportArrayId = []
 
 const AddSportUser = (props) => {
@@ -60,7 +59,7 @@ const AddSportUser = (props) => {
         <>  
         <h1>Sports:</h1>
         <form onSubmit={handleSubmit()} id='formParticipant'>
-            <fieldset>
+            <fieldset id='editSportBody'>
                 <legend>Choose the available sports:</legend>
                 {
                     sports.map((sportObj,i)=>
