@@ -6,6 +6,8 @@ import SockJsClient from 'react-stomp';
 import './ConversationIdle.css'
 
 const SOCKET_URL = 'http://localhost:8080/sendMessage';
+let url = 'http://localhost:8080/sendMessage';
+let sessionId = "";
 
 const InputText = (props) => {
 
@@ -30,8 +32,13 @@ const InputText = (props) => {
 
 
       let onConnected = () => {
-        console.log("Connected!!")
-      }
+        console.log("Connected")
+        url = url.replace(
+          "http://localhost:8080/sendMessage",  "");
+            url = url.replace("/websocket", "");
+            url = url.replace(/^[0-9]+\//, "");
+        console.log("Your current session is: " + url);
+        sessionId = 'Connected';      }
 
       let onMessageReceived = (msg) => {
         setMessage(msg.message);

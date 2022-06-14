@@ -62,10 +62,9 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService)
     @Throws(Exception::class)
     fun sendSpecific(
         @RequestBody privateMessage: PrivateMessage?,
-        @Header("simpSessionId") sessionId: String?
     ) {
         template!!.convertAndSendToUser(
-            privateMessage!!.receiver!!.userId.toString(), "/secured/user/queue/specific-user", privateMessage.message!!
+            privateMessage!!.receiver!!.userId.toString(), "/queue/specific-user", privateMessage.message!!
         )
     }
 

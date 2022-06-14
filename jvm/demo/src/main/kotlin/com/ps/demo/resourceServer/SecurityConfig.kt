@@ -36,6 +36,7 @@ class SecurityConfig :  WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
+            .mvcMatchers(HttpMethod.GET,"/sendMessage/**").permitAll()
             .mvcMatchers(HttpMethod.GET,"/event").permitAll()
             .mvcMatchers(HttpMethod.GET,"/event/{eventId}").permitAll()
             .mvcMatchers(HttpMethod.GET,"/material/compound/{compoundId}").permitAll()
@@ -44,7 +45,6 @@ class SecurityConfig :  WebSecurityConfigurerAdapter() {
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}/field").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}/review").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}").permitAll()
-            .antMatchers("/sendMessage/info/**").permitAll()
             .anyRequest().authenticated()
             .and().cors()
             .and().oauth2ResourceServer().jwt()
