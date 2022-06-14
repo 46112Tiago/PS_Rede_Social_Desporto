@@ -601,32 +601,62 @@ VALUES (11,'Post 14','07/07/2021 12:24:59',11);
 --15)
 INSERT INTO POST(userId,description,postDate,likes)
 VALUES (9,'Post 15','07/07/2021 12:30:59',9);
+--16)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 16','04/07/2021 17:30:59',9);
+--17)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (7,'Post 17','04/07/2021 23:24:59',4);
+--18)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (2,'Post 18','05/07/2021 22:09:11',2);
+--19)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 19','05/07/2021 23:40:50',5);
+--20)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (11,'Post 20','07/07/2021 12:24:59',11);
+--21)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 21','04/07/2021 17:30:59',9);
+--22)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (7,'Post 22','04/07/2021 23:24:59',4);
+--23)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (2,'Post 23','05/07/2021 22:09:11',2);
+--24)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 24','05/07/2021 23:40:50',5);
+--25)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (11,'Post 25','07/07/2021 12:24:59',11);
 
 /* POST_COMMENT */
 --1)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (1,'22/06/2022 12:24:59','Comment 1',4);
+VALUES (2,'22/06/2022 12:24:59','Comment 1',4);
 --2)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (1,'22/07/2022 12:24:59','Comment 2',2);
+VALUES (2,'22/07/2022 12:24:59','Comment 2',2);
 --3)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (3,'23/12/2022 14:11:50','Comment 3',1);
+VALUES (2,'23/12/2022 14:11:50','Comment 3',1);
 --4)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (4,'19/11/2022 12:24:59','Comment 4',5);
+VALUES (2,'19/11/2022 12:24:59','Comment 4',5);
 --5)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (3,'24/12/2022 14:11:50','Comment 5',2);
+VALUES (2,'24/12/2022 14:11:50','Comment 5',2);
 --6)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'02/07/2021 12:24:59','Comment 6',11);
+VALUES (2,'02/07/2021 12:24:59','Comment 6',11);
 --7)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'02/07/2021 12:54:59','Comment 7',10);
+VALUES (2,'02/07/2021 12:54:59','Comment 7',10);
 --8)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'03/07/2021 14:11:50','Comment 8',5);
+VALUES (2,'03/07/2021 14:11:50','Comment 8',5);
 --9)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
 VALUES (7,'06/07/2021 12:24:59','Comment 9',3);
@@ -1220,6 +1250,8 @@ VALUES (39,1,'accepted');
 --10)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
+
+SELECT * from private_Message
 
 commit;
 

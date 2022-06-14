@@ -6,7 +6,7 @@ const OwnMsg = (props) => {
       return (
         <div>
             <div className='textBox'>
-                <p className='ownMsg'>{props.message} Some text written by me.</p>
+                <p className='ownMsg'>{props.message}</p>
             </div>
             <br/><br/><br/>
         </div>

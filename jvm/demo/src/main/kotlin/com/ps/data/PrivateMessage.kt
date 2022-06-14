@@ -6,6 +6,6 @@ data class PrivateMessage(
     val id : Int?,
     val message : String?,
     val date : Timestamp?,
-    val receiver : User?,
-    val sender : User?
+    var receiver : User?,
+    var sender : User?
 )

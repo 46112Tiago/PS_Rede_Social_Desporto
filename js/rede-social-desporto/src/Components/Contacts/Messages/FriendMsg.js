@@ -12,7 +12,7 @@ const FriendMsg = (props) => {
       return (
         <div>
             <div className='textBox'>
-                <p className='friendMsg'>{props.message} Some text written by the other person. </p>
+                <p className='friendMsg'>{props.message}</p>
             </div>
             <br/><br/><br/>
         </div>

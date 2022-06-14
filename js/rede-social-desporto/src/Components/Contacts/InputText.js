@@ -5,10 +5,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SockJsClient from 'react-stomp';
 import './ConversationIdle.css'
 
-const SOCKET_URL = 'http://localhost:8080/ws-message';
+const SOCKET_URL = 'http://localhost:8080/sendMessage';
 
 const InputText = (props) => {
-  
+
+
     /**
      * Change Friends/Groups to only one of those. 
      * If the user press Friends, appears only the friends list
@@ -49,24 +50,28 @@ const InputText = (props) => {
         body:JSON.stringify(data)
     }
     if(props.sendTo == "group"){
-      await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+      const resp = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+      const res = await resp.json()
+      props.messageResp(res.id)
     }else{
-      await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+      const resp = await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+      const res = await resp.json()
+      props.messageResp(res.id)
     }
 }
 
       return (
         <div>
           <form onSubmit={handleSubmit(submit)}>
-            <input name='message' type={'text'} id='inputTxt' placeholder='Write your message' {...register('message')} required></input>
+            <input maxLength={400} name='message' type={'text'} id='inputTxt' placeholder='Write your message' {...register('message')} required></input>
             <SockJsClient
-        url={SOCKET_URL}
-        topics={['/topic/message']}
-        onConnect={onConnected}
-        onDisconnect={console.log("Disconnected!")}
-        onMessage={msg => onMessageReceived(messageObj)}
-        debug={false}
-      />
+                url={SOCKET_URL}
+                topics={['/sendMessage']}
+                onConnect={onConnected}
+                onDisconnect={console.log("Disconnected!")}
+                onMessage={msg => onMessageReceived(messageObj)}
+                debug={false}
+            />
           </form>
         </div>
       );

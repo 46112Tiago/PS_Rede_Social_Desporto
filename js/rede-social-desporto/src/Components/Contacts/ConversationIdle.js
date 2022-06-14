@@ -10,11 +10,16 @@ import React, { useState } from 'react';
 const ConversationIdle = (props) => {
   
 
+  const messageResp = (messageR) => {
+    setReceivedMessage(messageR)
+  }
+
   const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId}/> : <></>
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
   const [messageArray, setMessage] = React.useState([message]);
-  const [messageReceived, setReceivedMessage] = useState('');
+  const [messageReceived, setReceivedMessage] = useState(0);
+  const [page, setPage] = React.useState(0);
   const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
@@ -22,6 +27,19 @@ const ConversationIdle = (props) => {
     // it first mounts, and then when any of the above
     // values change
     React.useEffect(() => {
+
+      document.getElementById('containercontact').onscroll =
+        
+      function()
+      {
+        var scrollTop = document.getElementById('postContent').scrollTop;
+        var offsetHeight = document.getElementById('postContent').offsetHeight;
+        if(offsetHeight*(page+1) > scrollTop){
+          setPage(page+1)
+        }       
+      }  
+
+
       const makeRequest = async () => {
         setError(null);
         setIsLoading(true);
@@ -53,7 +71,7 @@ const ConversationIdle = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[props.groupId,props.friendId]);
+    },[props.groupId,props.friendId,messageReceived,page]);
 
 
       return (
@@ -62,28 +80,22 @@ const ConversationIdle = (props) => {
             <h3 id='nameConvo'>Friend/Group name</h3>
             <hr id='lineConvo'/>
             <div id='containercontact'>
-              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType}></InputText>
+              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType} messageResp={messageResp}></InputText>
               <div id='overflowText'>
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}
                 {/* Instead of OwnMsg and FriendMsg pass this to a component Message and then there choose which on is suppose to be created */},
 
-              {messageArray.map((messageObj,i) => 
-                  <OwnMsg message={messageObj.message}></OwnMsg>
+              {messageArray.map((messageObj,i) => {
+                if(messageObj.sender.userId == window.name){
+                  return(<OwnMsg message={messageObj.message}></OwnMsg>)
+                }else{
+                  return(<FriendMsg message={messageObj.message}></FriendMsg>)
+                }
+              }
+                  
               )}
-
-                <FriendMsg></FriendMsg>
-                <OwnMsg></OwnMsg>
-                <FriendMsg></FriendMsg>
-                <FriendMsg></FriendMsg>
-                <OwnMsg></OwnMsg>
-                <FriendMsg></FriendMsg>
-                <FriendMsg></FriendMsg>
-                <FriendMsg></FriendMsg>
-                <OwnMsg></OwnMsg>
-                <FriendMsg></FriendMsg>
-                <FriendMsg></FriendMsg>
-                
+              
               </div>
 
             </div>
