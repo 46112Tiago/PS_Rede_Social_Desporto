@@ -59,11 +59,11 @@ const InputText = (props) => {
     if(props.sendTo == "group"){
       const resp = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
       const res = await resp.json()
-      props.messageResp(res.id)
+      props.messageResp(res)
     }else{
       const resp = await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
       const res = await resp.json()
-      props.messageResp(res.id)
+      props.messageResp(res)
     }
 }
 

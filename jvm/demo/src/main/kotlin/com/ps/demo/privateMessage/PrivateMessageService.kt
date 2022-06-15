@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service
 class PrivateMessageService(val privateMessageRepo : PrivateMessageRepoImplementation) {
 
     //TODO: get a limit number of messages
-    fun getAllMessages(userId : Int,receiverId : Int) : List<PrivateMessage?>? {
-        return privateMessageRepo.getAllMessages(userId, receiverId)
+    fun getAllMessages(userId : Int,receiverId : Int, page: Int) : List<PrivateMessage?>? {
+        return privateMessageRepo.getAllMessages(userId, receiverId, page)
     }
 
     fun sendMessage(userId : Int,receiverId : Int,privateMessage: PrivateMessage) : Int? {

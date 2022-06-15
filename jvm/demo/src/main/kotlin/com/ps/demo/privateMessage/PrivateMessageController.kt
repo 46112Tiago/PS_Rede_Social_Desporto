@@ -1,6 +1,7 @@
 package com.ps.demo.privateMessage
 
 import com.ps.data.PrivateMessage
+import com.ps.data.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -38,9 +39,10 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService)
 
     @GetMapping("/user/{userId}/message/{receiverId}")
     fun getAllMessages(@PathVariable("userId") userId : Int,
-    @PathVariable("receiverId") receiverId : Int
+                       @PathVariable("receiverId") receiverId : Int,
+                       @RequestParam(required = false) page : Int
     ) : ResponseEntity<List<PrivateMessage?>?> {
-        val privateMessages : List<PrivateMessage?>? = privateMessageService.getAllMessages(userId,receiverId)
+        val privateMessages : List<PrivateMessage?>? = privateMessageService.getAllMessages(userId,receiverId,page)
         return ResponseEntity(privateMessages, HttpStatus.OK)
     }
 
@@ -49,7 +51,8 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService)
                     @PathVariable("friendId") friendId: Int,
                     @RequestBody privateMessage: PrivateMessage) : ResponseEntity<PrivateMessage?> {
         val privateMessageKey = privateMessageService.sendMessage(userId,friendId,privateMessage)
-        val privateMessageResp = PrivateMessage(privateMessageKey,"",null,null,null)
+        val privateMessageResp = PrivateMessage(privateMessageKey,privateMessage.message,null,null,
+            User(userId,"","","",null,"",false,"",null,null))
         return ResponseEntity(privateMessageResp,HttpStatus.OK)
     }
 

@@ -19,19 +19,21 @@ class PrivateMessageRepoImplementation (var jdbi: Jdbi)  {
         return RowMapperFactory.of(type, KotlinMapper(type, prefix))
     }
 
-     fun getAllMessages(userId : Int, receiverId : Int): List<PrivateMessage?>? {
+     fun getAllMessages(userId : Int, receiverId : Int, page: Int): List<PrivateMessage?>? {
         val toReturn = jdbi.withHandle<List<PrivateMessage?>,RuntimeException> { handle: Handle ->
             handle.createQuery(
                 "Select id as p_id, message as p_message, " +
                         "userId as u_userId " +
                         "from PRIVATE_MESSAGE JOIN USER_PROFILE ON senderId = userId " +
                         "where (senderId = ? AND receiverId = ?) OR (senderId = ? AND receiverId = ?) " +
-                        "ORDER BY date DESC "
+                        "ORDER BY date DESC " +
+                        "LIMIT 10 OFFSET ?"
             )
                 .bind(0, userId)
                 .bind(1, receiverId)
                 .bind(2, receiverId)
                 .bind(3, userId)
+                .bind(4,page*10)
                 .registerRowMapper(factory(PrivateMessage::class.java, "p"))
                 .registerRowMapper(factory(User::class.java, "u"))
                 .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, PrivateMessage?>, rowView: RowView ->

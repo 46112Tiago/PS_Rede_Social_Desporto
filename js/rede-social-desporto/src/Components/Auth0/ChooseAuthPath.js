@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import Loading from '../Loading/Loading';
+import { useNavigate } from "react-router-dom";
 
 const ChooseAuthPath = () => {
   
@@ -8,6 +8,7 @@ const ChooseAuthPath = () => {
 
         const {user, isAuthenticated} = useAuth0()
         const {getAccessTokenSilently} = useAuth0();
+        const navigate = useNavigate();
 
           useEffect(() => {
             (async () => {
@@ -27,7 +28,7 @@ const ChooseAuthPath = () => {
                   if(response.status == 200){
                     window.name = responseJson;
                   }else {
-                    window.location.href = '/signUp'
+                    navigate("/signUp");
                   }
                 }
 
