@@ -48,7 +48,6 @@ const MapContainerLooking = (props) => {
       marker.id = element.id
       marker.addListener("click", () => {
         window.localStorage.setItem("compound_id",JSON.stringify(element.id))
-        alert(element.id)
         window.location.href = "#marker-modal"
       });
     })
@@ -64,6 +63,7 @@ const MapContainerLooking = (props) => {
     setIsLoading(true);
     try {
       map.addListener('zoom_changed', async function() {
+        if(!sport) return
         var zoom = map.getZoom();
         var center = map.getCenter().toJSON();
         setZoom(zoom);
@@ -82,6 +82,7 @@ const MapContainerLooking = (props) => {
         
       });
       map.addListener('center_changed', async function() {
+        if(!sport) return
         var center = map.getCenter().toJSON();
         var zoom = map.getZoom();
         setCenter(center);

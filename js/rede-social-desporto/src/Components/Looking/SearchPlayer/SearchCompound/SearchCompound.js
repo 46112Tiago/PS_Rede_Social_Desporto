@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { convertLocationToCoordinate } from '../../../../GoogleMaps/Geocoding';
+import '../SearchPlayer.css'
 
 const SearchCompound = (props) => {
 
