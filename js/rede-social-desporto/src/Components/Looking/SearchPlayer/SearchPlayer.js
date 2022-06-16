@@ -57,7 +57,7 @@ const SearchPlayer = () => {
         <div id='searchBody'>
             <div id='leftLooking'>
                 <div id='leftForm'>
-                    <SearchCompound center={getCenter}></SearchCompound>
+                    <SearchCompound center={getCenter} sportId={sportObj}></SearchCompound>
                     <form id='lookingForm' onSubmit={handleSubmit(submit)}>
                         <fieldset id='lookingFormContainer'>
                             <legend>Request Player:</legend>

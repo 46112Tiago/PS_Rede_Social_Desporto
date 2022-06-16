@@ -11,6 +11,15 @@ const SearchCompound = (props) => {
       props.center({lat:resp.lat, lng:resp.lng})
     }
 
+    React.useEffect(() => {
+
+      if(!props.sportId) {
+        document.getElementById('searchBarCompoundTxt').disabled = true
+      }else {
+        document.getElementById('searchBarCompoundTxt').disabled = false
+      }
+    },[props.sportId])
+
 
     return (
     <>

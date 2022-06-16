@@ -14,9 +14,16 @@ const MapContainerLooking = (props) => {
   const [zoomEffect,setZoom] = React.useState(props.zoom);
   const [centerVal, setCenter] = React.useState(props.center);
   const [centerInput, setCenterInput] = React.useState(props.center);
+  const [sport, setSportId] = React.useState(0);
 
   React.useEffect(() => {
     
+    if(props.sportId != sport){
+      setSportId(props.sportId)
+      setMarkers([])
+      return
+    }
+
     if(props.center != centerInput){
       setCenter(props.center)
       setCenterInput(props.center)
@@ -29,6 +36,7 @@ const MapContainerLooking = (props) => {
       maxZoom : 17,
       mapTypeId: window.google.maps.MapTypeId.SATELLITE
     }
+
     let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
     markersArray.forEach(element => {
       const point = { lat : element.location.x, lng : element.location.y};
@@ -106,7 +114,7 @@ const MapContainerLooking = (props) => {
   }
 
      
-  },[markersArray,props.center,centerInput]);
+  },[markersArray,props.center,centerInput,props.sportId]);
   return (
       <>
           <Marker/>
