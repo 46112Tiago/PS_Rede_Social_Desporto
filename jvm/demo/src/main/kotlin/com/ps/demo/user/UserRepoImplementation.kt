@@ -112,9 +112,9 @@ class UserRepoImplementation (var jdbi: Jdbi) {
                     "JOIN USER_PROFILE u on f.friendId = u.userId " +
                     " where f.userId = ? " +
                     "ORDER BY firstName, lastName " +
-                    "LIMIT 2 OFFSET ?")
+                    "LIMIT 4 OFFSET ?")
                 .bind(0,userId)
-                .bind(1,2*page)
+                .bind(1,4*page)
                 .mapTo<User>().list()
         }
         return toReturn
@@ -151,10 +151,10 @@ class UserRepoImplementation (var jdbi: Jdbi) {
                     "from USER_PROFILE" +
                     " where firstName LIKE ? AND lastName LIKE ? " +
                     "ORDER BY firstName, lastName " +
-                    "LIMIT 2 OFFSET ? ")
+                    "LIMIT 4 OFFSET ? ")
                 .bind(0, "$firstName%")
                 .bind(1, "$lastName%")
-                .bind(2,page*2)
+                .bind(2,page*4)
                 .mapTo<User>().list()
         }
         return toReturn

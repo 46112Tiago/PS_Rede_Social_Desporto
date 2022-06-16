@@ -65,7 +65,7 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
     fun getLookingPlayersAccept(userId: Int, page: Int): List<LookingPlayers?> {
         val toReturn = jdbi.withHandle<List<LookingPlayers?>,RuntimeException> { handle: Handle ->
             handle.createQuery(
-                "Select U.userId as u_userId, LP.id as lp_id, startDateTime as lp_startDateTime, participantId as u_participantId, " +
+                "Select participantId as u_userId, LP.id as lp_id, startDateTime as lp_startDateTime, " +
                         "firstName as u_firstName, lastName as u_lastName, " +
                         "sportId as s_sportId, S.name as s_name, " +
                         "compoundId as c_compoundId, location as c_location, dressingRoom as c_dressingRoom, " +
@@ -90,8 +90,8 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
                         rowView.getRow(LookingPlayers::class.java)
                     }
 
-                    if (rowView.getColumn("u_participantId", Int::class.javaObjectType) != null) {
-                        looking!!.participants!!.add(rowView.getRow(User::class.java))
+                    if (rowView.getColumn("u_userId", Int::class.javaObjectType) != null) {
+                        looking!!.creator = rowView.getRow(User::class.java)
                     }
 
                     if (rowView.getColumn("s_sportId", Int::class.javaObjectType) != null) {
@@ -260,6 +260,7 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
                     "WHERE creatorId = ? " +
                     "LIMIT 2 OFFSET ? ")
                 .bind(0,creatorId)
+                .bind(1,page*2)
                 .mapTo<LookingPlayers>()
                 .list()
         }

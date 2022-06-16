@@ -41,6 +41,7 @@ class SecurityConfig :  WebSecurityConfigurerAdapter() {
             .mvcMatchers(HttpMethod.GET,"/material/compound/{compoundId}").permitAll()
             .mvcMatchers(HttpMethod.GET,"/schedule/compound/{compoundId}").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/location").permitAll()
+            .mvcMatchers(HttpMethod.GET,"/compound/sport/{sportId}").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}/field").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}/review").permitAll()
             .mvcMatchers(HttpMethod.GET,"/compound/{compoundId}").permitAll()

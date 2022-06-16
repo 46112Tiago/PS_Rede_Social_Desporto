@@ -5,13 +5,15 @@ import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import '../../../Map/Map.css'
 import MapContainerLooking from './MapContainerLooking';
 
-const center = {
-  lat: 38.757026,
-  lng: -9.1185779
-};
 
 
-const MapLooking = () => {
+
+const MapLooking = (props) => {
+
+  const center = props.center ? props.center : {
+    lat: 38.757026,
+    lng: -9.1185779
+  };
 
   const render = (status) => {
     switch (status) {
@@ -23,10 +25,11 @@ const MapLooking = () => {
         return <></>;
     }
   };
+
   return(
     <div id='mapLooking'>
         <Wrapper render={render} apiKey={""}> 
-          <MapContainerLooking center={center} zoom={2}></MapContainerLooking>
+          <MapContainerLooking center={center} zoom={12} sportId={props.sportId} markers={props.markers}></MapContainerLooking>
         </Wrapper>
     </div>
 

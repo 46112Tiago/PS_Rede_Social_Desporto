@@ -17,7 +17,7 @@ const Friends = (props) => {
   const {getAccessTokenSilently} = useAuth0();
   const [page, setPage] = React.useState(0);
   const [forward, setForward] = React.useState(true);
-
+  const limit = 4
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
   // it first mounts, and then when any of the above
@@ -37,12 +37,12 @@ const Friends = (props) => {
       };
         const req =  await fetch(`http://localhost:8080/user/${window.name}/friend?page=${page}`,options);
         const resp = await req.json();
-        setFriends(resp);
-        if(!resp[0]){
+        if(resp.length < limit){
           setForward(false)
         }else{
           setForward(true)
         }
+        resp.length == 0 ? setPage(page-1) : setFriends(resp);
       } catch (err) {
         setError(err);
         //console.log(err);

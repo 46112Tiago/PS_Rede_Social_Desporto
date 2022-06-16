@@ -16,7 +16,7 @@ const Confirmed = (props) => {
       const [error, setError] = React.useState();
       const [lookingMadeArray, setLooking] = React.useState([lookingPlayers]);
       const {getAccessTokenSilently} = useAuth0();
-    
+      const limit = 2
       React.useEffect(() => {
           const makeRequest = async () => {
             setError(null);
@@ -32,12 +32,12 @@ const Confirmed = (props) => {
             };
               const req =  await fetch(`http://localhost:8080/lookingPlayers/${window.name}?state=accepted&page=${page}`,options);
               const resp = await req.json();
-              setLooking(resp)
-              if(!resp[0]){
+              if(resp.length < limit){
                 setForward(false)
               }else{
                 setForward(true)
               }
+              resp.length == 0 ? setPage(page-1) : setLooking(resp);
             } catch (err) {
               setError(err);
               //console.log(err);

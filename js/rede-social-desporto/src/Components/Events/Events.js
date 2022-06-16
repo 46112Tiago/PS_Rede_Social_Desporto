@@ -10,6 +10,8 @@ const Events = () => {
   const setPaging = (offset) => {
     setPage(offset)
   }
+
+  const limit = 2
   
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
@@ -25,6 +27,7 @@ const Events = () => {
         setIsLoading(true);
         let resp
         try {
+          let req;
           if(isAuthenticated){
             const token = await getAccessTokenSilently();
             const myHeaders = new Headers()
@@ -34,19 +37,18 @@ const Events = () => {
               headers: myHeaders,
               mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/user/${window.name}/event?page=${page}`,options);
-            resp = await req.json();
-            setEvent(resp);
+            req =  await fetch(`http://localhost:8080/user/${window.name}/event?page=${page}`,options);
           }else{
-            const req =  await fetch(`http://localhost:8080/event?page=${page}`);
-            resp = await req.json();
-            setEvent(resp);
-          }
-          if(!resp[0]){
+            req =  await fetch(`http://localhost:8080/event?page=${page}`);
+          }           
+          resp = await req.json();
+          if(resp.length < limit){
             setForward(false)
           }else{
             setForward(true)
           }
+          resp.length == 0 ? setPage(page-1) : setEvent(resp);
+
         } catch (err) {
           setError(err);
           //console.log(err);

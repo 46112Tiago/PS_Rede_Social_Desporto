@@ -15,11 +15,11 @@ const Accept = (props) => {
       const [forward, setForward] = React.useState(true);
       const [isLoading, setIsLoading] = React.useState(false);
       const [error, setError] = React.useState();
-      const [lookingMadeArray, setLooking] = React.useState([user]);
+      const [lookingMadeArray, setLooking] = React.useState([lookingPlayers]);
       const [lookingInfo, setLookingInfo] = React.useState(lookingPlayers);
       const [sport, setSport] = React.useState('')
       const {getAccessTokenSilently} = useAuth0();
-    
+      const limit = 2
       React.useEffect(() => {
           const makeRequest = async () => {
             setError(null);
@@ -35,17 +35,16 @@ const Accept = (props) => {
             };
               const req =  await fetch(`http://localhost:8080/lookingPlayers/accept/${window.name}?page=${page}`,options);
               const resp = await req.json();
-              const response = resp[0]
-              if(!response) {
+              if(resp.length < limit){
                 setForward(false)
-                return
+              }else{
+                setForward(true)
               }
-
-              setLookingInfo(response)
-              setLooking(response.participants)
-              setSport(response.sports.name)
-              setForward(true)
-              
+              if(resp.length == 0)  
+                setPage(page-1) 
+              else{ 
+                setLooking(resp)
+              }          
             } catch (err) {
               setError(err);
               //console.log(err);
@@ -65,12 +64,12 @@ const Accept = (props) => {
                 return(
                     <div className='cardContainer' key={key}>
                         <div className="card accept">
-                        <p>{lookingObj.firstName} {lookingObj.lastName}</p>
+                        <p>{lookingObj.creator.firstName} {lookingObj.creator.lastName}</p>
                             <img src={require('../../img/default_profile.jpg')}></img>
                             <div className='btnContainer'>
                               <button className='infoLooking'onClick={()=>{
-                                  props.getLookingPlayers(lookingInfo)
-                                  props.getCompound(lookingInfo.compound)
+                                  props.getLookingPlayers(lookingObj)
+                                  props.getCompound(lookingObj.compound)
                                   props.getParticipants(lookingObj.participants)
                                   window.location.href = "#looking-modal"}}>Info</button>
                               <AcceptBtn lookingId={lookingInfo.id} userId={lookingObj.userId}/>      

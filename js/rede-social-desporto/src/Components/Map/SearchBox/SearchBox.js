@@ -32,7 +32,8 @@ const SearchBox = (props) => {
             <button className='searchBarCompoundItem' id='searchBtn' ><FaSearch></FaSearch></button>
             <input name='name' className='searchBarCompoundItem' id='searchBarCompoundTxt' type="text" {...register('name')} placeholder='Search...' required/>
           </form>
-        </div>    </div>
+        </div>    
+    </div>
     );
 }
   
