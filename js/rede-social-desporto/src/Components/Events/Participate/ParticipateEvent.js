@@ -16,6 +16,9 @@ const ParticipateEvent = (props) => {
       mode: 'cors',
     };
     const response = await fetch(`http://localhost:8080/user/${window.name}/event/${props.eventId}`, options)
+    if(response.status==200){
+      props.participate(props.eventId)
+    }
 
 }
 

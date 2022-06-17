@@ -77,7 +77,7 @@ const StaticProfile = () => {
               {/*TODO date is taking one hour to the real one*/}
               <p>{userObj.birthdate}</p>
               <p>{userObj.city}</p>
-              <p>Disponibilidade: {userObj.available?'Yes':'No'}</p>
+              <p>Available: {userObj.available?'Yes':'No'}</p>
               <SportsModal></SportsModal>
 
             </div>
@@ -88,11 +88,11 @@ const StaticProfile = () => {
               </div>
               <div className='tooltip eventsTool'>
                 <Link to='/userEvents'><MdEmojiEvents></MdEmojiEvents></Link>                    
-                <span className="tooltiptext">Eventos</span>
+                <span className="tooltiptext">Events</span>
               </div>
               <div className='tooltip friendsTool'>
                 <Link to='/friends'><FaUserFriends></FaUserFriends></Link>
-                <span className="tooltiptext friends">Amigos</span>
+                <span className="tooltiptext friends">Friends</span>
               </div>
 
             </div>

@@ -65,7 +65,7 @@ const SearchPlayer = () => {
                             <SelectSport getSport={getSport}></SelectSport>
                             <label for='compound'>Compound/Field:</label>
                             <SelectCompound getCompound={getCompound} marker={markers} sport={sportObj}></SelectCompound>
-                            <input type='submit' id='btnLooking'></input>
+                            <input type='submit' id='btnLooking' value={'Send'}></input>
                         </fieldset>
                     </form>
                 </div>

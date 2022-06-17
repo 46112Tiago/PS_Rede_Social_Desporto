@@ -14,6 +14,7 @@ data class Event(
     val name : String?,
     var sport : Sports?,
     val description : String?,
+    val summary : String?,
     var participants : List<User>?,
     var creator : User?,
     val limitParticipants : Int?

@@ -20,8 +20,8 @@ function myFunction() {
         <>
           <div className="topnav">
             <Link className="leftSide" to="/">Home</Link>
-            <Link className="leftSide" to="/map">Mapa</Link>
-            <Link className="leftSide" to="/events">Eventos</Link>
+            <Link className="leftSide" to="/map">Map</Link>
+            <Link className="leftSide" to="/events">Events</Link>
             <Link className="rightSide" to="/logIn">LogIn</Link>
           </div>
         </>

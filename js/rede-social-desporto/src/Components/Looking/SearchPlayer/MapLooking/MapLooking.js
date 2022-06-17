@@ -28,7 +28,7 @@ const MapLooking = (props) => {
 
   return(
     <div id='mapLooking'>
-        <Wrapper render={render} apiKey={`${process.env.MAPSAPI}`}> 
+        <Wrapper render={render} apiKey={/*`${process.env.REACT_APP_MAPAPI}`*/''}> 
           <MapContainerLooking center={center} zoom={12} sportId={props.sportId} markers={props.markers}></MapContainerLooking>
         </Wrapper>
     </div>

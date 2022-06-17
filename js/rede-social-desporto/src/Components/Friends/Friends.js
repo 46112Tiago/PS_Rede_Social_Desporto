@@ -63,10 +63,6 @@ const Friends = (props) => {
                   <ProfileCards key={key} userId={friendObj.userId} userFName={friendObj.firstName} userLName={friendObj.lastName}></ProfileCards>
                 )
               }
-                <ProfileCards></ProfileCards>
-                <ProfileCards></ProfileCards>
-                <ProfileCards></ProfileCards>
-                <ProfileCards></ProfileCards>
             </div>
             <Paging paging={setPaging} page={page} forward={forward}/>
         </div>

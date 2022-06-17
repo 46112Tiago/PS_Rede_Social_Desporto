@@ -11,12 +11,17 @@ const Events = () => {
     setPage(offset)
   }
 
+  const setParticipate = (value) => {
+    setParticipating(value)
+  }
+
   const limit = 2
   
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [eventArray, setEvent] = React.useState([event]);
   const [page, setPage] = React.useState(0);
+  const [participate, setParticipating] = React.useState(0);
   const [forward, setForward] = React.useState(true);
   const {getAccessTokenSilently,isAuthenticated} = useAuth0();
 
@@ -59,7 +64,7 @@ const Events = () => {
       };
   
       if (!isLoading) makeRequest();
-    },[page]);
+    },[page,participate]);
 
 
       return (
@@ -68,7 +73,7 @@ const Events = () => {
             <div id='editContainer'>
             {eventArray.map((eventObj,i) => {
               if(eventObj.id != 0){
-                return(<EventCard key={i} eventObj={eventObj}></EventCard>)
+                return(<EventCard key={i} eventObj={eventObj} participate={setParticipate}></EventCard>)
               }
             }
             )}

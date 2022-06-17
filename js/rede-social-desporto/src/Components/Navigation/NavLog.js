@@ -28,13 +28,13 @@ window.onclick = function(e) {
       return (
         <div className="navbar">
             <Link className="leftSide" to="/feed">Feed</Link>
-            <Link className="leftSide" to="/map">Mapa</Link>
-            <Link className="leftSide" to="/events">Eventos</Link>
+            <Link className="leftSide" to="/map">Map</Link>
+            <Link className="leftSide" to="/events">Events</Link>
 
             <div className="dropdown">
                 <button className="dropbtn " onClick={myFunction}><FaSortDown className="rightSide"></FaSortDown></button>
                 <div className="dropdown-content" id="myDropdown">
-                    <Link to="/profile"><FaUserAlt></FaUserAlt> Perfil</Link>
+                    <Link to="/profile"><FaUserAlt></FaUserAlt> Profile</Link>
                     <Link to="/groups"><BsChatDotsFill></BsChatDotsFill> Contacts</Link>
                     <Link to="/profileSearch"><BiSearchAlt></BiSearchAlt> Search</Link>
                     <LogOutOAuth></LogOutOAuth>
