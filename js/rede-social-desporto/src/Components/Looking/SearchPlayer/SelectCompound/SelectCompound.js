@@ -13,14 +13,17 @@ const SelectCompound = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
     const [compoundArray, setCompound] = React.useState([compound]);
+    const [sport, setSport] = React.useState(0)
     const {getAccessTokenSilently} = useAuth0();
 
       React.useEffect(() => {
 
         if(!props.sport) {
           document.getElementById('selectCompound').disabled = true
+          setSport(0)
         }else {
           document.getElementById('selectCompound').disabled = false
+          setSport(props.sport)
         }
       
         const makeRequest = async () => {
@@ -28,8 +31,8 @@ const SelectCompound = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-           
-            setCompound(props.marker);
+            
+            props.sport != sport ? setCompound([]) : setCompound(props.marker);
             
           } catch (err) {
             setError(err);
