@@ -7,7 +7,8 @@ import ParticipateEvent from './Participate/ParticipateEvent';
 const EventCard = (props) => {
   
     const participate = window.name ? <ParticipateEvent eventId={props.eventObj.id} participate={props.participate}></ParticipateEvent> : <></>
-
+    const startDate = props.eventObj.startDate? props.eventObj.startDate.split("T") : ''
+    const plannedfinishDate = props.eventObj.plannedfinishDate? props.eventObj.plannedfinishDate.split("T") : ''
 
       return (
           <div id='evnetCardCon'>
@@ -17,8 +18,8 @@ const EventCard = (props) => {
                 </div>
                 <div id='eventCardContent'>
                     <div id='eventCardLeft'>
-                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{props.eventObj.startDate}</b></p>  
-                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{props.eventObj.plannedfinishDate}</b></p>  
+                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{startDate[0]} {startDate[1]}</b></p>  
+                        <p className='inline' id='data'><FaCalendarDay></FaCalendarDay><b>{plannedfinishDate[0]} {plannedfinishDate[1]}</b></p>  
                         <p className='inline' id='modalidade'><FaRunning></FaRunning> <b>{props.eventObj.sport.name}</b> </p>
                         <p className='inline'><FaUserCheck></FaUserCheck> <b> {props.eventObj.limitParticipants} </b> </p>
                     </div>

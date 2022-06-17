@@ -1218,6 +1218,8 @@ VALUES (39,1,'accepted');
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
+Select * from lookingPlayers JOIN LOOKINGPLAYERS_PARTICIPANTS ON id = lookingId where creatorId = 1
+
 commit;
 
 

@@ -29,13 +29,12 @@ const UserEventCard = (props) => {
     
       return (
         <>
-          <ReadModal eventObj={props.eventObj}></ReadModal>
+          <ReadModal eventObj={props.eventObj} sport={sport}></ReadModal>
           <div>
               <div className="cardEvents">
                 <div className="face face1">
                   <div className="contentEvent">
                     <h3>{name}</h3>
-                    <p> <FaRunning></FaRunning> {sport}</p>
                   </div>
                 </div>
                 <div className="face face2">

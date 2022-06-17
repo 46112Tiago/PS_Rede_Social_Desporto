@@ -173,12 +173,12 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
                          "JOIN COMPOUND C ON C.id = LP.compoundId " +
                          "JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON LP.id = LPP.lookingId " +
                          "JOIN USER_PROFILE U ON U.userId = LPP.participantId " +
-                         "WHERE LP.creatorId = ? AND LPP.state = ? " +
+                         "WHERE LP.creatorId = ? " +
+                         "ORDER BY LP.startDateTime " +
                          "LIMIT 2 OFFSET ? "
              )
                  .bind(0, creatorId)
-                 .bind(1,"accepted")
-                 .bind(2, 2 * page)
+                 .bind(1, 2 * page)
                  .registerRowMapper(factory(LookingPlayers::class.java, "lp"))
                  .registerRowMapper(factory(Sports::class.java, "s"))
                  .registerRowMapper(factory(Compound::class.java, "c"))
