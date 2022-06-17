@@ -56,20 +56,13 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService)
         return ResponseEntity(privateMessageResp,HttpStatus.OK)
     }
 
-    @SendTo("/topic/message")
-    fun broadcastMessage(@Payload privateMessage: PrivateMessage?): PrivateMessage? {
-        return privateMessage
+
+    @MessageMapping("/private-message")
+    fun recMessage(@Payload message: PrivateMessage): PrivateMessage? {
+        template!!.convertAndSendToUser(message.receiver!!.userId.toString(), "/private", message)
+        return message
     }
 
-    @MessageMapping("/sendMessage")
-    @Throws(Exception::class)
-    fun sendSpecific(
-        @RequestBody privateMessage: PrivateMessage?,
-    ) {
-        template!!.convertAndSendToUser(
-            privateMessage!!.receiver!!.userId.toString(), "/queue/specific-user", privateMessage.message!!
-        )
-    }
 
 
 }

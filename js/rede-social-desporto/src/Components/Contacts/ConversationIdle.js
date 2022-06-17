@@ -15,6 +15,10 @@ const ConversationIdle = (props) => {
     setReceivedMessage(messageReceived+1)
   }
 
+  const socket = (messageData) => {
+    setUserData(messageData)
+  }
+
   const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId}/> : <></>
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
@@ -25,6 +29,7 @@ const ConversationIdle = (props) => {
   const [messageReceivedConfirm, setReceivedMessageConfirm] = useState(0);
   const [page, setPage] = React.useState(0);
   const [scroll, setScroll] = React.useState(0)
+  const [userData, setUserData] = useState({});
   const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
@@ -78,11 +83,11 @@ const ConversationIdle = (props) => {
             return
 
           } else if(props.friendId != undefined && props.friendId != friendId) {
-            setPage(0)
             setScroll(0)
             setFriendId(props.friendId)
             req = await fetch(`http://localhost:8080/user/${window.name}/message/${props.friendId}?page=${0}`,options);
             const resp = await req.json();
+            setPage(1)
             setMessage(resp)
             return
           } 
@@ -106,7 +111,7 @@ const ConversationIdle = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[props.groupId,props.friendId,messageReceived,scroll]);
+    },[props.groupId,props.friendId,messageReceived,scroll,userData]);
 
 
       return (
@@ -115,7 +120,7 @@ const ConversationIdle = (props) => {
             <h3 id='nameConvo'>Friend/Group name</h3>
             <hr id='lineConvo'/>
             <div id='containercontact'>
-              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType} messageResp={messageResp}></InputText>
+              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType} messageResp={messageResp} socket={socket}></InputText>
               <div id='overflowText'>
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}

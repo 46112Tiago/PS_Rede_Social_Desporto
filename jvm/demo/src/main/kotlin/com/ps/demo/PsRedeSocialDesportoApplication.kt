@@ -26,18 +26,6 @@ class DemoApplication
 
 fun main(args: Array<String>) {
 	runApplication<DemoApplication>(*args)
-
-
-
-}
-
-@Bean
-fun corsConfigurer(): WebMvcConfigurer? {
-	return object : WebMvcConfigurer {
-		override fun addCorsMappings(registry: CorsRegistry) {
-			registry.addMapping("/**").allowCredentials(true).allowedOrigins("*").allowedMethods("*")
-		}
-	}
 }
 
 @SpringBootApplication
@@ -54,8 +42,6 @@ class JdbiConfig() {
 				.installPlugin(KotlinPlugin())
 				.installPlugin(KotlinSqlObjectPlugin())
 		} catch (e : Exception) {e.printStackTrace()}
-
-
 		return jdbi
 	}
 }
