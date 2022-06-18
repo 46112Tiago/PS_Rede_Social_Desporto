@@ -29,5 +29,23 @@ export function convertToFieldArray(htmlFields) {
     }
     return fields
 }
+
+export function createMessage(typeMessage,message) {
+    const div1 = document.createElement('div')
+    div1.className = `messages${0}`
+    const div2 = document.createElement('div')
+    const p = document.createElement('p')
+    const br1 = document.createElement('br')
+    const br2 = document.createElement('br')
+    const br3 = document.createElement('br')
+    p.className = typeMessage
+    p.innerHTML = message
+    div2.appendChild(p)
+    div2.appendChild(br1)
+    div2.appendChild(br2)
+    div2.appendChild(br3)
+    div1.appendChild(div2)
+    return div1
+}
   
   

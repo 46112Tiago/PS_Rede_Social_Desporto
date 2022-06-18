@@ -6,30 +6,22 @@ import { message } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import DropDownGroup from './Groups/DropDownGroup';
 import React, { useState } from 'react';
+import { createMessage } from '../../Functions/Functions';
 
 const ConversationIdle = (props) => {
   
 
   const messageResp = (messageR) => {
-    messageArray.unshift(messageR)
+    const div = createMessage('ownMsg',messageR.message)
+    const firstMessage = document.getElementsByClassName(`messages${0}`)[0]
+    document.getElementById('overflowText').insertBefore(div,firstMessage)
     setReceivedMessage(messageReceived+1)
   }
 
   const socket = (messageData) => {
-    const div1 = document.createElement('div')
-    const div2 = document.createElement('div')
-    const p = document.createElement('p')
-    const br1 = document.createElement('br')
-    const br2 = document.createElement('br')
-    const br3 = document.createElement('br')
-    p.className = 'friendMsg'
-    p.innerHTML = messageData.message
-    div2.appendChild(p)
-    div2.appendChild(br1)
-    div2.appendChild(br2)
-    div2.appendChild(br3)
-    div1.appendChild(div2)
-    document.getElementById('overflowText').insertBefore(div1,inputHiddenMessage)
+    const div = createMessage('friendMsg',messageData.message)
+    const firstMessage = document.getElementsByClassName(`messages${0}`)[0]
+    document.getElementById('overflowText').insertBefore(div,firstMessage)
     setReceivedMessage(messageReceived+1)
   }
 
@@ -134,19 +126,18 @@ const ConversationIdle = (props) => {
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}
                 {/* Instead of OwnMsg and FriendMsg pass this to a component Message and then there choose which on is suppose to be created */},
-                <input type={'hidden'} id={'inputHiddenMessage'}></input>
 
               {messageArray.map((messageObj,i) => {
                 if(messageObj.id != 0){
                   if(messageObj.sender && messageObj.sender.userId == window.name){
                     return(
-                    <div key={i} id={`message${i}`}>
+                    <div key={i} id={`message${i}`} className={`messages${i}`}>
                       <OwnMsg message={messageObj.message}></OwnMsg>
                    </div> 
                     )
                   }else{
                     return(
-                    <div key={i} id={`message${i}`}>
+                    <div key={i} id={`message${i}`} className={`messages${i}`}>
                       <FriendMsg message={messageObj.message}></FriendMsg>
                     </div>)
                   }

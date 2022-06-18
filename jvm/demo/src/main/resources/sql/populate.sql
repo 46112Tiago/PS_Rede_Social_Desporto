@@ -1251,7 +1251,7 @@ VALUES (39,1,'accepted');
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
-SELECT * from private_Message where senderId = 1 and receiverId = 9 order by date desc
+SELECT * from private_Message where (senderId = 1 and receiverId = 21) or (receiverId = 1 and senderId = 21) order by date desc
 
 commit;
 
