@@ -29,9 +29,6 @@ const InputText = (props) => {
         message: ''
       });
 
-    useEffect(() => {
-      console.log(userData);
-    }, [userData]);
 
     const connect =()=>{
         let Sock = new SockJS('http://localhost:8080/webSocket');
@@ -41,16 +38,7 @@ const InputText = (props) => {
 
     const onConnected = () => {
         setUserData({...userData,"connected": true});
-        stompClient.subscribe('/friend/'+window.name+'/private', onPrivateMessage);
-        userJoin();
-    }
-
-    const userJoin=()=>{
-          var chatMessage = {
-            senderName: userData.username,
-            status:"JOIN"
-          };
-          stompClient.send("/message", {}, JSON.stringify(chatMessage));
+        stompClient.subscribe(`/friend/${window.name}/private`, onPrivateMessage);
     }
     
     const onPrivateMessage = (payload)=>{
@@ -64,6 +52,10 @@ const InputText = (props) => {
             privateChats.set(payloadData.senderName,list);
             setPrivateChats(new Map(privateChats));
         }
+        const messages = message
+        messages.message = payloadData.message
+        props.socket(messages)
+        setMessage(messages)
     }
 
     const onError = (err) => {
@@ -81,17 +73,7 @@ const InputText = (props) => {
             setPrivateChats(new Map(privateChats));
           stompClient.send("/message/private-message", {}, JSON.stringify(chatMessage));
           setUserData({...userData,"message": text.message});
-          props.socket(text.message)
         }
-    }
-
-    const handleUsername=(event)=>{
-        const {value}=event.target;
-        setUserData({...userData,"username": value});
-    }
-
-    const registerUser=()=>{
-        connect();
     }
 
   // effect runs on component mount
@@ -99,7 +81,7 @@ const InputText = (props) => {
     connect()
       // simulate async api call with set timeout
       setTimeout(() => setMessage(message), 1000);
-  }, []);
+  }, [messageObj]);
 
 
   async function submit(data) {
@@ -116,13 +98,14 @@ const InputText = (props) => {
     if(props.sendTo == "group"){
       const resp = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
       const res = await resp.json()
+      sendPrivateValue(data)
       props.messageResp(res)
     }else{
       const resp = await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
       const res = await resp.json()
+      sendPrivateValue(data)
       props.messageResp(res)
     }
-    sendPrivateValue(data)
 }
 
       return (

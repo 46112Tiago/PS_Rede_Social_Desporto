@@ -59,7 +59,8 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService)
 
     @MessageMapping("/private-message")
     fun recMessage(@Payload message: PrivateMessage): PrivateMessage? {
-        template!!.convertAndSendToUser(message.receiver!!.userId.toString(), "/private", message)
+        val destination = message.receiver!!.userId.toString()
+        template!!.convertAndSendToUser(destination, "/private", message)
         return message
     }
 

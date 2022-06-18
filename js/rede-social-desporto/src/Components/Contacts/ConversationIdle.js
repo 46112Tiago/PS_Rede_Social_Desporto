@@ -16,7 +16,10 @@ const ConversationIdle = (props) => {
   }
 
   const socket = (messageData) => {
-    setUserData(messageData)
+    const p = document.createElement('p')
+    p.innerHTML = messageData.message
+    document.getElementById('overflowText').appendChild(p)
+    setReceivedMessage(messageReceived+1)
   }
 
   const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId}/> : <></>
@@ -29,7 +32,6 @@ const ConversationIdle = (props) => {
   const [messageReceivedConfirm, setReceivedMessageConfirm] = useState(0);
   const [page, setPage] = React.useState(0);
   const [scroll, setScroll] = React.useState(0)
-  const [userData, setUserData] = useState({});
   const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
@@ -37,8 +39,6 @@ const ConversationIdle = (props) => {
     // it first mounts, and then when any of the above
     // values change
     React.useEffect(() => {
-
-
 
       document.getElementById('overflowText').onscroll =
         
@@ -52,9 +52,6 @@ const ConversationIdle = (props) => {
         }       
       } 
       
-      
-
-
       const makeRequest = async () => {
         setError(null);
         setIsLoading(true);
@@ -111,16 +108,17 @@ const ConversationIdle = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[props.groupId,props.friendId,messageReceived,scroll,userData]);
+    },[props.groupId,props.friendId,messageReceived,scroll]);
 
 
       return (
         <div>
             {dropdown}
             <h3 id='nameConvo'>Friend/Group name</h3>
+            <p id='test'></p>
             <hr id='lineConvo'/>
             <div id='containercontact'>
-              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType} messageResp={messageResp} socket={socket}></InputText>
+              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType} messageResp={messageResp} socket={socket} ></InputText>
               <div id='overflowText'>
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}
@@ -128,16 +126,14 @@ const ConversationIdle = (props) => {
 
               {messageArray.map((messageObj,i) => {
                 if(messageObj.id != 0){
-                  if(messageObj.sender.userId == window.name){
+                  if(messageObj.sender && messageObj.sender.userId == window.name){
                     return(<OwnMsg message={messageObj.message}></OwnMsg>)
                   }else{
                     return(<FriendMsg message={messageObj.message}></FriendMsg>)
                   }
                 }
-              }
-                  
-              )}
-              
+              })}
+
               </div>
 
             </div>
