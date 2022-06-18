@@ -16,9 +16,20 @@ const ConversationIdle = (props) => {
   }
 
   const socket = (messageData) => {
+    const div1 = document.createElement('div')
+    const div2 = document.createElement('div')
     const p = document.createElement('p')
+    const br1 = document.createElement('br')
+    const br2 = document.createElement('br')
+    const br3 = document.createElement('br')
+    p.className = 'friendMsg'
     p.innerHTML = messageData.message
-    document.getElementById('overflowText').appendChild(p)
+    div2.appendChild(p)
+    div2.appendChild(br1)
+    div2.appendChild(br2)
+    div2.appendChild(br3)
+    div1.appendChild(div2)
+    document.getElementById('overflowText').insertBefore(div1,inputHiddenMessage)
     setReceivedMessage(messageReceived+1)
   }
 
@@ -123,17 +134,24 @@ const ConversationIdle = (props) => {
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}
                 {/* Instead of OwnMsg and FriendMsg pass this to a component Message and then there choose which on is suppose to be created */},
+                <input type={'hidden'} id={'inputHiddenMessage'}></input>
 
               {messageArray.map((messageObj,i) => {
                 if(messageObj.id != 0){
                   if(messageObj.sender && messageObj.sender.userId == window.name){
-                    return(<OwnMsg message={messageObj.message}></OwnMsg>)
+                    return(
+                    <div key={i} id={`message${i}`}>
+                      <OwnMsg message={messageObj.message}></OwnMsg>
+                   </div> 
+                    )
                   }else{
-                    return(<FriendMsg message={messageObj.message}></FriendMsg>)
+                    return(
+                    <div key={i} id={`message${i}`}>
+                      <FriendMsg message={messageObj.message}></FriendMsg>
+                    </div>)
                   }
                 }
               })}
-
               </div>
 
             </div>
