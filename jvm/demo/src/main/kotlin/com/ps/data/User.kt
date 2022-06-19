@@ -9,7 +9,7 @@ data class User constructor(
     val lastName : String? = "", //= "unknown",
     val city : String?, //= "unknown",
     val birthdate : LocalDate?, //= Date(20000603),
-    val profilepic : String?,   //? = "unknown",
+    var profilepic : String?,   //? = "unknown",
     val email : String?, //= "unknown",
     val available : Boolean?, //= false,
     val gender : String?, //= "unknown",

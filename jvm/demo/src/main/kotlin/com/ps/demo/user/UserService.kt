@@ -16,7 +16,12 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun getUserInfo(userId : Int) : User? {
-        return userRepo.getUserById(userId)
+        val user = userRepo.getUserById(userId)
+        val profilePic = userRepo.getUserProfilePic(userId)?.image
+        if (profilePic != null)
+            user!!.profilepic = profilePic
+
+        return user
     }
 
     fun getUserById(userId : Int) : User? {
@@ -31,7 +36,7 @@ class UserService(val userRepo : UserRepoImplementation) {
         val userId = userRepo.insertUser(user)
 
         if (user.profilepic != null) {
-            userRepo.insertProfilePic(user.profilepic,userId)
+            userRepo.insertProfilePic(user.profilepic!!,userId)
         }
         return userId
     }

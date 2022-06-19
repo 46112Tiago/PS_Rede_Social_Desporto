@@ -8,6 +8,7 @@ import {FaUserFriends} from 'react-icons/fa'
 import {MdEmojiEvents} from 'react-icons/md'
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
+import { convertHexToImage } from '../../../Functions/Functions';
 
 
 const StaticProfile = () => {
@@ -19,6 +20,7 @@ const StaticProfile = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [userObj, setUser] = React.useState({});
+  const [imageObj, setProfileImage] = React.useState({});
   const [edit, setEdit] = React.useState(false)
   const {user,getAccessTokenSilently} = useAuth0()
   const myHeaders = new Headers()
@@ -37,6 +39,9 @@ const StaticProfile = () => {
         };
         const req =  await fetch(`http://localhost:8080/user/${window.name}`,options);
         const resp = await req.json();
+        const byteArray = convertHexToImage(resp.profilepic)
+        let img = document.getElementById('photoProfile');
+        img.src = window.URL.createObjectURL(new Blob([byteArray], { type: 'application/octet-stream' }));
         setUser(resp);
       } catch (err) {
         setError(err);

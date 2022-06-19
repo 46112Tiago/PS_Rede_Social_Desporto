@@ -6,7 +6,7 @@ import java.net.URL
 data class Image(
     val id : Int?,
     val typeimage : String?,
-    val image : PGBinaryObject?,
+    val image : String?,
     val userid : Int?,
     val postid : Int?,
     val compoundid : Int?,

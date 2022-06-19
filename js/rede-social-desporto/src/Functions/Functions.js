@@ -30,4 +30,21 @@ export function convertToFieldArray(htmlFields) {
     return fields
 }
   
+export function convertHexToImage(hex) {
+    if (hex.length % 2) {
+        console.log("cleaned hex string length is odd.");
+        return;
+    }
+
+    let binary = new Array();
+    for (let i = 0; i < hex.length / 2; i++) {
+        let h = hex.substr(i * 2, 2);
+        binary[i] = parseInt(h, 16);
+    }
+
+    let byteArray = new Uint8Array(binary);
+
+    return byteArray
+}
+
   
