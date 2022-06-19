@@ -1222,6 +1222,17 @@ Select * from lookingPlayers JOIN LOOKINGPLAYERS_PARTICIPANTS ON id = lookingId 
 
 Select * from image
 
+Insert into friends values (14,1)
+
+Select F.userId, U.firstName, U.lastName  from friends F join user_profile U on U.userId = F.userId where F.friendId = 1
+EXCEPT
+Select friendId, U.firstName, U.lastName  from friends F join user_profile U on U.userId = F.friendId where F.userId = 1
+INTERSECT
+Select F.userId, U.firstName, U.lastName  from friends F join user_profile U on U.userId = F.userId where friendId = 1
+
+Select *  from friends F join user_profile U on U.userId = F.userId
+
+
 commit;
 
 

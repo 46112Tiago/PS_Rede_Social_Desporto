@@ -27,6 +27,7 @@ import ChooseAuthPath from './Components/Auth0/ChooseAuthPath';
 import Loading from './Components/Loading/Loading';
 import NavLog from './Components/Navigation/NavLog';
 import { userId } from './Global_Variables/Variables';
+import FriendsRadio from './Components/Friends/FriendsRadio';
 
 const App = () => {
 
@@ -56,7 +57,7 @@ const App = () => {
             <Route path='/profileSearch' element={isAuthenticated  ?<ProfileSearch></ProfileSearch>:<LogIn/>}></Route>
             <Route path='/userEvents' element={isAuthenticated  ?<UserEvent></UserEvent>:<LogIn/>}></Route>
             <Route path='/profile/:id' element={isAuthenticated  ?<OthersProfile></OthersProfile>:<LogIn/>}></Route>
-            <Route path='/friends' element={isAuthenticated  ?<Friends></Friends>:<LogIn/>}></Route>
+            <Route path='/friends' element={isAuthenticated  ?<FriendsRadio></FriendsRadio>:<LogIn/>}></Route>
             <Route path='/groups' element={isAuthenticated  ?<Groups></Groups>:<LogIn/>}></Route>
             <Route path='/friendsMessage' element={isAuthenticated  ?<FriendsMessage></FriendsMessage>:<LogIn/>}></Route>
             <Route path='/feed' element={isAuthenticated  ?<Post></Post>:<LogIn/>}></Route>

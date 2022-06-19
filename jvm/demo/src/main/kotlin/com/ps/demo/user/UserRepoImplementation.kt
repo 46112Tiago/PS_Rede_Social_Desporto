@@ -118,14 +118,40 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getFriends(userId: Int,page:Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select friendId as userId, firstName, lastName " +
-                    "from FRIENDS f " +
-                    "JOIN USER_PROFILE u on f.friendId = u.userId " +
-                    " where f.userId = ? " +
-                    "ORDER BY firstName, lastName " +
+            handle.createQuery("Select friendId as userId, U.firstName, U.lastName  " +
+                    "from friends F join user_profile U " +
+                    "on U.userId = F.friendId where F.userId = ?" +
+                    "INTERSECT " +
+                    "Select F.userId, U.firstName, U.lastName  " +
+                    "from friends F join user_profile U " +
+                    "on U.userId = F.userId where friendId = ? " +
                     "LIMIT 4 OFFSET ?")
                 .bind(0,userId)
-                .bind(1,4*page)
+                .bind(1,userId)
+                .bind(2,4*page)
+                .mapTo<User>().list()
+        }
+        return toReturn
+    }
+
+    fun getFriendsRequest(userId: Int,page:Int): List<User?> {
+        val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select F.userId as userId, U.firstName, U.lastName  " +
+                    "from friends F join user_profile U " +
+                    "on U.userId = F.userId where F.friendId = ?" +
+                    "EXCEPT " +
+                    "Select friendId, U.firstName, U.lastName  " +
+                    "from friends F join user_profile U on " +
+                    "U.userId = F.friendId where F.userId = ?" +
+                    "INTERSECT " +
+                    "Select F.userId, U.firstName, U.lastName  " +
+                    "from friends F join user_profile U " +
+                    "on U.userId = F.userId where friendId = ? " +
+                    "LIMIT 4 OFFSET ? ")
+                .bind(0,userId)
+                .bind(1,userId)
+                .bind(2,userId)
+                .bind(3,4*page)
                 .mapTo<User>().list()
         }
         return toReturn
@@ -133,12 +159,16 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getAllFriends(userId: Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select friendId as userId, firstName, lastName " +
-                    "from FRIENDS f " +
-                    "JOIN USER_PROFILE u on f.friendId = u.userId " +
-                    " where f.userId = ? " +
+            handle.createQuery("Select friendId as userId, U.firstName, U.lastName " +
+                    "from friends F join user_profile U " +
+                    "on U.userId = F.friendId where F.userId = ? " +
+                    "INTERSECT " +
+                    "Select F.userId, U.firstName, U.lastName " +
+                    "from friends F join user_profile U " +
+                    "on U.userId = F.userId where friendId = ? " +
                     "ORDER BY firstName, lastName ")
                 .bind(0,userId)
+                .bind(1,userId)
                 .mapTo<User>().list()
         }
         return toReturn

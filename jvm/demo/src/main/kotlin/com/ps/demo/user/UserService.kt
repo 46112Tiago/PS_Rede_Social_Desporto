@@ -52,6 +52,10 @@ class UserService(val userRepo : UserRepoImplementation) {
         return userRepo.getFriends(userId,page)
     }
 
+    fun getFriendsRequest(userId: Int,page:Int) : List<User?> {
+        return userRepo.getFriendsRequest(userId,page)
+    }
+
     fun getAllFriends(userId: Int) : List<User?> {
         return userRepo.getAllFriends(userId)
     }
