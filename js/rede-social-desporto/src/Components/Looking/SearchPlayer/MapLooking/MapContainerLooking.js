@@ -1,88 +1,129 @@
+import { Marker } from '@react-google-maps/api';
 import React from 'react'
+import { verifyNewMarkers } from '../../../../GoogleMaps/Geocoding';
 import "./MapLooking.css";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const MapContainerLooking = (props) => { 
  
     
-    const ref = React.useRef();
+  const ref = React.useRef();
 
-    window.addEventListener('change', (compound) => {
-        if(compound.target.id == "selectCompound")
-          setCompoundId(compound.target.value)
-      });
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState();
+  const [markersArray, setMarkers] = React.useState([]);
+  const [zoomEffect,setZoom] = React.useState(props.zoom);
+  const [centerVal, setCenter] = React.useState(props.center);
+  const [centerInput, setCenterInput] = React.useState(props.center);
+  const [sport, setSportId] = React.useState(0);
 
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [error, setError] = React.useState();
-    const [compoundId, setCompoundId] = React.useState(0);
-    const [center, setCenter] = React.useState(props.center);
-    const {getAccessTokenSilently} = useAuth0();
+  React.useEffect(() => {
+    
+    if(props.sportId != sport){
+      setSportId(props.sportId)
+      setMarkers([])
+      return
+    }
 
-    React.useEffect(() => {
-      
-      const mapOptions = {
-        zoom : props.zoom,
-        center : center,
-        minZoom : 2,
-        maxZoom : 17,
-        mapTypeId: window.google.maps.MapTypeId.SATELLITE
-      }
-      let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
+    if(props.center != centerInput){
+      setCenter(props.center)
+      setCenterInput(props.center)
+    }
 
-    const makeRequest = async () => {
-      setError(null);
-      setIsLoading(true);
-      try {
-        if(compoundId == 0) return 
-        const token = await getAccessTokenSilently();
-        const myHeaders = new Headers()
-        myHeaders.append('Authorization',`Bearer ${token}`)
-        const options = {
-            method: "GET",
-            headers: myHeaders,
-            mode: 'cors',
-        };
-        const req =  await fetch(`http://localhost:8080/compound/${compoundId}`,options);
-        const resp = await req.json();
-        const lat = resp.location.x ? resp.location.x : 0
-        const lng = resp.location.y ? resp.location.y : 0
-        const point = { lat : lat, lng : lng};
-        
-        mapOptions.zoom = 15
-        mapOptions.center = point
-        
-        map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);       
-        const marker = new window.google.maps.Marker({
+    const mapOptions = {
+      zoom : zoomEffect,
+      center : centerVal,
+      minZoom : 12,
+      maxZoom : 17,
+      mapTypeId: window.google.maps.MapTypeId.SATELLITE
+    }
+
+    let map = new window.google.maps.Map(document.getElementById("mapComponent"),mapOptions);
+    markersArray.forEach(element => {
+      const point = { lat : element.location.x, lng : element.location.y};
+      const marker = new window.google.maps.Marker({
           position: point,
           map,
-          title: resp.name,
-        });
-        
-        
-          
-      } catch (err) {
-        setError(err);
-        /*console.log(err); */
-      } finally {
-        setIsLoading(false);
-      }
+          title: element.name,
+      });
+      marker.id = element.id
+      marker.addListener("click", () => {
+        window.localStorage.setItem("compound_id",JSON.stringify(element.id))
+        window.location.href = "#marker-modal"
+      });
+    })
+    setIsLoading(true);
+
+    const options = {
+        method: "GET",
+        mode: 'cors',
     };
-    
-    if (!isLoading) {
-      makeRequest();    
-      
+
+  const makeRequest = async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      map.addListener('zoom_changed', async function() {
+        if(!sport) return
+        var zoom = map.getZoom();
+        var center = map.getCenter().toJSON();
+        setZoom(zoom);
+        const req =  await fetch(`http://localhost:8080/compound/sport/${props.sportId}?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+        const resp = await req.json();
+        if(resp.length == 0) {
+          if(markersArray.length > 0){ 
+            props.markers(resp)  
+            setMarkers(resp)
+          }
+          return
+        }
+        if(markersArray.length > 0 && !verifyNewMarkers(markersArray,resp)) return
+        props.markers(resp)  
+        setMarkers(resp)
+        
+      });
+      map.addListener('center_changed', async function() {
+        if(!sport) return
+        var center = map.getCenter().toJSON();
+        var zoom = map.getZoom();
+        setCenter(center);
+        const req =  await fetch(`http://localhost:8080/compound/sport/${props.sportId}?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+        const resp = await req.json();
+        if(resp.length == 0) {
+          if(markersArray.length > 0){
+            props.markers(resp)   
+            setMarkers(resp)
+          }
+          return
+        }
+        if(markersArray.length > 0 && !verifyNewMarkers(markersArray,resp)) return
+        props.markers(resp)  
+        setMarkers(resp)
+        
+        
+    });
+    } catch (err) {
+      setError(err);
+      /*console.log(err); */
+    } finally {
+      setIsLoading(false);
     }
- 
-},[compoundId]);
+  };
+  
+  if (!isLoading) {
+    makeRequest();    
+    
+  }
 
+     
+  },[markersArray,props.center,centerInput,props.sportId]);
+  return (
+      <>
+          <Marker/>
+          <div ref={ref} id="mapComponent"> 
 
-    return (
-        <>
-            <div ref={ref} id="mapComponent"> 
-
-            </div>
-        </>
-    );
+          </div>
+      </>
+  );
 
 }
 

@@ -21,8 +21,11 @@ class CompoundController(val compoundService: CompoundService) {
     }
 
     @GetMapping("/sport/{sportId}")
-    fun getLookingLocations(@PathVariable("sportId") sportId : Int) : ResponseEntity<List<Compound?>?> {
-        val locations : List<Compound?>? = compoundService.getLookingLocations(sportId)
+    fun getLookingLocations(@PathVariable("sportId") sportId : Int,
+                            @RequestParam(required = true) zoom: Int? = 0,
+                            @RequestParam(required = false) centerLat : Double? = 0.0,
+                            @RequestParam(required = false) centerLng : Double? = 0.0) : ResponseEntity<List<Compound?>?> {
+        val locations : List<Compound?>? = compoundService.getLookingLocations(sportId,zoom,centerLat,centerLng)
         return ResponseEntity(locations, HttpStatus.OK)
     }
 

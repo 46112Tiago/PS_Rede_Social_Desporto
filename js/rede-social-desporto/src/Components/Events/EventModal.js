@@ -44,7 +44,7 @@ const EventModal = (props) => {
                                 setId(props.eventId)
                                 window.location.href=`#demo-modal-${props.eventId}`;
                                 }}className = 'eventBtn'>                 
-                                Descrição</button>
+                                Description</button>
             </div>
             
             <div id={`demo-modal-${props.eventId}`} className="modalEvent">
@@ -53,7 +53,7 @@ const EventModal = (props) => {
                     <a href={`https://www.google.com/maps/@${coordinate.lat},${coordinate.lng},15z`} target={'_blank'}><img className='local_image' src={require('./mock_image/Isel_test_events.PNG')} alt='localization' title='google maps direções'></img></a>
                 </div>
 
-                    <h4 id="descriptionTitle">Descrição</h4>
+                    <h4 id="descriptionTitle">Description</h4>
                     <p>
                         {eventObj.description}
                     </p>

@@ -1,12 +1,11 @@
 package com.ps.data
 
-import java.sql.Time
-import java.sql.Timestamp
+import java.time.LocalTime
 
 data class Schedule(
         val id : Int?,
         val weekday : String?,
-        val openingHour : Timestamp?,
-        val closingHour : Timestamp?,
+        val openingHour : LocalTime?,
+        val closingHour : LocalTime?,
         val optionalDescription : String? = ""
 )

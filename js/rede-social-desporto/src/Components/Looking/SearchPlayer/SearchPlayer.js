@@ -5,21 +5,31 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SelectSport from './SelectSport/SelectSport';
 import SelectCompound from './SelectCompound/SelectCompound';
 import MapLooking from './MapLooking/MapLooking';
+import SearchCompound from './SearchCompound/SearchCompound';
 
 const SearchPlayer = () => {
 
     const getCompound = (compound) => {
         setCompound(compound)
     }
+
+    const getMarkers = (markers) => {
+        setMarkers(markers)
+    }
     
     const getSport = (sport) => {
         setSport(sport)
     }
 
+    const getCenter = (centerResp) => {
+        setCenter(centerResp)
+    }
+
     const { register, handleSubmit } = useForm();
     const [compoundObj, setCompound] = React.useState("");
     const [sportObj, setSport] = React.useState("");
-
+    const [center, setCenter] = React.useState("");
+    const [markers, setMarkers] = React.useState([])
     const myHeaders = new Headers()
     myHeaders.append('Content-Type','application/json')
     const {getAccessTokenSilently} = useAuth0();
@@ -53,15 +63,17 @@ const SearchPlayer = () => {
                             <label>Starting Hour</label>
                             <input className='inputForm' type='datetime-loca' name="startDateTime" placeholder='2018-06-12T19:30'  {...register(`startDateTime`)} required/>
                             <SelectSport getSport={getSport}></SelectSport>
-                            <SelectCompound getCompound={getCompound} sport={sportObj}></SelectCompound>
-                            <input type='submit' id='btnLooking'></input>
+                            <label for='compound'>Compound/Field:</label>
+                            <SelectCompound getCompound={getCompound} marker={markers} sport={sportObj}></SelectCompound>
+                            <input type='submit' id='btnLooking' value={'Send'}></input>
                         </fieldset>
                     </form>
                 </div>
 
             </div>
             <div id='rightLooking'>
-                <MapLooking></MapLooking>
+                <SearchCompound center={getCenter} sportId={sportObj}></SearchCompound>
+                <MapLooking center={center} sportId={sportObj} markers={getMarkers}></MapLooking>
             </div>
         </div>
     </>

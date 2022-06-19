@@ -29,10 +29,10 @@ const SearchBox = (props) => {
         <p className='open'>Abertos agora</p>
         <div id='searchBarCompound'>
           <form onSubmit={handleSubmit(submit)}>
-            <button className='searchBarCompoundItem' id='searchBtn' ><FaSearch></FaSearch></button>
             <input name='name' className='searchBarCompoundItem' id='searchBarCompoundTxt' type="text" {...register('name')} placeholder='Search...' required/>
           </form>
-        </div>    </div>
+        </div>    
+    </div>
     );
 }
   

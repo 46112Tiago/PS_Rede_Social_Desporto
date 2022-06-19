@@ -51,12 +51,12 @@ const userId = props.otherProfile ? window.location.href.split('/')[4][0] : wind
       return (
         <div>
             <div>
-                <a id="activateModal" href="#demo-modal"><b><MdSportsTennis></MdSportsTennis> Desportos</b></a>
+                <a id="activateModal" href="#demo-modal"><b><MdSportsTennis></MdSportsTennis> Sports</b></a>
             </div>
             
             <div id="demo-modal" className="modal">
                 <div className="modal__content">
-                    <h1>Desportos</h1>
+                    <h1>Sports</h1>
                     <ul id="Sports" >
                         {sportArray.map((sportObj,i) => 
                             <CreateSportsList deleteSport={deleteSport} otherProfile={props.otherProfile} key={i} sportName={sportObj.name} sportId={sportObj.id}></CreateSportsList>

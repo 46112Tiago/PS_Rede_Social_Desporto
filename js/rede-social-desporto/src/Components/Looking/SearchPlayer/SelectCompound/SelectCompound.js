@@ -13,14 +13,17 @@ const SelectCompound = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
     const [compoundArray, setCompound] = React.useState([compound]);
+    const [sport, setSport] = React.useState(0)
     const {getAccessTokenSilently} = useAuth0();
 
       React.useEffect(() => {
 
         if(!props.sport) {
           document.getElementById('selectCompound').disabled = true
+          setSport(0)
         }else {
           document.getElementById('selectCompound').disabled = false
+          setSport(props.sport)
         }
       
         const makeRequest = async () => {
@@ -28,17 +31,8 @@ const SelectCompound = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-            const token = await getAccessTokenSilently();
-            const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
-            const options = {
-                method: "GET",
-                headers: myHeaders,
-                mode: 'cors',
-            };
-            const req =  await fetch(`http://localhost:8080/compound/sport/${props.sport}`,options);
-            const resp = await req.json();
-            setCompound(resp);
+            
+            props.sport != sport ? setCompound([]) : setCompound(props.marker);
             
           } catch (err) {
             setError(err);
@@ -49,11 +43,10 @@ const SelectCompound = (props) => {
         };
     
         if (!isLoading) makeRequest();
-      },[props.sport]);
+      },[props.sport,props.marker]);
 
     return (
     <>
-        <label for='compound'>Compound/Field</label>
         <select name="compound" id="selectCompound" className='inputForm' onChange={compoundId} required>
           <option></option>
             {

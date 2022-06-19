@@ -12,7 +12,7 @@ const Paging = (props) => {
     props.paging(props.page-1)
   }
 
-  const backBtn = props.page == 0 ? <button className="pagingBtn" disabled></button> : <button className="pagingBtn" id="previousBtn" onClick={pageBack}><MdArrowBackIos/></button>
+  const backBtn = props.page <= 0 ? <button className="pagingBtn" disabled></button> : <button className="pagingBtn" id="previousBtn" onClick={pageBack}><MdArrowBackIos/></button>
   const forwardBtn = props.forward ? <button className="pagingBtn" id="forwardBtn" onClick={pageForward}><MdArrowForwardIos/></button> : <button className="pagingBtn"></button> 
 
     return (

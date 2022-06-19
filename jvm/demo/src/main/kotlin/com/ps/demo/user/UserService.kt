@@ -3,6 +3,9 @@ package com.ps.demo.user
 import com.ps.data.Image
 import com.ps.data.User
 import org.springframework.stereotype.Service
+import java.io.IOException
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.util.*
 
 @Service
@@ -13,7 +16,12 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun getUserInfo(userId : Int) : User? {
-        return userRepo.getUserById(userId)
+        val user = userRepo.getUserById(userId)
+        val profilePic = userRepo.getUserProfilePic(userId)?.image
+        if (profilePic != null)
+            user!!.profilepic = profilePic
+
+        return user
     }
 
     fun getUserById(userId : Int) : User? {
@@ -25,7 +33,12 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun insertUser(user : User) : Int {
-        return userRepo.insertUser(user)
+        val userId = userRepo.insertUser(user)
+
+        if (user.profilepic != null) {
+            userRepo.insertProfilePic(user.profilepic!!,userId)
+        }
+        return userId
     }
 
     fun updateUserProfilePic(userId: Int, url: String) : User {
@@ -42,6 +55,10 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun getFriends(userId: Int,page:Int) : List<User?> {
         return userRepo.getFriends(userId,page)
+    }
+
+    fun getFriendsRequest(userId: Int,page:Int) : List<User?> {
+        return userRepo.getFriendsRequest(userId,page)
     }
 
     fun getAllFriends(userId: Int) : List<User?> {

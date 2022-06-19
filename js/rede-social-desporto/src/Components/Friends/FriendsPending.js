@@ -5,7 +5,7 @@ import { user } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import Paging from '../Paging/Paging';
 
-const Friends = (props) => {
+const FriendsPending = (props) => {
 
   const setPaging = (offset) => {
     setPage(offset)
@@ -35,7 +35,7 @@ const Friends = (props) => {
             headers: myHeaders,
             mode: 'cors',
       };
-        const req =  await fetch(`http://localhost:8080/user/${window.name}/friend?page=${page}`,options);
+        const req =  await fetch(`http://localhost:8080/user/${window.name}/friend/request?page=${page}`,options);
         const resp = await req.json();
         if(resp.length < limit){
           setForward(false)
@@ -69,4 +69,4 @@ const Friends = (props) => {
       );
     }
 
-  export default Friends
+  export default FriendsPending

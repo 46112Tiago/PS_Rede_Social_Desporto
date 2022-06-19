@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service
 class CompoundService(val compoundRepo : CompoundRepoImplementation) {
 
     private val AREA_MAP = mapOf(18 to 2, 17 to 4, 16 to 8, 15 to 16,14 to 32,13 to 64, 12 to 128);
+    private val AREA_MAP_COMPOUND = mapOf(18 to 1, 17 to 2, 16 to 4, 15 to 8,14 to 16,13 to 32, 12 to 64);
 
     fun createCompound(compound : Compound) : Int? {
         val compoundId = compoundRepo.createCompound(compound)
@@ -45,8 +46,12 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return compoundRepo.deleteCompound(compoundId)
     }
 
-    fun getLookingLocations(sportId: Int) : List<Compound?>? {
-        return compoundRepo.getCompoundLooking(sportId)
+    fun getLookingLocations(sportId: Int,zoom: Int?,centerLat: Double?,centerLng: Double?) : List<Compound?>? {
+        if (zoom == null || centerLat == null || centerLng == null) return listOf()
+        var locs = compoundRepo.getCompoundLooking(sportId)!!.filter {
+                it -> checkArea(zoom!!,centerLat!!,centerLng!!,it!!.location!!.x,it.location!!.y,AREA_MAP_COMPOUND)
+        }
+        return locs;
     }
 
     fun getCompoundInformation(compoundId : Int) : Compound? {
@@ -60,14 +65,14 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
     fun getCompoundLocations(zoom : Int, centerLat: Double, centerLng: Double) : List<Compound?>? {
         if (zoom < 12) return listOf()
         var locs = compoundRepo.getCompoundLocations()!!.filter {
-                it -> checkArea(zoom,centerLat,centerLng,it!!.location!!.x,it.location!!.y)
+                it -> checkArea(zoom,centerLat,centerLng,it!!.location!!.x,it.location!!.y,AREA_MAP)
         }
         return locs;
     }
 
-    fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double)
+    fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double,area: Map<Int,Int>)
     : Boolean {
-        val neededCoverage = AREA_MAP.get(zoom)
+        val neededCoverage = area.get(zoom)
         val theta: Double = centerLng - pointLng
         var dist = (Math.sin(deg2rad(centerLat))
                 * Math.sin(deg2rad(pointLat))

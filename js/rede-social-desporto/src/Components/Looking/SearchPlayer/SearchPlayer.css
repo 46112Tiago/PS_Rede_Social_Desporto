@@ -57,6 +57,9 @@
     width: 65%;
     height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(243, 218, 186);
 }
 
@@ -70,4 +73,13 @@
 #btnLooking:hover {
     border: rgb(65, 129, 10) solid 3px;
     color: rgb(17, 169, 17);
+}
+
+#searchBarCompoundTxt {
+    max-width: 400px;
+    min-width: 50px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: transparent;
 }

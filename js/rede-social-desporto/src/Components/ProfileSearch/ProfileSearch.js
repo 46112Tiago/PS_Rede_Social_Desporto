@@ -6,7 +6,9 @@ import Paging from '../Paging/Paging'
 import { user } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 
-const ProfileSearch = (props) =>  {
+const ProfileSearch = () =>  {
+
+  const limit = 4
 
   const setQueryName = (nameValue) => {
     setName(nameValue)
@@ -44,12 +46,12 @@ const ProfileSearch = (props) =>  {
       };
         const req =  await fetch(`http://localhost:8080/user/search?page=${page}&name=${nameV.name}`,options);
         const resp = await req.json();
-        setUsers(resp);
-        if(!resp[0]){
+        if(resp.length < limit){
           setForward(false)
         }else{
           setForward(true)
         }
+        resp.length == 0 ? setPage(page-1) : setUsers(resp);
       } catch (err) {
         setError(err);
         //console.log(err);

@@ -19,6 +19,7 @@ const UserEventParticipating = () => {
   const [error, setError] = React.useState();
   const {getAccessTokenSilently} = useAuth0();
   const [eventArray, setEvent] = React.useState([event]);
+  const limit = 9
   
     React.useEffect(() => {
       const makeRequest = async () => {
@@ -35,8 +36,12 @@ const UserEventParticipating = () => {
           };
           const req =  await fetch(`http://localhost:8080/user/${window.name}/event/participating?page=${page}`,options);
           const resp = await req.json();
-          setEvent(resp);
-          !resp[0] ? setForward(false) : setForward(true)
+          if(resp.length < limit){
+            setForward(false)
+          }else{
+            setForward(true)
+          }
+          resp.length == 0 ? setPage(page-1) : setEvent(resp);
           
         } catch (err) {
           setError(err);
