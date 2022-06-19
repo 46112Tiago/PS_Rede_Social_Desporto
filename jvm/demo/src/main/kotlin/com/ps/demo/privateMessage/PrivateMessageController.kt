@@ -52,7 +52,7 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService)
                     @RequestBody privateMessage: PrivateMessage) : ResponseEntity<PrivateMessage?> {
         val privateMessageKey = privateMessageService.sendMessage(userId,friendId,privateMessage)
         val privateMessageResp = PrivateMessage(privateMessageKey,privateMessage.message,null,null,
-            User(userId,"","","",null,"",false,"",null,null))
+            User(userId,"","","",null,"","",false,null,null,null))
         return ResponseEntity(privateMessageResp,HttpStatus.OK)
     }
 

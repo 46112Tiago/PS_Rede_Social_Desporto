@@ -271,11 +271,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
             handle.createQuery("Select E.id as e_id, E.startDate as e_startDate, " +
                     "E.plannedfinishDate as e_plannedfinishDate, " +
                     "E.name as e_name, E.limitParticipants as e_limitParticipants, " +
-<<<<<<< HEAD
                     "E.description as e_description, E.summary as e_summary, " +
-=======
-                    "E.description as e_description, E.summary as e_summary," +
->>>>>>> main
                     "sportId as s_sportId, S.name as s_name, " +
                     "compoundId as c_compoundId,  " +
                     "C.name as c_name " +
@@ -290,11 +286,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "Select E.id as e_id, E.startDate as e_startDate, " +
                     "E.plannedfinishDate as e_plannedfinishDate, " +
                     "E.name as e_name, E.limitParticipants as e_limitParticipants, " +
-<<<<<<< HEAD
-                    "E.description as e_description, E.summary as e_summary, " +
-=======
                     "E.description as e_description, E.summary as e_summary," +
->>>>>>> main
                     "sportId as s_sportId, S.name as s_name, " +
                     "compoundId as c_compoundId,  " +
                     "C.name as c_name " +

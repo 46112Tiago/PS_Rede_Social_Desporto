@@ -20,7 +20,6 @@ const StaticProfile = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [userObj, setUser] = React.useState({});
-  const [imageObj, setProfileImage] = React.useState({});
   const [edit, setEdit] = React.useState(false)
   const {user,getAccessTokenSilently} = useAuth0()
   const myHeaders = new Headers()
@@ -39,9 +38,11 @@ const StaticProfile = () => {
         };
         const req =  await fetch(`http://localhost:8080/user/${window.name}`,options);
         const resp = await req.json();
-        const byteArray = convertHexToImage(resp.profilepic)
-        let img = document.getElementById('photoProfile');
-        img.src = window.URL.createObjectURL(new Blob([byteArray], { type: 'application/octet-stream' }));
+        if(resp.profilepic){
+          const byteArray = convertHexToImage(resp.profilepic)
+          let img = document.getElementById('photoProfile');
+          img.src = window.URL.createObjectURL(new Blob([byteArray], { type: 'application/octet-stream' }));  
+        }
         setUser(resp);
       } catch (err) {
         setError(err);
@@ -80,8 +81,8 @@ const StaticProfile = () => {
             <div id='infoProfile'>
               <h3>Info:</h3>
               {/*TODO date is taking one hour to the real one*/}
-              <p>{userObj.birthdate}</p>
-              <p>{userObj.city}</p>
+              <p>BirthDate: {userObj.birthdate}</p>
+              <p>City: {userObj.city}</p>
               <p>Available: {userObj.available?'Yes':'No'}</p>
               <SportsModal></SportsModal>
 

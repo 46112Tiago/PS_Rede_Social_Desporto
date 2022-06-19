@@ -40,7 +40,7 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getUserById(userId : Int): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery(" Select firstName, lastName, city, birthdate, available, profilepic " +
+            handle.createQuery(" Select userId, firstName, lastName, city, birthdate, available, profilepic " +
                     "from USER_PROFILE where userId = ? ")
                     .bind(0,userId)
                     .mapTo<User>().one()
@@ -50,12 +50,12 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return toReturn
     }
 
-    fun getUserProfilePic(userId : Int): Image? {
-        val toReturn = jdbi.withHandle<Image?,RuntimeException> { handle : Handle ->
+    fun getUserProfilePic(userId : Int): Optional<Image>? {
+        val toReturn = jdbi.withHandle<Optional<Image>?,RuntimeException> { handle : Handle ->
             handle.createQuery(" Select encode(image,'hex') as image " +
                     "from Image where userId = ? ")
                 .bind(0,userId)
-                .mapTo<Image>().one()
+                .mapTo<Image>().findFirst()
         }
 
         return toReturn

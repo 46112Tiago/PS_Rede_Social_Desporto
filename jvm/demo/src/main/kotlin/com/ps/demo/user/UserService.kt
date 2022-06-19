@@ -17,9 +17,9 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun getUserInfo(userId : Int) : User? {
         val user = userRepo.getUserById(userId)
-        val profilePic = userRepo.getUserProfilePic(userId)?.image
-        if (profilePic != null)
-            user!!.profilepic = profilePic
+        val userAux = userRepo.getUserProfilePic(userId)
+        if (userAux?.isPresent!!)
+            user!!.profilepic = userAux.get().image
 
         return user
     }

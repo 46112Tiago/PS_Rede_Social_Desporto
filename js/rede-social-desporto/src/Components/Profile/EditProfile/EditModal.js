@@ -44,13 +44,12 @@ const EditModal = (props) => {
             </div>
             <div id="edit-modal" className="modalEdit">
                 <div className="modal_content_Edit">
-                    <h1>Edição Perfil</h1>
+                    <h1>Edit Profile</h1>
                     <form id='editForm' onSubmit={handleSubmit(submit)}>
-                        <label>Cidade:</label>
+                        <label>City:</label>
                         <br/>
                         <input type={'text'} {...register('city')}  placeholder='City'></input>
                         <br/><br/>
-                        <label>Desportos:</label>
                         <br/><br/>
                         <AddSportUser />
                         <br/><br/>
@@ -65,7 +64,7 @@ const EditModal = (props) => {
                         </div>
                         <br/><br/>
                         <div id='editDiv'>
-                            <input type='submit' value='Editar' id='subEdit'></input>
+                            <input type='submit' value='Edit' id='subEdit'></input>
                         </div>
                     </form>
 
