@@ -14,15 +14,18 @@ import java.util.*
 import java.lang.Object.*
 import org.jdbi.v3.*
 import org.jdbi.v3.core.kotlin.useHandleUnchecked
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
+
+
+
 
 @SpringBootApplication
 class DemoApplication
 
 fun main(args: Array<String>) {
 	runApplication<DemoApplication>(*args)
-
-
-
 }
 
 @SpringBootApplication
@@ -39,8 +42,6 @@ class JdbiConfig() {
 				.installPlugin(KotlinPlugin())
 				.installPlugin(KotlinSqlObjectPlugin())
 		} catch (e : Exception) {e.printStackTrace()}
-
-
 		return jdbi
 	}
 }

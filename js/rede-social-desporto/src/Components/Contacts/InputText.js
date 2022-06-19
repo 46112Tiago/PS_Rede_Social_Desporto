@@ -3,9 +3,14 @@ import { useForm } from "react-hook-form";
 import { message } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import './ConversationIdle.css'
+import {over} from 'stompjs';
+import SockJS from 'sockjs-client';
+
+let stompClient =null;
 
 const InputText = (props) => {
-  
+
+
     /**
      * Change Friends/Groups to only one of those. 
      * If the user press Friends, appears only the friends list
@@ -16,12 +21,67 @@ const InputText = (props) => {
   const {getAccessTokenSilently} = useAuth0();
   // user state for form
   const [messageObj, setMessage] = useState(message);
+  const [privateChats, setPrivateChats] = useState(new Map());     
+  const [userData, setUserData] = useState({
+        username: 'T',
+        receiver: {userId:0},
+        connected: false,
+        message: ''
+      });
+
+
+    const connect =()=>{
+        let Sock = new SockJS('http://localhost:8080/webSocket');
+        stompClient = over(Sock);
+        stompClient.connect({},onConnected, onError);
+    }
+
+    const onConnected = () => {
+        setUserData({...userData,"connected": true});
+        stompClient.subscribe(`/friend/${window.name}/private`, onPrivateMessage);
+    }
+    
+    const onPrivateMessage = (payload)=>{
+        var payloadData = JSON.parse(payload.body);
+        if(privateChats.get(payloadData.senderName)){
+            privateChats.get(payloadData.senderName).push(payloadData);
+            setPrivateChats(new Map(privateChats));
+        }else{
+            let list =[];
+            list.push(payloadData);
+            privateChats.set(payloadData.senderName,list);
+            setPrivateChats(new Map(privateChats));
+        }
+        const messages = message
+        messages.message = payloadData.message
+        props.socket(messages)
+        setMessage(messages)
+    }
+
+    const onError = (err) => {
+        console.log(err);
+        
+    }
+
+    const sendPrivateValue=(text)=>{
+        if (stompClient) {
+          var chatMessage = {
+            receiver:{userId:props.friendId},
+            message: text.message,
+          };
+          
+            setPrivateChats(new Map(privateChats));
+          stompClient.send("/message/private-message", {}, JSON.stringify(chatMessage));
+          setUserData({...userData,"message": text.message});
+        }
+    }
 
   // effect runs on component mount
   useEffect(() => {
+    connect()
       // simulate async api call with set timeout
       setTimeout(() => setMessage(message), 1000);
-  }, []);
+  }, [messageObj]);
 
 
   async function submit(data) {
@@ -36,16 +96,22 @@ const InputText = (props) => {
         body:JSON.stringify(data)
     }
     if(props.sendTo == "group"){
-      await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+      const resp = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+      const res = await resp.json()
+      sendPrivateValue(data)
+      props.messageResp(res)
     }else{
-      await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+      const resp = await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+      const res = await resp.json()
+      sendPrivateValue(data)
+      props.messageResp(res)
     }
 }
 
       return (
         <div>
           <form onSubmit={handleSubmit(submit)}>
-            <input name='message' type={'text'} id='inputTxt' placeholder='Write your message' {...register('message')} required></input>
+            <input maxLength={400} name='message' type={'text'} id='inputTxt' placeholder='Write your message' {...register('message')} required></input>
           </form>
         </div>
       );

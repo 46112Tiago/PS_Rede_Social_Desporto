@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class PostController (val postService: PostService) {
 
 

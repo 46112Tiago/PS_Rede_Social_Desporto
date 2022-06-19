@@ -31,7 +31,7 @@ const [request, setRequest] = React.useState(false);
               headers: myHeaders,
               mode: 'cors',
         };
-          const friendId = window.location.href.split('/')[4][0]
+          const friendId = window.location.href.split('/')[4]
           const req =  await fetch(`http://localhost:8080/user/${window.name}/friend/${friendId}`,options);
           const resp = await req.json();
           setUser(resp);

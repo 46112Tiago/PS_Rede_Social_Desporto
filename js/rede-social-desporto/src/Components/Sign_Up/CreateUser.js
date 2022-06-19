@@ -5,12 +5,14 @@ import {FaCity,FaBirthdayCake} from 'react-icons/fa'
 import {CgProfile} from 'react-icons/cg'
 import {AiOutlinePlusCircle} from 'react-icons/ai'
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
 
 const CreateUser = () => {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const {user,getAccessTokenSilently} = useAuth0()
   const [imageHex, setImage] = React.useState('')
 
@@ -56,6 +58,9 @@ const CreateUser = () => {
     const response = await fetch('http://localhost:8080/user', options)
     const responseJson = await response.json()
     window.name = responseJson
+    if(response.status == 200){
+        navigate("/profile");
+    }
 }
 
   return (

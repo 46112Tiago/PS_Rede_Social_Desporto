@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/compound/{compoundId}")
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class ReviewController(val reviewService: ReviewService) {
 
     @GetMapping("/review")

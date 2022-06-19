@@ -36,6 +36,8 @@ class SecurityConfig :  WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
+            .mvcMatchers(HttpMethod.GET,"/sendMessage/**").permitAll()
+            .mvcMatchers(HttpMethod.GET,"/webSocket/**").permitAll()
             .mvcMatchers(HttpMethod.GET,"/event").permitAll()
             .mvcMatchers(HttpMethod.GET,"/event/{eventId}").permitAll()
             .mvcMatchers(HttpMethod.GET,"/material/compound/{compoundId}").permitAll()

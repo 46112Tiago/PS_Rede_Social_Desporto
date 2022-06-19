@@ -41,8 +41,11 @@ export let sport = {
 }
 
 export let message = {
-    message : '',
-    ownerId : 0
+     id : 0,
+     message : '',
+     date : {},
+     receiver : {userId : 0},
+     sender : {userId : 0}
 }
 
 export let post = {

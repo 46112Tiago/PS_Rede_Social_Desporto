@@ -9,7 +9,7 @@ import java.util.*
 
 @RestController
 @RequestMapping
-@CrossOrigin("https://localhost:3000")
+@CrossOrigin("http://localhost:3000")
 class FieldController(val fieldService: FieldService) {
 
     @GetMapping("/compound/{compoundId}/field")
