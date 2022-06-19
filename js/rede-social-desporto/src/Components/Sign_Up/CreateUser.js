@@ -11,13 +11,39 @@ const CreateUser = () => {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-
   const {user,getAccessTokenSilently} = useAuth0()
+  const [imageHex, setImage] = React.useState('')
 
   const myHeaders = new Headers()
 
+  React.useEffect(() => {
+    document.getElementById('file-upload').addEventListener('change', function() {
+
+        var reader = new FileReader();
+        reader.onload = function() {
+            let aux
+            let u = new Uint8Array(this.result),
+            a = '',
+            i = u.length;
+            while (i--){
+                // map to hex
+                aux = (u[i] < 16 ? '0' : '') + u[i].toString(16);
+                a = aux.concat(a)
+            } 
+            u = null; // free memory
+            console.log(a); // work with this
+            setImage(a)
+      
+        }
+        reader.readAsArrayBuffer(this.files[0]);
+        
+      }, false);
+    
+  })
+  
   async function submit(data) {
     data.email = user.email
+    data.profilepic = imageHex
     const token = await getAccessTokenSilently()
     myHeaders.append('Content-Type','application/json')
     myHeaders.append('Authorization',`Bearer ${token}`)

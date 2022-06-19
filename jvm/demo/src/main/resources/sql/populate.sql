@@ -1220,6 +1220,8 @@ VALUES (40,3,'accepted');
 
 Select * from lookingPlayers JOIN LOOKINGPLAYERS_PARTICIPANTS ON id = lookingId where creatorId = 1
 
+Select * from image
+
 commit;
 
 

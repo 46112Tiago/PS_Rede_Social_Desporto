@@ -72,6 +72,17 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return toReturn.userId!!
     }
 
+    fun insertProfilePic(hex: String,userId: Int) {
+        val toReturn = jdbi.useHandle<RuntimeException> { handle: Handle ->
+            handle.createUpdate("insert into IMAGE(image,typeImage,userId) " +
+                    "values(DECODE(?,'hex'),?,?)")
+                .bind(0,hex)
+                .bind(1,"profile")
+                .bind(2,userId)
+                .execute()
+        }
+    }
+
     fun updateUserProfilePic(userId: Int, url: String) : User {
         return jdbi.withHandle<User,RuntimeException>{ handle:Handle ->
             handle.createUpdate("update user_profile " +
