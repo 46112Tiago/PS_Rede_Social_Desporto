@@ -16,8 +16,9 @@ const {getAccessTokenSilently,user} = useAuth0();
 const [isLoading, setIsLoading] = React.useState(false);
 const [error, setError] = React.useState();
 const [userObj, setUser] = React.useState(user);
-const [request, setRequest] = React.useState(false);
-  
+const [request, setRequest] = React.useState('');
+const friendName = window.location.href.split('/')[4]
+
   React.useEffect(() => {
       const makeRequest = async () => {
         setError(null);
@@ -31,7 +32,6 @@ const [request, setRequest] = React.useState(false);
               headers: myHeaders,
               mode: 'cors',
         };
-          const friendName = window.location.href.split('/')[4]
           const email = user.email.split("@")[0]
           const req =  await fetch(`http://localhost:8080/user/profile/${friendName}?email=${email}`,options);
           const resp = await req.json();
@@ -64,7 +64,7 @@ const [request, setRequest] = React.useState(false);
                         <h4><FaCity></FaCity> {userObj.city}</h4>
                         <SportsModal otherProfile={true} userId={userObj.userId}></SportsModal>
                     </div>
-                    {userObj.friends == null ? <AddFriend request={friendRequest} friendName={userObj.email.split("@")[0]}></AddFriend> : <></> }
+                    {request != friendName ? <AddFriend request={friendRequest} friendName={userObj.email.split("@")[0]}></AddFriend> : <></> }
                 </div>
 
             </div>

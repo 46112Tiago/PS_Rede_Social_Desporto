@@ -17,7 +17,9 @@ const ExitGroup = (props) => {
     };
     const email = user.email.split("@")[0]
     const response = await fetch(`http://localhost:8080/group/${props.groupId}/user?email=${email}`, options)
-    
+    if(response.ok)
+      props.exit(props.groupId)
+
 }
 
       return (

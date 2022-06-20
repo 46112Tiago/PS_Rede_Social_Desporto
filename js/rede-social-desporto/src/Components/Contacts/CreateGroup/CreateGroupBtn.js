@@ -4,7 +4,7 @@ import { group } from "../../../Model/Model"
 import { useAuth0 } from "@auth0/auth0-react";
 import './CreateGroupBtn.css'
 
-const CreateGroupBtn = () => {
+const CreateGroupBtn = (props) => {
 
   const {getAccessTokenSilently,user} = useAuth0();
 
@@ -32,8 +32,10 @@ const CreateGroupBtn = () => {
         body:JSON.stringify(data)
     };
     const email = user.email.split("@")[0]
-    const response = fetch(`http://localhost:8080/user/group?email=${email}`, options)
-    const responseJson = response.json()
+    const response = await fetch(`http://localhost:8080/user/group?email=${email}`, options)
+    const responseJson = await  response.json()
+    window.location.href = "#"
+    props.created(responseJson)
     console.log(responseJson)
 }
 

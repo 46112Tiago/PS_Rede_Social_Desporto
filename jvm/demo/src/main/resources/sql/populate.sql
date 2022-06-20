@@ -1250,6 +1250,10 @@ VALUES (40,3,'accepted');
 
 Select * from event_participant join event on id = eventId
 Select * from private_message where receiverId = 2
+Select * from user_group JOIN GROUP_PARTICIPANT on id = groupId
+Select * from user_profile
+INSERT INTO GROUP_PARTICIPANT(participantId,groupId)
+VALUES (34,3);
 
 commit;
 

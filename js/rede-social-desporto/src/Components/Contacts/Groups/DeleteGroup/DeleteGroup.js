@@ -16,6 +16,8 @@ const DeleteGroup = (props) => {
     };
     const email = user.email.split("@")[0]
     const response = await fetch(`http://localhost:8080/user/group/${props.groupId}?email=${email}`, options)
+    if(response.ok)
+      props.delete(props.groupId)
 }
 
       return (

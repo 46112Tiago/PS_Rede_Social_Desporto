@@ -4,9 +4,8 @@ import {BsFillPlusCircleFill} from 'react-icons/bs';
 import CreateGroupBtn from "./CreateGroupBtn";
 import './GroupModal.css'
 
-class GroupModal extends React.Component {
+const GroupModal = (props) => {
 
-    render() {
       return (
         <div className="modalGroupBody">
             <div className="modalGroupBody">
@@ -15,7 +14,7 @@ class GroupModal extends React.Component {
             
             <div id="demo-modal" className="modal_group">
                 <div className="modal__content_group">
-                    <CreateGroupBtn></CreateGroupBtn>
+                    <CreateGroupBtn created={props.created}></CreateGroupBtn>
                    
                     <a href="#" className="modal__close">&times;</a>
                 </div>
@@ -25,6 +24,5 @@ class GroupModal extends React.Component {
 
       );
     }
-  }
 
   export default GroupModal

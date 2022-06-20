@@ -4,11 +4,14 @@ import './AddParticipant/AddParticipant.css'
 import { HiDotsVertical } from 'react-icons/hi'
 import ExitGroup from './ExitGroup/ExitGroup';
 import DeleteGroup from './DeleteGroup/DeleteGroup';
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 const DropDownGroup = (props) => {
 
-  const deleteGroup = props.owner ? <DeleteGroup groupId={props.groupId}></DeleteGroup> : <></>
+  const {user} = useAuth0();
+
+  const deleteGroup = props.owner == user.email ? <DeleteGroup delete={props.delete} groupId={props.groupId}></DeleteGroup> : <ExitGroup exit={props.exit} groupId={props.groupId}/>
 
       return (  
         <div class="navbarG">
@@ -17,7 +20,6 @@ const DropDownGroup = (props) => {
             <div class="dropdown-contentG">
               <a href={`#add-participant-modal-${props.groupId}`} >Participant</a>
               {deleteGroup}
-              <ExitGroup groupId={props.groupId}/>
             </div>
           </div> 
         </div>

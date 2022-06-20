@@ -7,5 +7,5 @@ data class Group(
     val picture : String?,
     val name : String?,
     var owner : User?,
-    var participants : List<User>?
+    var participants : MutableList<User>? = mutableListOf()
 )

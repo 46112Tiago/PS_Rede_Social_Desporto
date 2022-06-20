@@ -170,7 +170,6 @@ class GroupRepoImplementation (var jdbi: Jdbi){
                     "user_group.ownerid as g_ownerid, " +
                     "user_group.picture as g_picture, " +
                     "user_group.name as g_name, " +
-                    //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
                     "user_profile.lastname as u_lastname, " +
                     "user_profile.city as u_city, " +
@@ -178,9 +177,13 @@ class GroupRepoImplementation (var jdbi: Jdbi){
                     "user_profile.profilepic as u_profilepic, " +
                     "user_profile.email as u_email, " +
                     "user_profile.available as u_available, " +
-                    "user_profile.gender as u_gender " +
-                    "FROM user_group INNER JOIN user_profile on user_group.ownerid = user_profile.userid AND user_group.ownerid = ?")
+                    "user_profile.gender as u_gender, " +
+                    "GP.participantId as gp_participantId " +
+                    "FROM user_group INNER JOIN user_profile on user_group.ownerid = user_profile.userid " +
+                    "JOIN GROUP_PARTICIPANT GP ON groupId = id " +
+                    "WHERE user_group.ownerId = ? OR GP.participantId = ?")
                 .bind(0,userId)
+                .bind(1,userId)
                 .registerRowMapper(factory(User::class.java, "u"))
                 .registerRowMapper(factory(Group::class.java, "g"))
                 .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Group?>, rowView: RowView ->
@@ -191,6 +194,7 @@ class GroupRepoImplementation (var jdbi: Jdbi){
                     if (rowView.getColumn("g_ownerid", Int::class.javaObjectType) != null) {
                         group!!.owner = rowView.getRow(User::class.java)
                     }
+
                     map
                 }.values.toList()
         }

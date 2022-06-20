@@ -20,7 +20,7 @@ const AddFriend = (props) => {
   };
     const email = user.email.split("@")[0]
     const response = fetch(`http://localhost:8080/user/friend/${props.friendName}?email=${email}`, options)
-    props.request(true)
+    props.request(props.friendName)
 }
 
 

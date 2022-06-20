@@ -5,9 +5,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const SeeParticipant = (props) => {
 
+  const removedParticipant = (removed) => {
+    setRemovedParticipants(removed)
+  }
+
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [participantArray, setParticipants] = React.useState([]);
+  const [removedParticipants, setRemovedParticipants] = React.useState('');
   const {getAccessTokenSilently,user} = useAuth0();
 
   React.useEffect(() => {
@@ -35,7 +40,7 @@ const SeeParticipant = (props) => {
     };
 
     if (!isLoading) makeRequest();
-  },[]);
+  },[removedParticipants]);
 
       return (
         <>  
@@ -45,7 +50,7 @@ const SeeParticipant = (props) => {
                 <div key={i}>
                     <div className='participantDiv'>
                         <h3>{participant.firstName} {participant.lastName}</h3>
-                        {props.owner && participant.email != user.email ? <DeleteParticipant groupId={props.groupId} participantName={participant.email.split("@")[0]}/> : <></>}
+                        {props.owner == user.email && participant.email != user.email ? <DeleteParticipant removed={removedParticipant} groupId={props.groupId} participantName={participant.email.split("@")[0]}/> : <></>}
                     </div> 
                 </div>
 

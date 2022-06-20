@@ -31,6 +31,7 @@ const DeleteParticipant = (props) => {
             }
             const data = await response.json();
             console.log(data);
+            props.removed(props.participantName)
           } catch (error) {
             console.log('Error: ' + error);
           }

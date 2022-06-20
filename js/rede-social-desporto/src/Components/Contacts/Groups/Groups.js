@@ -16,13 +16,25 @@ const Groups = () => {
 
   const {getAccessTokenSilently,user} = useAuth0();
 
+  const getCreated = (group) => {
+    setCreatedGroup(group)
+  }
+
+  const deleted = (groupId) => {
+    setDeleted(groupId)
+  }
+
+  const exited = (groupId) => {
+    setExited(groupId)
+  }
+
   const getConversation = (idMsg) => {
-    setId(idMsg)
     groupArray.forEach(groupObj=>{
-      if(groupObj.owner.email == user.email){
+      if(groupObj.id == idMsg){
         setOwner(groupObj.owner.email)
       }
     })
+    setId(idMsg)
   }
   
     const [isLoading, setIsLoading] = React.useState(false);
@@ -30,6 +42,9 @@ const Groups = () => {
     const [id, setId] = React.useState(0);
     const [groupArray, setGroup] = React.useState([group]);
     const [owner,setOwner] = React.useState(0);
+    const [removed,setDeleted] = React.useState(0);
+    const [exit,setExited] = React.useState(0);
+    const [newGroup,setCreatedGroup] = React.useState({});
 
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
@@ -40,7 +55,6 @@ const Groups = () => {
         setError(null);
         setIsLoading(true);
         try {
-          if(id == 0){
             const token = await getAccessTokenSilently();
             const myHeaders = new Headers()
             myHeaders.append('Authorization',`Bearer ${token}`)
@@ -55,7 +69,7 @@ const Groups = () => {
             /*Check if the loged in user has the same id as the owner of the group*/
             //owner = resp.owner.userId == userId ? true : false
             setGroup(resp);
-          }
+          
         } catch (err) {
           setError(err);
           //console.log(err);
@@ -65,9 +79,9 @@ const Groups = () => {
       };
   
       if (!isLoading) makeRequest();
-    },[id]);
+    },[id,newGroup,removed,exit]);
 
-    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner} groupId={id} dropdown={true} messageType={"group"}/>
+    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner} groupId={id} dropdown={true} messageType={"group"} delete={deleted} exit={exited} />
 
       return (
           <div>
@@ -82,7 +96,7 @@ const Groups = () => {
                   <div id='contacts'>
                     <hr id='line'/>
                     <h3 id='contactsH3'>Groups:</h3>
-                    <GroupModal></GroupModal>
+                    <GroupModal created={getCreated}></GroupModal>
                     <ParticipantModal owner={owner} groupId={id}/>
                       {groupArray.map((groupObj,i) => 
                           <Account getConversation={getConversation} key={i} name={groupObj.name} accountId={groupObj.id} picture={groupObj.picture}></Account>

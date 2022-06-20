@@ -25,7 +25,7 @@ const ConversationIdle = (props) => {
     setReceivedMessage(messageReceived+1)
   }
 
-  const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId}/> : <></>
+  const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId} delete={props.delete} exit={props.exit}/> : <></>
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
   const [messageArray, setMessage] = React.useState([message]);

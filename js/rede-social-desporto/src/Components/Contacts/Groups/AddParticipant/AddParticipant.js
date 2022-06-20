@@ -11,6 +11,7 @@ const AddParticipant = (props) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [friendsArray, setFriends] = React.useState([]);
+  const [newParticipants, setNewParticipants] = React.useState([]);
   
   React.useEffect(() => {
     const makeRequest = async () => {
@@ -38,7 +39,7 @@ const AddParticipant = (props) => {
     };
 
     if (!isLoading) makeRequest();
-  },[props.groupId]);
+  },[props.groupId,newParticipants]);
 
 
   async function submit(data) {
@@ -57,6 +58,8 @@ const AddParticipant = (props) => {
     };
 
     const response = await fetch(`http://localhost:8080/group/${props.groupId}/participant`, options)
+    const resp = await response.json()
+    setNewParticipants(resp)
 
 }
 
