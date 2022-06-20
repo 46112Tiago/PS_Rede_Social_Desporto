@@ -23,11 +23,7 @@ const ChooseAuthPath = () => {
                   };
                   
                   const response = await fetch(`http://localhost:8080/user?email=${user.email}`,options);
-                  const responseJson = await response.json()
-                  console.log(responseJson)
-                  if(response.status == 200){
-                    window.name = responseJson;
-                  }else {
+                  if(response.status != 200){
                     navigate("/signUp");
                   }
                 }

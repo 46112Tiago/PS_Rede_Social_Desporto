@@ -23,7 +23,7 @@ const Events = () => {
   const [page, setPage] = React.useState(0);
   const [participate, setParticipating] = React.useState(0);
   const [forward, setForward] = React.useState(true);
-  const {getAccessTokenSilently,isAuthenticated} = useAuth0();
+  const {getAccessTokenSilently,isAuthenticated,user} = useAuth0();
 
   
     React.useEffect(() => {
@@ -42,7 +42,8 @@ const Events = () => {
               headers: myHeaders,
               mode: 'cors',
             };
-            req =  await fetch(`http://localhost:8080/user/${window.name}/event?page=${page}`,options);
+            const email = user.email.split("@")[0]
+            req =  await fetch(`http://localhost:8080/user/event?page=${page}&email=${email}`,options);
           }else{
             req =  await fetch(`http://localhost:8080/event?page=${page}`);
           }           

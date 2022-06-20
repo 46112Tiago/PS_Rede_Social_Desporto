@@ -22,7 +22,7 @@ const UserEventForm = (props) => {
   const [sportObj, setSport] = React.useState("");
   // user state for form
   const [eventObj, setEvent] = useState(event);
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   // effect runs on component mount
   useEffect(() => {
@@ -37,7 +37,6 @@ const UserEventForm = (props) => {
 
     data.sport = {id:parseInt(sportObj)}
     data.compound = {id:parseInt(compoundObj)}
-    data.creator = {userId:parseInt(window.name)}
     data.field = {id:5}
     const token = await getAccessTokenSilently();
     myHeaders.append('Authorization',`Bearer ${token}`)
@@ -47,8 +46,8 @@ const UserEventForm = (props) => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-
-    const response = await fetch('http://localhost:8080/event', options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/event?email=${email}`, options)
     const resp = await response.json()
     props.created(resp)
     window.location.href = "#"

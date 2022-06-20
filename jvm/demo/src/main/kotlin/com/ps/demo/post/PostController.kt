@@ -2,6 +2,7 @@ package com.ps.demo.post
 
 import com.ps.data.Post
 import com.ps.data.User
+import com.ps.demo.user.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -10,13 +11,14 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping
 @CrossOrigin("http://localhost:3000")
-class PostController (val postService: PostService) {
+class PostController (val postService: PostService, val userService: UserService) {
 
 
-    @GetMapping("/user/{userId}/post")
-    fun getPosts(@PathVariable("userId") userId : Int,
+    @GetMapping("/user/post")
+    fun getPosts(@RequestParam(required = false) email : String,
                  @RequestParam(required = false) page : Int) : ResponseEntity<List<Post?>> {
-        val posts = postService.getPosts(userId,page).toList()
+        val userId = userService.getUserById(email)!!.userId
+        val posts = postService.getPosts(userId!!,page).toList()
         return ResponseEntity(posts, HttpStatus.OK)
     }
 
@@ -45,12 +47,12 @@ class PostController (val postService: PostService) {
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping("/user/{userId}/post")
-    fun createPost(@PathVariable("userId") userId: Int,
+    @PostMapping("/user/post")
+    fun createPost(@RequestParam(required = false) email : String,
                     @RequestBody post: Post
                    ) : ResponseEntity<Any?> {
-
-        val postKey : Int? = postService.insertPost(userId,post)
+        val userId = userService.getUserById(email)!!.userId
+        val postKey : Int? = postService.insertPost(userId!!,post)
         return ResponseEntity(postKey, HttpStatus.OK)
     }
 

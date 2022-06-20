@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const DeleteAccount = () => {
 
-    const {logout,getAccessTokenSilently} = useAuth0()
+    const {logout,getAccessTokenSilently,user} = useAuth0()
     const myHeaders = new Headers()
 
   // Keep the above values in sync, this will fire
@@ -23,8 +23,7 @@ const DeleteAccount = () => {
                   headers: myHeaders,
                   mode: 'cors',
               };
-                const response = await fetch(`http://localhost:8080/user/${window.name}`, deleteMethod);
-                window.name = ''
+                const response = await fetch(`http://localhost:8080/user?email=${user.email}`, deleteMethod);
                 logout({ returnTo: window.location.origin })
               } catch (error) {
                 console.log('Error: ' + error);

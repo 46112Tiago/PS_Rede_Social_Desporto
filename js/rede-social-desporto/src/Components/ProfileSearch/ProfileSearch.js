@@ -51,7 +51,14 @@ const ProfileSearch = () =>  {
         }else{
           setForward(true)
         }
-        resp.length == 0 ? setPage(page-1) : setUsers(resp);
+        if(resp.length != 0) 
+          setUsers(resp);
+        else {
+          if(page > 0){
+            setPage(page-1)
+          }
+          setUsers(resp)
+        }
       } catch (err) {
         setError(err);
         //console.log(err);
@@ -62,7 +69,7 @@ const ProfileSearch = () =>  {
     };
 
     if (!isLoading) makeRequest();
-  },[nameV,page]);
+  },[nameV,page,userArray]);
   
       return (
         <div>
@@ -70,7 +77,7 @@ const ProfileSearch = () =>  {
             <div className='containerCards'>
               {
                 userArray.map((userObj,key)=>
-                  <ProfileCards key={key} userId={userObj.userId} userFName={userObj.firstName} userLName={userObj.lastName}></ProfileCards>
+                  <ProfileCards key={key} email={userObj.email} userFName={userObj.firstName} userLName={userObj.lastName}></ProfileCards>
                 )
               }
             </div>

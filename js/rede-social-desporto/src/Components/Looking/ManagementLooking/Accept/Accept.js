@@ -17,8 +17,7 @@ const Accept = (props) => {
       const [error, setError] = React.useState();
       const [lookingMadeArray, setLooking] = React.useState([lookingPlayers]);
       const [lookingInfo, setLookingInfo] = React.useState(lookingPlayers);
-      const [sport, setSport] = React.useState('')
-      const {getAccessTokenSilently} = useAuth0();
+      const {getAccessTokenSilently,user} = useAuth0();
       const limit = 2
       React.useEffect(() => {
           const makeRequest = async () => {
@@ -33,7 +32,8 @@ const Accept = (props) => {
                   headers: myHeaders,
                   mode: 'cors',
             };
-              const req =  await fetch(`http://localhost:8080/lookingPlayers/accept/${window.name}?page=${page}`,options);
+              const email = user.email.split("@")[0]
+              const req =  await fetch(`http://localhost:8080/lookingPlayers/accept?page=${page}&email=${email}`,options);
               const resp = await req.json();
               if(resp.length < limit){
                 setForward(false)

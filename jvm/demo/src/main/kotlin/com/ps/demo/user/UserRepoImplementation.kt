@@ -17,18 +17,20 @@ import javax.imageio.ImageIO
 class UserRepoImplementation (var jdbi: Jdbi) {
 
 
-    fun getUser(email : String): Int? {
-        val toReturn = jdbi.withHandle<Int?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select userId from USER_PROFILE where email = ?")
+    fun getUser(email : String): Optional<String>? {
+        val toReturn = jdbi.withHandle<Optional<String>?,RuntimeException> { handle : Handle ->
+            handle.createQuery("Select firstName from USER_PROFILE where email = ?")
                 .bind(0,email)
-                .mapTo<Int>().one()
+                .mapTo<String>().findFirst()
         }
         return toReturn
     }
 
     fun isFriend(userId: Int, friendId: Int) : Optional<User>? {
         val toReturn = jdbi.withHandle<Optional<User>?,RuntimeException> { handle : Handle ->
-            handle.select("Select * from FRIENDS where userId = ? AND friendId = ?")
+            handle.select("Select firstName, lastName, email from " +
+                    "FRIENDS F JOIN USER_PROFILE U ON F.friendId = U.userId " +
+                    "where F.userId = ? AND friendId = ?")
                 .bind(0,userId)
                 .bind(1,friendId)
                 .mapTo<User>().findOne()
@@ -38,11 +40,11 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return toReturn
     }
 
-    fun getUserById(userId : Int): User? {
+    fun getUserById(email : String): User? {
         val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
-            handle.createQuery(" Select userId, firstName, lastName, city, birthdate, available, profilepic " +
-                    "from USER_PROFILE where userId = ? ")
-                    .bind(0,userId)
+            handle.createQuery(" Select email, userId, firstName, lastName, city, birthdate, available, profilepic " +
+                    "from USER_PROFILE where email = ? ")
+                    .bind(0, "$email@gmail.com")
                     .mapTo<User>().one()
 
         }
@@ -61,9 +63,9 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         return toReturn
     }
 
-    fun deleteUser(userId : Int) {
+    fun deleteUser(email: String) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            handle.createUpdate("DELETE FROM USER_PROFILE WHERE userId = ?").bind(0, userId).execute()
+            handle.createUpdate("DELETE FROM USER_PROFILE WHERE email = ?").bind(0, email).execute()
         }
     }
 
@@ -130,11 +132,11 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getFriends(userId: Int,page:Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select friendId as userId, U.firstName, U.lastName  " +
+            handle.createQuery("Select U.email, friendId as userId, U.firstName, U.lastName  " +
                     "from friends F join user_profile U " +
                     "on U.userId = F.friendId where F.userId = ?" +
                     "INTERSECT " +
-                    "Select F.userId, U.firstName, U.lastName  " +
+                    "Select U.email, F.userId, U.firstName, U.lastName  " +
                     "from friends F join user_profile U " +
                     "on U.userId = F.userId where friendId = ? " +
                     "LIMIT 4 OFFSET ?")
@@ -148,15 +150,15 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getFriendsRequest(userId: Int,page:Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select F.userId as userId, U.firstName, U.lastName  " +
+            handle.createQuery("Select U.email, F.userId as userId, U.firstName, U.lastName  " +
                     "from friends F join user_profile U " +
                     "on U.userId = F.userId where F.friendId = ?" +
                     "EXCEPT " +
-                    "Select friendId, U.firstName, U.lastName  " +
+                    "Select U.email, friendId, U.firstName, U.lastName  " +
                     "from friends F join user_profile U on " +
                     "U.userId = F.friendId where F.userId = ?" +
                     "INTERSECT " +
-                    "Select F.userId, U.firstName, U.lastName  " +
+                    "Select U.email, F.userId, U.firstName, U.lastName  " +
                     "from friends F join user_profile U " +
                     "on U.userId = F.userId where friendId = ? " +
                     "LIMIT 4 OFFSET ? ")
@@ -171,11 +173,11 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getAllFriends(userId: Int): List<User?> {
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select friendId as userId, U.firstName, U.lastName " +
+            handle.createQuery("Select U.email, friendId as userId, U.firstName, U.lastName " +
                     "from friends F join user_profile U " +
                     "on U.userId = F.friendId where F.userId = ? " +
                     "INTERSECT " +
-                    "Select F.userId, U.firstName, U.lastName " +
+                    "Select U.email, F.userId, U.firstName, U.lastName " +
                     "from friends F join user_profile U " +
                     "on U.userId = F.userId where friendId = ? " +
                     "ORDER BY firstName, lastName ")
@@ -200,7 +202,7 @@ class UserRepoImplementation (var jdbi: Jdbi) {
 
     fun getUsersByName(firstName: String, lastName: String,page : Int): List<User?>? {
         val toReturn = jdbi.withHandle<List<User?>?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select userId, firstName, lastName " +
+            handle.createQuery("Select email, firstName, lastName " +
                     "from USER_PROFILE" +
                     " where firstName LIKE ? AND lastName LIKE ? " +
                     "ORDER BY firstName, lastName " +

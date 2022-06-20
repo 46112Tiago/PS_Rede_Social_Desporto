@@ -16,7 +16,9 @@ const CancelBtn = (props) => {
       mode: 'cors',
     };
     const response = await fetch(`http://localhost:8080/event/${props.id}`, options)
-
+    if(response.status == 200){
+      props.cancel(props.id)
+    }
 }
 
   

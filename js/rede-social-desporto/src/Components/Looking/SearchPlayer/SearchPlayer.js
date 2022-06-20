@@ -6,6 +6,7 @@ import SelectSport from './SelectSport/SelectSport';
 import SelectCompound from './SelectCompound/SelectCompound';
 import MapLooking from './MapLooking/MapLooking';
 import SearchCompound from './SearchCompound/SearchCompound';
+import Marker from '../../Map/MapComponent/Marker/Marker';
 
 const SearchPlayer = () => {
 
@@ -32,13 +33,12 @@ const SearchPlayer = () => {
     const [markers, setMarkers] = React.useState([])
     const myHeaders = new Headers()
     myHeaders.append('Content-Type','application/json')
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,user} = useAuth0();
 
     async function submit(data) {
         
         data.sports = {id:parseInt(sportObj)}
         data.compound = {id:parseInt(compoundObj)}
-        data.creator = {userId:parseInt(window.name)}
         const token = await getAccessTokenSilently();
         myHeaders.append('Authorization',`Bearer ${token}`)
 
@@ -48,8 +48,8 @@ const SearchPlayer = () => {
             mode: 'cors',
             body:JSON.stringify(data)
         };
-  
-        const response = fetch(`http://localhost:8080/lookingPlayers`, options)
+        const email = user.email.split("@")[0]
+        const response = fetch(`http://localhost:8080/lookingPlayers?email=${email}`, options)
   }
 
     return (
@@ -72,6 +72,7 @@ const SearchPlayer = () => {
 
             </div>
             <div id='rightLooking'>
+                <Marker/>
                 <SearchCompound center={getCenter} sportId={sportObj}></SearchCompound>
                 <MapLooking center={center} sportId={sportObj} markers={getMarkers}></MapLooking>
             </div>

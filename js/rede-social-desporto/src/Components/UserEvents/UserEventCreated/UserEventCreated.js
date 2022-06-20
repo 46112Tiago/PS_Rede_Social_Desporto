@@ -4,7 +4,6 @@ import UserEventCard from '../UserEventCard';
 import UserCreateEvent from '../UserEventCreate/UserCreateEvent';
 import { event } from '../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
-import ReadModal from '../ReadModal/ReadModal';
 import Paging from '../../Paging/Paging';
 
 const UserEventCreated = () => {
@@ -17,13 +16,18 @@ const UserEventCreated = () => {
     setPage(offset)
   }
 
+  const getCancel = (canceled) => {
+    setCancel(canceled)
+  }
+
   const [page, setPage] = React.useState(0);
   const [forward, setForward] = React.useState(true);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
   const [eventArray, setEvent] = React.useState([event]);
   const [create, setCreated] = React.useState(0);
+  const [cancel, setCancel] = React.useState(0);
   const limit = 9
 
     React.useEffect(() => {
@@ -39,7 +43,8 @@ const UserEventCreated = () => {
             headers: myHeaders,
             mode: 'cors',
           };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/event/created?page=${page}`,options);
+          const email = user.email.split('@')[0]
+          const req =  await fetch(`http://localhost:8080/user/event/created?page=${page}&email=${email}`,options);
           const resp = await req.json();
           if(resp.length < limit){
             setForward(false)
@@ -58,7 +63,7 @@ const UserEventCreated = () => {
       };
   
       if (!isLoading) makeRequest();
-    },[create,page]);
+    },[create,eventArray,page,cancel]);
 
       return (
 
@@ -67,7 +72,7 @@ const UserEventCreated = () => {
               {eventArray.map((eventObj,i) => {
                 if(eventObj.id != 0){
                   return(
-                  <UserEventCard key={i} created={'created'} eventObj={eventObj}></UserEventCard>
+                  <UserEventCard key={i} created={'created'} eventObj={eventObj} cancel={getCancel}></UserEventCard>
                 )}})}
                 <UserCreateEvent created={created}></UserCreateEvent>
             </div>

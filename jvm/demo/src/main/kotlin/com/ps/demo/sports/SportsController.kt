@@ -1,6 +1,7 @@
 package com.ps.demo.sports
 
 import com.ps.data.Sports
+import com.ps.demo.user.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping()
 @CrossOrigin("http://localhost:3000")
-class SportsController(val sportsService: SportsService) {
+class SportsController(val sportsService: SportsService, val userService: UserService) {
 
     @GetMapping("/sports")
     fun getSports() : ResponseEntity<List<Sports>?> {
@@ -16,16 +17,18 @@ class SportsController(val sportsService: SportsService) {
         return ResponseEntity(sports, HttpStatus.OK)
     }
 
-    @GetMapping("/user/{userId}/sports")
-    fun getUserSports(@PathVariable("userId") userId : Int) : ResponseEntity<List<Sports>?> {
-        val sports : List<Sports>? = sportsService.getUserSports(userId)
+    @GetMapping("/user/sports")
+    fun getUserSports(@RequestParam(required = false) email : String) : ResponseEntity<List<Sports>?> {
+        val user = userService.getUserById(email)
+        val sports : List<Sports>? = sportsService.getUserSports(user!!.userId!!)
         return ResponseEntity(sports, HttpStatus.OK)
     }
 
-    @DeleteMapping("/user/{userId}/sports/{sportsId}")
-    fun deleteUserSport(@PathVariable("userId") userId : Int,
+    @DeleteMapping("/user/sports/{sportsId}")
+    fun deleteUserSport(@RequestParam(required = false) email : String,
                         @PathVariable("sportsId") sportsId : Int) : ResponseEntity<Any?> {
-        sportsService.deleteUserSport(userId,sportsId)
+        val user = userService.getUserById(email)
+        sportsService.deleteUserSport(user!!.userId!!,sportsId)
         return ResponseEntity(HttpStatus.OK)
     }
 

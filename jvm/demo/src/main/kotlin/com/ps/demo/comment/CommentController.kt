@@ -1,6 +1,7 @@
 package com.ps.demo.comment
 
 import com.ps.data.Comment
+import com.ps.demo.user.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -8,16 +9,17 @@ import org.springframework.web.bind.annotation.*
 /*TODO: how to get userId*/
 
 @RestController
-@RequestMapping("/user/{userId}/post/{postId}/comment")
+@RequestMapping("/user/post/{postId}/comment")
 @CrossOrigin("http://localhost:3000")
-class CommentController(val commentService: CommentService) {
+class CommentController(val commentService: CommentService, val userService: UserService) {
 
     @PostMapping
-    fun createComment(@PathVariable("userId") userId : Int,
+    fun createComment(@RequestParam(required = false) email : String,
                       @PathVariable("postId") postId : Int,
                       @RequestBody comment : Comment)
             : ResponseEntity<Any?> {
-        val commentKey = commentService.createComment(userId,postId,comment)
+        val userId = userService.getUserById(email)!!.userId
+        val commentKey = commentService.createComment(userId!!,postId,comment)
         return ResponseEntity(commentKey, HttpStatus.OK)
     }
 

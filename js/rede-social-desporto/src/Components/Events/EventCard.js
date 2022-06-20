@@ -3,10 +3,14 @@ import './EventCard.css'
 import { FaCalendarDay, FaMapMarker, FaUserCheck, FaRunning } from 'react-icons/fa';
 import EventModal from './EventModal';
 import ParticipateEvent from './Participate/ParticipateEvent';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const EventCard = (props) => {
+
+    const {isAuthenticated} = useAuth0();
+
   
-    const participate = window.name ? <ParticipateEvent eventId={props.eventObj.id} participate={props.participate}></ParticipateEvent> : <></>
+    const participate = isAuthenticated ? <ParticipateEvent eventId={props.eventObj.id} participate={props.participate}></ParticipateEvent> : <></>
     const startDate = props.eventObj.startDate? props.eventObj.startDate.split("T") : ''
     const plannedfinishDate = props.eventObj.plannedfinishDate? props.eventObj.plannedfinishDate.split("T") : ''
 
@@ -14,7 +18,7 @@ const EventCard = (props) => {
           <div id='evnetCardCon'>
             <div id='eventCardContainer'>
                 <div id='eventCardTop'>
-                    <h2>Title</h2>
+                    <h2>{props.eventObj.name}</h2>
                 </div>
                 <div id='eventCardContent'>
                     <div id='eventCardLeft'>

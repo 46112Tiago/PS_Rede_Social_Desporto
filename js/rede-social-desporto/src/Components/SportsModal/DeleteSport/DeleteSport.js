@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const DeleteSport = (props) => {
 
 
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
   // it first mounts, and then when any of the above
@@ -22,7 +22,8 @@ const DeleteSport = (props) => {
               headers: myHeaders,
               mode: 'cors',
             };
-            const response = await fetch(`http://localhost:8080/user/${window.name}/sports/${props.sportId}`, options);
+            const email = user.email.split("@")[0]
+            const response = await fetch(`http://localhost:8080/user/sports/${props.sportId}?email=${email}`, options);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);

@@ -1,6 +1,7 @@
 package com.ps.demo.review
 
 import com.ps.data.Review
+import com.ps.demo.user.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/compound/{compoundId}")
 @CrossOrigin("http://localhost:3000")
-class ReviewController(val reviewService: ReviewService) {
+class ReviewController(val reviewService: ReviewService, val userService: UserService) {
 
     @GetMapping("/review")
     fun getAllReviews(@PathVariable("compoundId") compoundId : Int,
@@ -30,12 +31,14 @@ class ReviewController(val reviewService: ReviewService) {
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping("/user/{userId}/review")
+    @PostMapping("/user/review")
     fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
-                             @PathVariable("userId") userId : Int,
+                             @RequestParam(required = false) email : String,
                              @RequestBody review : Review)
             : ResponseEntity<Any?> {
-        val reviewKey : Int? = reviewService.createCompoundReview(compoundId,userId,review)
+
+        val userId = userService.getUserById(email)!!.userId
+        val reviewKey : Int? = reviewService.createCompoundReview(compoundId,userId!!,review)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 

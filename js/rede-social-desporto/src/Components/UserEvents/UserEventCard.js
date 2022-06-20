@@ -24,7 +24,7 @@ const UserEventCard = (props) => {
 
     const name = props.eventObj ? props.eventObj.name : ''
     const id = props.eventObj ? props.eventObj.id : 0 
-    const cancel = props.created == 'created' ? <CancelBtn id={id}/> : <></>
+    const cancel = props.created == 'created' ? <CancelBtn id={id} cancel={props.cancel}/> : <></>
     const sport = props.eventObj.sport ? props.eventObj.sport.name : ''
     
       return (

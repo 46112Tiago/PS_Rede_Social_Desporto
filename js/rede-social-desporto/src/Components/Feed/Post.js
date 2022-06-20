@@ -7,20 +7,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Post = (props) => {
 
+  const getPost = (data) => {
+    setPostId(data)
+  }
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();  
   const [postArray, setPost] = React.useState([post]);
+  const [postId, setPostId] = React.useState(0);
   const [page, setPage] = React.useState(0);
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
     // it first mounts, and then when any of the above
     // values change
     React.useEffect(() => {
-
-
 
       document.getElementById('postContent').onscroll =
         
@@ -45,7 +47,8 @@ const Post = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
           };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/post?page=${page}`,options);
+          const email = user.email.split("@")[0]
+          const req =  await fetch(`http://localhost:8080/user/post?page=${page}&email=${email}`,options);
           const resp = await req.json();
           const newPostArray = postArray.concat(resp)
           setPost(newPostArray);
@@ -59,14 +62,14 @@ const Post = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[page]);
+    },[page,postId]);
   
 
       return (
         <div id='feed'>
             <div id='postContent'>
                 <div id='createPostComponent'>
-                    <CreatePost></CreatePost>
+                    <CreatePost postId={getPost}></CreatePost>
                 </div>
                 <div id='postTemplate'>
                   {postArray.map((postObj,i) => {

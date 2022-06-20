@@ -6,7 +6,7 @@ const AddFriend = (props) => {
 
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently, user} = useAuth0();
 
   async function friendRequest() {
 
@@ -18,8 +18,8 @@ const AddFriend = (props) => {
         headers: myHeaders,
         mode: 'cors',
   };
-
-    const response = fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}`, options)
+    const email = user.email.split("@")[0]
+    const response = fetch(`http://localhost:8080/user/friend/${props.friendName}?email=${email}`, options)
     props.request(true)
 }
 

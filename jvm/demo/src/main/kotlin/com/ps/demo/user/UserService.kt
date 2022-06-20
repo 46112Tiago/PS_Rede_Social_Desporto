@@ -11,25 +11,25 @@ import java.util.*
 @Service
 class UserService(val userRepo : UserRepoImplementation) {
 
-    fun getUser(email : String) : Int? {
+    fun getUser(email : String) : Optional<String>? {
         return userRepo.getUser(email)
     }
 
-    fun getUserInfo(userId : Int) : User? {
-        val user = userRepo.getUserById(userId)
-        val userAux = userRepo.getUserProfilePic(userId)
+    fun getUserInfo(email : String) : User? {
+        val user = userRepo.getUserById(email)
+        val userAux = userRepo.getUserProfilePic(user!!.userId!!)
         if (userAux?.isPresent!!)
             user!!.profilepic = userAux.get().image
 
         return user
     }
 
-    fun getUserById(userId : Int) : User? {
-        return userRepo.getUserById(userId)
+    fun getUserById(email : String) : User? {
+        return userRepo.getUserById(email)
     }
 
-    fun deleteUser(userId : Int) {
-        userRepo.deleteUser(userId)
+    fun deleteUser(email: String) {
+        userRepo.deleteUser(email)
     }
 
     fun insertUser(user : User) : Int {

@@ -43,14 +43,14 @@ const CommentModal = (props) => {
                 mode: 'cors',
           };
           if(end){
-            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment/${newComment}`,options);
+            const req =  await fetch(`http://localhost:8080/user/post/${props.postId}/comment/${newComment}`,options);
             const resp = await req.json();
             const newCommentArray = commentArray.concat(resp)
             setComment(newCommentArray);
             return    
           }
           if(!newCommentChange){
-            const req =  await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment?page=${page}`,options);
+            const req =  await fetch(`http://localhost:8080/user/post/${props.postId}/comment?page=${page}`,options);
             const resp = await req.json();
             if(resp.length%5 == 0 && resp.length > 0)
               setPaging(<PagingText page={page} setNewPage={setNewPage}/>)

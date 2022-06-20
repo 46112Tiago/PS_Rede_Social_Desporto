@@ -55,7 +55,7 @@ const App = () => {
             <Route path='/profile' element={isAuthenticated  ?<Profile></Profile>:<LogIn/>}></Route>
             <Route path='/profileSearch' element={isAuthenticated  ?<ProfileSearch></ProfileSearch>:<LogIn/>}></Route>
             <Route path='/userEvents' element={isAuthenticated  ?<UserEvent></UserEvent>:<LogIn/>}></Route>
-            <Route path='/profile/:id' element={isAuthenticated  ?<OthersProfile></OthersProfile>:<LogIn/>}></Route>
+            <Route path='/profile/:email' element={isAuthenticated  ?<OthersProfile></OthersProfile>:<LogIn/>}></Route>
             <Route path='/friends' element={isAuthenticated  ?<FriendsRadio></FriendsRadio>:<LogIn/>}></Route>
             <Route path='/groups' element={isAuthenticated  ?<Groups></Groups>:<LogIn/>}></Route>
             <Route path='/friendsMessage' element={isAuthenticated  ?<FriendsMessage></FriendsMessage>:<LogIn/>}></Route>

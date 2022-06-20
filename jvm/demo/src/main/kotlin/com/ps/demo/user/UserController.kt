@@ -15,22 +15,22 @@ import java.util.*
 class UserController (val userService: UserService) {
 
 
-    @GetMapping("/{userId}/friend/{friendId}")
-    fun getUserById(@PathVariable("userId") userId : Int,
-                    @PathVariable("friendId") friendId : Int
-
+    @GetMapping("/profile/{userName}")
+    fun getUserById(@PathVariable("userName") userName : String,
+                    @RequestParam(required = false) email : String
     ) : ResponseEntity<User?> {
-        val user : User? = userService.getUserById(friendId)
-        val friend : Optional<User>? = userService.isFriend(userId,friendId)
-        if (friend!!.isPresent)
-            user?.friends = listOf(friend!!.get())
+        val user : User? = userService.getUserById(email)
+        val friend : User? = userService.getUserInfo(userName)
+        val isFriend : Optional<User>? = userService.isFriend(user!!.userId!!,friend!!.userId!!)
+        if (isFriend!!.isPresent)
+            friend.friends = listOf(isFriend.get())
         val responseHeaders = HttpHeaders()
-        return ResponseEntity.ok().headers(responseHeaders).body(user)
+        return ResponseEntity.ok().headers(responseHeaders).body(friend)
     }
 
-    @GetMapping("/{userId}")
-    fun getUserInfo(@PathVariable("userId") userId : Int) : ResponseEntity<User> {
-        val user : User? = userService.getUserInfo(userId)
+    @GetMapping("/info")
+    fun getUserInfo(@RequestParam(required = false) email : String) : ResponseEntity<User> {
+        val user : User? = userService.getUserInfo(email)
         return ResponseEntity(user, HttpStatus.OK)
     }
 
@@ -42,14 +42,16 @@ class UserController (val userService: UserService) {
     }
 
     @GetMapping()
-    fun getUser(@RequestParam(required = false) email : String) : ResponseEntity<Int> {
-        val user : Int? = userService.getUser(email)
-        return ResponseEntity(user, HttpStatus.OK)
+    fun getUser(@RequestParam(required = false) email : String) : ResponseEntity<String> {
+        val user : Optional<String>? = userService.getUser(email)
+        if (user!!.isEmpty)
+            return ResponseEntity(HttpStatus.NOT_FOUND)
+        return ResponseEntity(user.get(), HttpStatus.OK)
     }
 
-    @DeleteMapping("/{userId}")
-    fun deleteUser(@PathVariable("userId") userId : Int) : ResponseEntity<Any?> {
-        userService.deleteUser(userId)
+    @DeleteMapping()
+    fun deleteUser(@RequestParam(required = false) email : String) : ResponseEntity<Any?> {
+        userService.deleteUser(email)
         return ResponseEntity(HttpStatus.OK)
     }
 
@@ -65,29 +67,36 @@ class UserController (val userService: UserService) {
         return ResponseEntity(user, HttpStatus.OK)
     }
 
-    @PutMapping("/{userId}")
-    fun editUserProfile(@RequestBody user: User, @PathVariable("userId") userId : Int) : ResponseEntity<Int> {
-        val id : Int = userService.editUserProfile(userId,user)
+    @PutMapping()
+    fun editUserProfile(@RequestBody user: User,
+                        @RequestParam(required = false) email : String) : ResponseEntity<Int> {
+        val userId = userService.getUserById(email)!!.userId
+        val id : Int = userService.editUserProfile(userId!!,user)
         return ResponseEntity(id, HttpStatus.OK)
     }
 
-    @PostMapping("/{userId}/friend/{friendId}")
-    fun addFriend(@PathVariable("userId") userId : Int, @PathVariable("friendId") friendId : Int) : ResponseEntity<Int> {
-        val idFriend : Int = userService.addFriend(userId,friendId)
-        return ResponseEntity(idFriend,HttpStatus.OK)
+    @PostMapping("/friend/{friendName}")
+    fun addFriend( @RequestParam(required = false) email : String,
+                   @PathVariable("friendName") friendName : String) : ResponseEntity<Int> {
+        val user : User? = userService.getUserById(email)
+        val friend : User? = userService.getUserInfo(friendName)
+        val isFriend : Int = userService.addFriend(user!!.userId!!,friend!!.userId!!)
+        return ResponseEntity(isFriend,HttpStatus.OK)
     }
 
-    @GetMapping("/{userId}/friend")
-    fun getFriends(@PathVariable("userId") userId : Int,
+    @GetMapping("/friend")
+    fun getFriends(@RequestParam(required = false) email : String,
                    @RequestParam(required = false) page : Int) : ResponseEntity<List<User?>> {
-        val user : List<User?> = userService.getFriends(userId,page)
-        return ResponseEntity.ok().body(user)
+        val userId = userService.getUserById(email)!!.userId
+        val friends : List<User?> = userService.getFriends(userId!!,page)
+        return ResponseEntity.ok().body(friends)
     }
 
-    @GetMapping("/{userId}/friend/request")
-    fun getFriendsRequest(@PathVariable("userId") userId : Int,
-                   @RequestParam(required = false) page : Int) : ResponseEntity<List<User?>> {
-        val user : List<User?> = userService.getFriendsRequest(userId,page)
+    @GetMapping("/friend/request")
+    fun getFriendsRequest(@RequestParam(required = false) email : String,
+                          @RequestParam(required = false) page : Int) : ResponseEntity<List<User?>> {
+        val userId = userService.getUserById(email)!!.userId
+        val user : List<User?> = userService.getFriendsRequest(userId!!,page)
         return ResponseEntity.ok().body(user)
     }
 

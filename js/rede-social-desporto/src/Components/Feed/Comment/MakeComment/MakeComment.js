@@ -9,7 +9,7 @@ const MakeComment = (props) => {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   // user state for form
   const [commentObj, setComment] = useState(comment);
@@ -34,8 +34,8 @@ const MakeComment = (props) => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-
-    const response = await fetch(`http://localhost:8080/user/${window.name}/post/${props.postId}/comment`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/user/post/${props.postId}/comment?email=${email}`, options)
     const resp = await response.json()
     props.newComment(resp)
 }

@@ -1248,6 +1248,9 @@ VALUES (39,1,'accepted');
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
+Select * from event_participant join event on id = eventId
+Select * from LookingPlayers
+
 commit;
 
 

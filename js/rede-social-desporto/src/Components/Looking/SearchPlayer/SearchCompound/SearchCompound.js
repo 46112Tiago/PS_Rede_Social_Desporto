@@ -14,11 +14,7 @@ const SearchCompound = (props) => {
 
     React.useEffect(() => {
 
-      if(!props.sportId) {
-        document.getElementById('searchBarCompoundTxt').disabled = true
-      }else {
-        document.getElementById('searchBarCompoundTxt').disabled = false
-      }
+
     },[props.sportId])
 
 

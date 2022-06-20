@@ -4,7 +4,6 @@ import './CreatePost.css'
 import { post } from '../../../Model/Model';
 import {IoSend} from 'react-icons/io5'
 import { useAuth0 } from "@auth0/auth0-react";
-import { userId } from '../../../Global_Variables/Variables';
 
 const CreatePost = (props) => {
 
@@ -20,7 +19,7 @@ const CreatePost = (props) => {
       setTimeout(() => setPost({ description: ''}), 1000);
   }, []);
 
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
@@ -35,7 +34,10 @@ const CreatePost = (props) => {
         body:JSON.stringify(data)
     };
 
-    const response = await fetch(`http://localhost:8080/user/${window.name}/post`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/user/post?email=${email}`, options)
+    const postId = await response.json()
+    props.postId(postId)
 
 }
 

@@ -4,12 +4,12 @@ import './ProfileCards.css'
 
 const ProfileCards = (props) =>  {
     
-  if(props.userId)
+  if(props.email)
       return (
         <div>
           <div className="cardP card0">
               <div className="border">
-                  <Link to={`/profile/${props.userId}`}><h2 className='name'>{props.userFName} {props.userLName}</h2></Link>
+                  <Link to={`/profile/${props.email.split("@")[0]}`}><h2 className='name'>{props.userFName} {props.userLName}</h2></Link>
               </div>
           </div>
         </div>

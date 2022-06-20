@@ -29,7 +29,7 @@ const MakeReview = (props) => {
   elem.addEventListener("input", rangeValue);
   }, []);
 
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   async function submit(data) {
 
@@ -44,9 +44,8 @@ const MakeReview = (props) => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-    
-
-    const response = await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/user/${window.name}/review`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/user/review?email=${email}`, options)
     const resp = await response.json()
     props.newReview(resp)
 }

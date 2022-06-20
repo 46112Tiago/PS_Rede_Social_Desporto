@@ -13,8 +13,8 @@ const FriendsPending = (props) => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  const [friendArray, setFriends] = React.useState([user]);
-  const {getAccessTokenSilently} = useAuth0();
+  const [friendArray, setFriends] = React.useState([]);
+  const {getAccessTokenSilently,user} = useAuth0();
   const [page, setPage] = React.useState(0);
   const [forward, setForward] = React.useState(true);
   const limit = 4
@@ -35,7 +35,8 @@ const FriendsPending = (props) => {
             headers: myHeaders,
             mode: 'cors',
       };
-        const req =  await fetch(`http://localhost:8080/user/${window.name}/friend/request?page=${page}`,options);
+        const email = user.email.split("@")[0]
+        const req =  await fetch(`http://localhost:8080/user/friend/request?page=${page}&email=${email}`,options);
         const resp = await req.json();
         if(resp.length < limit){
           setForward(false)
@@ -60,7 +61,7 @@ const FriendsPending = (props) => {
             <div className='containerCards'>
               {
                 friendArray.map((friendObj,key) => 
-                  <ProfileCards key={key} userId={friendObj.userId} userFName={friendObj.firstName} userLName={friendObj.lastName}></ProfileCards>
+                  <ProfileCards key={key} email={friendObj.email} userFName={friendObj.firstName} userLName={friendObj.lastName}></ProfileCards>
                 )
               }
             </div>

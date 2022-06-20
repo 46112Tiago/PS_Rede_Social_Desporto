@@ -110,14 +110,15 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     "JOIN COMPOUND C ON C.id = E.compoundId " +
                     "JOIN EVENT_PARTICIPANT EP ON E.id = EP.eventId " +
                     "JOIN USER_PROFILE U on EP.participantId = U.userid " +
-                    "WHERE active = ? AND startDate > ? AND participantId = ? " +
+                    "WHERE active = ? AND startDate > ? AND participantId = ? AND creatorId <> ?" +
                     "ORDER BY E.startDate " +
                     "LIMIT 10 OFFSET ?"
             )
                 .bind(0,true)
                 .bind(1, timestamp)
                 .bind(2,userId)
-                .bind(3,page*10)
+                .bind(3,userId)
+                .bind(4,page*10)
                 .registerRowMapper(factory(Event::class.java, "e"))
                 .registerRowMapper(factory(Sports::class.java, "s"))
                 .registerRowMapper(factory(Compound::class.java, "c"))

@@ -12,7 +12,7 @@ const EditModal = (props) => {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-  const {getAccessTokenSilently} = useAuth0()
+  const {getAccessTokenSilently,user} = useAuth0()
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
@@ -29,8 +29,8 @@ const EditModal = (props) => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-    console.log(options.body)
-    const response = await fetch(`http://localhost:8080/user/${window.name}`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/user?email=${email}`, options)
     props.edit(response)
     window.location.href = "#"
     

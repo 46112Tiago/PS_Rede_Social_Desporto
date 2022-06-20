@@ -36,7 +36,8 @@ const StaticProfile = () => {
             headers: myHeaders,
             mode: 'cors',
         };
-        const req =  await fetch(`http://localhost:8080/user/${window.name}`,options);
+        const email = user.email.split('@')[0]
+        const req =  await fetch(`http://localhost:8080/user/info?email=${email}`,options);
         const resp = await req.json();
         if(resp.profilepic){
           const byteArray = convertHexToImage(resp.profilepic)

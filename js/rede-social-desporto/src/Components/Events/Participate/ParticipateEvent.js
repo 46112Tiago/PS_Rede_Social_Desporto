@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const ParticipateEvent = (props) => {
 
   const myHeaders = new Headers()
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   async function participate() {
     const token = await getAccessTokenSilently();
@@ -15,7 +15,8 @@ const ParticipateEvent = (props) => {
       headers: myHeaders,
       mode: 'cors',
     };
-    const response = await fetch(`http://localhost:8080/user/${window.name}/event/${props.eventId}`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/user/event/${props.eventId}?email=${email}`, options)
     if(response.status==200){
       props.participate(props.eventId)
     }

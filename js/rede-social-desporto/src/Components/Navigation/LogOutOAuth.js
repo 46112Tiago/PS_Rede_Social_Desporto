@@ -8,9 +8,7 @@ const LogOutOAuth = () => {
   return (
     <a href='#' onClick={() => 
       {
-        window.name = ''
-        logout({ returnTo: window.location.origin })
-        
+        logout({ returnTo: window.location.origin })        
       }}>
       <FiLogOut></FiLogOut> LogOut 
     </a> 
