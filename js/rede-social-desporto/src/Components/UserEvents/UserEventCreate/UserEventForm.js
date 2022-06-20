@@ -5,6 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import './UserEventForm.css'
 import SelectCompound from '../../Looking/SearchPlayer/SelectCompound/SelectCompound';
 import SelectSport from '../../Looking/SearchPlayer/SelectSport/SelectSport';
+import Marker from '../../Map/MapComponent/Marker/Marker';
+import SearchCompound from '../../Looking/SearchPlayer/SearchCompound/SearchCompound';
+import MapEvent from '../MapEvent/MapEvent';
 
 const UserEventForm = (props) => {
 
@@ -16,10 +19,20 @@ const UserEventForm = (props) => {
         setSport(sport)
     }
 
+    const getCenter = (centerResp) => {
+        setCenter(centerResp)
+    }
+
+    const getMarkers = (markers) => {
+        setMarkers(markers)
+    }
+
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
   const [compoundObj, setCompound] = React.useState("");
   const [sportObj, setSport] = React.useState("");
+  const [center, setCenter] = React.useState("");
+  const [markers, setMarkers] = React.useState([])
   // user state for form
   const [eventObj, setEvent] = useState(event);
   const {getAccessTokenSilently,user} = useAuth0();
@@ -79,18 +92,24 @@ const UserEventForm = (props) => {
                               <input name="limitParticipants" type='number' {...register('limitParticipants')}  placeholder='Limit Participants' required></input>
                           </div>
                           {/*Pass this to a component andd use a get to retrieve all the sports to include as options*/}
+                          <br/>
                           <div className="eventInput">
                             <SelectSport getSport={getSport}></SelectSport>
                           </div>
                           {/*Pass this to a component andd use a get to retrieve all the fields to include as options*/}
                           <div className="eventInput">
-                            <SelectCompound getCompound={getCompound} sport={sportObj}></SelectCompound>
+                            <SelectCompound  getCompound={getCompound} marker={markers} sport={sportObj}></SelectCompound>
                           </div>
-                      <div className="form-row" id='submitEvent'>
-                          <button type="submit" id='submitEventBtn'>Submit</button>
-                      </div>
+
                   </form>
+                  
               }
+            <Marker/>
+            <SearchCompound  center={getCenter} />
+            <MapEvent center={center} sportId={sportObj} markers={getMarkers}/>
+            <div className="form-row" id='submitEvent'>
+                <button type="submit" id='submitEventBtn' onClick={handleSubmit(submit)}>Submit</button>
+            </div>
           </div>
   );
 }

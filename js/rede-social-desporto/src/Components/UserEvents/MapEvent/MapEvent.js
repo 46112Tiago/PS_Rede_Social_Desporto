@@ -1,13 +1,11 @@
 import React from 'react'
-import './MapLooking.css'
+import '../../Looking/SearchPlayer/MapLooking/MapLooking.css'
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import '../../../Map/Map.css'
-import MapContainerLooking from './MapContainerLooking';
+import '../../Map/Map.css'
+import MapContainerLooking from '../../Looking/SearchPlayer/MapLooking/MapContainerLooking';
+import MapContainerEvent from './MapContainerEvent';
 
-
-
-
-const MapLooking = (props) => {
+const MapEvent = (props) => {
 
   const center = props.center ? props.center : {
     lat: 38.757026,
@@ -26,12 +24,12 @@ const MapLooking = (props) => {
   };
 
   return(
-    <div id='mapLooking'>
+    <div id='mapEvent'>
         <Wrapper render={render} apiKey={/*`${process.env.REACT_APP_MAPAPI}`*/''}> 
-          <MapContainerLooking center={center} zoom={12} sportId={props.sportId} markers={props.markers}></MapContainerLooking>
+          <MapContainerEvent center={center} zoom={5} sportId={props.sportId} markers={props.markers}></MapContainerEvent>
         </Wrapper>
     </div>
 
   )}
 
-export default MapLooking
+export default MapEvent
