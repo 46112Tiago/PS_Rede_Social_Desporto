@@ -100,9 +100,10 @@ class UserController (val userService: UserService) {
         return ResponseEntity.ok().body(user)
     }
 
-    @GetMapping("/{userId}/friends")
-    fun getAllFriends(@PathVariable("userId") userId : Int) : ResponseEntity<List<User?>> {
-        val user : List<User?> = userService.getAllFriends(userId)
+    @GetMapping("/friends")
+    fun getAllFriends(@RequestParam(required = false) email : String) : ResponseEntity<List<User?>> {
+        val userId = userService.getUserById(email)!!.userId
+        val user : List<User?> = userService.getAllFriends(userId!!)
         return ResponseEntity.ok().body(user)
     }
 

@@ -2,14 +2,13 @@ import React from 'react';
 import './SeeParticipant.css'
 import DeleteParticipant from '../DeleteParticipant/DeleteParticipant';
 import { useAuth0 } from "@auth0/auth0-react";
-import { user } from '../../../../Model/Model';
 
 const SeeParticipant = (props) => {
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  const [participantArray, setParticipants] = React.useState([user]);
-  const {getAccessTokenSilently} = useAuth0();
+  const [participantArray, setParticipants] = React.useState([]);
+  const {getAccessTokenSilently,user} = useAuth0();
 
   React.useEffect(() => {
     const makeRequest = async () => {
@@ -46,7 +45,7 @@ const SeeParticipant = (props) => {
                 <div key={i}>
                     <div className='participantDiv'>
                         <h3>{participant.firstName} {participant.lastName}</h3>
-                        {props.owner && participant.participantId != window.name  ? <DeleteParticipant groupId={props.groupId} participantId={participant.userId}/> : <></>}
+                        {props.owner && participant.email != user.email ? <DeleteParticipant groupId={props.groupId} participantName={participant.email.split("@")[0]}/> : <></>}
                     </div> 
                 </div>
 

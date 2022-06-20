@@ -61,7 +61,7 @@ class GroupRepoImplementation (var jdbi: Jdbi){
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
             handle.createQuery("SELECT " +
                     "group_participant.groupid as gp_groupid," +
-                    "user_profile.userid as u_userid," +
+                    "user_profile.userid as u_userid, user_profile.email as u_email, " +
                     "group_participant.participantid as gp_participantid," +
                     //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
@@ -84,6 +84,7 @@ class GroupRepoImplementation (var jdbi: Jdbi){
         val toReturn = jdbi.withHandle<List<User?>,RuntimeException> { handle : Handle ->
             handle.createQuery(
                 "SELECT " +
+                    "U.email, " +
                     "U.userId," +
                     "U.firstname, " +
                     "U.lastname " +
@@ -91,7 +92,7 @@ class GroupRepoImplementation (var jdbi: Jdbi){
                     "JOIN Friends F on U.userId = F.friendId " +
                     "WHERE F.userId = ? " +
                     "EXCEPT " +
-                    "Select U.userId, U.firstName, U.lastName " +
+                    "Select U.email, U.userId, U.firstName, U.lastName " +
                     "from Group_Participant GP JOIN User_Profile U " +
                     "ON GP.participantId = U.userId " +
                     "WHERE GP.groupId = ?")

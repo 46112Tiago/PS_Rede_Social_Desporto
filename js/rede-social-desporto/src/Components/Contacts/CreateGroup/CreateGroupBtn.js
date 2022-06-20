@@ -6,7 +6,7 @@ import './CreateGroupBtn.css'
 
 const CreateGroupBtn = () => {
 
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
@@ -31,8 +31,8 @@ const CreateGroupBtn = () => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-
-    const response = fetch(`http://localhost:8080/user/${window.name}/group`, options)
+    const email = user.email.split("@")[0]
+    const response = fetch(`http://localhost:8080/user/group?email=${email}`, options)
     const responseJson = response.json()
     console.log(responseJson)
 }

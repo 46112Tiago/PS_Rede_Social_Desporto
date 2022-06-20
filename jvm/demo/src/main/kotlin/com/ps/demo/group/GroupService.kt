@@ -3,10 +3,11 @@ package com.ps.demo.group
 import com.ps.data.Group
 import com.ps.data.User
 import com.ps.demo.user.GroupRepoImplementation
+import com.ps.demo.user.UserRepoImplementation
 import org.springframework.stereotype.Service
 
 @Service
-class GroupService(val groupRepo : GroupRepoImplementation) {
+class GroupService(val groupRepo : GroupRepoImplementation, val userRepo: UserRepoImplementation) {
 
     fun getGroupById(groupId : Int) : Group? {
         return groupRepo.getGroupById(groupId)
@@ -33,8 +34,9 @@ class GroupService(val groupRepo : GroupRepoImplementation) {
     }
 
     fun insertGroupParticipant(groupId : Int, participantsId : List<String>) {
-        for (participantId: String in participantsId) {
-            groupRepo.insertGroupParticipant(groupId, participantId.toInt())
+        for (participantName: String in participantsId) {
+            val participantId = userRepo.getUserById(participantName)!!.userId
+            groupRepo.insertGroupParticipant(groupId, participantId!!)
         }
     }
 

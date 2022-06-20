@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const ExitGroup = (props) => {
 
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
   async function submit() {
 
@@ -15,8 +15,8 @@ const ExitGroup = (props) => {
         mode: 'cors',
         headers: myHeaders 
     };
-
-    const response = await fetch(`http://localhost:8080/group/${props.groupId}/user/${window.name}`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/group/${props.groupId}/user?email=${email}`, options)
     
 }
 

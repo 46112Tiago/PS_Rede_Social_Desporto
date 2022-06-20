@@ -35,7 +35,7 @@ const ConversationIdle = (props) => {
   const [messageReceivedConfirm, setReceivedMessageConfirm] = useState(0);
   const [page, setPage] = React.useState(0);
   const [scroll, setScroll] = React.useState(0)
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
 
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
@@ -72,30 +72,29 @@ const ConversationIdle = (props) => {
               mode: 'cors',
           };
           let req
-          
+          const email = user.email.split("@")[0]
           if(props.groupId != undefined && props.groupId != groupId){
             setPage(0)
             setScroll(0)
             setGroupId(props.groupId)
-            req = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+            req = await fetch(`http://localhost:8080/user/group/${props.groupId}/message?email=${email}`,options);
             const resp = await req.json();
             setMessage(resp)
             return
 
-          } else if(props.friendId != undefined && props.friendId != friendId) {
+          } else if(props.friendName != undefined && props.friendName != friendId) {
             setScroll(0)
-            setFriendId(props.friendId)
-            req = await fetch(`http://localhost:8080/user/${window.name}/message/${props.friendId}?page=${0}`,options);
+            setFriendId(props.friendName)
+            req = await fetch(`http://localhost:8080/user/message/${props.friendName}?page=${0}&email=${email}`,options);
             const resp = await req.json();
             setPage(1)
             setMessage(resp)
             return
           } 
-
           if(props.messageType == "group")
-            req = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+            req = await fetch(`http://localhost:8080/user/group/${props.groupId}/message?email=${email}`,options);
           else
-            req = await fetch(`http://localhost:8080/user/${window.name}/message/${props.friendId}?page=${page}`,options);
+            req = await fetch(`http://localhost:8080/user/message/${props.friendName}?page=${page}&email=${email}`,options);
           
           const resp = await req.json();
           setMessage(messageArray.concat(resp))  
@@ -111,7 +110,7 @@ const ConversationIdle = (props) => {
       };
   
       if (!isLoading) makeRequest();
-    },[props.groupId,props.friendId,messageReceived,scroll]);
+    },[props.groupId,props.friendName,messageReceived,scroll]);
 
 
       return (
@@ -121,7 +120,7 @@ const ConversationIdle = (props) => {
             <p id='test'></p>
             <hr id='lineConvo'/>
             <div id='containercontact'>
-              <InputText groupId={props.groupId} friendId={props.friendId} sendTo={props.messageType} messageResp={messageResp} socket={socket} ></InputText>
+              <InputText groupId={props.groupId} friendName={props.friendName} sendTo={props.messageType} messageResp={messageResp} socket={socket} ></InputText>
               <div id='overflowText'>
 
                 {/*The more recent shoul be write in top because the column order is reverse in order to start at the bottom*/}
@@ -129,7 +128,7 @@ const ConversationIdle = (props) => {
 
               {messageArray.map((messageObj,i) => {
                 if(messageObj.id != 0){
-                  if(messageObj.sender && messageObj.sender.userId == window.name){
+                  if(messageObj.sender && messageObj.sender.email == user.email){
                     return(
                     <div key={i} id={`message${i}`} className={`messages${i}`}>
                       <OwnMsg message={messageObj.message}></OwnMsg>

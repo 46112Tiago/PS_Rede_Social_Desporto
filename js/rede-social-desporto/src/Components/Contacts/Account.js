@@ -5,14 +5,19 @@ import './Contacts.css'
 
 const Account = (props) => {
 
+    function sendAccountName() {
+      props.getConversation(props.accountName)
+    }
+
     function sendAccountId() {
       props.getConversation(props.accountId)
     }
+
       const name = props.lastname ? props.name + " " + props.lastname : props.name
       return (
         <div>
             <div className='account'>
-                    <button type='button' className='btnAccount' onClick={sendAccountId}>                            
+                    <button type='button' className='btnAccount' onClick={props.accountId ? sendAccountId : sendAccountName }>                            
                         <img className='profileImg' src={require('./Img/default_profile.jpg')}></img> {name}
                     </button>
             </div>                    

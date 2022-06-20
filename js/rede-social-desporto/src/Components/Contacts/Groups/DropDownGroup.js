@@ -17,7 +17,7 @@ const DropDownGroup = (props) => {
             <div class="dropdown-contentG">
               <a href={`#add-participant-modal-${props.groupId}`} >Participant</a>
               {deleteGroup}
-              <ExitGroup groupId={props.groupsId}/>
+              <ExitGroup groupId={props.groupId}/>
             </div>
           </div> 
         </div>

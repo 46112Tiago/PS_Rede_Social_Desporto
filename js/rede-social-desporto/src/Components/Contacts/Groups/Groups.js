@@ -14,11 +14,13 @@ import { Link } from 'react-router-dom';
 
 const Groups = () => {
 
+  const {getAccessTokenSilently,user} = useAuth0();
+
   const getConversation = (idMsg) => {
     setId(idMsg)
     groupArray.forEach(groupObj=>{
-      if(groupObj.owner.userId == window.name){
-        setOwner(groupObj.owner.userId)
+      if(groupObj.owner.email == user.email){
+        setOwner(groupObj.owner.email)
       }
     })
   }
@@ -28,7 +30,6 @@ const Groups = () => {
     const [id, setId] = React.useState(0);
     const [groupArray, setGroup] = React.useState([group]);
     const [owner,setOwner] = React.useState(0);
-    const {getAccessTokenSilently} = useAuth0();
 
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
@@ -48,7 +49,8 @@ const Groups = () => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const req =  await fetch(`http://localhost:8080/user/${window.name}/group`,options);
+            const email = user.email.split("@")[0]
+            const req =  await fetch(`http://localhost:8080/user/group?email=${email}`,options);
             const resp = await req.json();
             /*Check if the loged in user has the same id as the owner of the group*/
             //owner = resp.owner.userId == userId ? true : false
@@ -83,7 +85,7 @@ const Groups = () => {
                     <GroupModal></GroupModal>
                     <ParticipantModal owner={owner} groupId={id}/>
                       {groupArray.map((groupObj,i) => 
-                          <Account getConversation={getConversation} key={i} name={groupObj.name}  accountId={groupObj.id} picture={groupObj.picture}></Account>
+                          <Account getConversation={getConversation} key={i} name={groupObj.name} accountId={groupObj.id} picture={groupObj.picture}></Account>
                       )}
                   </div>      
                   </div>

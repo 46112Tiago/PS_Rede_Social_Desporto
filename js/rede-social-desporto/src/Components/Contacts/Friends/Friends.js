@@ -4,24 +4,23 @@ import './Friend.css'
 import { FaUser, FaUsers } from 'react-icons/fa';
 import Account from '../Account';
 import ConversationIdle from '../ConversationIdle';
-import { user } from '../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import ConversationStart from '../ConversationStart';
 import { Link } from 'react-router-dom';
 
 const FriendsMessage = () => {
   
-  const getConversation = (idMsg) => {
-    setId(idMsg)
-    console.log(idMsg)
+  const getConversation = (nameMsg) => {
+    setAccount(nameMsg)
+    console.log(nameMsg)
   }
 
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  const {getAccessTokenSilently} = useAuth0();
-  const [friendArray, setUser] = React.useState([user]);
-  const [id, setId] = React.useState(0);
+  const {getAccessTokenSilently,user} = useAuth0();
+  const [friendArray, setUser] = React.useState([]);
+  const [name, setAccount] = React.useState('');
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -32,7 +31,7 @@ const FriendsMessage = () => {
       setError(null);
       setIsLoading(true);
       try {
-        if(id == 0){
+        if(name == ''){
           const token = await getAccessTokenSilently();
             const myHeaders = new Headers()
             myHeaders.append('Authorization',`Bearer ${token}`)
@@ -42,7 +41,8 @@ const FriendsMessage = () => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-          const req =  await fetch(`http://localhost:8080/user/${window.name}/friends`,options);
+          const email = user.email.split("@")[0]
+          const req =  await fetch(`http://localhost:8080/user/friends?email=${email}`,options);
           const resp = await req.json();
           setUser(resp);
         }
@@ -56,9 +56,9 @@ const FriendsMessage = () => {
     };
 
     if (!isLoading) makeRequest();
-  },[id]);
+  },[name]);
 
-  let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle dropdown={false} friendId={id} messageType={"friend"}/>
+  let talkTemplate = name == '' ? <ConversationStart/> : <ConversationIdle dropdown={false} friendName={name} messageType={"friend"}/>
 
       return (
         <div>
@@ -75,7 +75,7 @@ const FriendsMessage = () => {
                 <h3 id='contactsH3'>Friends:</h3> 
               </div>
               {friendArray.map((friendObj,i) => 
-                        <Account getConversation={getConversation} key={i} name={friendObj.firstName} lastname={friendObj.lastName} accountId={friendObj.userId} picture={friendObj.profilepic}></Account>
+                        <Account getConversation={getConversation} key={i} name={friendObj.firstName} lastname={friendObj.lastName} accountName={friendObj.email.split("@")[0]} picture={friendObj.profilepic}></Account>
               )}
             </div>
             <div className='itemFlex' id='rightItem'>

@@ -23,7 +23,7 @@ class PrivateMessageRepoImplementation (var jdbi: Jdbi)  {
         val toReturn = jdbi.withHandle<List<PrivateMessage?>,RuntimeException> { handle: Handle ->
             handle.createQuery(
                 "Select id as p_id, message as p_message, " +
-                        "userId as u_userId " +
+                        "userId as u_userId, email as u_email " +
                         "from PRIVATE_MESSAGE JOIN USER_PROFILE ON senderId = userId " +
                         "where (senderId = ? AND receiverId = ?) OR (senderId = ? AND receiverId = ?) " +
                         "ORDER BY date DESC " +

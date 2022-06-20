@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const DeleteGroup = (props) => {
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
   async function submit() {
 
 
@@ -14,8 +14,8 @@ const DeleteGroup = (props) => {
         mode: 'cors',
         headers: myHeaders 
     };
-
-    const response = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}`, options)
+    const email = user.email.split("@")[0]
+    const response = await fetch(`http://localhost:8080/user/group/${props.groupId}?email=${email}`, options)
 }
 
       return (

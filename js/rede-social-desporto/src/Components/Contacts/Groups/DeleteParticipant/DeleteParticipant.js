@@ -24,7 +24,7 @@ const DeleteParticipant = (props) => {
               mode: 'cors',
               headers: myHeaders 
             };
-            const response = await fetch(`http://localhost:8080/group/${props.groupId}/participant/${props.participantId}`, options);
+            const response = await fetch(`http://localhost:8080/group/${props.groupId}/participant/${props.participantName}`, options);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);

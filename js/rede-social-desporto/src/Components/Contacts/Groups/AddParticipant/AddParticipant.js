@@ -2,16 +2,15 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import './AddParticipant.css'
 import { useAuth0 } from "@auth0/auth0-react";
-import { user } from '../../../../Model/Model';
 
 const AddParticipant = (props) => {
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
-  const [friendsArray, setFriends] = React.useState([user]);
+  const [friendsArray, setFriends] = React.useState([]);
   
   React.useEffect(() => {
     const makeRequest = async () => {
@@ -26,7 +25,8 @@ const AddParticipant = (props) => {
             headers: myHeaders,
             mode: 'cors',
         };
-        const req =  await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/participant`,options);
+        const email = user.email.split("@")[0]
+        const req =  await fetch(`http://localhost:8080/user/group/${props.groupId}/participant?email=${email}`,options);
         const resp = await req.json();
         setFriends(resp);
       } catch (err) {
@@ -70,7 +70,7 @@ const AddParticipant = (props) => {
                       <div key={i}>
                           <div className='checkDiv'>
                               <label for={`check_1${i}`} >{friendObj.firstName} {friendObj.lastName}</label>
-                              <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={friendObj.userId} {...register('friends')}/>
+                              <input type="checkbox"  className="checkboxCn" id={`check_1${i}`} name='friends' value={friendObj.email.split("@")[0]} {...register('friends')}/>
                           </div> 
                       </div>
 

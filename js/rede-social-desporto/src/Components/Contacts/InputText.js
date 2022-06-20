@@ -18,13 +18,12 @@ const InputText = (props) => {
      */
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
-  const {getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently,user} = useAuth0();
   // user state for form
   const [messageObj, setMessage] = useState(message);
   const [privateChats, setPrivateChats] = useState(new Map());     
   const [userData, setUserData] = useState({
-        username: 'T',
-        receiver: {userId:0},
+        receiver: {email:''},
         connected: false,
         message: ''
       });
@@ -38,7 +37,7 @@ const InputText = (props) => {
 
     const onConnected = () => {
         setUserData({...userData,"connected": true});
-        stompClient.subscribe(`/friend/${window.name}/private`, onPrivateMessage);
+        stompClient.subscribe(`/friend/${user.email.split("@")[0]}/private`, onPrivateMessage);
     }
     
     const onPrivateMessage = (payload)=>{
@@ -66,7 +65,7 @@ const InputText = (props) => {
     const sendPrivateValue=(text)=>{
         if (stompClient) {
           var chatMessage = {
-            receiver:{userId:props.friendId},
+            receiver:{email:props.friendName},
             message: text.message,
           };
           
@@ -95,13 +94,14 @@ const InputText = (props) => {
         mode: 'cors',
         body:JSON.stringify(data)
     }
+    const email = user.email.split("@")[0]
     if(props.sendTo == "group"){
-      const resp = await fetch(`http://localhost:8080/user/${window.name}/group/${props.groupId}/message`,options);
+      const resp = await fetch(`http://localhost:8080/user/group/${props.groupId}/message?email=${email}`,options);
       const res = await resp.json()
       sendPrivateValue(data)
       props.messageResp(res)
     }else{
-      const resp = await fetch(`http://localhost:8080/user/${window.name}/friend/${props.friendId}/message`,options);
+      const resp = await fetch(`http://localhost:8080/user/friend/${props.friendName}/message?email=${email}`,options);
       const res = await resp.json()
       sendPrivateValue(data)
       props.messageResp(res)
