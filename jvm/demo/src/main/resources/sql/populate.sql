@@ -249,25 +249,40 @@ INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gende
 VALUES ('Phillip','Stevens','Bragança','29/07/2002','phillipSs@gmail.com',true,'male');
 --9)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Abigale','Becker','Lisboa','16/11/2000','abigaleBecker@gmail.com',true,'male');
+VALUES ('Abigale','Becker','Lisboa','16/11/2000','abigaleBecker@gmail.com',true,'female');
 --10)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
 VALUES ('Claude','Andrews','Lisboa','16/11/2000','cAndrews@gmail.com',true,'male');
 --11)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Cristina','Veloso','Braga','24/07/2001','CrisVeloso@gmail.com',false,'male');
+VALUES ('Cristina','Veloso','Braga','24/07/2001','CrisVeloso@gmail.com',false,'female');
 --12)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Gustavo','Raposo','Aveiro','24/08/1997','gusravoRaposo@gmail.com',true,'female');
+VALUES ('Gustavo','Raposo','Aveiro','24/08/1997','gusravoRaposo@gmail.com',true,'male');
 --13)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
 VALUES ('Edgar','Vieira','Bragança','29/07/2002','VieiraEr@gmail.com',true,'male');
 --14)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Flavia','Chaves','Lisboa','16/11/2000','chavesFlavia@gmail.com',true,'male');
+VALUES ('Flavia','Chaves','Lisboa','16/11/2000','chavesFlavia@gmail.com',true,'female');
 --15)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Eliana','Nunes','Lisboa','16/11/2000','Lnunes@gmail.com',true,'male');
+VALUES ('Eliana','Nunes','Lisboa','16/11/2000','Lnunes@gmail.com',true,'female');
+--16)
+INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
+VALUES ('Jorge','Inácio','Braga','24/07/2001','jInacio@gmail.com',false,'male');
+--17)
+INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
+VALUES ('João','Vale','Aveiro','24/08/1997','ValeJoao@gmail.com',true,'male');
+--18)
+INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
+VALUES ('Joana','Palmeira','Bragança','29/07/2002','joana@gmail.com',true,'female');
+--19)
+INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
+VALUES ('Jacinto','Pessoa','Lisboa','16/11/2000','PessoaJ@gmail.com',true,'male');
+--20)
+INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
+VALUES ('Jeferson','Nunes','Lisboa','16/11/2000','jefersonNunes@gmail.com',true,'male');
 
 /* FRIENDS */
 --1)
@@ -275,7 +290,7 @@ INSERT INTO FRIENDS(userId,friendId)
 VALUES (1,2);
 --2)
 INSERT INTO FRIENDS(userId,friendId)
-VALUES (1,3);
+VALUES (2,1);
 --3)
 INSERT INTO FRIENDS(userId,friendId)
 VALUES (1,4);
@@ -315,6 +330,21 @@ VALUES (9,1);
 --15)
 INSERT INTO FRIENDS(userId,friendId)
 VALUES (10,1);
+--16)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (16,1);
+--17)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (17,1);
+--18)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (18,1);
+--19)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (19,1);
+--20)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (20,1);
 
 
 /* PRIVATE_MESSAGE */
@@ -332,8 +362,67 @@ INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
 VALUES (5,2,'Message','23/05/2019 11:24:55');
 --5)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message','23/05/2019 11:24:55');
-
+VALUES (4,1,'Message1','23/05/2019 11:24:55');
+--6)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message2','23/05/2019 11:24:55');
+--7)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message3','23/05/2019 11:24:55');
+--8)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message4','23/05/2019 11:24:55');
+--9)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message5','23/05/2019 11:24:55');
+--10)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message6','23/05/2019 11:24:55');
+--11)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message7','23/05/2019 11:24:55');
+--12)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message8','23/05/2019 11:24:55');
+--13)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message9','23/05/2019 11:24:55');
+--14)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message10','23/05/2019 11:24:55');
+--15)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message11','23/05/2019 11:24:55');
+--16)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message12','23/05/2019 11:24:55');
+--17)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message13','23/05/2019 11:24:55');
+--18)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message14','23/05/2019 11:24:55');
+--19)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message15','23/05/2019 11:24:55');
+--20)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message16','23/05/2019 11:24:55');
+--21)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message17','23/05/2019 11:24:55');
+--22)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message18','23/05/2019 11:24:55');
+--23)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message19','23/05/2019 11:24:55');
+--24)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message20','23/05/2019 11:24:55');
+--25)
+INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
+VALUES (4,1,'Message21','23/05/2019 11:24:55');
 
 /* USER_GROUP */
 --1)
@@ -532,6 +621,28 @@ O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Club
 --10)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
 VALUES (8,'23/09/2022 08:00:00','24/08/2022 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
+--11)
+INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (4,3,'15/08/2023 11:24:43','16/08/2023 11:24:43','event',2,'Description','Summary',8,2,true);
+--12)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (6,'10/09/2022 08:00:00','10/09/2022 19:00:00','V Ordem Mérito - Cat A',6,'5ª Competição da Ordem de Mérito para a categoria A','5ª Competição da Ordem de Mérito para a categoria A',8,2,true);
+--13)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (6,'01/10/2022 08:00:00','05/10/2022 17:00:00','Taça FPG 2022',6,'A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.','Taça Federação Portuguesa de Golf',32,2,true);
+--14)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (7,'01/08/2022 08:00:00','03/08/2022 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
+'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',40,3,true);
+--15)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (7,'15/08/2022 08:00:00','16/08/2022 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
+'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',30,3,true);
+--16)
+INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
+VALUES (8,'23/09/2022 08:00:00','24/08/2022 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
 
 
 /* EVENT_PARTICIPANT */
@@ -565,6 +676,21 @@ VALUES (3,7);
 --10)
 INSERT INTO EVENT_PARTICIPANT(participantId,eventId)
 VALUES (4,7);
+--6)
+INSERT INTO EVENT_PARTICIPANT(participantId,eventId)
+VALUES (1,16);
+--7)
+INSERT INTO EVENT_PARTICIPANT(participantId,eventId)
+VALUES (1,11);
+--8)
+INSERT INTO EVENT_PARTICIPANT(participantId,eventId)
+VALUES (1,12);
+--9)
+INSERT INTO EVENT_PARTICIPANT(participantId,eventId)
+VALUES (1,13);
+--10)
+INSERT INTO EVENT_PARTICIPANT(participantId,eventId)
+VALUES (1,14);
 
 /* POST */
 --1)
@@ -1309,6 +1435,9 @@ INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
 commit;
+
+
+Select * from Friends
 
 
 

@@ -3,7 +3,7 @@ import './OthersProfile.css'
 import {FaCity} from 'react-icons/fa'
 import SportsModal from "../SportsModal/SportsModal";
 import AddFriend from "./AddFriend/AddFriend";
-import { user } from "../../Model/Model";
+import { user as importUser }  from "../../Model/Model";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const OthersProfile = (props) => {
@@ -15,9 +15,9 @@ const OthersProfile = (props) => {
 const {getAccessTokenSilently,user} = useAuth0();
 const [isLoading, setIsLoading] = React.useState(false);
 const [error, setError] = React.useState();
-const [userObj, setUser] = React.useState(user);
+const [userObj, setUser] = React.useState(importUser);
 const [request, setRequest] = React.useState('');
-const friendName = window.location.href.split('/')[4]
+const friendName = window.location.href.split('/')[4].split("#")[0]
 
   React.useEffect(() => {
       const makeRequest = async () => {
@@ -64,7 +64,7 @@ const friendName = window.location.href.split('/')[4]
                         <h4><FaCity></FaCity> {userObj.city}</h4>
                         <SportsModal otherProfile={true} userId={userObj.userId}></SportsModal>
                     </div>
-                    {request != friendName ? <AddFriend request={friendRequest} friendName={userObj.email.split("@")[0]}></AddFriend> : <></> }
+                    {userObj.friends || request == friendName ? <></> : <AddFriend request={friendRequest} friendName={userObj.email.split("@")[0]}></AddFriend> }
                 </div>
 
             </div>
