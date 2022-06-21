@@ -16,15 +16,19 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
 
     fun createCompoundReview(compoundId: Int, userId: Int, review : Review): Int? {
 
+        val current = LocalDateTime.now()
+        val timestamp : Timestamp = Timestamp.valueOf(current)
+
         val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "review(compoundId,rating,description,userId) " +
-                    "values(?,?,?,?)")
+                    "review(compoundId,rating,description,userId,reviewDate) " +
+                    "values(?,?,?,?,?)")
                     .bind(0,compoundId)
                     .bind(1,review.rating)
                     .bind(2,review.description)
                     .bind(3,userId)
-                    .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
+                    .bind(4,timestamp)
+                .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
         }
 
         return toReturn.id
@@ -71,7 +75,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
                     "U.userId as u_userId, firstName as u_firstName, lastName as u_lastName " +
                     "from REVIEW R JOIN USER_PROFILE U ON U.userid = R.userid " +
                     "Where compoundId = ? " +
-                    "ORDER BY reviewDate " +
+                    "ORDER BY reviewDate DESC " +
                     "LIMIT 5 OFFSET ?")
                     .bind(0,compoundId)
                     .bind(1,page*5)
@@ -98,9 +102,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
             handle.createQuery("Select rating as r_rating, description as r_description, R.id as r_id, " +
                     "U.userId as u_userId, firstName as u_firstName, lastName as u_lastName " +
                     "from REVIEW R JOIN USER_PROFILE U ON U.userid = R.userid " +
-                    "Where compoundId = ? AND R.id = ?" +
-                    "ORDER BY rating DESC " +
-                    "LIMIT 5 OFFSET ?")
+                    "Where compoundId = ? AND R.id = ?")
                 .bind(0,compoundId)
                 .bind(1,reviewId)
                 .registerRowMapper(factory(Review::class.java, "r"))

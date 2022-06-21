@@ -25,6 +25,7 @@ const ReviewModal = (props) => {
     const [end, setEnd] = React.useState(false);
     const [paging, setPaging] = React.useState(<PagingText page={page} setNewPage={setNewPage}/>)
     const {isAuthenticated} = useAuth0();
+    const {getAccessTokenSilently} = useAuth0();
 
 
       // Keep the above values in sync, this will fire
@@ -37,10 +38,14 @@ const ReviewModal = (props) => {
           setIsLoading(true);
           try {
 
+            const token = await getAccessTokenSilently();
+            const myHeaders = new Headers()
+            myHeaders.append('Authorization',`Bearer ${token}`)
             const options = {
-              method: "GET",
-              mode: 'cors',
-            };
+                method: "GET",
+                headers: myHeaders,
+                mode: 'cors',
+          };
             if(end){
               const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review/${newReview}`,options);
               const resp = await req.json();
@@ -51,10 +56,12 @@ const ReviewModal = (props) => {
             if(!newReviewChange){
               const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review?page=${page}`,options);
               const resp = await req.json();
-              resp.length%5 == 0 && resp.length > 0 ?
-                setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
-                :
-                setPaging(<></>)
+              if(resp.length%5 == 0 && resp.length > 0)
+              setPaging(<PagingText page={page} setNewPage={setNewPage}/>)
+            else{
+              setPaging(<></>)
+              setEnd(true)
+            }
               const newReviewArray = reviewArray.concat(resp)
               setReview(newReviewArray);
             }
