@@ -13,6 +13,7 @@ const EditModal = (props) => {
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
   const {getAccessTokenSilently,user} = useAuth0()
+  const [edited, setEdited] = React.useState({});
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
 
@@ -31,12 +32,12 @@ const EditModal = (props) => {
     };
     const email = user.email.split("@")[0]
     const response = await fetch(`http://localhost:8080/user?email=${email}`, options)
+    const resp = await response.json()
+    setEdited(resp)
     props.edit(response)
     window.location.href = "#"
     
 }
-
-  
       return (
         <div id='editModal'>
             <div>
@@ -51,7 +52,7 @@ const EditModal = (props) => {
                         <input type={'text'} {...register('city')}  placeholder='City'></input>
                         <br/><br/>
                         <br/><br/>
-                        <AddSportUser />
+                        <AddSportUser deleted={props.deleted} edit={edited} />
                         <br/><br/>
                         <label>Available:</label>
                         <br/><br/>

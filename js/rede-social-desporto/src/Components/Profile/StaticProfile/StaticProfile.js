@@ -15,12 +15,17 @@ const StaticProfile = () => {
 
   const editResponse = (data) => {
     setEdit(data)
+  }
+  
+  const deleteResponse = (data) => {
+    setDelete(data)
   } 
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const [userObj, setUser] = React.useState({});
   const [edit, setEdit] = React.useState(false)
+  const [deleted, setDelete] = React.useState(0)
   const {user,getAccessTokenSilently} = useAuth0()
   const myHeaders = new Headers()
 
@@ -69,7 +74,7 @@ const StaticProfile = () => {
             </div>
             <div id='modifyProfileBtn'>
               <div id='editModal'>
-                <EditModal edit={editResponse}></EditModal>
+                <EditModal edit={editResponse} deleted={deleted} ></EditModal>
               </div>
               <div>
                 <DeleteAccount></DeleteAccount>
@@ -85,7 +90,7 @@ const StaticProfile = () => {
               <p>BirthDate: {userObj.birthdate}</p>
               <p>City: {userObj.city}</p>
               <p>Available: {userObj.available?'Yes':'No'}</p>
-              <SportsModal></SportsModal>
+              <SportsModal edit={edit} deleted={deleteResponse}></SportsModal>
 
             </div>
             <div id='btnProfile'>

@@ -9,7 +9,7 @@ const AddSportUser = (props) => {
     const [sports, setSports] = React.useState([sport]);
     const [isLoading, setIsLoading] = React.useState(false);
     const [error, setError] = React.useState();
-    const {getAccessTokenSilently} = useAuth0()
+    const {getAccessTokenSilently,user} = useAuth0()
 
      const myHeaders = new Headers()
      myHeaders.append('Content-Type','application/json')
@@ -26,7 +26,8 @@ const AddSportUser = (props) => {
                headers: myHeaders,
                mode: 'cors',
            };
-           const req =  await fetch(`http://localhost:8080/sports`,options);
+           const email = user.email.split("@")[0]
+           const req =  await fetch(`http://localhost:8080/user/not/sports?email=${email}`,options);
            const resp = await req.json();
            setSports(resp);
          } catch (err) {
@@ -39,7 +40,7 @@ const AddSportUser = (props) => {
        };
    
        if (!isLoading) makeRequest();
-     },[]);
+     },[props.deleted,props.edit]);
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();

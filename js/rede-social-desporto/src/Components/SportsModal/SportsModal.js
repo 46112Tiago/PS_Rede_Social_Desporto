@@ -8,6 +8,7 @@ import CreateSportsList from "./CreateSportsList";
 const SportsModal = (props) => {
 
   function deleteSport(id){
+    props.deleted(id)
     setDeleteSport(id)
   }
 
@@ -46,7 +47,7 @@ const email = props.otherProfile ? window.location.href.split('/')[4] : user.ema
     };
 
     if (!isLoading) makeRequest();
-  },[sportDeleted]);
+  },[sportDeleted,props.edit]);
 
 
       return (

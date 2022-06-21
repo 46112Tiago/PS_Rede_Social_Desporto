@@ -28,7 +28,6 @@ const FieldSuggestion = (props) => {
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                 );
                 loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
-                infoWindow.open(props.map);
                 if(loc) window.location.href = "#field-modal";
             }});
         } 

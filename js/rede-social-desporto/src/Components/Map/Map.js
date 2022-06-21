@@ -1,13 +1,10 @@
 import React from 'react'
-import FieldModal from './FieldModal/FieldModal';
-import CompoundModal from './Compound/CompoundModal';
 import MapComponent from './MapComponent/MapComponent';
-import { convertLocationToCoordinate,convertCoordinateToLocation } from '../../GoogleMaps/Geocoding';
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import './Map.css'
-import Marker from './MapComponent/Marker/Marker';
 import SearchBox from './SearchBox/SearchBox';
 import Suggestion from './Suggestion';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const center = {
   lat: 38.757026,
@@ -16,6 +13,9 @@ const center = {
 
 
 const Map = () => {
+
+
+  const {isAuthenticated} = useAuth0();
 
   const getMap = (map) => {
     setMap(map)
@@ -33,7 +33,7 @@ const Map = () => {
 
   },[map,newCenter]);
 
-  const suggestion = window.name ? <Suggestion map={map}/> : <></>
+  const suggestion = isAuthenticated ? <Suggestion map={map}/> : <></>
 
   const render = (status) => {
     switch (status) {
@@ -49,7 +49,7 @@ const Map = () => {
     <div id='wrapper'>
       <div id='wrapperContainer'>
         <SearchBox center={getCenter}></SearchBox>      
-        <Wrapper render={render} apiKey={""}> 
+        <Wrapper render={render} apiKey={/*`${process.env.REACT_APP_MAPAPI}`*/''}> 
           <MapComponent center={newCenter} zoom={5} getMap={getMap}>
           </MapComponent>
         </Wrapper>

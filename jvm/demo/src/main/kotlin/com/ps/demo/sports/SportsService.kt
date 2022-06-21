@@ -22,6 +22,10 @@ class SportsService (val sportsRepo : SportsRepoImplementation) {
         return sportsRepo.getUserSports(userId)
     }
 
+    fun notUserSport(userId : Int) : List<Sports>? {
+        return sportsRepo.notUserSport(userId)
+    }
+
     fun getSports(): List<Sports>? {
         return sportsRepo.getSports()
     }

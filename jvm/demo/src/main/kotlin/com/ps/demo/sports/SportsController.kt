@@ -40,6 +40,14 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
         return ResponseEntity(sportsKey, HttpStatus.OK)
     }
 
+    @GetMapping("/user/not/sports")
+    fun userNotSport(@RequestParam(required = false) email : String)
+            : ResponseEntity<Any?> {
+        val userId = userService.getUserById(email)!!.userId
+        val sportsKey = sportsService.notUserSport(userId!!)
+        return ResponseEntity(sportsKey, HttpStatus.OK)
+    }
+
     @PostMapping("/sports")
     fun addSport(@RequestBody sports : List<Sports>)
             : ResponseEntity<Any?> {

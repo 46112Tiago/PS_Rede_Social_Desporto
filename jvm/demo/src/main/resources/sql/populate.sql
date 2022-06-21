@@ -300,7 +300,21 @@ VALUES (1,9);
 --10)
 INSERT INTO FRIENDS(userId,friendId)
 VALUES (1,10);
-
+--11)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (6,1);
+--12)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (4,1);
+--13)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (8,1);
+--14)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (9,1);
+--15)
+INSERT INTO FRIENDS(userId,friendId)
+VALUES (10,1);
 
 
 /* PRIVATE_MESSAGE */
@@ -628,6 +642,21 @@ VALUES (10,'Post 24','05/07/2021 23:40:50',5);
 --25)
 INSERT INTO POST(userId,description,postDate,likes)
 VALUES (11,'Post 25','07/07/2021 12:24:59',11);
+--26)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 26','04/07/2021 17:30:59',9);
+--27)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (7,'Post 27','04/07/2021 23:24:59',4);
+--28)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (2,'Post 28','05/07/2021 22:09:11',2);
+--29)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (10,'Post 29','01/07/2021 23:40:50',5);
+--30)
+INSERT INTO POST(userId,description,postDate,likes)
+VALUES (11,'Post 30','07/07/2021 12:24:59',11);
 
 /* POST_COMMENT */
 --1)
@@ -675,6 +704,37 @@ VALUES (7,'14/07/2021 12:24:59','Comment 14',1);
 --15)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
 VALUES (7,'14/07/2021 14:11:50','Comment 15',8);
+--16)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'10/07/2021 12:24:59','Comment 16',4);
+--17)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'10/07/2021 22:24:59','Comment 17',2);
+--18)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'14/07/2021 09:11:50','Comment 18',9);
+--19)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'14/07/2021 12:24:59','Comment 19',1);
+--20)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'14/07/2021 14:11:50','Comment 20',8);
+--21)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'10/07/2021 12:24:59','Comment 21',4);
+--22)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'10/07/2021 22:24:59','Comment 22',2);
+--123)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'14/07/2021 09:11:50','Comment 23',9);
+--24)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'14/07/2021 12:24:59','Comment 24',1);
+--25)
+INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
+VALUES (2,'14/07/2021 14:11:50','Comment 25',8);
+
 
 /* REVIEW */
 --1)
@@ -1247,13 +1307,6 @@ VALUES (39,1,'accepted');
 --10)
 INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
-
-Select * from event_participant join event on id = eventId
-Select * from private_message where receiverId = 2
-Select * from user_group JOIN GROUP_PARTICIPANT on id = groupId
-Select * from user_profile
-INSERT INTO GROUP_PARTICIPANT(participantId,groupId)
-VALUES (34,3);
 
 commit;
 
