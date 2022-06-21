@@ -49,7 +49,7 @@ const Map = () => {
     <div id='wrapper'>
       <div id='wrapperContainer'>
         <SearchBox center={getCenter}></SearchBox>      
-        <Wrapper render={render} apiKey={/*`${process.env.REACT_APP_MAPAPI}`*/''}> 
+        <Wrapper render={render} apiKey={`${process.env.REACT_APP_MAPAPI}`}> 
           <MapComponent center={newCenter} zoom={5} getMap={getMap}>
           </MapComponent>
         </Wrapper>

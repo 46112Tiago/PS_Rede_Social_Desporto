@@ -32,7 +32,7 @@ const MapContainerEvent = (props) => {
     const mapOptions = {
       zoom : zoomEffect,
       center : centerVal,
-      minZoom : 5,
+      minZoom : 12,
       maxZoom : 17,
       mapTypeId: window.google.maps.MapTypeId.SATELLITE
     }

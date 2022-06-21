@@ -36,6 +36,7 @@ const CompoundSuggestion = (props) => {
                 infoWindow.setContent(
                 JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
                 );
+                infoWindow.open()
                 loc = JSON.stringify(mapsMouseEvent.latLng.toJSON());
                 if(loc) window.location.href = "#demo-modal";
             }});

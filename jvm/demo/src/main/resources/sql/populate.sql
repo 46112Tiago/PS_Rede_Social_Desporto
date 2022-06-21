@@ -1437,13 +1437,7 @@ VALUES (40,3,'accepted');
 commit;
 
 
-Select * from Friends
-
-
-
-
-
-
+Select * from Compound
 
 
 

@@ -37,10 +37,12 @@ const ReviewModal = (props) => {
           setError(null);
           setIsLoading(true);
           try {
-
-            const token = await getAccessTokenSilently();
             const myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${token}`)
+            if (isAuthenticated) {
+              const token = await getAccessTokenSilently();
+              myHeaders.append('Authorization',`Bearer ${token}`)
+            }
+
             const options = {
                 method: "GET",
                 headers: myHeaders,

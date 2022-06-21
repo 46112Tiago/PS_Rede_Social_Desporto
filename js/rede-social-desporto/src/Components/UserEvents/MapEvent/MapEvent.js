@@ -25,7 +25,7 @@ const MapEvent = (props) => {
 
   return(
     <div id='mapEvent'>
-        <Wrapper render={render} apiKey={/*`${process.env.REACT_APP_MAPAPI}`*/''}> 
+        <Wrapper render={render} apiKey={`${process.env.REACT_APP_MAPAPI}`}> 
           <MapContainerEvent center={center} zoom={5} sportId={props.sportId} markers={props.markers}></MapContainerEvent>
         </Wrapper>
     </div>

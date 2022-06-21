@@ -42,7 +42,7 @@ const Home = () => {
                   <p><b>Look for elements that can fill the vacancy that is missing in your group.</b></p>
                   <FaArrowDown></FaArrowDown>
                   <br/>
-                  <a href='/signup'><FaBasketballBall className='icons' id='basketball'></FaBasketballBall></a>
+                  <a href='/logIn'><FaBasketballBall className='icons' id='basketball'></FaBasketballBall></a>
                 </div>
             </div>
             {component}
