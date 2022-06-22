@@ -1,35 +1,17 @@
 package com.ps.demo
 
 
-import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.KotlinPlugin
 import org.jdbi.v3.postgres.PostgresPlugin
 import org.jdbi.v3.sqlobject.kotlin.KotlinSqlObjectPlugin
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import java.util.*
-import java.lang.Object.*
-import org.jdbi.v3.*
-import org.jdbi.v3.core.kotlin.useHandleUnchecked
-import org.springframework.web.servlet.config.annotation.CorsRegistry
-
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
-
-
-
 
 @SpringBootApplication
-class DemoApplication
+class DemoApplication {
 
-fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
-}
-
-@SpringBootApplication
-class JdbiConfig() {
 
 	@Bean
 	fun jdbi(): Jdbi? {
@@ -44,5 +26,9 @@ class JdbiConfig() {
 		} catch (e : Exception) {e.printStackTrace()}
 		return jdbi
 	}
+}
+
+fun main(args: Array<String>) {
+	runApplication<DemoApplication>(*args)
 }
 
