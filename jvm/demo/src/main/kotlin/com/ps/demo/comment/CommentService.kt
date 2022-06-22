@@ -9,6 +9,9 @@ import java.util.*
 class CommentService(val commentRepo : CommentRepoImplementation) {
 
     fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
+        val commentTxt =  comment.comment.replace("\\s".toRegex(), "")
+        if (comment.comment.isEmpty() || comment.comment.length > 100 || commentTxt.isEmpty())
+            return -1
         return commentRepo.createComment(userId,postId,comment)
     }
 
@@ -20,12 +23,10 @@ class CommentService(val commentRepo : CommentRepoImplementation) {
         return commentRepo.getAllComments(postId,page)
     }
 
-    fun getCommentsId(postId: Int, page: Int) : List<Comment?>? {
-        return commentRepo.getCommentsId(postId,page)
-    }
-
     fun getCommentById(postId: Int, commentId: Int) : Comment? {
-        return commentRepo.getCommentById(postId,commentId)
+        val comment = commentRepo.getCommentById(postId,commentId)
+        if (comment != null) return comment
+        return null
     }
 
 }

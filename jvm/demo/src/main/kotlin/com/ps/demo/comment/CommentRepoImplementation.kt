@@ -17,6 +17,9 @@ import java.util.*
 @Repository
 class CommentRepoImplementation(val jdbi: Jdbi){
 
+    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
+        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
+    }
 
     fun deleteComment(postId: Int, commentId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
@@ -26,8 +29,6 @@ class CommentRepoImplementation(val jdbi: Jdbi){
                 execute()
         }
     }
-
-
 
     fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
 
@@ -45,12 +46,6 @@ class CommentRepoImplementation(val jdbi: Jdbi){
                     .executeAndReturnGeneratedKeys("id").mapTo<Comment>().one()
         }
         return pk.id
-    }
-
-
-
-    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
-        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
     }
 
     fun getAllComments(postId: Int, page: Int) : List<Comment?>? {
@@ -84,18 +79,6 @@ class CommentRepoImplementation(val jdbi: Jdbi){
                     }.values.toList()
         }
 
-        return toReturn
-    }
-
-    fun getCommentsId(postId: Int, page: Int) : List<Comment>? {
-        val toReturn = jdbi.withHandle<List<Comment>?,RuntimeException> { handle : Handle ->
-            handle.createQuery("SELECT id from POST_COMMENT " +
-                    "WHERE postId = ? " +
-                    "LIMIT 5 OFFSET ? ")
-                .bind(0,postId)
-                .bind(1,page*5)
-                .mapTo<Comment>().list()
-        }
         return toReturn
     }
 

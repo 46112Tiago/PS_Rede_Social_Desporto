@@ -851,7 +851,7 @@ VALUES (2,'10/07/2021 12:24:59','Comment 21',4);
 --22)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
 VALUES (2,'10/07/2021 22:24:59','Comment 22',2);
---123)
+--23)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
 VALUES (2,'14/07/2021 09:11:50','Comment 23',9);
 --24)
@@ -1435,15 +1435,3 @@ INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
 commit;
-
-
-Select * from Compound
-
-
-
-
-
-
-
-
-
