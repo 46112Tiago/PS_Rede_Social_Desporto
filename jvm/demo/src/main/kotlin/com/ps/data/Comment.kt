@@ -5,7 +5,7 @@ import java.sql.Timestamp
 data class Comment(
         val id : Int?,
         var user : User?,
-        val comment : String?,
+        val comment : String = "",
         val commentDate : Timestamp?,
 ) {
 
