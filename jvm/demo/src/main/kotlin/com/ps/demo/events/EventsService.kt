@@ -27,6 +27,14 @@ class EventsService(val eventRepo: EventRepositoryImplementation) {
     }
 
     fun createEvent(event : Event) : Int {
+        val nameTxt =  event.name.replace("\\s".toRegex(), "")
+        val descriptionTxt =  event.description.replace("\\s".toRegex(), "")
+        val summaryTxt =  event.summary.replace("\\s".toRegex(), "")
+        if (event.description.isEmpty() || descriptionTxt.isEmpty() ||
+            summaryTxt.isEmpty() || event.summary.isEmpty() || event.summary.length > 250 ||
+            nameTxt.isEmpty() || event.name.isEmpty() || event.name.length > 100){
+            return -1
+        }
         return eventRepo.createEvent(event)
     }
 

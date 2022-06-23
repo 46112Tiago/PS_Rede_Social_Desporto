@@ -20,11 +20,13 @@ class GroupMessageController(val groupMsgService : GroupMessageService, val user
         return ResponseEntity(groupMessages, HttpStatus.OK)
     }
 
-    @PostMapping("/user/{userId}/group/{groupId}/message")
-    fun sendMessage(@PathVariable("userId") userId : Int,
+    @PostMapping("/user/group/{groupId}/message")
+    fun sendMessage(@RequestParam(required = false) email : String,
                     @PathVariable("groupId") groupId : Int,
                     @RequestBody groupMessage: GroupMessage) : ResponseEntity<Any?> {
-        val groupMessageKey = groupMsgService.sendMessage(userId,groupId, groupMessage )
+        val  userId = userService.getUserById(email)!!.userId
+        val groupMessageKey = groupMsgService.sendMessage(userId!!,groupId, groupMessage )
+        if (groupMessageKey == -1) return ResponseEntity(HttpStatus.BAD_REQUEST)
         return ResponseEntity(groupMessageKey, HttpStatus.OK)
     }
 

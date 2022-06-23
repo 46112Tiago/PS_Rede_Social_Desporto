@@ -5,6 +5,7 @@ import com.ps.demo.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.*
@@ -70,6 +71,7 @@ class EventController (val eventService: EventsService, val userService: UserSer
         val user = userService.getUserById(email)
         event.creator = user
         val eventKey : Int = eventService.createEvent(event)
+        if (eventKey == -1) return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(eventKey,HttpStatus.OK)
     }
 

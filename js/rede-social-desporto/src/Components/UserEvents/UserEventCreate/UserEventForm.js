@@ -73,7 +73,7 @@ const UserEventForm = (props) => {
                       <h3 id='titleEvent'>Create Event</h3>
                           <div className="eventInput">
                               <label className='labelEvent'>Name: </label>
-                              <input name="name" type="text" {...register('name')}  placeholder='Event Name' required></input>
+                              <input maxLength={100} name="name" type="text" {...register('name')}  placeholder='Event Name' required></input>
                           </div>
                           <div className="eventInput">
                               <label className='labelEvent'>Starting day</label>
@@ -86,6 +86,10 @@ const UserEventForm = (props) => {
                           <div className="eventInput">
                               <label className='labelEvent'>Description</label>
                               <input name="description" type="text" {...register('description')}  placeholder='Description' required></input>
+                          </div>
+                          <div className="eventInput">
+                              <label className='labelEvent'>Summary</label>
+                              <input maxLength={250} name="description" type="text" {...register('summary')}  placeholder='Summary' required></input>
                           </div>
                           <div className="eventInput">
                               <label className='labelEvent'>Number of participants</label>

@@ -7,5 +7,5 @@ data class GroupMessage(
     val groupid : Int?,
     var sender : User?,
     val messageDate : Timestamp?,
-    val message : String?
+    val message : String = ""
 )

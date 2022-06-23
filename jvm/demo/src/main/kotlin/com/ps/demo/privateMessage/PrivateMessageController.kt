@@ -5,6 +5,7 @@ import com.ps.data.User
 import com.ps.demo.user.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.messaging.handler.annotation.Header
 import org.springframework.messaging.handler.annotation.MessageMapping
@@ -56,6 +57,7 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
         val  userId = userService.getUserById(email)!!.userId
         val friendId = userService.getUserById(friendName)!!.userId
         val privateMessageKey = privateMessageService.sendMessage(userId!!,friendId!!,privateMessage)
+        if (privateMessageKey == -1) return ResponseEntity(BAD_REQUEST)
         val privateMessageResp = PrivateMessage(privateMessageKey,privateMessage.message,null,null,
             User(userId,"","","",null,"","",false,null,null,null))
         return ResponseEntity(privateMessageResp,HttpStatus.OK)

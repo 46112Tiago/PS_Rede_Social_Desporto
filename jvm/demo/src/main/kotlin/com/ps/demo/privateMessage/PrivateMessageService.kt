@@ -12,6 +12,9 @@ class PrivateMessageService(val privateMessageRepo : PrivateMessageRepoImplement
     }
 
     fun sendMessage(userId : Int,receiverId : Int,privateMessage: PrivateMessage) : Int? {
+        val messageTxt =  privateMessage.message.replace("\\s".toRegex(), "")
+        if (privateMessage.message.isEmpty() || privateMessage.message.length > 400 || messageTxt.isEmpty())
+            return -1
         return privateMessageRepo.sendMessage(userId, receiverId, privateMessage)
     }
 

@@ -12,6 +12,9 @@ class GroupMessageService(val groupMsgRepo : GroupMessageRepoImplementation) {
     }
 
     fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage) : Int? {
+        val messageTxt =  groupMessage.message.replace("\\s".toRegex(), "")
+        if (groupMessage.message.isEmpty() || groupMessage.message.length > 400 || messageTxt.isEmpty())
+            return -1
         return groupMsgRepo.sendMessage(userId,groupId,groupMessage)
     }
 
