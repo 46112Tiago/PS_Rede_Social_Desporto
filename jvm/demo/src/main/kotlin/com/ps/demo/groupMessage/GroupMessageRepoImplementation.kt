@@ -3,6 +3,7 @@ package com.ps.demo.groupMessage
 import com.ps.data.GroupMessage
 import com.ps.data.Post
 import com.ps.data.User
+import com.ps.demo.factory
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.KotlinMapper
@@ -53,12 +54,6 @@ class GroupMessageRepoImplementation (var jdbi: Jdbi) {
 
         return toReturn
     }
-
-    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
-        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
-    }
-
-
 
     fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage): Int? {
 

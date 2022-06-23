@@ -70,6 +70,7 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return locs;
     }
 
+    //Based on: https://handyopinion.com/find-distance-between-two-locations-in-kotlin/      06/06/2022
     fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double,area: Map<Int,Int>)
     : Boolean {
         val neededCoverage = area.get(zoom)

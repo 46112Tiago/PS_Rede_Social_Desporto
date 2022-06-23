@@ -1,6 +1,7 @@
 package com.ps.demo.privateMessage
 
 import com.ps.data.*
+import com.ps.demo.factory
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.KotlinMapper
@@ -14,10 +15,6 @@ import java.time.LocalDateTime
 
 @Repository
 class PrivateMessageRepoImplementation (var jdbi: Jdbi)  {
-
-    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
-        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
-    }
 
      fun getAllMessages(userId : Int, receiverId : Int, page: Int): List<PrivateMessage?>? {
         val toReturn = jdbi.withHandle<List<PrivateMessage?>,RuntimeException> { handle: Handle ->

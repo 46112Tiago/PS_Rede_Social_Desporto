@@ -8,7 +8,7 @@ import java.sql.Timestamp
 
 data class Post(
     val id : Int?,
-    val description : String?,
+    val description : String = "",
     //val pictures : List<String>?,
     val postdate : Timestamp?,
     var user : User?,

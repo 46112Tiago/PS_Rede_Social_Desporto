@@ -9,11 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class SportsRepoImplementation(val jdbi : Jdbi)  {
 
-     fun addSport(sports : List<Sports>) : MutableList<Int>? {
-
-        val sportsKeys : MutableList<Int> = mutableListOf()
-
-        for (sport in sports){
+     fun addSport(sport : Sports) : Int? {
 
             val toReturn = jdbi.withHandle<Sports,RuntimeException> { handle: Handle ->
                 handle.createUpdate("insert into " +
@@ -23,24 +19,17 @@ class SportsRepoImplementation(val jdbi : Jdbi)  {
                         .executeAndReturnGeneratedKeys("id").mapTo<Sports>().one()
             }
 
-            sportsKeys.add(toReturn.id!!)
-
-        }
-
-        return sportsKeys
+        return toReturn.id
     }
 
-     fun addUserSport(userId: Int, sports : List<Sports>) {
+     fun addUserSport(userId: Int, sport : Sports) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->
-            for (sport in sports){
                 handle.createUpdate("insert into " +
                         "USER_SPORTS(userId,sportId) " +
                         "values(?,?)")
                         .bind(0,userId)
                         .bind(1,sport.id)
                         .execute()
-            }
-
         }
     }
 
@@ -53,7 +42,7 @@ class SportsRepoImplementation(val jdbi : Jdbi)  {
         }
     }
 
-     fun getUserSports(userId: Int): List<Sports>? {
+     fun getUserSports(userId: Int): List<Sports> {
         val toReturn = jdbi.withHandle<List<Sports>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name , s.id " +
                     "from USER_SPORTS us " +

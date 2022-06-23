@@ -3,6 +3,7 @@ package com.ps.demo.user
 import com.ps.data.Group
 import com.ps.data.Post
 import com.ps.data.User
+import com.ps.demo.factory
 import com.ps.demo.group.GroupService
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
@@ -45,16 +46,11 @@ class GroupRepoImplementation (var jdbi: Jdbi){
                         group!!.owner = rowView.getRow(User::class.java)
                     }
                     map
-                }.values.toList().get(0)
+                }[groupId]
         }
 
         return toReturn
     }
-
-    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
-        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
-    }
-
 
 
     fun getGroupParticipants(groupId : Int): List<User?> {

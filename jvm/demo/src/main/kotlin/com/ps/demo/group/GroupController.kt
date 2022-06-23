@@ -3,7 +3,10 @@ package com.ps.demo.group
 import com.ps.data.Group
 import com.ps.data.User
 import com.ps.demo.user.UserService
+import org.apache.coyote.Response
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
+import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -14,7 +17,7 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @GetMapping("/group/{groupId}")
     fun getGroupById(@PathVariable("groupId") groupId : Int) : ResponseEntity<Group?> {
-        val group : Group? = groupService.getGroupById(groupId)
+        val group : Group? = groupService.getGroupById(groupId) ?: return ResponseEntity(NOT_FOUND)
         return ResponseEntity(group, HttpStatus.OK)
     }
 
@@ -44,10 +47,11 @@ class GroupController (val groupService: GroupService, val userService: UserServ
     fun createGroup(
             @RequestParam(required = false) email : String,
             @RequestBody group: Group
-    ) : ResponseEntity<Any?> {
+    ) : ResponseEntity<Int?> {
         val userId = userService.getUserById(email)!!.userId
-        val userKey : Int? = groupService.insertGroup(userId!!,group)
-        return ResponseEntity(userKey, HttpStatus.OK)
+        val groupId : Int? = groupService.insertGroup(userId!!,group)
+        if (groupId == -1) return ResponseEntity(BAD_REQUEST)
+        return ResponseEntity(groupId, HttpStatus.OK)
     }
 
     @DeleteMapping("/group/{groupid}/participant/{participantName}")
@@ -60,8 +64,8 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @PostMapping("/group/{groupid}/participant")
     fun insertGroupParticipant(@PathVariable("groupid") groupId: Int,
-                               @RequestBody participantsId : List<String>): ResponseEntity<Any?> {
-        val participant = groupService.insertGroupParticipant(groupId,participantsId)
+                               @RequestBody participants : List<String>): ResponseEntity<Any?> {
+        val participant = groupService.insertGroupParticipant(groupId,participants)
         return ResponseEntity(participant,HttpStatus.OK)
     }
 

@@ -6,19 +6,24 @@ import org.springframework.stereotype.Service
 @Service
 class SportsService (val sportsRepo : SportsRepoImplementation) {
 
-    fun addSport(sports : List<Sports>) : MutableList<Int>? {
-        return sportsRepo.addSport(sports)
+    fun addSport(sport : Sports) : Int? {
+        val sportName =  sport.name!!.replace("\\s".toRegex(), "")
+        if (sport.name == null || sport.name.isEmpty() || sportName.isEmpty()) return -1
+        return sportsRepo.addSport(sport)
     }
 
-    fun addUserSport(userId : Int, sports : List<Sports>) {
-        return sportsRepo.addUserSport(userId,sports)
+    fun addUserSport(userId : Int, sports : List<Sports>) : String {
+        for (sport in sports) {
+            sportsRepo.addUserSport(userId, sport)
+        }
+        return "Sports insert"
     }
 
     fun deleteUserSport(userId : Int, sportId : Int) {
         return sportsRepo.deleteUserSport(userId,sportId)
     }
 
-    fun getUserSports(userId : Int) : List<Sports>? {
+    fun getUserSports(userId : Int) : List<Sports> {
         return sportsRepo.getUserSports(userId)
     }
 

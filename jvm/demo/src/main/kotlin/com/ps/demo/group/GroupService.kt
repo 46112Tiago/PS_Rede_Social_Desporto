@@ -30,6 +30,8 @@ class GroupService(val groupRepo : GroupRepoImplementation, val userRepo: UserRe
     }
 
     fun insertGroup(userId : Int, group : Group) : Int? {
+        val groupName =  group.name.replace("\\s".toRegex(), "")
+        if (group.name.isEmpty() || groupName.isEmpty()) return -1
         return groupRepo.insertGroup(userId,group)
     }
 

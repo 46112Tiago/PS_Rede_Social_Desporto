@@ -2,24 +2,19 @@ package com.ps.demo.comment
 
 import com.ps.data.Comment
 import com.ps.data.User
+import com.ps.demo.factory
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
-import org.jdbi.v3.core.kotlin.KotlinMapper
 import org.jdbi.v3.core.kotlin.mapTo
-import org.jdbi.v3.core.mapper.RowMapperFactory
 import org.jdbi.v3.core.result.RowView
 import org.springframework.stereotype.Repository
 import java.sql.Timestamp
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Repository
 class CommentRepoImplementation(val jdbi: Jdbi){
 
-    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
-        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
-    }
 
     fun deleteComment(postId: Int, commentId: Int) {
         jdbi.useHandle<RuntimeException> { handle: Handle ->

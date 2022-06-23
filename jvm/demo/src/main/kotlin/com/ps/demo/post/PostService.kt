@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service
 @Service
 class PostService(val postRepo : PostRepoImplementation) {
 
-    fun getPosts(userId: Int, page: Int) : List<Post?> {
+    fun getPosts(userId: Int, page: Int) : List<Post?>? {
+        if (page < 0) return null
         return postRepo.getPosts(userId,page)
     }
 
@@ -28,6 +29,9 @@ class PostService(val postRepo : PostRepoImplementation) {
     }
 
     fun insertPost(userId : Int,post : Post) : Int? {
+        val postTxt =  post.description.replace("\\s".toRegex(), "")
+        if (post.description.isEmpty() || post.description.length > 100 || postTxt.isEmpty())
+            return -1
         return postRepo.insertPost(userId, post)
     }
 

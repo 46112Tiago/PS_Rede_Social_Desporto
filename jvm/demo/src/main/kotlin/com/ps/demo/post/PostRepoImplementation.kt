@@ -3,6 +3,7 @@ package com.ps.demo.post
 
 import com.ps.data.Post
 import com.ps.data.User
+import com.ps.demo.factory
 import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.KotlinMapper
@@ -52,11 +53,6 @@ class PostRepoImplementation (var jdbi: Jdbi) {
 
         return toReturn
     }
-
-    fun factory(type: Class<*>, prefix: String): RowMapperFactory {
-        return RowMapperFactory.of(type, KotlinMapper(type, prefix))
-    }
-
 
      fun getPostById(postId : Int): Post? {
         val toReturn = jdbi.withHandle<Post?,RuntimeException> { handle : Handle ->

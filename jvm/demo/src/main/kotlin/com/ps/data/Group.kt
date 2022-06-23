@@ -5,7 +5,7 @@ import java.net.URL
 data class Group(
     val id : Int?,
     val picture : String?,
-    val name : String?,
+    val name : String = "",
     var owner : User?,
     var participants : MutableList<User>? = mutableListOf()
 )

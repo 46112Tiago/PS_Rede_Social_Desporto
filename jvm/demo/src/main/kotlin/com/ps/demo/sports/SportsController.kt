@@ -3,6 +3,7 @@ package com.ps.demo.sports
 import com.ps.data.Sports
 import com.ps.demo.user.UserService
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -18,9 +19,9 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
     }
 
     @GetMapping("/user/sports")
-    fun getUserSports(@RequestParam(required = false) email : String) : ResponseEntity<List<Sports>?> {
+    fun getUserSports(@RequestParam(required = false) email : String) : ResponseEntity<List<Sports>> {
         val user = userService.getUserById(email)
-        val sports : List<Sports>? = sportsService.getUserSports(user!!.userId!!)
+        val sports : List<Sports> = sportsService.getUserSports(user!!.userId!!)
         return ResponseEntity(sports, HttpStatus.OK)
     }
 
@@ -32,11 +33,12 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
         return ResponseEntity(HttpStatus.OK)
     }
 
-    @PostMapping("/user/{userId}/sports")
-    fun addUserSport(@PathVariable("userId") userId : Int,
-                             @RequestBody sports : List<Sports>)
-            : ResponseEntity<Any?> {
-        val sportsKey = sportsService.addUserSport(userId,sports)
+    @PostMapping("/user/sports")
+    fun addUserSport(@RequestParam(required = false) email : String,
+                     @RequestBody sports : List<Sports>)
+            : ResponseEntity<String> {
+        val userId = userService.getUserById(email)!!.userId
+        val sportsKey = sportsService.addUserSport(userId!!,sports)
         return ResponseEntity(sportsKey, HttpStatus.OK)
     }
 
@@ -48,10 +50,12 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
         return ResponseEntity(sportsKey, HttpStatus.OK)
     }
 
-    @PostMapping("/sports")
-    fun addSport(@RequestBody sports : List<Sports>)
-            : ResponseEntity<Any?> {
-        val sportsKey : MutableList<Int>? = sportsService.addSport(sports)
+    @PostMapping("/sport")
+    fun addSport(@RequestBody sport : Sports)
+            : ResponseEntity<Int?> {
+        val sportsKey : Int? = sportsService.addSport(sport)
+        if (sportsKey == -1)
+            return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(sportsKey, HttpStatus.OK)
     }
 
