@@ -4,6 +4,7 @@ import com.ps.data.Compound
 import org.postgresql.geometric.PGpoint
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -48,13 +49,14 @@ class CompoundController(val compoundService: CompoundService) {
 
     @PostMapping
     fun createCompound(@RequestBody compound : Compound)
-            : ResponseEntity<Any?> {
+            : ResponseEntity<Int?> {
         val compoundKey = compoundService.createCompound(compound)
+        if (compoundKey == -1) return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(compoundKey, HttpStatus.OK)
     }
 
     @PutMapping("/{compoundId}")
-    fun acceptField(@PathVariable compoundId : Int)
+    fun acceptCompound(@PathVariable compoundId : Int)
             : ResponseEntity<Any?> {
         compoundService.acceptCompound(compoundId)
         return ResponseEntity(HttpStatus.OK)

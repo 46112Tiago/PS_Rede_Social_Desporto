@@ -61,7 +61,7 @@ const FieldSuggestion = (props) => {
                 <div className="form-row">
                     <div className="form-group col">
                         <labe>Field Name</labe>
-                        <input name="fieldName" type="text" {...register('name')} className="form-control" placeholder='Field Name' required />
+                        <input maxLength={100} name="fieldName" type="text" {...register('name')} className="form-control" placeholder='Field Name' required />
                     </div>
                     <div className="form-group col">
                         <label>Location:</label>

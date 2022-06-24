@@ -15,7 +15,7 @@ import java.sql.Timestamp
 import java.time.LocalDateTime
 
 @SpringBootTest
-class MessageIntegrationTest {
+class MessageTest {
 
     @Autowired
     var privateMessageController: PrivateMessageController? = null

@@ -1,6 +1,7 @@
 package com.ps.demo.events
 
 import com.ps.data.Event
+import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,14 +23,14 @@ class EventsService(val eventRepo: EventRepositoryImplementation) {
         return eventRepo.getUserEventsCreated(userId, page)
     }
 
-    fun getEventDescription(eventId: Int) : Event? {
-        return eventRepo.getEventDescription(eventId)
+    fun getEventInfo(eventId: Int) : Event? {
+        return eventRepo.getEventInfo(eventId)
     }
 
     fun createEvent(event : Event) : Int {
-        val nameTxt =  event.name.replace("\\s".toRegex(), "")
-        val descriptionTxt =  event.description.replace("\\s".toRegex(), "")
-        val summaryTxt =  event.summary.replace("\\s".toRegex(), "")
+        val nameTxt = removeWhitespaces(event.name)
+        val descriptionTxt =  removeWhitespaces(event.description)
+        val summaryTxt =  removeWhitespaces(event.summary)
         if (event.description.isEmpty() || descriptionTxt.isEmpty() ||
             summaryTxt.isEmpty() || event.summary.isEmpty() || event.summary.length > 250 ||
             nameTxt.isEmpty() || event.name.isEmpty() || event.name.length > 100){

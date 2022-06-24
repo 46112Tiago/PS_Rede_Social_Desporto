@@ -3,6 +3,7 @@ package com.ps.demo.field
 import com.ps.data.Field
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -25,7 +26,6 @@ class FieldController(val fieldService: FieldService) {
         return ResponseEntity(field, HttpStatus.OK)
     }
 
-    @CrossOrigin("http://localhost:3000")
     @DeleteMapping("/field/{fieldId}")
     fun deleteField(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any?> {
         fieldService.deleteField(fieldId)
@@ -43,15 +43,16 @@ class FieldController(val fieldService: FieldService) {
 
     @PostMapping("/field")
     fun createField(@RequestBody() field: Field)
-            : ResponseEntity<Any?> {
+            : ResponseEntity<Int?> {
         val fieldKey : Int? = fieldService.createField(field)
         return ResponseEntity(fieldKey, HttpStatus.OK)
     }
 
     @PostMapping("/compound/{compoundId}/field")
     fun addFieldToCompound(@PathVariable compoundId : Int, @RequestBody field: Field)
-            : ResponseEntity<Any?> {
+            : ResponseEntity<Int?> {
         val fieldKey : Int? = fieldService.addFieldToCompound(compoundId,field)
+        if (fieldKey == -1) return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(fieldKey, HttpStatus.OK)
     }
 

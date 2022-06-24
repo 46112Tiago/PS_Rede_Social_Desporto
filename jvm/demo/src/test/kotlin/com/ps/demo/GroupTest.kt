@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus
 import kotlin.math.absoluteValue
 
 @SpringBootTest
-class GroupIntegrationTest {
+class GroupTest {
 
     @Autowired
     var groupController : GroupController? = null

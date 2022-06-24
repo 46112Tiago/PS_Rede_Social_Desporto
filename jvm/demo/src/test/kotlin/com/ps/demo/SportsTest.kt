@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.HttpStatus
 
 @SpringBootTest
-class SportsIntegrationTest {
+class SportsTest {
 
     @Autowired
     var sportsController: SportsController? = null
@@ -26,7 +26,7 @@ class SportsIntegrationTest {
 
     @Test
     fun addAndDeleteSportUser(){
-        val sport0 = Sports(1,null,null)
+        val sport0 = Sports(1,null,"Football")
         val sports : List<Sports> = listOf(sport0)
         val sportResponse = sportsController!!.addUserSport("jefersonNunes",sports)
         Assertions.assertEquals(HttpStatus.OK,sportResponse.statusCode)
@@ -35,13 +35,6 @@ class SportsIntegrationTest {
         Assertions.assertEquals(true,getUserSport.body!!.isEmpty())
     }
 
-    @Test
-    fun addNotExistingSport(){
-        val sport0 = Sports(100,null,null)
-        val sports : List<Sports> = listOf(sport0)
-        val sportResponse = sportsController!!.addUserSport("jefersonNunes",sports)
-        Assertions.assertEquals(HttpStatus.OK,sportResponse.statusCode)
-    }
 
     @Test
     fun getUserSports(){

@@ -34,7 +34,7 @@ class FieldRepoImplementation(val jdbi : Jdbi){
                     .executeAndReturnGeneratedKeys("id").mapTo<Field>().one()
         }
 
-        return toReturn.id
+        return compoundId.id
     }
 
     /*TODO add pictures*/

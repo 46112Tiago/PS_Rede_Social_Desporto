@@ -1,6 +1,7 @@
 package com.ps.demo.comment
 
 import com.ps.data.Comment
+import com.ps.demo.removeWhitespaces
 import com.ps.demo.user.UserRepoImplementation
 import org.springframework.stereotype.Service
 import java.util.*
@@ -9,7 +10,7 @@ import java.util.*
 class CommentService(val commentRepo : CommentRepoImplementation) {
 
     fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
-        val commentTxt =  comment.comment.replace("\\s".toRegex(), "")
+        val commentTxt =  removeWhitespaces(comment.comment)
         if (comment.comment.isEmpty() || comment.comment.length > 100 || commentTxt.isEmpty())
             return -1
         return commentRepo.createComment(userId,postId,comment)

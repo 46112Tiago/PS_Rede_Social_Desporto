@@ -2,6 +2,7 @@ package com.ps.demo.user
 
 import com.ps.data.Image
 import com.ps.data.User
+import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 import java.io.IOException
 import java.nio.file.Files
@@ -19,7 +20,7 @@ class UserService(val userRepo : UserRepoImplementation) {
         val user = userRepo.getUserById(email)
         val userAux = userRepo.getUserProfilePic(user!!.userId!!)
         if (userAux?.isPresent!!)
-            user!!.profilepic = userAux.get().image
+            user.profilepic = userAux.get().image
 
         return user
     }
@@ -33,7 +34,25 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun insertUser(user : User) : Int {
+        if (user.firstName == null || user.lastName == null || user.city == null ||
+            user.birthdate == null || user.email == null || user.gender == null)
+                return -1
+
+        val fName = removeWhitespaces(user.firstName)
+        val lName = removeWhitespaces(user.lastName)
+        val city = removeWhitespaces(user.city)
+        val emailTxt = removeWhitespaces(user.email)
+        val genderTxt = removeWhitespaces(user.gender)
+
+        if (fName.isEmpty() || user.firstName.isEmpty() ||
+            lName.isEmpty() || user.lastName.isEmpty() ||
+            city.isEmpty()  || user.city.isEmpty() ||
+            emailTxt.isEmpty() || user.email.isEmpty() ||
+            genderTxt.isEmpty()  || user.gender.isEmpty())
+                return -1
+
         val userId = userRepo.insertUser(user)
+
 
         if (user.profilepic != null) {
             userRepo.insertProfilePic(user.profilepic!!,userId)
@@ -73,6 +92,8 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun getUsersByName(userName : String,page : Int) : List<User?>? {
+        val name = removeWhitespaces(userName)
+        if (name.isEmpty()) return listOf()
         val splitName = userName.split(" ")
         val firstName = splitName[0]
         var lastName = ""
@@ -82,10 +103,6 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun isFriend(userId: Int, friendId: Int) : Optional<User>? {
         return userRepo.isFriend(userId,friendId)
-    }
-
-    fun postProfilePic(userId: Int, imagePath :  String) : Image {
-        return userRepo.postProfilePic(userId,imagePath);
     }
 
 }

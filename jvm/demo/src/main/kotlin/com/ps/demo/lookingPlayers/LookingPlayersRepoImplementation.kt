@@ -205,81 +205,21 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
 
      }
 
-
-    fun getLookingNavigate(lookingId: Int): List<LookingPlayers?> {
-
-        val toReturn = jdbi.withHandle<List<LookingPlayers?>,RuntimeException> { handle: Handle ->
-            handle.createQuery(
-                "Select LP.id as lp_id, startDateTime as lp_startDateTime, creatorId as u_creatorId, " +
-                        "firstName as u_firstName, lastName as u_lastName, " +
-                        "sportId as s_sportId, S.name as s_name, " +
-                        "compoundId as c_compoundId, location as c_location, dressingRoom as c_dressingRoom, " +
-                        "parking as c_parking, C.name as c_name " +
-                        "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
-                        "LP.id = LPP.lookingId " +
-                        "JOIN USER_PROFILE U ON U.userId = LP.creatorId " +
-                        "JOIN SPORTS S ON S.id = LP.sportId " +
-                        "JOIN COMPOUND C ON C.id = LP.compoundId " +
-                        "WHERE LP.id = ? "
-            )
-            .bind(0, lookingId)
-            .registerRowMapper(factory(LookingPlayers::class.java, "lp"))
-            .registerRowMapper(factory(User::class.java, "u"))
-            .registerRowMapper(factory(Sports::class.java, "s"))
-            .registerRowMapper(factory(Compound::class.java, "c"))
-            .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, LookingPlayers?>, rowView: RowView ->
-                val looking = map.computeIfAbsent(rowView.getColumn("lp_id", Int::class.javaObjectType)) {
-                    rowView.getRow(LookingPlayers::class.java)
-                }
-
-                if (rowView.getColumn("u_creatorId", Int::class.javaObjectType) != null) {
-                    looking!!.creator = rowView.getRow(User::class.java)
-                }
-
-                if (rowView.getColumn("s_sportId", Int::class.javaObjectType) != null) {
-                    looking!!.sports = rowView.getRow(Sports::class.java)
-                }
-
-                if (rowView.getColumn("c_compoundId", Int::class.javaObjectType) != null) {
-                    looking!!.compound = rowView.getRow(Compound::class.java)
-                }
-
-                map
-            }.values.toList()
-        }
-        return toReturn
-    }
-
-    fun getLookingAccept(creatorId: Int, page: Int): List<LookingPlayers> {
-        val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select startDateTime, participantId " +
-                    "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
-                    "LP.id = LPP.lookingId" +
-                    "WHERE creatorId = ? " +
-                    "LIMIT 2 OFFSET ? ")
-                .bind(0,creatorId)
-                .bind(1,page*2)
-                .mapTo<LookingPlayers>()
-                .list()
-        }
-
-        return toReturn
-    }
-
     fun getLookingNotParticipating(creatorId: Int, page: Int): List<LookingPlayers>? {
         val toReturn = jdbi.withHandle<List<LookingPlayers>?,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select id " +
-                    "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
-                    "LP.id = LPP.lookingId " +
+            handle.createQuery("Select Distinct id " +
+                    "from LOOKINGPLAYERS " +
+                    "where creatorId <> ? " +
                     "EXCEPT " +
-                    "Select id " +
+                    "Select Distinct id " +
                     "from LOOKINGPLAYERS LP JOIN LOOKINGPLAYERS_PARTICIPANTS LPP ON " +
                     "LP.id = LPP.lookingId " +
                     "WHERE creatorId = ? OR participantId = ? " +
                     "LIMIT 2 OFFSET ? ")
                 .bind(0,creatorId)
                 .bind(1,creatorId)
-                .bind(2,page*2)
+                .bind(2,creatorId)
+                .bind(3,page*2)
                 .mapTo<LookingPlayers>()
                 .list()
         }

@@ -2,6 +2,7 @@ package com.ps.demo.group
 
 import com.ps.data.Group
 import com.ps.data.User
+import com.ps.demo.removeWhitespaces
 import com.ps.demo.user.GroupRepoImplementation
 import com.ps.demo.user.UserRepoImplementation
 import org.springframework.stereotype.Service
@@ -30,7 +31,7 @@ class GroupService(val groupRepo : GroupRepoImplementation, val userRepo: UserRe
     }
 
     fun insertGroup(userId : Int, group : Group) : Int? {
-        val groupName =  group.name.replace("\\s".toRegex(), "")
+        val groupName =  removeWhitespaces(group.name)
         if (group.name.isEmpty() || groupName.isEmpty()) return -1
         return groupRepo.insertGroup(userId,group)
     }

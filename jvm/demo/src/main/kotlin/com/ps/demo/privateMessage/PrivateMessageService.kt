@@ -1,6 +1,7 @@
 package com.ps.demo.privateMessage
 
 import com.ps.data.PrivateMessage
+import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,7 +13,7 @@ class PrivateMessageService(val privateMessageRepo : PrivateMessageRepoImplement
     }
 
     fun sendMessage(userId : Int,receiverId : Int,privateMessage: PrivateMessage) : Int? {
-        val messageTxt =  privateMessage.message.replace("\\s".toRegex(), "")
+        val messageTxt =  removeWhitespaces(privateMessage.message)
         if (privateMessage.message.isEmpty() || privateMessage.message.length > 400 || messageTxt.isEmpty())
             return -1
         return privateMessageRepo.sendMessage(userId, receiverId, privateMessage)

@@ -15,7 +15,7 @@ import kotlin.math.absoluteValue
 
 
 @SpringBootTest
-class CommentIntegrationTest {
+class CommentTest {
 
     @Autowired
     var commentController: CommentController? = null

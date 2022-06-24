@@ -51,7 +51,7 @@ const CompoundSuggestion = (props) => {
                 <div  id='formConatinerCompound'>
                     <div >
                         <label>Name:</label>
-                        <input name="compoundName" type="text" {...register('name')} className="form-control" placeholder='Compound Name' required />
+                        <input maxLength={100} name="compoundName" type="text" {...register('name')} className="form-control" placeholder='Compound Name' required />
                     </div>
                     <div >
                         <label>Contact:</label>

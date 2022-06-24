@@ -1,6 +1,7 @@
 package com.ps.demo.field
 
 import com.ps.data.Field
+import com.ps.demo.removeWhitespaces
 import java.util.*
 import org.springframework.stereotype.Service
 
@@ -12,6 +13,8 @@ class FieldService(val fieldRepo: FieldRepoImplementation) {
     }
 
     fun addFieldToCompound(compoundId: Int, field: Field) : Int? {
+        val fieldName = removeWhitespaces(field.name)
+        if (field.name.isEmpty() || fieldName.isEmpty() || field.name.length > 100 ) return -1
         return fieldRepo.addFieldToCompound(compoundId,field)
     }
 

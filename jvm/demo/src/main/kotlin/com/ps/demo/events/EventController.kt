@@ -27,7 +27,7 @@ class EventController (val eventService: EventsService, val userService: UserSer
 
     @GetMapping("/event/{eventId}")
     fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<Event?> {
-        val description : Event? = eventService.getEventDescription(eventID)
+        val description : Event? = eventService.getEventInfo(eventID)
         return ResponseEntity(description,HttpStatus.OK)
     }
 

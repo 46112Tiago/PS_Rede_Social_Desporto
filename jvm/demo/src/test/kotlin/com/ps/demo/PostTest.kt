@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 import kotlin.math.absoluteValue
 
 @SpringBootTest
-class PostIntegrationTest {
+class PostTest {
 
         @Autowired
         var postController: PostController ? = null

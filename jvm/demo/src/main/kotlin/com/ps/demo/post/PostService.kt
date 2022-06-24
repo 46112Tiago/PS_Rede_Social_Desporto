@@ -2,6 +2,7 @@ package com.ps.demo.post
 
 import com.ps.data.Post
 import com.ps.data.User
+import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 
 @Service
@@ -29,7 +30,7 @@ class PostService(val postRepo : PostRepoImplementation) {
     }
 
     fun insertPost(userId : Int,post : Post) : Int? {
-        val postTxt =  post.description.replace("\\s".toRegex(), "")
+        val postTxt =  removeWhitespaces(post.description)
         if (post.description.isEmpty() || post.description.length > 100 || postTxt.isEmpty())
             return -1
         return postRepo.insertPost(userId, post)

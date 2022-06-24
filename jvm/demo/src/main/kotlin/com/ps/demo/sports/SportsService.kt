@@ -1,14 +1,15 @@
 package com.ps.demo.sports
 
 import com.ps.data.Sports
+import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 
 @Service
 class SportsService (val sportsRepo : SportsRepoImplementation) {
 
     fun addSport(sport : Sports) : Int? {
-        val sportName =  sport.name!!.replace("\\s".toRegex(), "")
-        if (sport.name == null || sport.name.isEmpty() || sportName.isEmpty()) return -1
+        val sportName =  removeWhitespaces(sport.name)
+        if (sport.name.isEmpty() || sportName.isEmpty()) return -1
         return sportsRepo.addSport(sport)
     }
 

@@ -214,23 +214,4 @@ class UserRepoImplementation (var jdbi: Jdbi) {
         }
         return toReturn
     }
-
-    fun postProfilePic(userId: Int,path : String) : Image{
-
-        lateinit var image : BufferedImage
-
-        try {
-            val input = javaClass.getResourceAsStream(path)
-            image = ImageIO.read(input)
-        } catch (e : Exception) {
-            e.printStackTrace()
-        }
-        val toReturn = jdbi.withHandle<Image,RuntimeException> { handle: Handle ->
-            handle.createUpdate("INSERT INTO IMAGE(image) " +
-                    "values(bytea(?))")
-                .bind(0,image)
-                .executeAndReturnGeneratedKeys("id").mapTo<Image>().one()
-        }
-        return toReturn
-    }
 }

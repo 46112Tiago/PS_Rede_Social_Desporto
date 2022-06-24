@@ -4,6 +4,7 @@ import com.ps.data.Image
 import com.ps.data.User
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -58,6 +59,7 @@ class UserController (val userService: UserService) {
     @PostMapping()
     fun createUser(@RequestBody user: User) : ResponseEntity<Any?> {
         val userKey : Int = userService.insertUser(user)
+        if (userKey == -1) return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(userKey, HttpStatus.OK)
     }
 
@@ -107,9 +109,4 @@ class UserController (val userService: UserService) {
         return ResponseEntity.ok().body(user)
     }
 
-    @PostMapping("/{userId}/picture")
-    fun postPicture(@PathVariable("userId") userId : Int) : ResponseEntity<Image?> {
-        val pic : Image? = userService.postProfilePic(userId,"C;Users;Diogo Fernandes;Pictures;man.png")
-        return ResponseEntity(pic,HttpStatus.OK)
-    }
 }

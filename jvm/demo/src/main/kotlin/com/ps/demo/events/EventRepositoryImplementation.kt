@@ -188,7 +188,7 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getEventDescription(eventId: Int): Event? {
+    fun getEventInfo(eventId: Int): Event? {
 
         val toReturn = jdbi.withHandle<Event,RuntimeException> { handle : Handle ->
             handle.createQuery("Select E.description as e_description, E.id as e_id, " +
@@ -218,8 +218,8 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
     fun createEvent(event : Event): Int {
         val toReturn : Event = jdbi.withHandle<Event,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active) " +
-                    "values(?,?,?,?,?,?,?,?,?)")
+                    "EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,limitParticipants,creatorId,active,summary) " +
+                    "values(?,?,?,?,?,?,?,?,?,?)")
                     .bind(0,event.compound!!.id)
                     .bind(1,event.startDate)
                     .bind(2,event.plannedfinishDate)
@@ -229,7 +229,8 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
                     .bind(6,event.limitParticipants)
                     .bind(7,event.creator!!.userId)
                     .bind(8,true)
-                    .executeAndReturnGeneratedKeys("id")
+                    .bind(9,event.summary)
+                .executeAndReturnGeneratedKeys("id")
                     .mapTo<Event>().one()
         }
         return toReturn.id!!

@@ -3,6 +3,7 @@ package com.ps.demo.compound
 import com.ps.data.Compound
 import com.ps.data.Material
 import com.ps.data.Schedule
+import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,6 +13,19 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
     private val AREA_MAP_COMPOUND = mapOf(18 to 1, 17 to 2, 16 to 4, 15 to 8,14 to 16,13 to 32, 12 to 64);
 
     fun createCompound(compound : Compound) : Int? {
+
+        if (compound.name == null || compound.description == null || compound.summary == null) return -1
+
+        val nameTxt = removeWhitespaces(compound.name)
+        val descriptionTxt = removeWhitespaces(compound.description)
+        val summaryTxt = removeWhitespaces(compound.summary)
+
+        if (nameTxt.isEmpty() || descriptionTxt.isEmpty() || summaryTxt.isEmpty() ||
+            compound.name.isEmpty() || compound.description.isEmpty() || compound.summary.isEmpty()
+            || compound.name.length > 100 || compound.summary.length > 100
+        )
+            return -1
+
         val compoundId = compoundRepo.createCompound(compound)
 
         if (compound.material!!.isNotEmpty() && compound.material[0].other != null) {
