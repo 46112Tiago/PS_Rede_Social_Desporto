@@ -72,6 +72,32 @@ const CompoundModal = (props) => {
       }
 
       return (
+        /*
+
+            Copyright (c) 2022 - Tiago Alves - https://codepen.io/denic/pen/ZEbKgPp
+
+            Permission is hereby granted, free of charge, to any person 
+            obtaining a copy of this software and associated documentation 
+            files (the "Software"), to deal in the Software without restriction,
+            including without limitation the rights to use, copy, modify, 
+            merge, publish, distribute, sublicense, and/or sell copies of 
+            the Software, and to permit persons to whom the Software is 
+            furnished to do so, subject to the following conditions:
+
+            The above copyright notice and this permission notice shall 
+            be included in all copies or substantial portions of the Software.
+
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+            OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+            NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+            HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+            WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+            DEALINGS IN THE SOFTWARE.
+
+        */
+
         <div className="modalCompoundBody">
             <div className="modalCompoundBody">
               <span id="spanCompound" className="spanbtn"><a id="activateModal_compound" href="#demo-modal" className='btnSug'></a></span>
@@ -80,12 +106,62 @@ const CompoundModal = (props) => {
             <div id="demo-modal" className="modal_compound">
                 <div className="modal__content_compound">                   
                     <a href="#" className="modal__close">&times;</a>
+                    {/*
+
+                    Copyright (c) 2022 - Tiago Alves - https://codepen.io/scottyzen/pen/ZEWYdZm
+
+                    Permission is hereby granted, free of charge, to any person 
+                    obtaining a copy of this software and associated documentation 
+                    files (the "Software"), to deal in the Software without restriction,
+                    including without limitation the rights to use, copy, modify, 
+                    merge, publish, distribute, sublicense, and/or sell copies of 
+                    the Software, and to permit persons to whom the Software is 
+                    furnished to do so, subject to the following conditions:
+
+                    The above copyright notice and this permission notice shall 
+                    be included in all copies or substantial portions of the Software.
+
+                    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+                    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+                    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+                    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+                    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+                    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+                    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+                    DEALINGS IN THE SOFTWARE.
+
+                    */}
                     <div className="radio" id="modalCheck" >
                       <input label="Information" type="radio" id="information" name="compoundModal" value="information" onChange={() => {setComponent(<CompoundSuggestion map={props.map} getCompound={getCompound}/>)}}/>
                       <input label="Fields" type="radio" id="fields" name="compoundModal" value="fields" onChange={() => {setComponent(<Field getFields={getFields}/>)}} />
                       <input label="Sports" type="radio" id="sports" name="compoundModal" value="sports" onChange={() => {setComponent(<Sport_Compound getSports={getSports}/>)}} />
                       <input label="Materials" type="radio" id="materials" name="compoundModal" value="materials" onChange={() => {setComponent(<Materials getMaterials={getMaterials}/>)}} />
                       <input label="Schedule" type="radio" id="schedule" name="compoundModal" value="schedule" onChange={() => {setComponent(<Schedule getSchedule={getSchedule}/>)}} />
+                      {/*
+
+                          Copyright (c) 2022 - Tiago Alves - https://codepen.io/yuhomyan/pen/LYNVVNO
+
+                          Permission is hereby granted, free of charge, to any person 
+                          obtaining a copy of this software and associated documentation 
+                          files (the "Software"), to deal in the Software without restriction,
+                          including without limitation the rights to use, copy, modify, 
+                          merge, publish, distribute, sublicense, and/or sell copies of 
+                          the Software, and to permit persons to whom the Software is 
+                          furnished to do so, subject to the following conditions:
+
+                          The above copyright notice and this permission notice shall 
+                          be included in all copies or substantial portions of the Software.
+
+                          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
+                          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES 
+                          OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
+                          NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
+                          HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+                          WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+                          OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+                          DEALINGS IN THE SOFTWARE.
+
+                      */}
                       <input label="Confirm" type="radio" id="confirm" name="compoundModal" value="confirm" onChange={() => {setComponent(<div id='submitCompound'><button onClick={submit} id='submitCompoundBtn'>CONFIRM</button></div>)}} />
                     </div>
                       {component}

@@ -21,6 +21,9 @@ const InputText = (props) => {
   const {getAccessTokenSilently,user} = useAuth0();
   // user state for form
   const [messageObj, setMessage] = useState(message);
+  
+  //Based on https://github.com/JayaramachandranAugustin/ChatApplication    2022-06-18
+  
   const [privateChats, setPrivateChats] = useState(new Map());     
   const [userData, setUserData] = useState({
         receiver: {email:''},

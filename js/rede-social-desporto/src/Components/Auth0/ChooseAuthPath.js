@@ -10,16 +10,17 @@ const ChooseAuthPath = () => {
         const {getAccessTokenSilently} = useAuth0();
         const navigate = useNavigate();
 
-          useEffect(() => {
-            (async () => {
-              try {
-                const token = await getAccessTokenSilently();
+          useEffect(async () => {
+                
+            const token = await getAccessTokenSilently();
 
-                if(isAuthenticated) {
+            if(isAuthenticated) {
 
-                  var options = {
+              const headers = new Headers()
+              headers.append('Authorization',`Bearer ${token}`)
+              var options = {
                     method: 'GET',
-                    headers: {authorization: `Bearer ${token}`}
+                    headers: {headers}
                   };
                   
                   const response = await fetch(`http://localhost:8080/user?email=${user.email}`,options);
@@ -27,13 +28,9 @@ const ChooseAuthPath = () => {
                     navigate("/signUp");
                   }
                 }
-
-              } catch (e) {
-                alert(e);
-              }
-            })();
-          }, [getAccessTokenSilently]);
-
+            
+          }, []);
+        
           return  (
             <></>
           );

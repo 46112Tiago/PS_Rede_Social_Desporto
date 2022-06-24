@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import { convertToFieldArray } from '../../../../Functions/Functions';
 import './Field.css'
@@ -9,7 +9,6 @@ const Field = (props) => {
   const { register, handleSubmit } = useForm();
   const myHeaders = new Headers()
   myHeaders.append('Content-Type','application/json')
-  let fieldIndex = 0
 
     function submit() {
         const fields = document.getElementsByClassName('field')
