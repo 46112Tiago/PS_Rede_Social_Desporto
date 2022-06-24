@@ -12,6 +12,7 @@ const Home = () => {
 
       return (
         <div>
+          {/*Based on https://www.w3schools.com/howto/howto_css_parallax.asp        01/04/2022     */}
             <div className="parallax" id='map'>
                 <div className='right_float'>
                   <h1>Map</h1>

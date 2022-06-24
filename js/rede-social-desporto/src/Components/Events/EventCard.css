@@ -55,8 +55,6 @@
     align-items: center;
 }
 
-
-
 .eventBtn {
     width: 100px;
     height: 25px;
@@ -74,23 +72,3 @@
 .eventBtn:hover {
     border: 3px solid rgb(116, 113, 225);
 }
-
-.eventBtn:after {
-    content: "";
-    background: #11e8ef;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s;
-  }
-  
-  .eventBtn:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
