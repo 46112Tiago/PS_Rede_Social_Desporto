@@ -40,9 +40,9 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
     var template: SimpMessagingTemplate? = null
 
     @GetMapping("/user/message/{receiverName}")
-    fun getAllMessages(@RequestParam(required = false) email : String,
+    fun getAllMessages(@RequestParam() email : String,
                        @PathVariable("receiverName") receiverName : String,
-                       @RequestParam(required = false) page : Int
+                       @RequestParam() page : Int
     ) : ResponseEntity<List<PrivateMessage?>?> {
         val  userId = userService.getUserById(email)!!.userId
         val receiverId = userService.getUserById(receiverName)!!.userId
@@ -51,7 +51,7 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
     }
 
     @PostMapping("/user/friend/{friendName}/message")
-    fun sendMessage(@RequestParam(required = false) email : String,
+    fun sendMessage(@RequestParam() email : String,
                     @PathVariable("friendName") friendName: String,
                     @RequestBody privateMessage: PrivateMessage) : ResponseEntity<PrivateMessage?> {
         val  userId = userService.getUserById(email)!!.userId
@@ -64,13 +64,13 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
     }
 
 
+    //https://github.com/JayaramachandranAugustin/ChatApplication    2022-06-18
+
     @MessageMapping("/private-message")
     fun recMessage(@Payload message: PrivateMessage): PrivateMessage? {
         val destination = message.receiver!!.email!!
         template!!.convertAndSendToUser(destination, "/private", message)
         return message
     }
-
-
 
 }

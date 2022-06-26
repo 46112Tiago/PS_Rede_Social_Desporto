@@ -21,7 +21,7 @@ class PostService(val postRepo : PostRepoImplementation) {
         return postRepo.getPostCreator(postId)
     }
 
-    fun getUserPosts(userId: Int) : List<Post?> {
+    fun getUserPosts(userId: Int, page: Int) : List<Post?> {
         return postRepo.getUserPosts(userId)
     }
 

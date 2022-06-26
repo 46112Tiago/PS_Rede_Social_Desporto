@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 class GroupMessageController(val groupMsgService : GroupMessageService, val userService: UserService) {
 
     @GetMapping("/user/group/{groupId}/message")
-    fun getAllMessages(@RequestParam(required = false) email : String,
+    fun getAllMessages(@RequestParam() email : String,
                        @PathVariable("groupId") groupId : Int
     ) : ResponseEntity<List<GroupMessage?>> {
         val  userId = userService.getUserById(email)!!.userId
@@ -21,7 +21,7 @@ class GroupMessageController(val groupMsgService : GroupMessageService, val user
     }
 
     @PostMapping("/user/group/{groupId}/message")
-    fun sendMessage(@RequestParam(required = false) email : String,
+    fun sendMessage(@RequestParam() email : String,
                     @PathVariable("groupId") groupId : Int,
                     @RequestBody groupMessage: GroupMessage) : ResponseEntity<Any?> {
         val  userId = userService.getUserById(email)!!.userId

@@ -11,10 +11,6 @@ class EventsService(val eventRepo: EventRepositoryImplementation) {
         return eventRepo.getActiveEvents(page)
     }
 
-    fun getUserEvents(userId : Int,eventId: Int) : List<Event>? {
-        return eventRepo.getUserEvents(userId,eventId)
-    }
-
     fun getUserEventsParticipating(userId : Int, page: Int) : List<Event?>? {
         return eventRepo.getUserEventsParticipating(userId, page)
     }

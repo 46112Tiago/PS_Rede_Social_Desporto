@@ -225,6 +225,50 @@ class LookingPlayersRepoImplementation (var jdbi: Jdbi)  {
         }
 
         return toReturn
+
+    }
+
+    fun getLookingById(lookingId: Int): LookingPlayers? {
+        val toReturn = jdbi.withHandle<LookingPlayers?,RuntimeException> { handle: Handle ->
+            handle.createQuery(
+                "Select LP.id as lp_id, startDateTime as lp_startDateTime," +
+                        "firstName as u_firstName, lastName as u_lastName, " +
+                        "sportId as s_sportId, S.name as s_name, " +
+                        "compoundId as c_compoundId, location as c_location, dressingRoom as c_dressingRoom, " +
+                        "parking as c_parking, C.name as c_name " +
+                        "from LOOKINGPLAYERS LP " +
+                        "JOIN SPORTS S ON S.id = LP.sportId " +
+                        "JOIN COMPOUND C ON C.id = LP.compoundId " +
+                        "JOIN USER_PROFILE U ON U.userId = LP.creatorId " +
+                        "WHERE LP.id = ? "
+            )
+                .bind(0, lookingId)
+                .registerRowMapper(factory(LookingPlayers::class.java, "lp"))
+                .registerRowMapper(factory(Sports::class.java, "s"))
+                .registerRowMapper(factory(Compound::class.java, "c"))
+                .registerRowMapper(factory(User::class.java, "u"))
+                .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, LookingPlayers?>, rowView: RowView ->
+                    val looking = map.computeIfAbsent(rowView.getColumn("lp_id", Int::class.javaObjectType)) {
+                        rowView.getRow(LookingPlayers::class.java)
+                    }
+
+                    if (rowView.getColumn("s_sportId", Int::class.javaObjectType) != null) {
+                        looking!!.sports = rowView.getRow(Sports::class.java)
+                    }
+
+                    if (rowView.getColumn("u_firstName", String::class.javaObjectType) != null) {
+                        looking!!.creator = rowView.getRow(User::class.java)
+                    }
+
+                    if (rowView.getColumn("c_compoundId", Int::class.javaObjectType) != null) {
+                        looking!!.compound = rowView.getRow(Compound::class.java)
+                    }
+
+                    map
+                }[lookingId]
+        }
+        return toReturn
+
     }
 
 }

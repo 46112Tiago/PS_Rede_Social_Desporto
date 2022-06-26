@@ -32,8 +32,12 @@ class LookingPlayersService(val lookingPlayersRepo: LookingPlayersRepoImplementa
     }
 
     fun getLookingNavigate(userId: Int, page: Int) : List<LookingPlayers?> {
-        val notParticipating = lookingPlayersRepo.getLookingNotParticipating(userId,page)
-        if (notParticipating!!.isEmpty()) return listOf()
+        val notParticipatingId = lookingPlayersRepo.getLookingNotParticipating(userId,page)
+        if (notParticipatingId!!.isEmpty()) return listOf()
+        val notParticipating = mutableListOf<LookingPlayers>()
+        for (notParticipatingObj in notParticipatingId){
+            notParticipating.add(lookingPlayersRepo.getLookingById(notParticipatingObj.id!!)!!)
+        }
 
         return notParticipating
     }

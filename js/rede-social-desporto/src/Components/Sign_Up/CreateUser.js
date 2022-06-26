@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from "react-hook-form";
 import './CreateUser.css'
 import {FaCity,FaBirthdayCake} from 'react-icons/fa'
@@ -19,6 +19,9 @@ const CreateUser = () => {
   const myHeaders = new Headers()
 
   React.useEffect(() => {
+
+    //https://stackoverflow.com/questions/23144647/file-api-hex-conversion-javascript           18/06/2022
+
     document.getElementById('file-upload').addEventListener('change', function() {
 
         var reader = new FileReader();
@@ -33,7 +36,6 @@ const CreateUser = () => {
                 a = aux.concat(a)
             } 
             u = null; // free memory
-            console.log(a); // work with this
             setImage(a)
       
         }

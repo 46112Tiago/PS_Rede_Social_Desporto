@@ -14,7 +14,7 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
 
     @GetMapping("/review")
     fun getAllReviews(@PathVariable("compoundId") compoundId : Int,
-                      @RequestParam(required = false) page : Int) : ResponseEntity<List<Review>?> {
+                      @RequestParam() page : Int) : ResponseEntity<List<Review>?> {
         val reviews : List<Review>? = reviewService.getAllReviews(compoundId,page) ?: return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(reviews, HttpStatus.OK)
     }
@@ -35,7 +35,7 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
 
     @PostMapping("/user/review")
     fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
-                             @RequestParam(required = false) email : String,
+                             @RequestParam() email : String,
                              @RequestBody review : Review)
             : ResponseEntity<Int?> {
 
@@ -48,9 +48,12 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
     @PostMapping("/field/{fieldId}/review")
     fun createFieldReview(@PathVariable("compoundId") compoundId : Int,
                           @PathVariable("fieldId") fieldId : Int,
-                             @RequestBody review : Review)
+                          @RequestBody review : Review,
+                          @RequestParam() email : String)
             : ResponseEntity<Int?> {
-        val reviewKey : Int? = reviewService.createFieldReview(compoundId,fieldId,review)
+        val userId = userService.getUserById(email)!!.userId
+        val reviewKey : Int? = reviewService.createFieldReview(compoundId,fieldId,review,userId!!)
+        if (reviewKey == -1) return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 

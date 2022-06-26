@@ -20,7 +20,7 @@ import javax.websocket.server.PathParam
 class EventController (val eventService: EventsService, val userService: UserService) {
 
     @GetMapping("/event")
-    fun getActiveEvents(@RequestParam(required = false) page : Int) : ResponseEntity<List<Event?>?> {
+    fun getActiveEvents(@RequestParam() page : Int) : ResponseEntity<List<Event?>?> {
         val event  = eventService.getActiveEvents(page)
         return ResponseEntity(event,HttpStatus.OK)
     }
@@ -32,8 +32,8 @@ class EventController (val eventService: EventsService, val userService: UserSer
     }
 
     @GetMapping("/user/event")
-    fun getEventsNotParticipating(@RequestParam(required = false) email : String,
-                                   @RequestParam(required = false) page : Int)
+    fun getEventsNotParticipating(@RequestParam() email : String,
+                                   @RequestParam() page : Int)
             : ResponseEntity<List<Event?>?> {
         val userId = userService.getUserById(email)!!.userId
         val event : List<Event?>? = eventService.getEventsNotParticipating(userId!!,page)
@@ -41,8 +41,8 @@ class EventController (val eventService: EventsService, val userService: UserSer
     }
 
     @GetMapping("/user/event/participating")
-    fun getUserEventsParticipating(@RequestParam(required = false) email : String,
-                                   @RequestParam(required = false) page : Int)
+    fun getUserEventsParticipating(@RequestParam() email : String,
+                                   @RequestParam() page : Int)
     : ResponseEntity<List<Event?>?> {
         val user = userService.getUserById(email)
         val event : List<Event?>? = eventService.getUserEventsParticipating(user!!.userId!!,page)
@@ -50,24 +50,17 @@ class EventController (val eventService: EventsService, val userService: UserSer
     }
 
     @GetMapping("/user/event/created")
-    fun getUserEventsCreated(@RequestParam(required = false) email : String,
-                             @RequestParam(required = false) page : Int)
+    fun getUserEventsCreated(@RequestParam() email : String,
+                             @RequestParam() page : Int)
             : ResponseEntity<List<Event?>?> {
         val user = userService.getUserById(email)
         val event : List<Event?>? = eventService.getUserEventsCreated(user!!.userId!!, page)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
-    @GetMapping("/user/{userId}/event/{eventId}")
-    fun getUserEvents(@PathVariable("userId") userId : Int,
-                      @PathVariable("eventId") eventID : Int ) : ResponseEntity<List<Event>?> {
-        val event : List<Event>? = eventService.getUserEvents(userId,eventID)
-        return ResponseEntity(event,HttpStatus.OK)
-    }
-
     @PostMapping("/event")
     fun createEvent(@RequestBody event : Event,
-                    @RequestParam(required = false) email : String) : ResponseEntity<Int> {
+                    @RequestParam() email : String) : ResponseEntity<Int> {
         val user = userService.getUserById(email)
         event.creator = user
         val eventKey : Int = eventService.createEvent(event)
@@ -77,7 +70,7 @@ class EventController (val eventService: EventsService, val userService: UserSer
 
     @PostMapping("/user/event/{eventId}")
     fun participateUserEvent(@PathVariable eventId : Int,
-                             @RequestParam(required = false) email : String) : ResponseEntity<Int> {
+                             @RequestParam() email : String) : ResponseEntity<Int> {
         val userId = userService.getUserById(email)!!.userId
         val eventKey : Int = eventService.participateEvent(userId!!,eventId)
         return ResponseEntity(eventKey,HttpStatus.OK)

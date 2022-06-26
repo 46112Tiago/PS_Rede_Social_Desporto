@@ -122,10 +122,13 @@ class PostRepoImplementation (var jdbi: Jdbi) {
     }
 
 
-     fun getUserPosts(userId : Int): List<Post?> {
+     fun getUserPosts(userId : Int, page: Int): List<Post?> {
         val posts = jdbi.withHandle<List<Post?>, RuntimeException> { handle: Handle ->
-            handle.createQuery("(Select * from post where userid = ?)")
+            handle.createQuery("Select description, postdate from post " +
+                    "where userid = ? " +
+                    "LIMIT 5 OFFSET ? ")
                 .bind(0, userId)
+                .bind(1, page*5)
                 .mapTo<Post>().list()
         }
         return posts

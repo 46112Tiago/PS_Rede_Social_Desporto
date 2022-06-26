@@ -35,21 +35,22 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
         return toReturn.id
     }
 
-     fun createFieldReview(compoundId: Int, fieldId: Int, review : Review): Int? {
+     fun createFieldReview(compoundId: Int, fieldId: Int, review : Review, userId: Int): Int? {
 
          val current = LocalDateTime.now()
          val timestamp : Timestamp = Timestamp.valueOf(current)
 
         val toReturn = jdbi.withHandle<Review,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
-                    "review(fieldId,compoundId,rating,description,reviewDate) " +
-                    "values(?,?,?,?,?)")
+                    "review(fieldId,compoundId,rating,description,reviewDate,userId) " +
+                    "values(?,?,?,?,?,?)")
                     .bind(0,fieldId)
                     .bind(1,compoundId)
                     .bind(2,review.rating)
                     .bind(3,review.description)
                     .bind(4,timestamp)
-                    .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
+                    .bind(4,userId)
+                .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
         }
 
         return toReturn.id

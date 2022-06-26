@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 class CommentController(val commentService: CommentService, val userService: UserService) {
 
     @PostMapping
-    fun createComment(@RequestParam(required = false) email : String,
+    fun createComment(@RequestParam() email : String,
                       @PathVariable("postId") postId : Int,
                       @RequestBody comment : Comment)
             : ResponseEntity<Int?> {
@@ -28,7 +28,7 @@ class CommentController(val commentService: CommentService, val userService: Use
 
     @GetMapping()
     fun getAllComments(@PathVariable("postId") postId : Int,
-                       @RequestParam(required = false) page : Int) : ResponseEntity<List<Comment?>?> {
+                       @RequestParam() page : Int) : ResponseEntity<List<Comment?>?> {
         val comments = commentService.getAllComments(postId,page)
         return ResponseEntity(comments, HttpStatus.OK)
     }

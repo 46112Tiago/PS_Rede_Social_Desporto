@@ -62,37 +62,6 @@ class EventRepositoryImplementation (val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getUserEvents(userId : Int,eventId: Int): List<Event>? {
-
-        val now = LocalDateTime.now()
-        val timestamp: Timestamp = Timestamp.valueOf(now)
-
-        val toReturn = jdbi.withHandle<List<Event>,RuntimeException> { handle : Handle ->
-            handle.createQuery("Select startDate, " +
-                    "plannedfinishDate, " +
-                    "event.name, limitParticipants, " +
-                    "sports.name as sport " +
-                    "from SPORTS sports JOIN EVENT event " +
-                    "ON sports.id  = event.sportID " +
-                    "JOIN EVENT_PARTICIPANT eventParticipant ON event.id = eventParticipant.eventId " +
-                    "JOIN USER_PROFILE userProfile on eventParticipant.participantId = userProfile.userid " +
-                    "WHERE active = ? AND startDate > ? AND userProfile.userid = ? AND event.id " +
-                    "ORDER BY E.startDate " +
-                    "LIMIT 2 OFFSET ? "
-
-            )
-                    .bind(0,true)
-                    .bind(1, timestamp)
-                    .bind(2,userId)
-                    .bind(3,eventId)
-                    .bind(4,1)
-                    .mapTo<Event>()
-                    .list()
-        }
-
-        return toReturn
-    }
-
     fun getUserEventsParticipating(userId : Int, page: Int): List<Event?>? {
 
         val now = LocalDateTime.now()
