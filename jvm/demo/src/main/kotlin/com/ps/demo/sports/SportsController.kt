@@ -19,14 +19,14 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
     }
 
     @GetMapping("/user/sports")
-    fun getUserSports(@RequestParam(required = false) email : String) : ResponseEntity<List<Sports>> {
+    fun getUserSports(@RequestParam() email : String) : ResponseEntity<List<Sports>> {
         val user = userService.getUserById(email)
         val sports : List<Sports> = sportsService.getUserSports(user!!.userId!!)
         return ResponseEntity(sports, HttpStatus.OK)
     }
 
     @DeleteMapping("/user/sports/{sportsId}")
-    fun deleteUserSport(@RequestParam(required = false) email : String,
+    fun deleteUserSport(@RequestParam() email : String,
                         @PathVariable("sportsId") sportsId : Int) : ResponseEntity<Any?> {
         val user = userService.getUserById(email)
         sportsService.deleteUserSport(user!!.userId!!,sportsId)
@@ -34,7 +34,7 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
     }
 
     @PostMapping("/user/sports")
-    fun addUserSport(@RequestParam(required = false) email : String,
+    fun addUserSport(@RequestParam() email : String,
                      @RequestBody sports : List<Sports>)
             : ResponseEntity<String> {
         val userId = userService.getUserById(email)!!.userId
@@ -43,7 +43,7 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
     }
 
     @GetMapping("/user/not/sports")
-    fun userNotSport(@RequestParam(required = false) email : String)
+    fun notUserSport(@RequestParam() email : String)
             : ResponseEntity<Any?> {
         val userId = userService.getUserById(email)!!.userId
         val sportsKey = sportsService.notUserSport(userId!!)

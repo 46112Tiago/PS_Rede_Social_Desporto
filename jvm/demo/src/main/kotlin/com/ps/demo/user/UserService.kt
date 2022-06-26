@@ -80,10 +80,6 @@ class UserService(val userRepo : UserRepoImplementation) {
         return userRepo.getFriendsRequest(userId,page)
     }
 
-    fun getAllFriends(userId: Int) : List<User?> {
-        return userRepo.getAllFriends(userId)
-    }
-
     fun addFriend(userId: Int, friendId: Int) : Int {
         if(userRepo.isFriend(userId,friendId)!!.isEmpty) {
             return userRepo.addFriend(userId,friendId)

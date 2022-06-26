@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const AcceptBtn = (props) => {
 
-    const {getAccessTokenSilently} = useAuth0()
+    const {getAccessTokenSilently,user} = useAuth0()
     const myHeaders = new Headers()
 
     const makeRequest = async () => {
@@ -16,7 +16,8 @@ const AcceptBtn = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const response = await fetch(`http://localhost:8080/lookingPlayers/${props.lookingId}/participant/${props.userId}`, options);
+            const email = user.email.split("@")[0]
+            const response = await fetch(`http://localhost:8080/lookingPlayers/${props.lookingId}/confirm?email=${email}`, options);
         } catch (error) {
             console.log('Error: ' + error);
         }

@@ -113,7 +113,7 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getCompoundLooking(sportId: Int): List<Compound?>? {
+    fun getLocationsBySport(sportId: Int): List<Compound?>? {
         val toReturn = jdbi.withHandle<List<Compound?>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select location, id, name from COMPOUND JOIN SPORT_COMPOUND ON id = compoundId " +
                     "where accepted = ? AND sportId = ?")

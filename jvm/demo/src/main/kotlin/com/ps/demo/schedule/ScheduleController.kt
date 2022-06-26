@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*
 class ScheduleController(val scheduleService: ScheduleService) {
 
     @GetMapping("/compound/{compoundId}")
-    fun getCompoundMaterials(@PathVariable("compoundId") compoundId: Int): ResponseEntity<List<Schedule>?> {
-        val schedules = scheduleService.getCompoundMaterials(compoundId)
+    fun getCompoundSchedule(@PathVariable("compoundId") compoundId: Int): ResponseEntity<List<Schedule>?> {
+        val schedules = scheduleService.getCompoundSchedule(compoundId)
         return ResponseEntity(schedules, HttpStatus.OK)
     }
 }

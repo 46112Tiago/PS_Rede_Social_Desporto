@@ -57,7 +57,7 @@ class SportsTest {
 
 
         val sports : List<Sports> = listOf(sport2,sport10,sport1,sport8,sport9,sport7,sport11,sport3)
-        val sportResponse = sportsController!!.userNotSport("joanaG")
+        val sportResponse = sportsController!!.notUserSport("joanaG")
         Assertions.assertEquals(sports,sportResponse.body)
     }
 

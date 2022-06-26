@@ -13,7 +13,7 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService,
 
     @PostMapping("/lookingPlayers")
     fun createRequest(@RequestBody lookingPlayers: LookingPlayers,
-                      @RequestParam(required = false) email : String) : ResponseEntity<Int> {
+                      @RequestParam() email : String) : ResponseEntity<Int> {
         val creator = userService.getUserById(email)
         lookingPlayers.creator = creator
         val lookingId = lookingPlayersService.createRequest(lookingPlayers)
@@ -22,15 +22,15 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService,
 
     @PostMapping("/lookingPlayers/{lookingId}/participant")
     fun participateRequest(@PathVariable("lookingId") lookingId: Int,
-                           @RequestParam(required = false) email : String) : ResponseEntity<Int> {
+                           @RequestParam() email : String) : ResponseEntity<Int> {
         val participantId = userService.getUserById(email)!!.userId
         val lookingId = lookingPlayersService.participateRequest(lookingId, participantId!!)
         return ResponseEntity(lookingId,HttpStatus.OK)
     }
 
-    @PutMapping("/lookingPlayers/{lookingId}/participant")
+    @PutMapping("/lookingPlayers/{lookingId}/confirm")
     fun confirmState(@PathVariable("lookingId") lookingId: Int,
-                     @RequestParam(required = false) email : String) : ResponseEntity<Any> {
+                     @RequestParam() email : String) : ResponseEntity<Any> {
         val participantId = userService.getUserById(email)!!.userId
         lookingPlayersService.confirmState(lookingId, participantId!!)
         return ResponseEntity(lookingId,HttpStatus.OK)
@@ -43,33 +43,33 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService,
     }
 
     @GetMapping("/lookingPlayers")
-    fun getLookingPlayersByState(@RequestParam(required = false) email : String,
-                                 @RequestParam(required = false) state : String,
-                                 @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+    fun getLookingPlayersByState(@RequestParam() email : String,
+                                 @RequestParam() state : String,
+                                 @RequestParam() page : Int): ResponseEntity<List<LookingPlayers?>> {
         val userId = userService.getUserById(email)!!.userId
         val lookingPlayersList = lookingPlayersService.getLookingPlayersByState(userId!!,state,page)
         return ResponseEntity(lookingPlayersList,HttpStatus.OK)
     }
 
     @GetMapping("/lookingPlayers/accept")
-    fun getLookingPlayersAccept(@RequestParam(required = false) email : String,
-                                 @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+    fun getLookingPlayersAccept(@RequestParam() email : String,
+                                 @RequestParam() page : Int): ResponseEntity<List<LookingPlayers?>> {
         val userId = userService.getUserById(email)!!.userId
         val lookingPlayersList = lookingPlayersService.getLookingPlayersAccept(userId!!,page)
         return ResponseEntity(lookingPlayersList,HttpStatus.OK)
     }
 
     @GetMapping("/lookingPlayers/creator")
-    fun getLookingCreated(@RequestParam(required = false) email : String,
-                          @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+    fun getLookingCreated(@RequestParam() email : String,
+                          @RequestParam() page : Int): ResponseEntity<List<LookingPlayers?>> {
         val creatorId = userService.getUserById(email)!!.userId
         val lookingPlayers = lookingPlayersService.getLookingCreated(creatorId!!,page)
         return ResponseEntity(lookingPlayers,HttpStatus.OK)
     }
 
     @GetMapping("/lookingPlayers/navigate")
-    fun getLookingNavigate(@RequestParam(required = false) email : String,
-                          @RequestParam(required = false) page : Int): ResponseEntity<List<LookingPlayers?>> {
+    fun getLookingNavigate(@RequestParam() email : String,
+                          @RequestParam() page : Int): ResponseEntity<List<LookingPlayers?>> {
         val userId = userService.getUserById(email)!!.userId
         val lookingPlayers = lookingPlayersService.getLookingNavigate(userId!!,page)
         return ResponseEntity(lookingPlayers,HttpStatus.OK)

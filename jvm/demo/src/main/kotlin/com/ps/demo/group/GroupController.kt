@@ -29,7 +29,7 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @GetMapping("user/group/{groupId}/participant")
     fun getGroupNotParticipants(@PathVariable("groupId") groupId: Int,
-                                @RequestParam(required = false) email : String) : ResponseEntity<List<User?>> {
+                                @RequestParam() email : String) : ResponseEntity<List<User?>> {
         val userId = userService.getUserById(email)!!.userId
         val users : List<User?> = groupService.getGroupNotParticipants(groupId,userId!!)
         return ResponseEntity(users,HttpStatus.OK)
@@ -37,7 +37,7 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @DeleteMapping("user/group/{groupId}")
     fun deleteGroup(@PathVariable("groupId") groupId : Int,
-                    @RequestParam(required = false) email : String ) : ResponseEntity<Any?> {
+                    @RequestParam() email : String ) : ResponseEntity<Any?> {
         val userId = userService.getUserById(email)!!.userId
         groupService.deleteGroup(groupId,userId!!)
         return ResponseEntity(HttpStatus.OK)
@@ -45,7 +45,7 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @PostMapping("/user/group")
     fun createGroup(
-            @RequestParam(required = false) email : String,
+            @RequestParam() email : String,
             @RequestBody group: Group
     ) : ResponseEntity<Int?> {
         val userId = userService.getUserById(email)!!.userId
@@ -70,14 +70,14 @@ class GroupController (val groupService: GroupService, val userService: UserServ
     }
 
     @GetMapping("/user/group")
-    fun getUserGroups(@RequestParam(required = false) email : String) : ResponseEntity<Any?> {
+    fun getUserGroups(@RequestParam() email : String) : ResponseEntity<Any?> {
         val  userId = userService.getUserById(email)!!.userId
         val groups = groupService.getUserGroups(userId!!)
         return ResponseEntity(groups,HttpStatus.OK)
     }
 
     @DeleteMapping("/group/{groupId}/user")
-    fun exitGroup(@RequestParam(required = false) email : String,
+    fun exitGroup(@RequestParam() email : String,
                   @PathVariable("groupId") groupId: Int) : ResponseEntity<Any?> {
         val userId = userService.getUserById(email)!!.userId
         groupService.exitGroup(groupId,userId!!)

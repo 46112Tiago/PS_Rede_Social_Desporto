@@ -60,9 +60,9 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return compoundRepo.deleteCompound(compoundId)
     }
 
-    fun getLookingLocations(sportId: Int,zoom: Int?,centerLat: Double?,centerLng: Double?) : List<Compound?>? {
+    fun getLocationsBySport(sportId: Int,zoom: Int?,centerLat: Double?,centerLng: Double?) : List<Compound?>? {
         if (zoom == null || centerLat == null || centerLng == null) return listOf()
-        var locs = compoundRepo.getCompoundLooking(sportId)!!.filter {
+        var locs = compoundRepo.getLocationsBySport(sportId)!!.filter {
                 it -> checkArea(zoom!!,centerLat!!,centerLng!!,it!!.location!!.x,it.location!!.y,AREA_MAP_COMPOUND)
         }
         return locs;
