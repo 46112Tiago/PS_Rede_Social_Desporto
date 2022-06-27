@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.*
 class GroupController (val groupService: GroupService, val userService: UserService) {
 
     @GetMapping("/group/{groupId}")
-    fun getGroupById(@PathVariable("groupId") groupId : Int) : ResponseEntity<Group?> {
-        val group : Group? = groupService.getGroupById(groupId) ?: return ResponseEntity(NOT_FOUND)
+    fun getGroupById(@PathVariable("groupId") groupId : Int) : ResponseEntity<Any> {
+        val group : Group = groupService.getGroupById(groupId) ?: return ResponseEntity("Resource not found",NOT_FOUND)
         return ResponseEntity(group, HttpStatus.OK)
     }
 
@@ -37,40 +37,40 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @DeleteMapping("user/group/{groupId}")
     fun deleteGroup(@PathVariable("groupId") groupId : Int,
-                    @RequestParam() email : String ) : ResponseEntity<Any?> {
+                    @RequestParam() email : String ) : ResponseEntity<String> {
         val userId = userService.getUserById(email)!!.userId
         groupService.deleteGroup(groupId,userId!!)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Group $groupId deleted",HttpStatus.OK)
     }
 
     @PostMapping("/user/group")
     fun createGroup(
             @RequestParam() email : String,
             @RequestBody group: Group
-    ) : ResponseEntity<Int?> {
+    ) : ResponseEntity<Any> {
         val userId = userService.getUserById(email)!!.userId
         val groupId : Int? = groupService.insertGroup(userId!!,group)
-        if (groupId == -1) return ResponseEntity(BAD_REQUEST)
+        if (groupId == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(groupId, HttpStatus.OK)
     }
 
     @DeleteMapping("/group/{groupid}/participant/{participantName}")
     fun deleteGroupParticipant(@PathVariable("groupid") groupId : Int,
-                               @PathVariable("participantName") participantName : String) : ResponseEntity<Any?> {
+                               @PathVariable("participantName") participantName : String) : ResponseEntity<Any> {
         val userId = userService.getUserById(participantName)!!.userId
         val groups = groupService.deleteGroupParticipant(groupId,userId!!)
-        return ResponseEntity(groups,HttpStatus.OK)
+        return ResponseEntity("Participant $participantName removed from $groupId",HttpStatus.OK)
     }
 
     @PostMapping("/group/{groupid}/participant")
     fun insertGroupParticipant(@PathVariable("groupid") groupId: Int,
-                               @RequestBody participants : List<String>): ResponseEntity<Any?> {
+                               @RequestBody participants : List<String>): ResponseEntity<Any> {
         val participant = groupService.insertGroupParticipant(groupId,participants)
-        return ResponseEntity(participant,HttpStatus.OK)
+        return ResponseEntity("Participants inserted in $groupId",HttpStatus.OK)
     }
 
     @GetMapping("/user/group")
-    fun getUserGroups(@RequestParam() email : String) : ResponseEntity<Any?> {
+    fun getUserGroups(@RequestParam() email : String) : ResponseEntity<List<Group?>> {
         val  userId = userService.getUserById(email)!!.userId
         val groups = groupService.getUserGroups(userId!!)
         return ResponseEntity(groups,HttpStatus.OK)
@@ -78,9 +78,9 @@ class GroupController (val groupService: GroupService, val userService: UserServ
 
     @DeleteMapping("/group/{groupId}/user")
     fun exitGroup(@RequestParam() email : String,
-                  @PathVariable("groupId") groupId: Int) : ResponseEntity<Any?> {
+                  @PathVariable("groupId") groupId: Int) : ResponseEntity<Any> {
         val userId = userService.getUserById(email)!!.userId
         groupService.exitGroup(groupId,userId!!)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Exit from group $groupId",HttpStatus.OK)
     }
 }

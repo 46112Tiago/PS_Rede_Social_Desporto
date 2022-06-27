@@ -27,10 +27,10 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
 
     @DeleteMapping("/user/sports/{sportsId}")
     fun deleteUserSport(@RequestParam() email : String,
-                        @PathVariable("sportsId") sportsId : Int) : ResponseEntity<Any?> {
+                        @PathVariable("sportsId") sportsId : Int) : ResponseEntity<Any> {
         val user = userService.getUserById(email)
         sportsService.deleteUserSport(user!!.userId!!,sportsId)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Sport with id $sportsId deleted",HttpStatus.OK)
     }
 
     @PostMapping("/user/sports")
@@ -44,7 +44,7 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
 
     @GetMapping("/user/not/sports")
     fun notUserSport(@RequestParam() email : String)
-            : ResponseEntity<Any?> {
+            : ResponseEntity<Any> {
         val userId = userService.getUserById(email)!!.userId
         val sportsKey = sportsService.notUserSport(userId!!)
         return ResponseEntity(sportsKey, HttpStatus.OK)
@@ -52,10 +52,10 @@ class SportsController(val sportsService: SportsService, val userService: UserSe
 
     @PostMapping("/sport")
     fun addSport(@RequestBody sport : Sports)
-            : ResponseEntity<Int?> {
+            : ResponseEntity<Any> {
         val sportsKey : Int? = sportsService.addSport(sport)
         if (sportsKey == -1)
-            return ResponseEntity(BAD_REQUEST)
+            return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(sportsKey, HttpStatus.OK)
     }
 

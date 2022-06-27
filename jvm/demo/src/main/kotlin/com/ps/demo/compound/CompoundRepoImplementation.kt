@@ -8,6 +8,7 @@ import org.jdbi.v3.core.Handle
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.core.kotlin.mapTo
 import org.springframework.stereotype.Repository
+import java.util.*
 
 @Repository
 class CompoundRepoImplementation(val jdbi: Jdbi){
@@ -126,15 +127,15 @@ class CompoundRepoImplementation(val jdbi: Jdbi){
         return toReturn
     }
 
-    fun getCompoundInformation(compoundId : Int): Compound? {
-        val toReturn = jdbi.withHandle<Compound?,RuntimeException> { handle : Handle ->
+    fun getCompoundInformation(compoundId : Int): Optional<Compound> {
+        val toReturn = jdbi.withHandle<Optional<Compound>,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, description, location, dressingRoom, summary, parking " +
                     "from COMPOUND " +
                     "WHERE id = ? AND accepted = ?")
                     .bind(0,compoundId)
                     .bind(1,true)
                     .mapTo<Compound>()
-                    .one()
+                    .findFirst()
         }
 
         return toReturn

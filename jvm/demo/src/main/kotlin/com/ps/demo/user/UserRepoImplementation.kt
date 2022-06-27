@@ -41,15 +41,15 @@ class UserRepoImplementation (var jdbi: Jdbi) {
     }
 
     fun getUserById(email : String): User? {
-        val toReturn = jdbi.withHandle<User?,RuntimeException> { handle : Handle ->
+        val toReturn = jdbi.withHandle<Optional<User?>?,RuntimeException> { handle : Handle ->
             handle.createQuery(" Select email, userId, firstName, lastName, city, birthdate, available, profilepic " +
                     "from USER_PROFILE where email = ? ")
                     .bind(0, "$email@gmail.com")
-                    .mapTo<User>().one()
+                    .mapTo<User>().findFirst()
 
         }
-
-        return toReturn
+        if (toReturn.isPresent) return toReturn.get()
+        return null
     }
 
     fun getUserProfilePic(userId : Int): Optional<Image>? {

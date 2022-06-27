@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service
 class FieldService(val fieldRepo: FieldRepoImplementation) {
 
     fun createField(field: Field) : Int? {
+        val fieldName = removeWhitespaces(field.name)
+        if (field.name.isEmpty() || fieldName.isEmpty() || field.name.length > 100 ) return -1
         return fieldRepo.createField(field)
     }
 

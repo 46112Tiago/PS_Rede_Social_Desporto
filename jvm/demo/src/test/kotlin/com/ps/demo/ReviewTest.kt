@@ -27,7 +27,7 @@ class ReviewTest {
         val timestamp : Timestamp = Timestamp.valueOf(current)
         val review = Review(null,null,null,null,4.9f,"New review for test.",timestamp)
         val reviewResponse = reviewController!!.createCompoundReview(14,"projeto.seminario2022",review)
-        val reviewId = reviewResponse.body!!.absoluteValue
+        val reviewId = reviewResponse.body!! as Int
         Assertions.assertNotNull(reviewId)
         reviewController!!.deleteReview(reviewId)
         val getReview = reviewController!!.getReviewById(14,reviewId)

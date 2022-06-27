@@ -26,8 +26,8 @@ class EventController (val eventService: EventsService, val userService: UserSer
     }
 
     @GetMapping("/event/{eventId}")
-    fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<Event?> {
-        val description : Event? = eventService.getEventInfo(eventID)
+    fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<Any> {
+        val description : Event = eventService.getEventInfo(eventID) ?: return ResponseEntity("Resource not found", HttpStatus.NOT_FOUND)
         return ResponseEntity(description,HttpStatus.OK)
     }
 
@@ -60,26 +60,26 @@ class EventController (val eventService: EventsService, val userService: UserSer
 
     @PostMapping("/event")
     fun createEvent(@RequestBody event : Event,
-                    @RequestParam() email : String) : ResponseEntity<Int> {
+                    @RequestParam() email : String) : ResponseEntity<Any> {
         val user = userService.getUserById(email)
         event.creator = user
         val eventKey : Int = eventService.createEvent(event)
-        if (eventKey == -1) return ResponseEntity(BAD_REQUEST)
+        if (eventKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(eventKey,HttpStatus.OK)
     }
 
     @PostMapping("/user/event/{eventId}")
     fun participateUserEvent(@PathVariable eventId : Int,
-                             @RequestParam() email : String) : ResponseEntity<Int> {
+                             @RequestParam() email : String) : ResponseEntity<String> {
         val userId = userService.getUserById(email)!!.userId
         val eventKey : Int = eventService.participateEvent(userId!!,eventId)
-        return ResponseEntity(eventKey,HttpStatus.OK)
+        return ResponseEntity("Participating in event $eventId",HttpStatus.OK)
     }
 
     @PutMapping("/event/{eventId}")
-    fun cancelEvent(@PathVariable("eventId") eventId: Int) : ResponseEntity<Any?> {
+    fun cancelEvent(@PathVariable("eventId") eventId: Int) : ResponseEntity<Any> {
         eventService.cancelEvent(eventId)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Event $eventId canceled",HttpStatus.OK)
     }
 
 

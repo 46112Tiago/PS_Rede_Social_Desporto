@@ -27,8 +27,9 @@ class CommentTest {
         val comment = Comment(null,null,"New comment integration test",timestamp)
         val commentResponse = commentController!!.createComment("projeto.seminario2022",1,comment)
         Assertions.assertNotNull(commentResponse.body)
-        commentController!!.deleteComment(1,commentResponse.body!!.absoluteValue)
-        val getComment = commentController!!.getCommentById(1,commentResponse.body!!.absoluteValue)
+        val commentId = commentResponse.body as Int
+        commentController!!.deleteComment(1,commentId)
+        val getComment = commentController!!.getCommentById(1,commentId)
         Assertions.assertEquals(HttpStatus.NOT_FOUND,getComment.statusCode)
     }
 

@@ -24,8 +24,8 @@ class PostController (val postService: PostService, val userService: UserService
     }
 
     @GetMapping("/post/{postId}")
-    fun getPostById(@PathVariable("postId") postId : Int) : ResponseEntity<Post?> {
-        val post : Post = postService.getPostById(postId) ?: return ResponseEntity(NOT_FOUND)
+    fun getPostById(@PathVariable("postId") postId : Int) : ResponseEntity<Any> {
+        val post : Post = postService.getPostById(postId) ?: return ResponseEntity("Resource not found",NOT_FOUND)
         return ResponseEntity(post, HttpStatus.OK)
     }
 
@@ -38,18 +38,18 @@ class PostController (val postService: PostService, val userService: UserService
     }
 
     @DeleteMapping("/post/{postId}")
-    fun deletePost(@PathVariable("postId") postId : Int) : ResponseEntity<Any?> {
+    fun deletePost(@PathVariable("postId") postId : Int) : ResponseEntity<Any> {
         postService.deletePost(postId)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Post $postId deleted",HttpStatus.OK)
     }
 
     @PostMapping("/user/post")
     fun createPost(@RequestParam() email : String,
                     @RequestBody post: Post
-                   ) : ResponseEntity<Int?> {
+                   ) : ResponseEntity<Any> {
         val userId = userService.getUserById(email)!!.userId
         val postKey : Int? = postService.insertPost(userId!!,post)
-        if (postKey == -1) return ResponseEntity(BAD_REQUEST)
+        if (postKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(postKey, HttpStatus.OK)
     }
 

@@ -25,7 +25,7 @@ class PostTest {
             val timestamp : Timestamp = Timestamp.valueOf(current)
             val post = Post(null,"New post integration test",timestamp,null,10)
             val postResponse = postController!!.createPost("projeto.seminario2022",post)
-            val postId = postResponse.body!!.absoluteValue
+            val postId = postResponse.body!! as Int
             Assertions.assertNotNull(postId)
             postController!!.deletePost(postId)
             val getPost = postController!!.getPostById(postId)

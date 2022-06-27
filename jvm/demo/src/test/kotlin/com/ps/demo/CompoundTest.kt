@@ -31,11 +31,11 @@ class CompoundTest {
             listOf(Material(1,null,null)),
             listOf(Schedule(null,"Sun", LocalTime.now(),LocalTime.now())),
             listOf(Field(null,null,"Field",null,false)),'M',true,null)
-        val compoundResponse = compoundControl!!.createCompound(compound)
-        compoundControl!!.acceptCompound(compoundResponse.body!!)
+        val compoundResponse = compoundControl!!.createCompound(compound).body as Int
+        compoundControl!!.acceptCompound(compoundResponse)
         val getCompoundsAfterInsert = compoundControl!!.getLocations(14,0.0,0.0)
         Assertions.assertEquals(getCompoundsBeforeInsert.body!!.size+1,getCompoundsAfterInsert.body!!.size)
-        compoundControl!!.deleteCompound(compoundResponse.body!!)
+        compoundControl!!.deleteCompound(compoundResponse)
         val getCompoundsAfterDelete = compoundControl!!.getLocations(14,0.0,0.0)
         Assertions.assertEquals(getCompoundsBeforeInsert.body!!,getCompoundsAfterDelete.body!!)
     }

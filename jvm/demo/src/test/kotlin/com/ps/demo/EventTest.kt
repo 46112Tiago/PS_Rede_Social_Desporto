@@ -157,8 +157,8 @@ class EventTest {
         }
 
         Assertions.assertEquals(beforeCreateEvents.size+1,afterCreateEvents.size)
-
-        eventController!!.cancelEvent(eventResponse.body!!)
+        val eventId = eventResponse.body as Int
+        eventController!!.cancelEvent(eventId)
 
         for (i in 0..7){
             val auxActiveEvent = eventController!!.getActiveEvents(i)
@@ -194,16 +194,15 @@ class EventTest {
         val compound = Compound(7,null,null,null,null,null,null,null,null,null,null,null,null,false)
         val event = Event(null,null,compound,start,finish,"Name.", Sports(7,null,""),
             "Test","Summary",null,null,10)
-        val eventResponse = eventController!!.createEvent(event,"joanaG")
+        val eventResponse = eventController!!.createEvent(event,"joanaG").body as Int
 
-
-        eventController!!.participateUserEvent(eventResponse.body!!,"projeto.seminario2022")
+        eventController!!.participateUserEvent(eventResponse,"projeto.seminario2022")
 
         val userParticipatingEventAfterParticipate = eventController!!.getUserEventsParticipating("projeto.seminario2022",0)
 
         Assertions.assertEquals(userParticipatingEventBefore.body!!.size+1,userParticipatingEventAfterParticipate.body!!.size)
 
-        eventController!!.cancelEvent(eventResponse.body!!)
+        eventController!!.cancelEvent(eventResponse)
 
         val userParticipatingEventAfterCancel = eventController!!.getUserEventsParticipating("projeto.seminario2022",0)
 

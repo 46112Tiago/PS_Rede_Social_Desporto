@@ -22,7 +22,7 @@ class PostService(val postRepo : PostRepoImplementation) {
     }
 
     fun getUserPosts(userId: Int, page: Int) : List<Post?> {
-        return postRepo.getUserPosts(userId)
+        return postRepo.getUserPosts(userId,page)
     }
 
     fun deletePost(postId : Int) {

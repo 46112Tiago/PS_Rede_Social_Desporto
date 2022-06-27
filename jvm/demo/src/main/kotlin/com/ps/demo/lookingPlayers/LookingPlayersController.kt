@@ -22,10 +22,10 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService,
 
     @PostMapping("/lookingPlayers/{lookingId}/participant")
     fun participateRequest(@PathVariable("lookingId") lookingId: Int,
-                           @RequestParam() email : String) : ResponseEntity<Int> {
+                           @RequestParam() email : String) : ResponseEntity<String> {
         val participantId = userService.getUserById(email)!!.userId
-        val lookingId = lookingPlayersService.participateRequest(lookingId, participantId!!)
-        return ResponseEntity(lookingId,HttpStatus.OK)
+        lookingPlayersService.participateRequest(lookingId, participantId!!)
+        return ResponseEntity("Intend to participate in request $lookingId",HttpStatus.OK)
     }
 
     @PutMapping("/lookingPlayers/{lookingId}/confirm")
@@ -33,13 +33,13 @@ class LookingPlayersController(val lookingPlayersService: LookingPlayersService,
                      @RequestParam() email : String) : ResponseEntity<Any> {
         val participantId = userService.getUserById(email)!!.userId
         lookingPlayersService.confirmState(lookingId, participantId!!)
-        return ResponseEntity(lookingId,HttpStatus.OK)
+        return ResponseEntity("Request $lookingId confirmed",HttpStatus.OK)
     }
 
     @DeleteMapping("/lookingPlayers/{lookingId}")
     fun cancelState(@PathVariable("lookingId") lookingId: Int) : ResponseEntity<Any> {
         lookingPlayersService.cancelState(lookingId)
-        return ResponseEntity(lookingId,HttpStatus.OK)
+        return ResponseEntity("Request $lookingId canceled",HttpStatus.OK)
     }
 
     @GetMapping("/lookingPlayers")

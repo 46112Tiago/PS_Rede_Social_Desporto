@@ -19,10 +19,10 @@ class CommentController(val commentService: CommentService, val userService: Use
     fun createComment(@RequestParam() email : String,
                       @PathVariable("postId") postId : Int,
                       @RequestBody comment : Comment)
-            : ResponseEntity<Int?> {
+            : ResponseEntity<Any?> {
         val userId = userService.getUserById(email)!!.userId
         val commentKey = commentService.createComment(userId!!,postId,comment)
-        if (commentKey == -1) return ResponseEntity(BAD_REQUEST)
+        if (commentKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(commentKey, HttpStatus.OK)
     }
 
@@ -35,15 +35,15 @@ class CommentController(val commentService: CommentService, val userService: Use
 
     @GetMapping("/{commentId}")
     fun getCommentById(@PathVariable("postId") postId : Int,
-                       @PathVariable("commentId") commentId : Int) : ResponseEntity<Comment? > {
-        val comments = commentService.getCommentById(postId,commentId) ?: return ResponseEntity(NOT_FOUND)
+                       @PathVariable("commentId") commentId : Int) : ResponseEntity<Any? > {
+        val comments = commentService.getCommentById(postId,commentId) ?: return ResponseEntity("Resource not found",NOT_FOUND)
         return ResponseEntity(comments, HttpStatus.OK)
     }
 
     @DeleteMapping("/{commentId}")
     fun deleteComment(@PathVariable("postId") postId : Int, @PathVariable("commentId") commentId : Int) : ResponseEntity<Any?> {
         commentService.deleteComment(postId,commentId)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Comment with id $commentId deleted", HttpStatus.OK)
     }
 
 }

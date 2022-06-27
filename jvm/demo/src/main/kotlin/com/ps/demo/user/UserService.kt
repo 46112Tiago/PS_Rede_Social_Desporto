@@ -18,10 +18,11 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun getUserInfo(email : String) : User? {
         val user = userRepo.getUserById(email)
-        val userAux = userRepo.getUserProfilePic(user!!.userId!!)
-        if (userAux?.isPresent!!)
-            user.profilepic = userAux.get().image
-
+        if (user != null){
+            val profilePic = userRepo.getUserProfilePic(user.userId!!)
+            if (profilePic != null && profilePic.isPresent)
+                user.profilepic = profilePic.get().image
+        }
         return user
     }
 

@@ -42,18 +42,18 @@ class FieldTest {
         val field1 = Field(null,null,"Field 1",null,false)
         val field2 = Field(null,null,"Field 2",null,false)
 
-        val field1Response = fieldController!!.addFieldToCompound(1,field1)
-        val field2Response = fieldController!!.addFieldToCompound(1,field2)
+        val field1Response = fieldController!!.addFieldToCompound(1,field1).body as Int
+        val field2Response = fieldController!!.addFieldToCompound(1,field2).body as Int
 
-        fieldController!!.acceptField(1,field1Response.body!!)
-        fieldController!!.acceptField(1,field2Response.body!!)
+        fieldController!!.acceptField(1,field1Response)
+        fieldController!!.acceptField(1,field2Response)
 
         val fieldsAfterInsert = fieldController!!.getAllFields(1)
 
         Assertions.assertEquals(fieldsBeforeInsert.body!!.size+2,fieldsAfterInsert.body!!.size)
 
-        fieldController!!.deleteFieldFromCompound(1,field1Response.body!!)
-        fieldController!!.deleteFieldFromCompound(1,field2Response.body!!)
+        fieldController!!.deleteFieldFromCompound(1,field1Response)
+        fieldController!!.deleteFieldFromCompound(1,field2Response)
 
         val fieldsAfterDelete = fieldController!!.getAllFields(1)
 

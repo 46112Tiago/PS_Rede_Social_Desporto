@@ -21,27 +21,27 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
 
     @GetMapping("/review/{reviewId}")
     fun getReviewById(@PathVariable("compoundId") compoundId : Int,
-                      @PathVariable("reviewId") reviewId: Int) : ResponseEntity<Review?> {
+                      @PathVariable("reviewId") reviewId: Int) : ResponseEntity<Any> {
         val reviews : Review = reviewService.getReviewById(compoundId,reviewId)
-            ?: return ResponseEntity(HttpStatus.NOT_FOUND)
+            ?: return ResponseEntity("Resource not found",HttpStatus.NOT_FOUND)
         return ResponseEntity(reviews, HttpStatus.OK)
     }
 
     @DeleteMapping("/review/{reviewId}")
-    fun deleteReview(@PathVariable("reviewId") reviewId : Int) : ResponseEntity<Any?> {
+    fun deleteReview(@PathVariable("reviewId") reviewId : Int) : ResponseEntity<Any> {
         reviewService.deleteReview(reviewId)
-        return ResponseEntity(HttpStatus.OK)
+        return ResponseEntity("Review $reviewId deleted",HttpStatus.OK)
     }
 
-    @PostMapping("/user/review")
+    @PostMapping("/review")
     fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
                              @RequestParam() email : String,
                              @RequestBody review : Review)
-            : ResponseEntity<Int?> {
+            : ResponseEntity<Any> {
 
         val userId = userService.getUserById(email)!!.userId
         val reviewKey : Int? = reviewService.createCompoundReview(compoundId,userId!!,review)
-        if (reviewKey == -1) return ResponseEntity(BAD_REQUEST)
+        if (reviewKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 
@@ -50,10 +50,10 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
                           @PathVariable("fieldId") fieldId : Int,
                           @RequestBody review : Review,
                           @RequestParam() email : String)
-            : ResponseEntity<Int?> {
+            : ResponseEntity<Any> {
         val userId = userService.getUserById(email)!!.userId
         val reviewKey : Int? = reviewService.createFieldReview(compoundId,fieldId,review,userId!!)
-        if (reviewKey == -1) return ResponseEntity(BAD_REQUEST)
+        if (reviewKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
 

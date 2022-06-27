@@ -49,7 +49,7 @@ class ReviewRepoImplementation(val jdbi:Jdbi)  {
                     .bind(2,review.rating)
                     .bind(3,review.description)
                     .bind(4,timestamp)
-                    .bind(4,userId)
+                    .bind(5,userId)
                 .executeAndReturnGeneratedKeys("id").mapTo<Review>().one()
         }
 

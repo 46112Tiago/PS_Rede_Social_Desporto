@@ -53,11 +53,11 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
     @PostMapping("/user/friend/{friendName}/message")
     fun sendMessage(@RequestParam() email : String,
                     @PathVariable("friendName") friendName: String,
-                    @RequestBody privateMessage: PrivateMessage) : ResponseEntity<PrivateMessage?> {
+                    @RequestBody privateMessage: PrivateMessage) : ResponseEntity<Any> {
         val  userId = userService.getUserById(email)!!.userId
         val friendId = userService.getUserById(friendName)!!.userId
         val privateMessageKey = privateMessageService.sendMessage(userId!!,friendId!!,privateMessage)
-        if (privateMessageKey == -1) return ResponseEntity(BAD_REQUEST)
+        if (privateMessageKey == -1) return ResponseEntity("Bad request", BAD_REQUEST)
         val privateMessageResp = PrivateMessage(privateMessageKey,privateMessage.message,null,null,
             User(userId,"","","",null,"","",false,null,null,null))
         return ResponseEntity(privateMessageResp,HttpStatus.OK)

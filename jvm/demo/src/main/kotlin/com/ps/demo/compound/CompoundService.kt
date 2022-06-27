@@ -5,6 +5,7 @@ import com.ps.data.Material
 import com.ps.data.Schedule
 import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CompoundService(val compoundRepo : CompoundRepoImplementation) {
@@ -38,20 +39,20 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
 
         for (sport in compound.sports!!) {
             if (sport.id==null) break
-            compoundRepo.addSportToCompound(compoundId!!,sport.id!!)
+            compoundRepo.addSportToCompound(compoundId!!,sport.id)
         }
         for (material in compound.material) {
             if (material.other!=null) continue
             if (material.id==null) break
-            compoundRepo.addMaterialToCompound(compoundId!!,material.id!!)
+            compoundRepo.addMaterialToCompound(compoundId!!,material.id)
         }
         for (schedule in compound.schedule!!) {
-            if (schedule.weekday==null) break
+            if (schedule.weekday == null) break
             compoundRepo.addSchedule(compoundId!!,schedule)
         }
         for (field in compound.fields!!) {
             if (field.id==null) break
-            compoundRepo.addFieldToCompound(compoundId!!,field.name!!)
+            compoundRepo.addFieldToCompound(compoundId!!,field.name)
         }
         return compoundId
     }
@@ -68,7 +69,7 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return locs;
     }
 
-    fun getCompoundInformation(compoundId : Int) : Compound? {
+    fun getCompoundInformation(compoundId : Int) : Optional<Compound> {
         return compoundRepo.getCompoundInformation(compoundId)
     }
 

@@ -20,7 +20,7 @@ class GroupTest {
     fun createAndRemoveGroup(){
         val group = Group(null,null,"Test Group",null,mutableListOf<User>())
         val groupResponse = groupController!!.createGroup("projeto.seminario2022",group)
-        val groupId = groupResponse.body!!.absoluteValue
+        val groupId = groupResponse.body!! as Int
         Assertions.assertNotNull(groupId)
         groupController!!.deleteGroup(groupId,"projeto.seminario2022")
         val getGroup = groupController!!.getGroupById(groupId)
