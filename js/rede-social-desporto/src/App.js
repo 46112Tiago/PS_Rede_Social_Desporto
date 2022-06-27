@@ -44,7 +44,6 @@ const App = () => {
     const navBar = isAuthenticated ? <NavLog/> : <Navigation/>
 
     if(isAuthenticated && !sessionStorage.getItem('login')){
-      window.name = ''
       logout({ returnTo: window.location.origin })
     }
 

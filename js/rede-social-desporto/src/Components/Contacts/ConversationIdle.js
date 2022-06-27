@@ -116,7 +116,7 @@ const ConversationIdle = (props) => {
       return (
         <div>
             {dropdown}
-            <h3 id='nameConvo'>Friend/Group name</h3>
+            <h3 id='nameConvo'>{props.name}</h3>
             <p id='test'></p>
             <hr id='lineConvo'/>
             <div id='containercontact'>

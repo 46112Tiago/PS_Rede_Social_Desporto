@@ -28,6 +28,10 @@ const Groups = () => {
     setExited(groupId)
   }
 
+  const getName = (groupName) => {
+    setName(groupName)
+  }
+
   const getConversation = (idMsg) => {
     groupArray.forEach(groupObj=>{
       if(groupObj.id == idMsg){
@@ -45,6 +49,7 @@ const Groups = () => {
     const [removed,setDeleted] = React.useState(0);
     const [exit,setExited] = React.useState(0);
     const [newGroup,setCreatedGroup] = React.useState({});
+    const [name,setName] = React.useState('');
 
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when
@@ -81,7 +86,7 @@ const Groups = () => {
       if (!isLoading) makeRequest();
     },[id,newGroup,removed,exit]);
 
-    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle owner={owner} groupId={id} dropdown={true} messageType={"group"} delete={deleted} exit={exited} />
+    let talkTemplate = id == 0 ? <ConversationStart/> : <ConversationIdle name={name} owner={owner} groupId={id} dropdown={true} messageType={"group"} delete={deleted} exit={exited} />
 
       return (
           <div>
@@ -99,7 +104,7 @@ const Groups = () => {
                     <GroupModal created={getCreated}></GroupModal>
                     <ParticipantModal owner={owner} groupId={id}/>
                       {groupArray.map((groupObj,i) => 
-                          <Account getConversation={getConversation} key={i} name={groupObj.name} accountId={groupObj.id} picture={groupObj.picture}></Account>
+                          <Account getName={getName} getConversation={getConversation} key={i} name={groupObj.name} accountId={groupObj.id} picture={groupObj.picture}></Account>
                       )}
                   </div>      
                   </div>

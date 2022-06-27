@@ -123,7 +123,7 @@ class UserTest {
 
         val getUser = userController!!.getUser("testUser1")
 
-        Assertions.assertNull(getUser.body)
+        Assertions.assertEquals("Resource not found",getUser.body)
 
     }
 

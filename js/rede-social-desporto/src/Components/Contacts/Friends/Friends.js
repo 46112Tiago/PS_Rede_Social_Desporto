@@ -15,12 +15,18 @@ const FriendsMessage = () => {
     console.log(nameMsg)
   }
 
+  const getName = (groupName) => {
+    setName(groupName)
+  }
+
 
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState();
   const {getAccessTokenSilently,user} = useAuth0();
   const [friendArray, setUser] = React.useState([]);
   const [name, setAccount] = React.useState('');
+  const [nameStr,setName] = React.useState('');
+
 
   // Keep the above values in sync, this will fire
   // every time the component rerenders, ie when
@@ -58,7 +64,7 @@ const FriendsMessage = () => {
     if (!isLoading) makeRequest();
   },[name]);
 
-  let talkTemplate = name == '' ? <ConversationStart/> : <ConversationIdle dropdown={false} friendName={name} messageType={"friend"}/>
+  let talkTemplate = name == '' ? <ConversationStart/> : <ConversationIdle name={nameStr} dropdown={false} friendName={name} messageType={"friend"}/>
 
       return (
         <div>
@@ -75,7 +81,7 @@ const FriendsMessage = () => {
                 <h3 id='contactsH3'>Friends:</h3> 
               </div>
               {friendArray.map((friendObj,i) => 
-                        <Account getConversation={getConversation} key={i} name={friendObj.firstName} lastname={friendObj.lastName} accountName={friendObj.email.split("@")[0]} picture={friendObj.profilepic}></Account>
+                        <Account getName={getName} getConversation={getConversation} key={i} name={friendObj.firstName} lastname={friendObj.lastName} accountName={friendObj.email.split("@")[0]} picture={friendObj.profilepic}></Account>
               )}
             </div>
             <div className='itemFlex' id='rightItem'>

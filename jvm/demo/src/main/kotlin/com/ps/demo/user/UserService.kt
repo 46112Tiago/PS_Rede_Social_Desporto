@@ -16,6 +16,10 @@ class UserService(val userRepo : UserRepoImplementation) {
         return userRepo.getUser(email)
     }
 
+    fun getAllFriends(userId: Int) : List<User?> {
+        return userRepo.getAllFriends(userId)
+    }
+
     fun getUserInfo(email : String) : User? {
         val user = userRepo.getUserById(email)
         if (user != null){
