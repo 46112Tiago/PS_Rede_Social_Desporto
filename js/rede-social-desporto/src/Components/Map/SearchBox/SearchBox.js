@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";import './SearchBox.css'
-import { FaSearch, FaTimes } from 'react-icons/fa';
 import { convertLocationToCoordinate } from '../../../GoogleMaps/Geocoding';
 
 const SearchBox = (props) => {

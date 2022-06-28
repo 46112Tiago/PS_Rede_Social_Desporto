@@ -13,7 +13,7 @@ function Footer()  {
                 
                 <p>Diogo Fernandes 
                     <a  className='github' href="https://github.com/bullycow" target={'_blank'}><FaGithub/></a> 
-                    <a className="linkedin" href="https://pt.linkedin.com/" target={'_blank'}><FaLinkedin/></a></p>
+                    <a className="linkedin" href="https://www.linkedin.com/in/fernandes-filipe-diogo/" target={'_blank'}><FaLinkedin/></a></p>
                 
                 <p>Tiago Alves 
                     <a className='github' href="https://github.com/46112Tiago" target={'_blank'}><FaGithub/></a> 

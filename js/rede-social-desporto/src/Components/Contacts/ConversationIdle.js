@@ -43,13 +43,15 @@ const ConversationIdle = (props) => {
     // values change
     React.useEffect(() => {
 
+      /*
+        Based on https://stackoverflow.com/questions/5527296/how-can-i-detect-scroll-end-of-the-specified-element-by-javascript      08/06/2022
+      */
+
       document.getElementById('overflowText').onscroll =
         
       function()
       {
         var scrollTop = document.getElementById('overflowText').scrollTop * -1;
-        console.log(scrollTop)
-        console.log(scroll)
         if(scroll < scrollTop ){
           setScroll(scrollTop)
         }       

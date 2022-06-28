@@ -1,6 +1,4 @@
 import React from 'react'
-import { compound } from '../../../Model/Model';
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import "./MapComponent.css";
 import Marker from './Marker/Marker';
 import { verifyNewMarkers } from '../../../GoogleMaps/Geocoding';

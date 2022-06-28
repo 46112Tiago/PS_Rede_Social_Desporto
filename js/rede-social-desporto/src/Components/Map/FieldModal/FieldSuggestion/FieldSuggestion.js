@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAuth0 } from "@auth0/auth0-react";
 import './FieldSuggestion.css'
-import {convertLocationToCoordinate} from '../../../../GoogleMaps/Geocoding'
 
 const FieldSuggestion = (props) => {
 
