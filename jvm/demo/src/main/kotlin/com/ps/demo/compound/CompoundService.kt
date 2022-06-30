@@ -1,11 +1,11 @@
 package com.ps.demo.compound
 
 import com.ps.data.Compound
-import com.ps.data.Material
-import com.ps.data.Schedule
 import com.ps.demo.removeWhitespaces
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.math.*
+import kotlin.math.pow
 
 @Service
 class CompoundService(val compoundRepo : CompoundRepoImplementation) {
@@ -85,31 +85,32 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return locs;
     }
 
-    //Based on: https://handyopinion.com/find-distance-between-two-locations-in-kotlin/      06/06/2022
+    //Based on: https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/     06/06/2022
     fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double,area: Map<Int,Int>)
     : Boolean {
-        val neededCoverage = area.get(zoom)
-        val theta: Double = centerLng - pointLng
-        var dist = (Math.sin(deg2rad(centerLat))
-                * Math.sin(deg2rad(pointLat))
-                + (Math.cos(deg2rad(centerLat))
-                * Math.cos(deg2rad(pointLat))
-                * Math.cos(deg2rad(theta))))
-        dist = Math.acos(dist)
-        dist = rad2deg(dist)
-        dist = dist * 60 * 1.1515
-        dist = dist * 1.609344
-        if(dist < neededCoverage!!.toDouble()) {
+        val neededCoverage = area[zoom]
+        val radiusEarth = 6371.0
+
+        val theta1 =  convertDegToRad(centerLat)
+        val theta2 = convertDegToRad(pointLat)
+        val deltaTheta = theta2 - theta1
+        val lambda1 =  convertDegToRad(centerLng)
+        val lambda2 = convertDegToRad(pointLng)
+        val deltaLambda = lambda2 - lambda1
+        val sinSquare1 = sin((deltaTheta)/2).pow(2)
+        val multiplyCos = cos(theta1) * cos(theta2)
+        val sinSquare2 = sin((deltaLambda / 2.0)).pow(2)
+        val auxD = multiplyCos * sinSquare2
+        val d = 2 * radiusEarth * asin(sqrt(sinSquare1+auxD))
+
+        if(d < neededCoverage!!.toDouble()) {
             return true;
         }
         return false;
     }
 
-    private fun deg2rad(deg: Double): Double {
-        return deg * Math.PI / 180.0
+    private fun convertDegToRad(deg: Double): Double {
+        return deg / (180.0/Math.PI)
     }
 
-    private fun rad2deg(rad: Double): Double {
-        return rad * 180.0 / Math.PI
-    }
 }
