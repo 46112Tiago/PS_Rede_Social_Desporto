@@ -20,26 +20,26 @@ const CreateUser = () => {
 
   React.useEffect(() => {
 
-    //https://stackoverflow.com/questions/23144647/file-api-hex-conversion-javascript           18/06/2022
+    //Based on:  https://stackoverflow.com/questions/23144647/file-api-hex-conversion-javascript           18/06/2022
 
-    document.getElementById('file-upload').addEventListener('change', function() {
+    document.getElementById('file-upload').addEventListener('change', function(event) {
 
         var reader = new FileReader();
         reader.onload = function() {
-            let aux
-            let u = new Uint8Array(this.result),
-            a = '',
-            i = u.length;
-            while (i--){
-                // map to hex
-                aux = (u[i] < 16 ? '0' : '') + u[i].toString(16);
-                a = aux.concat(a)
+            let byteArray = new Uint8Array(reader.result)
+            let hexString = ''
+            for (let i = byteArray.length-1; i >=0 ;i--){
+                let aux = ''
+                if(byteArray[i] < 16){
+                    aux = '0'
+                }
+                aux = aux + byteArray[i].toString(16);
+                hexString = aux.concat(hexString)
             } 
-            u = null; // free memory
-            setImage(a)
+            setImage(hexString)
       
         }
-        reader.readAsArrayBuffer(this.files[0]);
+        reader.readAsArrayBuffer(event.target.files[0]);
         
       }, false);
     

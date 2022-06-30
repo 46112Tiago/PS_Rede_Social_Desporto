@@ -59,7 +59,7 @@ const App = () => {
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/map' element={<Map></Map>}></Route>
             <Route path='/events' element={<Events></Events>}></Route>
-            <Route path={!window.name ? '/signUp' : '/profile'} element={!window.name ? <CreateUser></CreateUser> : <Profile></Profile>}></Route>
+            <Route path={'/signUp'} element={ <CreateUser></CreateUser>}></Route>
             <Route path='/logIn' element={<LogIn></LogIn>}></Route>
             <Route path='/profile' element={isAuthenticated  ?<Profile></Profile>:<LogIn/>}></Route>
             <Route path='/profileSearch' element={isAuthenticated  ?<ProfileSearch></ProfileSearch>:<LogIn/>}></Route>
