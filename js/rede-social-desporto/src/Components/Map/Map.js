@@ -35,6 +35,8 @@ const Map = () => {
 
   const suggestion = isAuthenticated ? <Suggestion map={map}/> : <></>
 
+  /*https://github.com/googlemaps/react-wrapper                21/05/2022*/
+
   const render = (status) => {
     switch (status) {
       case Status.LOADING:
@@ -48,7 +50,8 @@ const Map = () => {
   return(
     <div id='wrapper'>
       <div id='wrapperContainer'>
-        <SearchBox center={getCenter}></SearchBox>      
+        <SearchBox center={getCenter}></SearchBox>
+        {/*https://github.com/googlemaps/react-wrapper            21/05/2022*/}     
         <Wrapper render={render} apiKey={`${process.env.REACT_APP_MAPAPI}`}> 
           <MapComponent center={newCenter} zoom={5} getMap={getMap}>
           </MapComponent>

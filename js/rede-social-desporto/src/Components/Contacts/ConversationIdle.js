@@ -11,6 +11,21 @@ import { createMessage } from '../../Functions/Functions';
 const ConversationIdle = (props) => {
   
 
+
+
+  const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId} delete={props.delete} exit={props.exit}/> : <></>
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState();  
+  const [messageArray, setMessage] = React.useState([message]);
+  const [groupId, setGroupId] = React.useState(0);
+  const [friendId, setFriendId] = React.useState(0);
+  const [messageReceived, setReceivedMessage] = useState(0);
+  const [messageReceivedConfirm, setReceivedMessageConfirm] = useState(0);
+  const [page, setPage] = React.useState(0);
+  const [scroll, setScroll] = React.useState(0)
+  const {getAccessTokenSilently,user} = useAuth0();
+
+
   const messageResp = (messageR) => {
     const div = createMessage('ownMsg',messageR.message)
     const firstMessage = document.getElementsByClassName(`messages${0}`)[0]
@@ -24,18 +39,6 @@ const ConversationIdle = (props) => {
     document.getElementById('overflowText').insertBefore(div,firstMessage)
     setReceivedMessage(messageReceived+1)
   }
-
-  const dropdown = props.dropdown ? <DropDownGroup owner={props.owner} groupId={props.groupId} delete={props.delete} exit={props.exit}/> : <></>
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState();  
-  const [messageArray, setMessage] = React.useState([message]);
-  const [groupId, setGroupId] = React.useState(0);
-  const [friendId, setFriendId] = React.useState(0);
-  const [messageReceived, setReceivedMessage] = useState(0);
-  const [messageReceivedConfirm, setReceivedMessageConfirm] = useState(0);
-  const [page, setPage] = React.useState(0);
-  const [scroll, setScroll] = React.useState(0)
-  const {getAccessTokenSilently,user} = useAuth0();
 
     // Keep the above values in sync, this will fire
     // every time the component rerenders, ie when

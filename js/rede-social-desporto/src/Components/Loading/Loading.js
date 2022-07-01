@@ -3,7 +3,7 @@ import './Loading.css'
 
 const Loading = () => (
   <div id="spinner">
-    <img id="loading" src={require('./loading.gif')} alt="loading"></img>
+    <h1>LOADING...</h1>
   </div>
 );
 

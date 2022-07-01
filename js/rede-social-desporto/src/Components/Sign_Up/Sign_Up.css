@@ -16,8 +16,7 @@
 
 #imageItem {
   /**/
-  background-image: url('./images/sports_image2_1.png');
-  background-size: cover;
+  background-color:rgb(28, 44, 44);
   opacity: 1;
   color:white;
   align-items: center;
