@@ -8,7 +8,8 @@ fun factory(type: Class<*>, prefix: String): RowMapperFactory {
     return RowMapperFactory.of(type, KotlinMapper(type, prefix))
 }
 
-//https://www.techiedelight.com/remove-whitespaces-string-kotlin/ 22/06/2022
 fun removeWhitespaces(text:String): String{
-    return text.replace("\\s".toRegex(), "")
+    var returnText = ""
+    returnText = text.replace("\t","")
+    return returnText.replace(" ","")
 }

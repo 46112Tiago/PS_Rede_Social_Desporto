@@ -1,19 +1,9 @@
 import React from "react";
 import './Navigation.css'
-import { useAuth0 } from "@auth0/auth0-react";
 import './NavLog.css'
 import { Link } from "react-router-dom";
 
 const Navigation = () =>   {
-  
-  const {isAuthenticated} = useAuth0()
-
-  /* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  if(isAuthenticated) document.getElementById("myDropdown").classList.toggle("show");
-}
-
 
   return(
         

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import './SearchBar.css'
-import { FaSearch, FaTimes } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 
 const SearchBar = (props) => {
-
-  function reset() {
-    document.getElementById('searchBarTxt').value = ''
-  }
 
   // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
@@ -32,7 +28,6 @@ const SearchBar = (props) => {
             <button className='searchBarItem' id='searchBtn' ><FaSearch></FaSearch></button>
             <input name='name' className='searchBarItem' id='searchBarTxt' type="text" {...register('name')} placeholder='Search...' required/>
           </form>
-          <button className='searchBarItem' id='cancelBtn' onClick={reset}><FaTimes></FaTimes></button>
         </div>
       );
     }

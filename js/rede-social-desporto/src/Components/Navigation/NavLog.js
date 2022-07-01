@@ -40,16 +40,16 @@ window.onclick = function(e) {
  
       return (
         <div className="navbar">
-            <Link className="leftSide" to="/feed">Feed</Link>
-            <Link className="leftSide" to="/map">Map</Link>
-            <Link className="leftSide" to="/events">Events</Link>
+            <Link className="leftSide anchor" to="/feed">Feed</Link>
+            <Link className="leftSide anchor" to="/map">Map</Link>
+            <Link className="leftSide anchor" to="/events">Events</Link>
 
-            <div className="dropdown">
-                <button className="dropbtn " onClick={myFunction}><FaSortDown className="rightSide"></FaSortDown></button>
+            <div className="rightSide dropdown">
+                <button className="dropbtn " onClick={myFunction}><FaSortDown ></FaSortDown></button>
                 <div className="dropdown-content" id="myDropdown">
-                    <Link to="/profile"><FaUserAlt></FaUserAlt> Profile</Link>
-                    <Link to="/groups"><BsChatDotsFill></BsChatDotsFill> Contacts</Link>
-                    <Link to="/profileSearch"><BiSearchAlt></BiSearchAlt> Search</Link>
+                    <Link className="anchor" to="/profile"><FaUserAlt></FaUserAlt> Profile</Link>
+                    <Link className="anchor" to="/groups"><BsChatDotsFill></BsChatDotsFill> Contacts</Link>
+                    <Link className="anchor" to="/profileSearch"><BiSearchAlt></BiSearchAlt> Search</Link>
                     <LogOutOAuth></LogOutOAuth>
                 </div>
             </div> 
