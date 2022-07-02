@@ -1,0 +1,207 @@
+@startuml
+!theme reddress-darkblue
+skinparam linetype ortho
+
+together {
+together {
+    class Compound {
+       val id : Int
+       val name :String
+       contact : String
+       val description : String
+       val pictures : List<String>
+       val location : PGpoint
+       val sports : List<Sports>
+       val material : List<Material>
+       val schedule : List<Schedule>
+       val fields : List<Field>
+       val dressingRoom : Char
+       val parking : Boolean
+       val accepted : Boolean
+    }
+    class Field {
+       val id : Int
+       val compound : Compound
+       val name : String
+       val pictures : List<String>
+       val acceped : Boolean
+    }
+    
+   class Review {
+      val id : Int
+      val compound : Compound
+      val field : Field
+      var user : User
+      val rating : Float
+      val description : String
+      val reviewDate : Timestamp
+   }
+
+   class Schedule {
+      val id : Int
+      val weekday : String
+      val openingHour : LocalTime
+      val closingHour : LocalTime
+      val optionalDescription : String
+   }
+   class Material {
+      val id : Int
+      val name : String
+      val other : String
+   }
+}
+
+together {
+  
+   class User {
+      val userId : Int
+      val firstName : String
+      val lastName : String
+      val city : String
+      val birthdate : LocalDate
+      var profilePic : String
+      val email : String
+      val available : Boolean
+      val sports : List<String>
+      val gender : String
+      val friends : List<User>
+   }
+
+   abstract class Message {
+      val id:Int
+      val text : String
+      val date : Date
+   }
+
+   class GroupMessage {
+      val id : Int
+      val groupId : Int
+      var sender : User
+      val message : String
+      val messageDate : Timestamp
+   }
+   
+   class Group {
+       val id : Int
+       val picture : String
+       val name : String
+       var owner : User
+       var participants : MutableList<User>
+   }
+
+   class PrivateMessage {
+      val id : Int
+      val message : String
+      val date : Timestamp
+      var receiver : User
+      var sender : User
+   }
+   together {
+      class Post {
+         val id : Int
+         val decription : String
+         val pictures : List<String>
+         val postdate : Timestamp
+         var user : User
+         val likes : Int
+      }
+      class Comment {
+         val id : Int
+         var user : User
+         val comment : String
+         val commentDate : Timestamp
+      }
+   }
+
+}
+
+
+
+
+
+
+
+
+
+
+class Event {
+    val id : Int
+    var field : Field
+    var compound : Compound
+    val startDate : LocalDateTime
+    val plannedFinishDate : LocalDateTime
+    val name : String
+    var sport : Sports
+    val description : String
+    val summary : String
+    var participants : List<User>
+    val limitParticipants : Int
+    var creator : User
+}
+
+
+
+
+
+
+
+class Image {
+    val id : Int
+    val typeimage : String
+    val image : String
+    val userId : Int
+    val postId : Int
+    val compoundId : Int
+    val fieldId : Int
+}
+
+class LookingPlayers {
+    val id : Int
+    val state: String
+    val creator : User
+    var compound : Compound
+    var sports : Sports
+    val startDateTime : LocalDateTime
+    val participants : MutableList<User>
+}
+
+
+
+
+
+class Sports {
+    val id : Int 
+    val user : User 
+    val name : String
+}
+}
+
+ 
+Post "1" o-- "many" Comment
+Post "1" o-- "many" Image 
+Field "1" o-- "many" Image
+Compound "1" *-- "many" Field : Composes
+Compound "1" *-- "many" Material : Composes
+Compound "1" *-- "many" Schedule : Composes
+Compound "1" *-- "many" Sports : Composes
+Compound "1" o-- "many" Event
+Compound "1" o-- "many" Review
+Compound "1" *-- "many" LookingPlayers : Composes
+Compound "1" o-- "many" Image 
+Event "1" *-- "1" Sports : Composes
+Event "many" --o "many" User
+User "1" o-- "many" Sports
+Sports "1" *-- "many" LookingPlayers : Composes
+
+User "1" o-- "1" Image 
+User "1" o-- "many" Review
+User "1" o-- "many" Post
+User "1" --> "many" PrivateMessage : Depends
+User "1" *-- "many" LookingPlayers : Composes
+Message <|-- PrivateMessage : Extends
+GroupMessage --|> Message : Extends
+Group "1" --> "many" GroupMessage : Depends
+Group "many" --o "many" User 
+
+
+@enduml
