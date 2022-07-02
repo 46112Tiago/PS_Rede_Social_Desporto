@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service
 class SportsService (val sportsRepo : SportsRepoImplementation) {
 
     fun addSport(sport : Sports) : Int? {
+        //Check if the values have been introduced correctly
         val sportName =  removeWhitespaces(sport.name)
         if (sport.name.isEmpty() || sportName.isEmpty()) return -1
         return sportsRepo.addSport(sport)
     }
 
     fun addUserSport(userId : Int, sports : List<Sports>) : String {
+        //Iterate by all the sports that the user has input, and add them as favourites
         for (sport in sports) {
             sportsRepo.addUserSport(userId, sport)
         }

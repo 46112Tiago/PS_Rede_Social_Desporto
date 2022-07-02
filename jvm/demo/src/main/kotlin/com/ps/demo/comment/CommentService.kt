@@ -10,6 +10,9 @@ import java.util.*
 class CommentService(val commentRepo : CommentRepoImplementation) {
 
     fun createComment(userId : Int, postId: Int, comment : Comment) : Int? {
+        
+        /*Check if the length of a comment is bigger than it should or if the user didnt write anything*/
+
         val commentTxt =  removeWhitespaces(comment.comment)
         if (comment.comment.isEmpty() || comment.comment.length > 100 || commentTxt.isEmpty())
             return -1

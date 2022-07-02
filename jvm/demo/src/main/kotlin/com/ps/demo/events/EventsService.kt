@@ -24,6 +24,9 @@ class EventsService(val eventRepo: EventRepositoryImplementation) {
     }
 
     fun createEvent(event : Event) : Int {
+
+        //Check if the values have been introduced correctly
+
         val nameTxt = removeWhitespaces(event.name)
         val descriptionTxt =  removeWhitespaces(event.description)
         val summaryTxt =  removeWhitespaces(event.summary)

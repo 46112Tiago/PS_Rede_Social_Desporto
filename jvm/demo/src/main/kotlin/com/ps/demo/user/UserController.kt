@@ -13,9 +13,9 @@ import java.util.*
 @RestController
 @RequestMapping("/user")
 @CrossOrigin("http://localhost:3000")
-// For simplicity of this sample, allow all origins. Real applications should configure CORS for their use case.
 class UserController (val userService: UserService) {
 
+    /******************************************  GET  ******************************************/
 
     @GetMapping("/profile/{userName}")
     fun getUserById(@PathVariable("userName") userName : String,
@@ -51,42 +51,6 @@ class UserController (val userService: UserService) {
         return ResponseEntity(user.get(), OK)
     }
 
-    @DeleteMapping()
-    fun deleteUser(@RequestParam() email : String) : ResponseEntity<Any> {
-        userService.deleteUser(email)
-        return ResponseEntity("User account deleted",OK)
-    }
-
-    @PostMapping()
-    fun createUser(@RequestBody user: User) : ResponseEntity<Any> {
-        val userKey : Int = userService.insertUser(user)
-        if (userKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
-        return ResponseEntity(userKey, OK)
-    }
-
-    @PutMapping("/{userId}/profilePic")
-    fun updateProfilePic(@RequestBody url: String,@PathVariable("userId") userId : Int) : ResponseEntity<Any?> {
-        val user : User = userService.updateUserProfilePic(userId,url)
-        return ResponseEntity(user, OK)
-    }
-
-    @PutMapping()
-    fun editUserProfile(@RequestBody user: User,
-                        @RequestParam() email : String) : ResponseEntity<Int> {
-        val userId = userService.getUserById(email)!!.userId
-        val id : Int = userService.editUserProfile(userId!!,user)
-        return ResponseEntity(id, OK)
-    }
-
-    @PostMapping("/friend/{friendName}")
-    fun addFriend( @RequestParam() email : String,
-                   @PathVariable("friendName") friendName : String) : ResponseEntity<Int> {
-        val user : User? = userService.getUserById(email)
-        val friend : User? = userService.getUserInfo(friendName)
-        val isFriend : Int = userService.addFriend(user!!.userId!!,friend!!.userId!!)
-        return ResponseEntity(isFriend,OK)
-    }
-
     @GetMapping("/friend")
     fun getFriends(@RequestParam() email : String,
                    @RequestParam() page : Int) : ResponseEntity<List<User?>> {
@@ -111,4 +75,45 @@ class UserController (val userService: UserService) {
         return ResponseEntity.ok().body(user)
     }
 
+    /******************************************  DELETE  ******************************************/
+
+    @DeleteMapping()
+    fun deleteUser(@RequestParam() email : String) : ResponseEntity<Any> {
+        userService.deleteUser(email)
+        return ResponseEntity("User account deleted",OK)
+    }
+
+    /******************************************  POST  ******************************************/
+
+    @PostMapping()
+    fun createUser(@RequestBody user: User) : ResponseEntity<Any> {
+        val userKey : Int = userService.insertUser(user)
+        if (userKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
+        return ResponseEntity(userKey, OK)
+    }
+
+    @PostMapping("/friend/{friendName}")
+    fun addFriend( @RequestParam() email : String,
+                   @PathVariable("friendName") friendName : String) : ResponseEntity<Int> {
+        val user : User? = userService.getUserById(email)
+        val friend : User? = userService.getUserInfo(friendName)
+        val isFriend : Int = userService.addFriend(user!!.userId!!,friend!!.userId!!)
+        return ResponseEntity(isFriend,OK)
+    }
+
+    /******************************************  PUT  ******************************************/
+
+    @PutMapping("/{userId}/profilePic")
+    fun updateProfilePic(@RequestBody url: String,@PathVariable("userId") userId : Int) : ResponseEntity<Any?> {
+        val user : User = userService.updateUserProfilePic(userId,url)
+        return ResponseEntity(user, OK)
+    }
+
+    @PutMapping()
+    fun editUserProfile(@RequestBody user: User,
+                        @RequestParam() email : String) : ResponseEntity<Int> {
+        val userId = userService.getUserById(email)!!.userId
+        val id : Int = userService.editUserProfile(userId!!,user)
+        return ResponseEntity(id, OK)
+    }
 }

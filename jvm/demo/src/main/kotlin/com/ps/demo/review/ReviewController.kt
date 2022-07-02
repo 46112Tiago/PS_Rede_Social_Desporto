@@ -12,12 +12,22 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("http://localhost:3000")
 class ReviewController(val reviewService: ReviewService, val userService: UserService) {
 
+    /******************************************  GET  ******************************************/
+
+    /* 
+        Get a certain amount of reviews for a compound based on the @page
+    */
+
     @GetMapping("/review")
     fun getAllReviews(@PathVariable("compoundId") compoundId : Int,
                       @RequestParam() page : Int) : ResponseEntity<List<Review>?> {
         val reviews : List<Review>? = reviewService.getAllReviews(compoundId,page) ?: return ResponseEntity(BAD_REQUEST)
         return ResponseEntity(reviews, HttpStatus.OK)
     }
+
+    /* 
+        Get a specific review
+    */
 
     @GetMapping("/review/{reviewId}")
     fun getReviewById(@PathVariable("compoundId") compoundId : Int,
@@ -27,11 +37,23 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
         return ResponseEntity(reviews, HttpStatus.OK)
     }
 
+    /******************************************  DELETE  ******************************************/
+
+    /* 
+        Remove a review
+    */
+
     @DeleteMapping("/review/{reviewId}")
     fun deleteReview(@PathVariable("reviewId") reviewId : Int) : ResponseEntity<Any> {
         reviewService.deleteReview(reviewId)
         return ResponseEntity("Review $reviewId deleted",HttpStatus.OK)
     }
+
+    /******************************************  POST  ******************************************/
+
+    /* 
+        Create a review for a compound
+    */
 
     @PostMapping("/review")
     fun createCompoundReview(@PathVariable("compoundId") compoundId : Int,
@@ -44,6 +66,10 @@ class ReviewController(val reviewService: ReviewService, val userService: UserSe
         if (reviewKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(reviewKey, HttpStatus.OK)
     }
+
+    /* 
+        Create a review for a field
+    */
 
     @PostMapping("/field/{fieldId}/review")
     fun createFieldReview(@PathVariable("compoundId") compoundId : Int,

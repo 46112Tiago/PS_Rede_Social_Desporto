@@ -29,6 +29,8 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
 
         val compoundId = compoundRepo.createCompound(compound)
 
+        //Insert a new material that wasn't in the db yet 
+
         if (compound.material!!.isNotEmpty() && compound.material[0].other != null) {
             val newMaterials = compound.material[0].other!!.split(";")
             for (materialName in newMaterials) {
@@ -37,19 +39,30 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
             }
         }
 
+        //Associate the compound with the sports 
+
         for (sport in compound.sports!!) {
             if (sport.id==null) break
             compoundRepo.addSportToCompound(compoundId!!,sport.id)
         }
+
+        //Associate the materials with the compound
+
         for (material in compound.material) {
             if (material.other!=null) continue
             if (material.id==null) break
             compoundRepo.addMaterialToCompound(compoundId!!,material.id)
         }
+
+        //Indicates the schedule for the compound
+
         for (schedule in compound.schedule!!) {
             if (schedule.weekday == null) break
             compoundRepo.addSchedule(compoundId!!,schedule)
         }
+
+        //Add all the fields that are available in the compound 
+
         for (field in compound.fields!!) {
             if (field.id==null) break
             compoundRepo.addFieldToCompound(compoundId!!,field.name)
@@ -78,6 +91,8 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
     }
 
     fun getCompoundLocations(zoom : Int, centerLat: Double, centerLng: Double) : List<Compound?>? {
+        
+        // Cant retrieve values for zoom inferior than 12 
         if (zoom < 12) return listOf()
         var locs = compoundRepo.getCompoundLocations()!!.filter {
                 it -> checkArea(zoom,centerLat,centerLng,it!!.location!!.x,it.location!!.y,AREA_MAP)
@@ -85,7 +100,16 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         return locs;
     }
 
+
+
+
     //Based on: https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/     06/06/2022
+    
+    /*
+        Check if the coordinate of a compound or field is inside a specific area determined by the zoom value
+        Apply the Haversine formula
+     */
+    
     fun checkArea(zoom : Int, centerLat: Double,centerLng: Double,pointLat : Double, pointLng: Double,area: Map<Int,Int>)
     : Boolean {
         val neededCoverage = area[zoom]
@@ -108,6 +132,10 @@ class CompoundService(val compoundRepo : CompoundRepoImplementation) {
         }
         return false;
     }
+
+/*
+    Convert degrees to radians
+*/
 
     private fun convertDegToRad(deg: Double): Double {
         return deg / (180.0/Math.PI)

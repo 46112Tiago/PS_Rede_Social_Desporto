@@ -19,17 +19,31 @@ import javax.websocket.server.PathParam
 @CrossOrigin("http://localhost:3000")
 class EventController (val eventService: EventsService, val userService: UserService) {
 
+    /******************************************  GET  ******************************************/
+
+    /*
+        Get all the upcoming events that are currently active based on the @page
+    */
+
     @GetMapping("/event")
     fun getActiveEvents(@RequestParam() page : Int) : ResponseEntity<List<Event?>?> {
         val event  = eventService.getActiveEvents(page)
         return ResponseEntity(event,HttpStatus.OK)
     }
 
+    /*
+        Get basic information of a certain event 
+    */
+
     @GetMapping("/event/{eventId}")
     fun getEventDescription(@PathVariable("eventId") eventID : Int) : ResponseEntity<Any> {
         val description : Event = eventService.getEventInfo(eventID) ?: return ResponseEntity("Resource not found", HttpStatus.NOT_FOUND)
         return ResponseEntity(description,HttpStatus.OK)
     }
+
+    /*
+        Get a certain amount of events that the user is not participating based on the @page
+    */
 
     @GetMapping("/user/event")
     fun getEventsNotParticipating(@RequestParam() email : String,
@@ -40,6 +54,10 @@ class EventController (val eventService: EventsService, val userService: UserSer
         return ResponseEntity(event,HttpStatus.OK)
     }
 
+    /*
+        Get a certain amount of events that the user is participating based on the @page
+    */
+
     @GetMapping("/user/event/participating")
     fun getUserEventsParticipating(@RequestParam() email : String,
                                    @RequestParam() page : Int)
@@ -48,6 +66,10 @@ class EventController (val eventService: EventsService, val userService: UserSer
         val event : List<Event?>? = eventService.getUserEventsParticipating(user!!.userId!!,page)
         return ResponseEntity(event,HttpStatus.OK)
     }
+
+    /*
+        Get a certain amount of events created by the user based on the @page
+    */
 
     @GetMapping("/user/event/created")
     fun getUserEventsCreated(@RequestParam() email : String,
@@ -58,6 +80,12 @@ class EventController (val eventService: EventsService, val userService: UserSer
         return ResponseEntity(event,HttpStatus.OK)
     }
 
+    /******************************************  POST  ******************************************/
+
+    /*
+        Create a new event
+    */
+    
     @PostMapping("/event")
     fun createEvent(@RequestBody event : Event,
                     @RequestParam() email : String) : ResponseEntity<Any> {
@@ -68,6 +96,10 @@ class EventController (val eventService: EventsService, val userService: UserSer
         return ResponseEntity(eventKey,HttpStatus.OK)
     }
 
+    /*
+        Indicates that the user wants to participate in the event
+    */
+
     @PostMapping("/user/event/{eventId}")
     fun participateUserEvent(@PathVariable eventId : Int,
                              @RequestParam() email : String) : ResponseEntity<String> {
@@ -75,6 +107,12 @@ class EventController (val eventService: EventsService, val userService: UserSer
         val eventKey : Int = eventService.participateEvent(userId!!,eventId)
         return ResponseEntity("Participating in event $eventId",HttpStatus.OK)
     }
+
+    /******************************************  PUT  ******************************************/
+
+    /*
+        Cancel an event
+    */
 
     @PutMapping("/event/{eventId}")
     fun cancelEvent(@PathVariable("eventId") eventId: Int) : ResponseEntity<Any> {

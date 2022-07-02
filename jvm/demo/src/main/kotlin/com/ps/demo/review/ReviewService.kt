@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 class ReviewService(val reviewRepo : ReviewRepoImplementation) {
 
     fun createCompoundReview(compoundId : Int, userId:Int, review : Review) : Int? {
+        //Check if the values have been introduced correctly        
         val reviewTxt =  removeWhitespaces(review.description!!)
         if (review.rating > 5.0f || review.rating < 0.0f || review.description == null || review.description.isEmpty()
             || reviewTxt.isEmpty() || review.description.length > 100)
@@ -16,6 +17,7 @@ class ReviewService(val reviewRepo : ReviewRepoImplementation) {
     }
 
     fun createFieldReview(compoundId : Int, fieldId : Int, review : Review, userId: Int) : Int? {
+        //Check if the values have been introduced correctly
         val reviewTxt =  removeWhitespaces(review.description!!)
         if (review.rating > 5.0f || review.rating < 0.0f || review.description == null || review.description.isEmpty()
             || reviewTxt.isEmpty() || review.description.length > 100)

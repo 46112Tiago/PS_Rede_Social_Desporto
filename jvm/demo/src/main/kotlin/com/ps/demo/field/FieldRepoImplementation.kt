@@ -11,7 +11,6 @@ import java.util.*
 @Repository
 class FieldRepoImplementation(val jdbi : Jdbi){
 
-    /*TODO add pictures and location*/
     fun createField(field: Field): Int? {
         val compoundId = jdbi.withHandle<Compound,RuntimeException> { handle: Handle ->
             handle.createUpdate("insert into " +
@@ -37,7 +36,6 @@ class FieldRepoImplementation(val jdbi : Jdbi){
         return compoundId.id
     }
 
-    /*TODO add pictures*/
     fun addFieldToCompound(compoundId: Int, field: Field): Int? {
 
         val toReturn = jdbi.withHandle<Field,RuntimeException> { handle: Handle ->
@@ -85,7 +83,6 @@ class FieldRepoImplementation(val jdbi : Jdbi){
 
     }
 
-    /*TODO add pictures*/
     fun getAllFields(compoundId : Int): List<Field>? {
         val toReturn = jdbi.withHandle<List<Field>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name, id " +
@@ -100,7 +97,6 @@ class FieldRepoImplementation(val jdbi : Jdbi){
         return toReturn
     }
 
-    /*TODO add pictures*/
     fun getFieldInfo(fieldId: Int): Optional<Field>? {
         val toReturn = jdbi.withHandle<Optional<Field>?,RuntimeException> { handle : Handle ->
             handle.createQuery("Select name " +
@@ -125,6 +121,4 @@ class FieldRepoImplementation(val jdbi : Jdbi){
                 .execute()
         }
     }
-
-
 }

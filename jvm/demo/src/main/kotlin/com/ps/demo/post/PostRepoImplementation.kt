@@ -27,7 +27,6 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                     "post.description as p_description, " +
                     "post.postDate as p_postDate, " +
                     "post.likes as p_likes, " +
-                    //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
                     "user_profile.lastname as u_lastname, " +
                     "user_profile.profilepic as u_profilepic " +
@@ -62,7 +61,6 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                     "post.description as p_description, " +
                     "post.postdate as p_postdate, " +
                     "post.likes as p_likes, " +
-                    //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
                     "user_profile.lastname as u_lastname, " +
                     "user_profile.city as u_city, " +
@@ -98,7 +96,6 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                     "post.description as p_description, " +
                     "post.postdate as p_postdate, " +
                     "post.likes as p_likes, " +
-                    //"post.pictures as p_pictures, " +
                     "user_profile.firstname as u_firstname, " +
                     "user_profile.lastname as u_lastname, " +
                     "user_profile.city as u_city, " +
@@ -157,7 +154,6 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                 .bind(1,post.description)
                 .bind(2,timestamp)
                 .bind(3,0)
-                //.bind(4,post.pictures)
                 .executeAndReturnGeneratedKeys("id").mapTo<Post>().one()
         }
 

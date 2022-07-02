@@ -21,15 +21,6 @@ import java.text.SimpleDateFormat
 
 import java.security.Principal
 
-
-
-
-
-
-
-
-
-
 @RestController
 @RequestMapping
 @CrossOrigin("http://localhost:3000")
@@ -38,6 +29,8 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
 
     @Autowired
     var template: SimpMessagingTemplate? = null
+
+    /******************************************  GET  ******************************************/
 
     @GetMapping("/user/message/{receiverName}")
     fun getAllMessages(@RequestParam() email : String,
@@ -49,6 +42,8 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
         val privateMessages : List<PrivateMessage?>? = privateMessageService.getAllMessages(userId!!,receiverId!!,page)
         return ResponseEntity(privateMessages, HttpStatus.OK)
     }
+
+    /******************************************  POST  ******************************************/
 
     @PostMapping("/user/friend/{friendName}/message")
     fun sendMessage(@RequestParam() email : String,
@@ -64,7 +59,7 @@ class PrivateMessageController(val privateMessageService: PrivateMessageService,
     }
 
 
-    //https://github.com/JayaramachandranAugustin/ChatApplication    2022-06-18
+    //Based on: https://github.com/JayaramachandranAugustin/ChatApplication    2022-06-18
 
     @MessageMapping("/private-message")
     fun recMessage(@Payload message: PrivateMessage): PrivateMessage? {

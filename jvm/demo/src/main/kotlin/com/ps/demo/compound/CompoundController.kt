@@ -14,6 +14,13 @@ import java.util.*
 @CrossOrigin("http://localhost:3000")
 class CompoundController(val compoundService: CompoundService) {
 
+
+    /******************************************  GET  ******************************************/
+
+/*
+    Get only the Compounds and fields inside a certain area defined by the zoom, latitude and longitude 
+*/
+
     @GetMapping("/location")
     fun getLocations(@RequestParam(required = true) zoom: Int,
                      @RequestParam(required = false) centerLat : Double,
@@ -22,6 +29,10 @@ class CompoundController(val compoundService: CompoundService) {
         val locations : List<Compound?>? = compoundService.getCompoundLocations(zoom,centerLat,centerLng)
         return ResponseEntity(locations, OK)
     }
+
+/*
+    Get only the Compounds and fields inside a certain area defined by the zoom, latitude, longitude and the sport 
+*/
 
     @GetMapping("/sport/{sportId}")
     fun getLocationsBySport(@PathVariable("sportId") sportId : Int,
@@ -33,6 +44,10 @@ class CompoundController(val compoundService: CompoundService) {
     }
 
 
+/*
+    Get the information about a certain compound 
+*/
+
     @GetMapping("/{compoundId}")
     fun getCompoundInfo(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<Any> {
         val compound : Optional<Compound> = compoundService.getCompoundInformation(compoundId)
@@ -40,11 +55,23 @@ class CompoundController(val compoundService: CompoundService) {
         return ResponseEntity(compound, OK)
     }
 
+    /******************************************  DELETE  ******************************************/
+
+/*
+    Remove a certain compound 
+*/
+
     @DeleteMapping("/{compoundId}")
     fun deleteCompound(@PathVariable("compoundId") compoundId : Int) : ResponseEntity<Any> {
         compoundService.deleteCompound(compoundId)
         return ResponseEntity("Compound $compoundId deleted", OK)
     }
+
+    /******************************************  POST  ******************************************/
+    
+/*
+    Create a new compound 
+*/
 
     @PostMapping
     fun createCompound(@RequestBody compound : Compound)
@@ -53,6 +80,12 @@ class CompoundController(val compoundService: CompoundService) {
         if (compoundKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(compoundKey, OK)
     }
+
+    /******************************************  PUT  ******************************************/
+
+/*
+    Accept a compound. The user can only see compounds that have been accepted 
+*/
 
     @PutMapping("/{compoundId}")
     fun acceptCompound(@PathVariable compoundId : Int)

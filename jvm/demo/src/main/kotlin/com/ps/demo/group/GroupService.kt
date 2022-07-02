@@ -31,12 +31,14 @@ class GroupService(val groupRepo : GroupRepoImplementation, val userRepo: UserRe
     }
 
     fun insertGroup(userId : Int, group : Group) : Int? {
+        //Check if the values have been introduced correctly
         val groupName =  removeWhitespaces(group.name)
         if (group.name.isEmpty() || groupName.isEmpty()) return -1
         return groupRepo.insertGroup(userId,group)
     }
 
     fun insertGroupParticipant(groupId : Int, participantsId : List<String>) {
+        //Iterates from a list of users and add them as participants in the group 
         for (participantName: String in participantsId) {
             val participantId = userRepo.getUserById(participantName)!!.userId
             groupRepo.insertGroupParticipant(groupId, participantId!!)

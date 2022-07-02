@@ -23,6 +23,7 @@ class UserService(val userRepo : UserRepoImplementation) {
     fun getUserInfo(email : String) : User? {
         val user = userRepo.getUserById(email)
         if (user != null){
+            //Get the profile pic
             val profilePic = userRepo.getUserProfilePic(user.userId!!)
             if (profilePic != null && profilePic.isPresent)
                 user.profilepic = profilePic.get().image
@@ -39,6 +40,8 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun insertUser(user : User) : Int {
+        
+        //Check if the values have been introduced correctly        
         if (user.firstName == null || user.lastName == null || user.city == null ||
             user.birthdate == null || user.email == null || user.gender == null)
                 return -1
@@ -71,6 +74,7 @@ class UserService(val userRepo : UserRepoImplementation) {
 
     fun editUserProfile(userId: Int, user: User) : Int {
         if (user.sports!!.isNotEmpty()) {
+            //Iterates for the sports and insert them as favourites of the user
             for (sport in user.sports!!)
                 userRepo.addUserSport(userId,sport.id!!)
         }
@@ -86,6 +90,7 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun addFriend(userId: Int, friendId: Int) : Int {
+        //Check if the users are already friends before add as a new friend
         if(userRepo.isFriend(userId,friendId)!!.isEmpty) {
             return userRepo.addFriend(userId,friendId)
         }
@@ -93,15 +98,18 @@ class UserService(val userRepo : UserRepoImplementation) {
     }
 
     fun getUsersByName(userName : String,page : Int) : List<User?>? {
+        //Check if the values have been introduced correctly
         val name = removeWhitespaces(userName)
         if (name.isEmpty()) return listOf()
         val splitName = userName.split(" ")
         val firstName = splitName[0]
         var lastName = ""
+        //Check if there is a lastname in the string
         if (splitName.size > 1) lastName =  splitName[1]
         return userRepo.getUsersByName(firstName,lastName,page)
     }
 
+    //Check if the users are already friends
     fun isFriend(userId: Int, friendId: Int) : Optional<User>? {
         return userRepo.isFriend(userId,friendId)
     }

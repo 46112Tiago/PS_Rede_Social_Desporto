@@ -14,11 +14,21 @@ import java.util.*
 @CrossOrigin("http://localhost:3000")
 class FieldController(val fieldService: FieldService) {
 
+    /******************************************  GET  ******************************************/
+
+    /*
+        Get all the fields accepted
+    */
+
     @GetMapping("/compound/{compoundId}/field")
     fun getAllFields(@PathVariable("compoundId") compoundId: Int) : ResponseEntity<List<Field>?> {
         val fields : List<Field>? = fieldService.getAllFields(compoundId)
         return ResponseEntity(fields, HttpStatus.OK)
     }
+
+    /*
+        Get the field imformation
+    */
 
     @GetMapping("/compound/{compoundId}/field/{fieldId}")
     fun getFieldInfo(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any> {
@@ -27,11 +37,21 @@ class FieldController(val fieldService: FieldService) {
         return ResponseEntity(field, HttpStatus.OK)
     }
 
+    /******************************************  DELETE  ******************************************/
+
+    /*
+        Delete a field
+    */
+
     @DeleteMapping("/field/{fieldId}")
     fun deleteField(@PathVariable("fieldId") fieldId : Int) : ResponseEntity<Any> {
         fieldService.deleteField(fieldId)
         return ResponseEntity("Field $fieldId deleted",OK)
     }
+
+    /*
+        Delete a field that belongs to a compound
+    */
 
     @DeleteMapping("/compound/{compoundId}/field/{fieldId}")
     fun deleteFieldFromCompound(@PathVariable("compoundId") compoundId: Int,
@@ -39,6 +59,12 @@ class FieldController(val fieldService: FieldService) {
         fieldService.deleteFieldFromCompound(compoundId,fieldId)
         return ResponseEntity("Field $fieldId from compound $compoundId deleted",OK)
     }
+
+    /******************************************  POST  ******************************************/
+
+    /* 
+        Create a new field
+    */
 
     @PostMapping("/field")
     fun createField(@RequestBody() field: Field)
@@ -48,6 +74,10 @@ class FieldController(val fieldService: FieldService) {
         return ResponseEntity(fieldKey,OK)
     }
 
+    /* 
+        Add a new field to a certain compound
+    */
+
     @PostMapping("/compound/{compoundId}/field")
     fun addFieldToCompound(@PathVariable compoundId : Int, @RequestBody field: Field)
             : ResponseEntity<Any> {
@@ -55,6 +85,12 @@ class FieldController(val fieldService: FieldService) {
         if (fieldKey == -1) return ResponseEntity("Bad request",BAD_REQUEST)
         return ResponseEntity(fieldKey, OK)
     }
+
+    /******************************************  PUT  ******************************************/
+
+    /*
+        Accept a field
+    */
 
     @PutMapping("/compound/{compoundId}/field/{fieldId}")
     fun acceptField(@PathVariable compoundId : Int, @PathVariable fieldId: Int)

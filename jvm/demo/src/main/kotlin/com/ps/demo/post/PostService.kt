@@ -30,6 +30,7 @@ class PostService(val postRepo : PostRepoImplementation) {
     }
 
     fun insertPost(userId : Int,post : Post) : Int? {
+        //Check if the values have been introduced correctly
         val postTxt =  removeWhitespaces(post.description)
         if (post.description.isEmpty() || post.description.length > 100 || postTxt.isEmpty())
             return -1

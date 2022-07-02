@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("http://localhost:3000")
 class GroupMessageController(val groupMsgService : GroupMessageService, val userService: UserService) {
 
+    /******************************************  GET  ******************************************/
+
+    /* 
+        Get the group messages 
+    */
+
     @GetMapping("/user/group/{groupId}/message")
     fun getAllMessages(@RequestParam() email : String,
                        @PathVariable("groupId") groupId : Int
@@ -19,6 +25,12 @@ class GroupMessageController(val groupMsgService : GroupMessageService, val user
         val groupMessages : List<GroupMessage?> = groupMsgService.getAllMessages(userId!!,groupId)
         return ResponseEntity(groupMessages, HttpStatus.OK)
     }
+
+    /******************************************  POST  ******************************************/
+
+    /* 
+        Add a new message to the group 
+    */
 
     @PostMapping("/user/group/{groupId}/message")
     fun sendMessage(@RequestParam() email : String,

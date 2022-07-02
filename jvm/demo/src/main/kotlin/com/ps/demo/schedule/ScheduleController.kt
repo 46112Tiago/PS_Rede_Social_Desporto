@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("http://localhost:3000")
 class ScheduleController(val scheduleService: ScheduleService) {
 
+    /******************************************  GET  ******************************************/
+
+    /* 
+        Get the schedule for the specified compound
+    */
+
     @GetMapping("/compound/{compoundId}")
     fun getCompoundSchedule(@PathVariable("compoundId") compoundId: Int): ResponseEntity<List<Schedule>?> {
         val schedules = scheduleService.getCompoundSchedule(compoundId)

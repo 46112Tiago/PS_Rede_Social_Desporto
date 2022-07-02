@@ -13,6 +13,7 @@ class GroupMessageService(val groupMsgRepo : GroupMessageRepoImplementation) {
     }
 
     fun sendMessage(userId : Int, groupId : Int,groupMessage: GroupMessage) : Int? {
+        //Check if the values have been introduced correctly
         val messageTxt =  removeWhitespaces(groupMessage.message)
         if (groupMessage.message.isEmpty() || groupMessage.message.length > 400 || messageTxt.isEmpty())
             return -1

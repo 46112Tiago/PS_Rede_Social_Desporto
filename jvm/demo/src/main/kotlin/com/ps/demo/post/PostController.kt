@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("http://localhost:3000")
 class PostController (val postService: PostService, val userService: UserService) {
 
+    /******************************************  GET  ******************************************/
+
+    /* 
+        Get a certain amount of posts made by the users friends, based on @page
+    */
+
     @GetMapping("/user/post")
     fun getPosts(@RequestParam() email : String,
                  @RequestParam() page : Int) : ResponseEntity<List<Post?>> {
@@ -23,11 +29,19 @@ class PostController (val postService: PostService, val userService: UserService
         return ResponseEntity(posts.toList(), HttpStatus.OK)
     }
 
+    /* 
+        Get a certain post 
+    */
+
     @GetMapping("/post/{postId}")
     fun getPostById(@PathVariable("postId") postId : Int) : ResponseEntity<Any> {
         val post : Post = postService.getPostById(postId) ?: return ResponseEntity("Resource not found",NOT_FOUND)
         return ResponseEntity(post, HttpStatus.OK)
     }
+
+    /* 
+        Get a certain amount of posts made by the user, based on @page
+    */
 
     @GetMapping("/post/user")
     fun getUserPosts(@RequestParam() email : String,
@@ -37,11 +51,23 @@ class PostController (val postService: PostService, val userService: UserService
         return ResponseEntity(posts,HttpStatus.OK)
     }
 
+    /******************************************  DELETE  ******************************************/
+
+    /* 
+        Delete a post
+    */
+
     @DeleteMapping("/post/{postId}")
     fun deletePost(@PathVariable("postId") postId : Int) : ResponseEntity<Any> {
         postService.deletePost(postId)
         return ResponseEntity("Post $postId deleted",HttpStatus.OK)
     }
+
+    /******************************************  POST  ******************************************/
+
+    /* 
+        Create a new post
+    */
 
     @PostMapping("/user/post")
     fun createPost(@RequestParam() email : String,

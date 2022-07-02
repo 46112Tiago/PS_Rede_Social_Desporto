@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service
 class FieldService(val fieldRepo: FieldRepoImplementation) {
 
     fun createField(field: Field) : Int? {
+
+        //Check if the values have been introduced correctly
         val fieldName = removeWhitespaces(field.name)
         if (field.name.isEmpty() || fieldName.isEmpty() || field.name.length > 100 ) return -1
         return fieldRepo.createField(field)
     }
 
     fun addFieldToCompound(compoundId: Int, field: Field) : Int? {
+    
+        //Check if the values have been introduced correctly        
         val fieldName = removeWhitespaces(field.name)
         if (field.name.isEmpty() || fieldName.isEmpty() || field.name.length > 100 ) return -1
         return fieldRepo.addFieldToCompound(compoundId,field)

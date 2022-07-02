@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin("http://localhost:3000")
 class CommentController(val commentService: CommentService, val userService: UserService) {
 
+    /******************************************  POST  ******************************************/
+
+    /*
+        Create a new comment for the specified post
+    */
+
     @PostMapping
     fun createComment(@RequestParam() email : String,
                       @PathVariable("postId") postId : Int,
@@ -26,6 +32,12 @@ class CommentController(val commentService: CommentService, val userService: Use
         return ResponseEntity(commentKey, HttpStatus.OK)
     }
 
+    /******************************************  GET  ******************************************/
+
+    /*
+        Get a certain amount of comments for a specific post based on @page
+    */
+
     @GetMapping()
     fun getAllComments(@PathVariable("postId") postId : Int,
                        @RequestParam() page : Int) : ResponseEntity<List<Comment?>?> {
@@ -33,12 +45,23 @@ class CommentController(val commentService: CommentService, val userService: Use
         return ResponseEntity(comments, HttpStatus.OK)
     }
 
+    /*
+        Get a comment based on the commentId
+    */
+
     @GetMapping("/{commentId}")
     fun getCommentById(@PathVariable("postId") postId : Int,
                        @PathVariable("commentId") commentId : Int) : ResponseEntity<Any? > {
         val comments = commentService.getCommentById(postId,commentId) ?: return ResponseEntity("Resource not found",NOT_FOUND)
         return ResponseEntity(comments, HttpStatus.OK)
     }
+
+
+    /******************************************  DELETE  ******************************************/
+
+    /*
+        Delete a specific comment
+    */
 
     @DeleteMapping("/{commentId}")
     fun deleteComment(@PathVariable("postId") postId : Int, @PathVariable("commentId") commentId : Int) : ResponseEntity<Any?> {
