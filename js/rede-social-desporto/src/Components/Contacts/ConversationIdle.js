@@ -54,8 +54,8 @@ const ConversationIdle = (props) => {
         
       function()
       {
-        var scrollTop = document.getElementById('overflowText').scrollTop * -1;
-        if(scroll < scrollTop ){
+        var scrollTop = document.getElementById('overflowText').scrollTop;
+        if(scroll > scrollTop ){
           setScroll(scrollTop)
         }       
       } 
