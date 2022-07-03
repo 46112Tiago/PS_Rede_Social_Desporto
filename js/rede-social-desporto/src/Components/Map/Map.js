@@ -5,6 +5,7 @@ import './Map.css'
 import SearchBox from './SearchBox/SearchBox';
 import Suggestion from './Suggestion';
 import { useAuth0 } from "@auth0/auth0-react";
+import Loading from '../Loading/Loading';
 
 const center = {
   lat: 38.757026,
@@ -35,23 +36,16 @@ const Map = () => {
 
   const suggestion = isAuthenticated ? <Suggestion map={map}/> : <></>
 
-  /*https://github.com/googlemaps/react-wrapper                21/05/2022*/
-
   const render = (status) => {
     switch (status) {
       case Status.LOADING:
-        return <></>;
-      case Status.FAILURE:
-        return <></>;
-      case Status.SUCCESS:
-        return <></>;
+        return <Loading/>;
     }
   };
   return(
     <div id='wrapper'>
       <div id='wrapperContainer'>
         <SearchBox center={getCenter}></SearchBox>
-        {/*https://github.com/googlemaps/react-wrapper            21/05/2022*/}     
         <Wrapper render={render} apiKey={`${process.env.REACT_APP_MAPAPI}`}> 
           <MapComponent center={newCenter} zoom={5} getMap={getMap}>
           </MapComponent>

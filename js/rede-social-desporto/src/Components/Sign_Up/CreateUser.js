@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 const CreateUser = () => {
 
-  // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const {user,getAccessTokenSilently} = useAuth0()
@@ -29,12 +28,9 @@ const CreateUser = () => {
             let byteArray = new Uint8Array(reader.result)
             let hexString = ''
             for (let i = byteArray.length-1; i >=0 ;i--){
-                let aux = ''
-                if(byteArray[i] < 16){
-                    aux = '0'
-                }
-                aux = aux + byteArray[i].toString(16);
-                hexString = aux.concat(hexString)
+                let hexValue = byteArray[i].toString(16); 
+                hexValue = hexValue.length == 1 ? "0" + hexValue : hexValue 
+                hexString = hexValue.concat(hexString)
             } 
             setImage(hexString)
       
