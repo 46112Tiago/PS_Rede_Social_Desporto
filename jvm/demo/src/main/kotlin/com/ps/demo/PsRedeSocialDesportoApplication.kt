@@ -16,9 +16,11 @@ class DemoApplication {
 	@Bean
 	fun jdbi(): Jdbi? {
 		var jdbi : Jdbi? = null
+		val url = System.getenv("DBURL")
+		val username = System.getenv("DBNAME")
 		val password = System.getenv("PostgresPassword")
 		try{
-			jdbi = Jdbi.create("jdbc:postgresql://localhost:5432/postgres","postgres",password)
+			jdbi = Jdbi.create(url,username,password)
 				.installPlugins()
 				.installPlugin(PostgresPlugin())
 				.installPlugin(KotlinPlugin())
