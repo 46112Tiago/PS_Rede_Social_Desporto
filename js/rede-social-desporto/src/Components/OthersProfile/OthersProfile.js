@@ -53,7 +53,7 @@ const friendName = window.location.href.split('/')[4].split("#")[0]
         <div id="body">
             <div id="backgroundProfile">
                 <div id="backgroundLeft">
-                    <img id="profileImg" src={require('./Img/user_icon.png')}></img>
+                    <img id="profileImg" src={require('./Img/user.jpeg')}></img>
                 </div>
 
                 <div id="backgroundRight">

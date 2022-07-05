@@ -10,79 +10,42 @@ let stompClient =null;
 
 const InputText = (props) => {
 
-
-    /**
-     * Change Friends/Groups to only one of those. 
-     * If the user press Friends, appears only the friends list
-     * If the user press Groups, appears only the groups list
-     */
-  // get functions to build form with useForm() hook
   const { register, handleSubmit } = useForm();
   const {getAccessTokenSilently,user} = useAuth0();
-  // user state for form
   const [messageObj, setMessage] = useState(message);
   
   //Based on https://github.com/JayaramachandranAugustin/ChatApplication    2022-06-18
   
-  const [privateChats, setPrivateChats] = useState(new Map());     
-  const [userData, setUserData] = useState({
-        receiver: {email:''},
-        connected: false,
-        message: ''
-      });
-
-
-    const connect =()=>{
-        let Sock = new SockJS('http://localhost:8080/webSocket');
-        stompClient = over(Sock);
-        stompClient.connect({},onConnected, onError);
-    }
-
     const onConnected = () => {
-        setUserData({...userData,"connected": true});
         stompClient.subscribe(`/friend/${user.email.split("@")[0]}/private`, onPrivateMessage);
     }
     
     const onPrivateMessage = (payload)=>{
-        var payloadData = JSON.parse(payload.body);
-        if(privateChats.get(payloadData.senderName)){
-            privateChats.get(payloadData.senderName).push(payloadData);
-            setPrivateChats(new Map(privateChats));
-        }else{
-            let list =[];
-            list.push(payloadData);
-            privateChats.set(payloadData.senderName,list);
-            setPrivateChats(new Map(privateChats));
-        }
         const messages = message
-        messages.message = payloadData.message
+        messages.message = JSON.parse(payload.body).message
         props.socket(messages)
         setMessage(messages)
     }
 
     const onError = (err) => {
         console.log(err);
-        
     }
 
     const sendPrivateValue=(text)=>{
-        if (stompClient) {
-          var chatMessage = {
+        if (stompClient) { 
+          stompClient.send("/message/private-message", {}, JSON.stringify({
             receiver:{email:props.friendName},
             message: text.message,
-          };
-          
-            setPrivateChats(new Map(privateChats));
-          stompClient.send("/message/private-message", {}, JSON.stringify(chatMessage));
-          setUserData({...userData,"message": text.message});
+          }));
+        }else {
+          onError("Error sending message")
         }
     }
 
-  // effect runs on component mount
   useEffect(() => {
-    connect()
-      // simulate async api call with set timeout
-      setTimeout(() => setMessage(message), 1000);
+    let Sock = new SockJS('http://localhost:8080/webSocket');
+    stompClient = over(Sock);
+    stompClient.connect({},onConnected, onError);
   }, [messageObj]);
 
 

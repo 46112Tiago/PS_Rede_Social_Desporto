@@ -21,7 +21,7 @@ const Account = (props) => {
         <div>
             <div className='account'>
                     <button type='button' className='btnAccount' onClick={props.accountId ? sendAccountId : sendAccountName }>                            
-                        <img className='profileImg' src={require('./Img/default_profile.jpg')}></img> {name}
+                        <img className='profileImg' src={require('./Img/user.jpeg')}></img> {name}
                     </button>
             </div>                    
         </div>

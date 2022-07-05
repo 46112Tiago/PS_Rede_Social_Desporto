@@ -87,7 +87,7 @@ const Navigate = (props) => {
                 <div className='cardContainer' key={key}>
                     <div className="card navigate">
                         <p>{lookingMadeObj.creator.firstName} {lookingMadeObj.creator.lastName}</p>
-                        <img src={require('../../img/default_profile.jpg')} id='photoLooking'></img>
+                        <img src={require('../../img/user.jpeg')} id='photoLooking'></img>
                         <div className='btnContainer'>
                             <button className='Looking activateModal_pending' onClick={()=>{
                                 props.getLookingPlayers(lookingMadeObj)

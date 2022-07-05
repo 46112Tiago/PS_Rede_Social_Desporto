@@ -4,14 +4,11 @@ import PostOText from './PostOText';
 
 const PostWImage = (props) => {
 
-      function test() {
-        alert('test')
-      }
 
       return (
         <div id='postWithImage'>
           <div id='imagePostContainer'>
-            <img id='post_image' src={require('./images/route_template_post.jpg')} onClick={test}></img>
+            <img id='post_image'></img>
           </div>
           <PostOText post={props.post}></PostOText>
         </div>

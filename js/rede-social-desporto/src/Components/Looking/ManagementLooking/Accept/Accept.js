@@ -92,7 +92,7 @@ const Accept = (props) => {
                     <div className='cardContainer' key={key}>
                         <div className="card accept">
                         <p>{lookingObj.creator.firstName} {lookingObj.creator.lastName}</p>
-                            <img src={require('../../img/default_profile.jpg')}></img>
+                            <img src={require('../../img/user.jpeg')}></img>
                             <div className='btnContainer'>
                               <button className='infoLooking'onClick={()=>{
                                   props.getLookingPlayers(lookingObj)

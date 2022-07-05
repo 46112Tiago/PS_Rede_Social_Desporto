@@ -67,7 +67,7 @@ const StaticProfile = () => {
         <div id='containerProfile'>
           <div id='leftSide'>
             <div id='imageProfile'>
-              <img src={require('../Img/default_profile.jpg')} id='photoProfile'></img>
+              <img src={require('../Img/user.jpeg')} id='photoProfile'></img>
             </div>
             <div id='nameProfile'>
               <h2>{userObj.firstName} {userObj.lastName}</h2>

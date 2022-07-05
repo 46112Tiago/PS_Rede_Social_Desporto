@@ -88,7 +88,7 @@ const Made = (props) => {
       <div className='cardContainer' key={key}>
         <div className="card made">
             <p></p>
-            <img src={require('../../img/default_profile.jpg')} className='photoLooking'></img>
+            <img src={require('../../img/user.jpeg')} className='photoLooking'></img>
             <div className='btnContainer'>
                 <button className='Looking' onClick={()=>{
                   props.getLookingPlayers(lookingMadeObj)

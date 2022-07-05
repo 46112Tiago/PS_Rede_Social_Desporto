@@ -60,13 +60,13 @@ DEALINGS IN THE SOFTWARE.
 
 
 .card0{
-    background: url('./Img/user_icon.png') center center no-repeat;
+    background: url('./Img/user.jpeg') center center no-repeat;
     background-size: 300px;
 
 }
 
 .card0:hover {
-    background: url('./Img/user_icon.png') left center no-repeat;
+    background: url('./Img/user.jpeg') left center no-repeat;
     background-size: 400px;
 } 
 

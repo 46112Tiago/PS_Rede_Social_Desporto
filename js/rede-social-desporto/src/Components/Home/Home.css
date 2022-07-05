@@ -1,28 +1,26 @@
-/*Based on https://www.w3schools.com/howto/howto_css_parallax.asp        01/04/2022     */
-
 .parallax {
-    min-height: 550px;
+    min-height: 500px;
     background-attachment: fixed;
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
+/*Photo by <a href="https://unsplash.com/@hhh13?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">傅甬 华</a> on <a href="https://unsplash.com/s/photos/padel-tennis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*/
 #map {
-    background-image: url('./images/padel.jpg');
+    background-image: url('./images/hhh13-q9iVyHxn230-unsplash.jpg');
 }
-
+/*Photo by <a href="https://unsplash.com/@steveshirc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Steven Shircliff</a> on <a href="https://unsplash.com/s/photos/golf?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*/
 #events {
-    background-image: url('./images/football.webp');
+    background-image: url('./images/steven-shircliff-N21z4eG8aKg-unsplash.jpg');
 }
 
+/*<a href="https://unsplash.com/@humadethis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andy Hu</a> on <a href="https://unsplash.com/s/photos/basketball?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>*/
 #register {
-    background-image: url('./images/basketball-ring.jpg');
+    background-image: url('./images/andy-hu-B85A8-GHjoI-unsplash.jpg');
 }
 
 .right_float {
     float: right;
-    background-color: rgba(250, 235, 215, 0.2);
+    background-color: rgba(51, 49, 46, 0.2);
     text-align: center;
     vertical-align: middle;
     margin-top:100px ;
@@ -31,7 +29,7 @@
 
 .left_float {
     float: left;
-    background-color: rgba(250, 235, 215, 0.2);
+    background-color: rgba(51, 49, 46, 0.2);
     text-align: center;
     vertical-align: middle;
     margin-top: 100px;

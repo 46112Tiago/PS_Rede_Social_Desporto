@@ -11,7 +11,7 @@ const PostOText = (props) => {
         <div id='posComment'>
         <div id='postOnlyText'>
             <div id='leftPostTemplate'>
-              <img id='userPost' src={require('./images/default_profile.jpg')}></img>
+              <img id='userPost' src={require('./images/user.jpeg')}></img>
             </div>  
             <div id='rightPostTemplate'>
                 <h4>{firstName} {lastName}</h4>

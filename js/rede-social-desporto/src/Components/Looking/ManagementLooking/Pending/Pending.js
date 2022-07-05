@@ -90,7 +90,7 @@ const Pending = (props) => {
             <div className='cardContainer' key={key}>
                 <div className="card pending">
                     <p>{lookingObj.creator.firstName} {lookingObj.creator.lastName}</p>
-                    <img src={require('../../img/default_profile.jpg')} id='photoLooking'></img>
+                    <img src={require('../../img/user.jpeg')} id='photoLooking'></img>
                     <div>
                     <button id="activateModal_pending" className='infoLooking'onClick={()=>{
                     props.getLookingPlayers(lookingObj)

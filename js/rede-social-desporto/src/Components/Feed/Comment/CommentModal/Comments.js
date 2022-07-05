@@ -6,7 +6,7 @@ const Comments = (props) => {
     return (      
         <div id="comment_body">
             <div id="leftSideComment">
-                <img id='userPost' src={require('../images/default_profile.jpg')}></img>
+                <img id='userPost' src={require('../images/user.jpeg')}></img>
             </div>
             <div id="rightSideComment">
                 <h5 id="nameComment">{props.firstName} {props.lastName}</h5>
