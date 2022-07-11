@@ -10,7 +10,7 @@ data class Compound(
         val contact: String?,
         val description : String?,
         val summary : String?,
-        val pictures : URL?,
+        val pictures : List<String>?,
         val location : PGpoint?,
         val sports : List<Sports>?,
         val material : List<Material>?,
