@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "cd061ad5-fe1e-49dd-9264-335032921edb",
+		"name": "Private Message",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Messages",
+			"id": "6c77be0e-cf6b-4f28-9cd0-27a50b876798",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/message/britoJ?email=projeto.seminario2022&page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"message",
+						"britoJ"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "a8e8f9a9-3aca-4998-934c-4da36cef395f",
+					"name": "Get All Messages",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/message/britoJ?email=projeto.seminario2022&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"message",
+								"britoJ"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 02:48:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 6,\n        \"message\": \"Message2\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 7,\n        \"message\": \"Message3\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 8,\n        \"message\": \"Message4\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 9,\n        \"message\": \"Message5\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 10,\n        \"message\": \"Message6\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 11,\n        \"message\": \"Message7\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 12,\n        \"message\": \"Message8\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 13,\n        \"message\": \"Message9\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 14,\n        \"message\": \"Message10\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    },\n    {\n        \"id\": 5,\n        \"message\": \"Message1\",\n        \"date\": null,\n        \"receiver\": null,\n        \"sender\": {\n            \"userId\": 4,\n            \"firstName\": \"\",\n            \"lastName\": \"\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": \"britoJ@gmail.com\",\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Send Message",
+			"id": "480cede9-436f-4d9f-af1f-cc26731e11e6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\":\"Input message postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/friend/britoJ/message?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"friend",
+						"britoJ",
+						"message"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "addeff16-812b-416e-b999-2d0ad2c4c796",
+					"name": "Send Message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\":\"Input message postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/friend/britoJ/message?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"friend",
+								"britoJ",
+								"message"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 02:49:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"id\": 26,\n    \"message\": \"Input message postman\",\n    \"date\": null,\n    \"receiver\": null,\n    \"sender\": {\n        \"userId\": 1,\n        \"firstName\": \"\",\n        \"lastName\": \"\",\n        \"city\": \"\",\n        \"birthdate\": null,\n        \"profilepic\": \"\",\n        \"email\": \"\",\n        \"available\": false,\n        \"gender\": null,\n        \"sports\": null,\n        \"friends\": null\n    }\n}"
+				},
+				{
+					"id": "33572da9-7933-4b7f-9a97-892fa6dc82e1",
+					"name": "Send Message",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\":\"     \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/friend/britoJ/message?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"friend",
+								"britoJ",
+								"message"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 02:51:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Bad request"
+				}
+			]
+		}
+	]
+}

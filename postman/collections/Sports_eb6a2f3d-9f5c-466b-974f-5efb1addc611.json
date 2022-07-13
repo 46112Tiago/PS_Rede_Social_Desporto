@@ -1,0 +1,811 @@
+{
+	"info": {
+		"_postman_id": "af9a4576-7fc7-4729-b251-e74c653dfd69",
+		"name": "Sports",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All User Sports",
+			"id": "ff7daa38-338a-4e0e-b9fe-b5ea74b5060e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/sports?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"sports"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "2266b47a-85ff-4f4b-98ed-166acd7a5a58",
+					"name": "Get All User Sports",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/sports?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"sports"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONID=B8126C59D6C78D7A335A6FF86AF02748; Path=/; HttpOnly"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:11:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 2,\n        \"user\": null,\n        \"name\": \"Basketball\"\n    },\n    {\n        \"id\": 1,\n        \"user\": null,\n        \"name\": \"Football\"\n    },\n    {\n        \"id\": 3,\n        \"user\": null,\n        \"name\": \"Tenis\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get All User Not Sports",
+			"id": "46c2404a-0991-4464-a556-6c13bd66563d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/not/sports?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"not",
+						"sports"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "b24834a9-d8d3-4972-b3c2-1a6ba0291bd5",
+					"name": "Get All User Not Sports",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/not/sports?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"not",
+								"sports"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:12:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 10,\n        \"user\": null,\n        \"name\": \"BodyBoard\"\n    },\n    {\n        \"id\": 6,\n        \"user\": null,\n        \"name\": \"Golf\"\n    },\n    {\n        \"id\": 5,\n        \"user\": null,\n        \"name\": \"Handball\"\n    },\n    {\n        \"id\": 8,\n        \"user\": null,\n        \"name\": \"Paddle(SUP)\"\n    },\n    {\n        \"id\": 4,\n        \"user\": null,\n        \"name\": \"Padel\"\n    },\n    {\n        \"id\": 9,\n        \"user\": null,\n        \"name\": \"Skate\"\n    },\n    {\n        \"id\": 7,\n        \"user\": null,\n        \"name\": \"Surf\"\n    },\n    {\n        \"id\": 11,\n        \"user\": null,\n        \"name\": \"Swimming\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete User Sport",
+			"id": "e3423e9e-5273-4e9c-a7ff-a517ab5dc3cf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/sports/2?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"sports",
+						"2"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "fc288c4e-c8db-4ded-a516-b0a9d0898696",
+					"name": "Delete User Sport",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/sports/2?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"sports",
+								"2"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:14:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Sport with id 2 deleted"
+				}
+			]
+		},
+		{
+			"name": "Add Sports to User",
+			"id": "b57a9bfb-fda4-4971-b1f9-07c79e713dcf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\":\"6\"\r\n    },\r\n    {\r\n        \"id\":\"7\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/sports?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"sports"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "884b4870-2d9b-4250-a470-7a70e5319606",
+					"name": "Add Sports to User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\":\"10\"\r\n    },\r\n    {\r\n        \"id\":\"11\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/sports?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"sports"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "13"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:14:34 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Sports insert"
+				}
+			]
+		},
+		{
+			"name": "Get Sports",
+			"id": "a101e556-ea32-4885-b0fe-20e7392566f7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/sports",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sports"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "54e477a5-94fa-47c3-a721-a3ca5d2bfd2a",
+					"name": "Get Sports",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/sports",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sports"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:13:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 2,\n        \"user\": null,\n        \"name\": \"Basketball\"\n    },\n    {\n        \"id\": 10,\n        \"user\": null,\n        \"name\": \"BodyBoard\"\n    },\n    {\n        \"id\": 1,\n        \"user\": null,\n        \"name\": \"Football\"\n    },\n    {\n        \"id\": 6,\n        \"user\": null,\n        \"name\": \"Golf\"\n    },\n    {\n        \"id\": 5,\n        \"user\": null,\n        \"name\": \"Handball\"\n    },\n    {\n        \"id\": 8,\n        \"user\": null,\n        \"name\": \"Paddle(SUP)\"\n    },\n    {\n        \"id\": 4,\n        \"user\": null,\n        \"name\": \"Padel\"\n    },\n    {\n        \"id\": 9,\n        \"user\": null,\n        \"name\": \"Skate\"\n    },\n    {\n        \"id\": 7,\n        \"user\": null,\n        \"name\": \"Surf\"\n    },\n    {\n        \"id\": 11,\n        \"user\": null,\n        \"name\": \"Swimming\"\n    },\n    {\n        \"id\": 3,\n        \"user\": null,\n        \"name\": \"Tenis\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Add Sport",
+			"id": "3dc26ffb-0f25-4633-8dbd-74b1cc0e0702",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"gymnastics\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/sport",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sport"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "6e131d26-55db-44f4-a71e-55a620f1d4b7",
+					"name": "Add Sport",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"gymnastics\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sport",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sport"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:14:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "12"
+				}
+			]
+		}
+	]
+}

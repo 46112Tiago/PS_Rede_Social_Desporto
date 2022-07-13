@@ -1,0 +1,1242 @@
+{
+	"info": {
+		"_postman_id": "4ab0ee66-185a-4cd3-a51d-9fcb887cf1c3",
+		"name": "Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Active Events",
+			"id": "2d95b2fa-2e94-45f0-b912-748897008b3e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/event?page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"event"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "b2aabee4-9cbd-41e9-89ea-b38fc3867de8",
+					"name": "Get Active Events",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event?page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:47:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 8,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Portimão Surf Club\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(37.115959445928326,-8.528738708317174)\",\n                \"x\": 37.115959445928326,\n                \"y\": -8.528738708317174\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-08-01T08:00:00\",\n        \"plannedfinishDate\": \"2022-08-03T17:00:00\",\n        \"name\": \"Algarve Surfing Cup\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Surf\"\n        },\n        \"description\": \"A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.\\nO evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).\",\n        \"summary\": \"A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 40\n    },\n    {\n        \"id\": 14,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Portimão Surf Club\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(37.115959445928326,-8.528738708317174)\",\n                \"x\": 37.115959445928326,\n                \"y\": -8.528738708317174\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-08-01T08:00:00\",\n        \"plannedfinishDate\": \"2022-08-03T17:00:00\",\n        \"name\": \"Algarve Surfing Cup\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Surf\"\n        },\n        \"description\": \"A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.\\nO evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).\",\n        \"summary\": \"A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 40\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Event Description",
+			"id": "7cc76874-b88c-4608-a42a-bb19744f4272",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/event/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"event",
+						"10"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "92573fba-de06-48b0-b318-7839a17d210e",
+					"name": "Get Event Description",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event",
+								"10"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:47:57 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"id\": 10,\n    \"field\": null,\n    \"compound\": {\n        \"id\": 8,\n        \"name\": null,\n        \"contact\": null,\n        \"description\": null,\n        \"summary\": null,\n        \"pictures\": null,\n        \"location\": {\n            \"type\": \"point\",\n            \"value\": \"(37.13473938746717,-8.54023931336881)\",\n            \"x\": 37.13473938746717,\n            \"y\": -8.54023931336881\n        },\n        \"sports\": null,\n        \"material\": null,\n        \"schedule\": null,\n        \"fields\": null,\n        \"dressingRoom\": null,\n        \"parking\": null,\n        \"accepted\": null\n    },\n    \"startDate\": \"2022-09-23T08:00:00\",\n    \"plannedfinishDate\": \"2022-08-24T20:00:00\",\n    \"name\": \"\",\n    \"sport\": null,\n    \"description\": \"Competição mensal de Padel de Portimão.\",\n    \"summary\": \"\",\n    \"participants\": null,\n    \"creator\": null,\n    \"limitParticipants\": null\n}"
+				},
+				{
+					"id": "4050ecd5-0e3b-4245-855f-c97e2761c7e3",
+					"name": "Get Event Description",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event",
+								"100"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:48:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Resource not found"
+				}
+			]
+		},
+		{
+			"name": "Create a New Event",
+			"id": "c2cb3500-b3bb-4327-af9b-4fcd3b17e9ee",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"compound\": {\r\n        \"id\":7\r\n    },\r\n\r\n    \"startDate\": \"2018-12-10T13:49:51.141Z\",\r\n    \"plannedfinishDate\": \"2018-12-10T15:49:51.141Z\",\r\n    \"name\":\"event Postman\",\r\n    \"sport\":{\r\n        \"id\":7\r\n    },\r\n    \"description\":\"Some random description\",\r\n    \"summary\":\"Some random summary\",\r\n    \"limitParticipants\":20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/event?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"event"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "212a298c-fd3d-4acb-b6a4-e5272a2d858e",
+					"name": "Create a New Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"compound\": {\r\n        \"id\":7\r\n    },\r\n\r\n    \"startDate\": \"2018-12-10T13:49:51.141Z\",\r\n    \"plannedfinishDate\": \"2018-12-10T15:49:51.141Z\",\r\n    \"name\":\"event Postman\",\r\n    \"sport\":{\r\n        \"id\":7\r\n    },\r\n    \"description\":\"\",\r\n    \"limitParticipants\":20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:48:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Bad request"
+				},
+				{
+					"id": "72d3a845-f26e-4b41-89aa-62ea16594d73",
+					"name": "Create a New Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"compound\": {\r\n        \"id\":7\r\n    },\r\n\r\n    \"startDate\": \"2018-12-10T13:49:51.141Z\",\r\n    \"plannedfinishDate\": \"2018-12-10T15:49:51.141Z\",\r\n    \"name\":\"event Postman\",\r\n    \"sport\":{\r\n        \"id\":7\r\n    },\r\n    \"description\":\"Some random description\",\r\n    \"summary\":\"Some random summary\",\r\n    \"limitParticipants\":20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/event?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:49:47 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "17"
+				}
+			]
+		},
+		{
+			"name": "Cancel Event",
+			"id": "d1163045-7998-4a5e-a035-6886b637391a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/event/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"event",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "7c5dea82-1f6a-4b40-bb1e-9cc04a334f1e",
+					"name": "Cancel Event",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/event/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"event",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:47:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Event 1 canceled"
+				}
+			]
+		},
+		{
+			"name": "Participate in a Event",
+			"id": "59a5c704-8a4d-4c9c-90a5-124ffa6cd824",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/event/8?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"event",
+						"8"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "1fba2f24-0867-4388-a282-cf3be6e13f2f",
+					"name": "Participate in a Event",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/event/8?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"event",
+								"8"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "24"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:52:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Participating in event 8"
+				}
+			]
+		},
+		{
+			"name": "Get Events User Not Participating",
+			"id": "16b986e5-36c1-449c-8d07-473115625958",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/event?email=projeto.seminario2022&page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"event"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "22632335-3ab1-4498-9115-88c2b0412812",
+					"name": "Get Events User Not Participating",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/event?email=projeto.seminario2022&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"event"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONID=C59FAD83D32942B5A78FB7BDA8B5C6CB; Path=/; HttpOnly"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:50:24 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 7,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Clube de Golf Quinta do Peru\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": null,\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-10-01T08:00:00\",\n        \"plannedfinishDate\": \"2022-10-05T17:00:00\",\n        \"name\": \"Taça FPG 2022\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Golf\"\n        },\n        \"description\": \"A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.\",\n        \"summary\": \"Taça Federação Portuguesa de Golf\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 32\n    },\n    {\n        \"id\": 9,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Portimão Surf Club\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": null,\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-08-15T08:00:00\",\n        \"plannedfinishDate\": \"2022-08-16T17:00:00\",\n        \"name\": \"Algarve Surfing Cup\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"BodyBoard\"\n        },\n        \"description\": \"A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.\\nO evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).\",\n        \"summary\": \"A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 30\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Events User Participating",
+			"id": "7f1b3d76-788b-49e2-842a-5c97c7de00a8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/event/participating?email=projeto.seminario2022&page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"event",
+						"participating"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "e21eb4ab-a335-4d3f-b3fd-c9471250d74a",
+					"name": "Get Events User Participating",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/event/participating?email=projeto.seminario2022&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"event",
+								"participating"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:50:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 14,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Portimão Surf Club\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(37.115959445928326,-8.528738708317174)\",\n                \"x\": 37.115959445928326,\n                \"y\": -8.528738708317174\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-08-01T08:00:00\",\n        \"plannedfinishDate\": \"2022-08-03T17:00:00\",\n        \"name\": \"Algarve Surfing Cup\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Surf\"\n        },\n        \"description\": \"A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.\\nO evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).\",\n        \"summary\": \"A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 40\n    },\n    {\n        \"id\": 12,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Clube de Golf Quinta do Peru\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(38.541543512491515,-9.052275613906248)\",\n                \"x\": 38.541543512491515,\n                \"y\": -9.052275613906248\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-09-10T08:00:00\",\n        \"plannedfinishDate\": \"2022-09-10T19:00:00\",\n        \"name\": \"V Ordem Mérito - Cat A\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Golf\"\n        },\n        \"description\": \"5ª Competição da Ordem de Mérito para a categoria A\",\n        \"summary\": \"5ª Competição da Ordem de Mérito para a categoria A\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 8\n    },\n    {\n        \"id\": 13,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Clube de Golf Quinta do Peru\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(38.541543512491515,-9.052275613906248)\",\n                \"x\": 38.541543512491515,\n                \"y\": -9.052275613906248\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-10-01T08:00:00\",\n        \"plannedfinishDate\": \"2022-10-05T17:00:00\",\n        \"name\": \"Taça FPG 2022\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Golf\"\n        },\n        \"description\": \"A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.\",\n        \"summary\": \"Taça Federação Portuguesa de Golf\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 32\n    },\n    {\n        \"id\": 11,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Basketball Center\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(-71.060316,48.432044)\",\n                \"x\": -71.060316,\n                \"y\": 48.432044\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2023-08-15T11:24:43\",\n        \"plannedfinishDate\": \"2023-08-16T11:24:43\",\n        \"name\": \"event\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Basketball\"\n        },\n        \"description\": \"Description\",\n        \"summary\": \"Summary\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 8\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Events User Created",
+			"id": "04391908-6b36-4c7e-96cd-13d110065b13",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/event/created?email=projeto.seminario2022&page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"event",
+						"created"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "710359a5-c690-494c-aed8-f646e05a752d",
+					"name": "Get Events User Created",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/event/created?email=projeto.seminario2022&page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"event",
+								"created"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:50:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 10,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Clube Ténis e Padel de Portimão\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(37.13473938746717,-8.54023931336881)\",\n                \"x\": 37.13473938746717,\n                \"y\": -8.54023931336881\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-09-23T08:00:00\",\n        \"plannedfinishDate\": \"2022-08-24T20:00:00\",\n        \"name\": \"Monthly Padle weekend\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Padel\"\n        },\n        \"description\": \"Competição mensal de Padel de Portimão.\",\n        \"summary\": \"\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 8\n    },\n    {\n        \"id\": 16,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Clube Ténis e Padel de Portimão\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(37.13473938746717,-8.54023931336881)\",\n                \"x\": 37.13473938746717,\n                \"y\": -8.54023931336881\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2022-09-23T08:00:00\",\n        \"plannedfinishDate\": \"2022-08-24T20:00:00\",\n        \"name\": \"Monthly Padle weekend\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Padel\"\n        },\n        \"description\": \"Competição mensal de Padel de Portimão.\",\n        \"summary\": \"\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 8\n    },\n    {\n        \"id\": 2,\n        \"field\": null,\n        \"compound\": {\n            \"id\": null,\n            \"name\": \"Padel Center\",\n            \"contact\": null,\n            \"description\": null,\n            \"summary\": null,\n            \"pictures\": null,\n            \"location\": {\n                \"type\": \"point\",\n                \"value\": \"(-71.060316,48.432044)\",\n                \"x\": -71.060316,\n                \"y\": 48.432044\n            },\n            \"sports\": null,\n            \"material\": null,\n            \"schedule\": null,\n            \"fields\": null,\n            \"dressingRoom\": null,\n            \"parking\": null,\n            \"accepted\": null\n        },\n        \"startDate\": \"2023-05-23T11:00:00\",\n        \"plannedfinishDate\": \"2023-05-25T18:00:00\",\n        \"name\": \"event\",\n        \"sport\": {\n            \"id\": null,\n            \"user\": null,\n            \"name\": \"Padel\"\n        },\n        \"description\": \"Description\",\n        \"summary\": \"\",\n        \"participants\": null,\n        \"creator\": null,\n        \"limitParticipants\": 8\n    }\n]"
+				}
+			]
+		}
+	]
+}

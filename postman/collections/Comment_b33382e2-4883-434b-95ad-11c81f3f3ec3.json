@@ -1,0 +1,739 @@
+{
+	"info": {
+		"_postman_id": "1fddb407-5c7a-4dfc-bd87-b98aa60db064",
+		"name": "Comment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Comments",
+			"id": "8357b0d1-8683-4edb-adef-e515daf789da",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/post/2/comment?page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"post",
+						"2",
+						"comment"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "c6d1de4e-d236-4963-8ee2-fb0f001ec2a3",
+					"name": "Get All Comments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/post/2/comment?page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"post",
+								"2",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 22:51:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 6,\n        \"user\": {\n            \"userId\": 11,\n            \"firstName\": \"Cristina\",\n            \"lastName\": \"Veloso\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"comment\": \"Comment 6\",\n        \"commentDate\": \"2021-07-02T11:24:59.000+00:00\"\n    },\n    {\n        \"id\": 7,\n        \"user\": {\n            \"userId\": 10,\n            \"firstName\": \"Claude\",\n            \"lastName\": \"Andrews\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"comment\": \"Comment 7\",\n        \"commentDate\": \"2021-07-02T11:54:59.000+00:00\"\n    },\n    {\n        \"id\": 8,\n        \"user\": {\n            \"userId\": 5,\n            \"firstName\": \"Maria\",\n            \"lastName\": \"Duarte\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"comment\": \"Comment 8\",\n        \"commentDate\": \"2021-07-03T13:11:50.000+00:00\"\n    },\n    {\n        \"id\": 16,\n        \"user\": {\n            \"userId\": 4,\n            \"firstName\": \"Jorge\",\n            \"lastName\": \"Brito\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"comment\": \"Comment 16\",\n        \"commentDate\": \"2021-07-10T11:24:59.000+00:00\"\n    },\n    {\n        \"id\": 21,\n        \"user\": {\n            \"userId\": 4,\n            \"firstName\": \"Jorge\",\n            \"lastName\": \"Brito\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"comment\": \"Comment 21\",\n        \"commentDate\": \"2021-07-10T11:24:59.000+00:00\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete the Comment",
+			"id": "9af2868d-a7a0-4eb8-ba28-d2387bd2fe09",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/post/2/comment/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"post",
+						"2",
+						"comment",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "368da0a8-50ef-4142-bcd5-749105da08b8",
+					"name": "Delete the Comment",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/post/2/comment/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"post",
+								"2",
+								"comment",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:11:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Comment with id 3 deleted"
+				}
+			]
+		},
+		{
+			"name": "Create Comment",
+			"id": "ed0f56dd-858f-4641-a956-3602972ea0cf",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\" : \"Input a comment postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/user/post/2/comment?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"post",
+						"2",
+						"comment"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "992f146c-9452-431d-acac-a80b8a82d6ad",
+					"name": "Create Comment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\" : \"Input a comment postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/post/2/comment?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"post",
+								"2",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONID=9B8DC12A6EDC3E2BDC44D2F223AF365B; Path=/; HttpOnly"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 22:55:31 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "26"
+				},
+				{
+					"id": "03b291aa-fd24-46b3-997b-5d39dbad2b63",
+					"name": "Create Comment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\" : \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/post/2/comment?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"post",
+								"2",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:01:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Bad request"
+				}
+			]
+		},
+		{
+			"name": "Get Comment By Id",
+			"id": "2322a15a-de2c-4a77-a6d6-3cc4ea0e1604",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/user/post/2/comment/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"post",
+						"2",
+						"comment",
+						"10"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "54e08093-4a9a-4cb0-96f4-ca4b600162b2",
+					"name": "Get Comment By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/post/2/comment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"post",
+								"2",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "JSESSIONID=E785914A73D1ACA09873F2D307039C3A; Path=/; HttpOnly"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 22:54:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"id\": 1,\n    \"user\": {\n        \"userId\": 4,\n        \"firstName\": \"Jorge\",\n        \"lastName\": \"Brito\",\n        \"city\": null,\n        \"birthdate\": null,\n        \"profilepic\": null,\n        \"email\": null,\n        \"available\": null,\n        \"gender\": null,\n        \"sports\": [],\n        \"friends\": null\n    },\n    \"comment\": \"Comment 1\",\n    \"commentDate\": \"2022-06-22T11:24:59.000+00:00\"\n}"
+				},
+				{
+					"id": "4fad9b8c-9af2-4db4-aa99-98605dbc46e4",
+					"name": "Get Comment By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/post/2/comment/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"post",
+								"2",
+								"comment",
+								"10"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Jun 2022 23:01:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Resource not found"
+				}
+			]
+		}
+	]
+}

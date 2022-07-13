@@ -1,0 +1,957 @@
+{
+	"info": {
+		"_postman_id": "0d14823d-dba7-46f3-977f-25830cc68eee",
+		"name": "Review",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All reviews",
+			"id": "428d8e64-7d5e-4c89-a7c2-e94b39e81047",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/compound/6/review?page=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"compound",
+						"6",
+						"review"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "4ad53b66-7bb3-442d-9f9a-6d4b32832e5f",
+					"name": "Get All reviews",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compound/6/review?page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"6",
+								"review"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:03:41 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 7,\n        \"compound\": null,\n        \"field\": null,\n        \"user\": {\n            \"userId\": 2,\n            \"firstName\": \"Joana\",\n            \"lastName\": \"Gomes\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"rating\": 4.8,\n        \"description\": \"Good golf course in excellent condition also really good practice facilities.\",\n        \"reviewDate\": null\n    },\n    {\n        \"id\": 10,\n        \"compound\": null,\n        \"field\": null,\n        \"user\": {\n            \"userId\": 3,\n            \"firstName\": \"Ricardo\",\n            \"lastName\": \"Mendes\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"rating\": 4,\n        \"description\": \"Too expensive\",\n        \"reviewDate\": null\n    },\n    {\n        \"id\": 6,\n        \"compound\": null,\n        \"field\": null,\n        \"user\": {\n            \"userId\": 4,\n            \"firstName\": \"Jorge\",\n            \"lastName\": \"Brito\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"rating\": 4.5,\n        \"description\": \"Always a pleasure to play here. It is a hidden gem and very close to Lisbon\",\n        \"reviewDate\": null\n    },\n    {\n        \"id\": 8,\n        \"compound\": null,\n        \"field\": null,\n        \"user\": {\n            \"userId\": 5,\n            \"firstName\": \"Maria\",\n            \"lastName\": \"Duarte\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"rating\": 4.4,\n        \"description\": \"Lovely golf course, lovely club house, brilliant staff, cant fault the place, excellent\",\n        \"reviewDate\": null\n    },\n    {\n        \"id\": 9,\n        \"compound\": null,\n        \"field\": null,\n        \"user\": {\n            \"userId\": 1,\n            \"firstName\": \"Marco\",\n            \"lastName\": \"Duarte\",\n            \"city\": null,\n            \"birthdate\": null,\n            \"profilepic\": null,\n            \"email\": null,\n            \"available\": null,\n            \"gender\": null,\n            \"sports\": [],\n            \"friends\": null\n        },\n        \"rating\": 4.9,\n        \"description\": \"Lovely golf course very well maintained. Friendly staff and good food.\",\n        \"reviewDate\": null\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete Review",
+			"id": "417ae68a-d2b8-4f47-95a8-a2aade39fae7",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/compound/1/review/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"compound",
+						"1",
+						"review",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "c87aa43a-e6df-4177-8a2c-335a933f5fbe",
+					"name": "Delete Review",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compound/1/review/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"1",
+								"review",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:03:58 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Review 1 deleted"
+				}
+			]
+		},
+		{
+			"name": "Create Review for Compound",
+			"id": "75da3fe1-4ab6-4f25-9836-8c20999f0558",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rating\": 3.8,\r\n    \"description\": \"Some random description postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/compound/7/review?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"compound",
+						"7",
+						"review"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "aba1d513-0193-48b4-841b-af0856515c3e",
+					"name": "Create Review for Compound",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 3.8,\r\n    \"description\": \"Some random description postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compound/7/review?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"7",
+								"review"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:06:54 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "31"
+				},
+				{
+					"id": "444b8220-5545-4b80-88a7-72c53656544d",
+					"name": "Create Review for Compound",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": -1.0,\r\n    \"description\": \"Some random description postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compound/7/review?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"7",
+								"review"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:07:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Bad request"
+				}
+			]
+		},
+		{
+			"name": "Create Review for Field",
+			"id": "0b6ffa64-214e-493d-9bf5-8697079745ab",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InpjOWJfN1VEd0p2OVo2Q3pmdDJjNSJ9.eyJpc3MiOiJodHRwczovL2Rldi1keHZkNnotcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiSUNkVkt3Q0RNaEtFUTNxZ0tROU9KeENxV2VZMjE1N3hAY2xpZW50cyIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImlhdCI6MTY1NjI4MzcwMywiZXhwIjoxNjU2MzcwMTAzLCJhenAiOiJJQ2RWS3dDRE1oS0VRM3FnS1E5T0p4Q3FXZVkyMTU3eCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.JX1EuMfdUMT9uPVZKQydM1ZeYglaH0DYwSnA1rU7y2JECw6IjR4wX0G7uYO2zymjUB0_jkHp9dIvnMD8YQMzCMr46PnDBDKAHpwQb4fX6PiuoFJsVA6uc7kTTReHtWSOUgLbzpPbIkCOb55i2FUK731gLx91jYLO3NHOdhMWAmbPA_QKwjk_eFo5U_dPWAU7OXOkqW6HuXBCQSyiLcptjVEeV6WE8yYSxCJ8z4I9l6EQMYRX3HAq8HIp55FnK3YOYg66pM9pQ44j4_hrYzupXoZ3P5OdseVwOrCqsTFhD5ZnD7U6wUDuSfn0jSD1vCkOiJFivaFVEJBFhKXQ-Xo-yw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rating\": 3.8,\r\n    \"description\": \"Some random description postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/compound/8/field/10/review?email=projeto.seminario2022",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"compound",
+						"8",
+						"field",
+						"10",
+						"review"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "projeto.seminario2022"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "2e914fba-df98-4a15-b1c3-633c6914e700",
+					"name": "Create Review for Field",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 3.8,\r\n    \"description\": \"Some random description postman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compound/8/field/10/review?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"8",
+								"field",
+								"10",
+								"review"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:08:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "32"
+				},
+				{
+					"id": "6195084e-0f43-4e36-b37b-7c524a1fa77a",
+					"name": "Create Review for Field",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 3.8,\r\n    \"description\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compound/8/field/10/review?email=projeto.seminario2022",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"8",
+								"field",
+								"10",
+								"review"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "projeto.seminario2022"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "11"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:08:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Bad request"
+				}
+			]
+		},
+		{
+			"name": "Get Review By Id",
+			"id": "40e8d35f-91b0-4cdd-ad53-84f9394c7389",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/compound/6/review/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"compound",
+						"6",
+						"review",
+						"7"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "b6e2dba7-0cb5-42f2-b29f-d1ac0cb9c894",
+					"name": "Get Review By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compound/6/review/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"6",
+								"review",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain;charset=UTF-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "18"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:05:23 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "Resource not found"
+				},
+				{
+					"id": "106fca29-b274-44ba-9942-8ce334b6f991",
+					"name": "Get Review By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compound/6/review/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compound",
+								"6",
+								"review",
+								"7"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Jun 2022 04:06:01 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"id\": 7,\n    \"compound\": null,\n    \"field\": null,\n    \"user\": {\n        \"userId\": 2,\n        \"firstName\": \"Joana\",\n        \"lastName\": \"Gomes\",\n        \"city\": null,\n        \"birthdate\": null,\n        \"profilepic\": null,\n        \"email\": null,\n        \"available\": null,\n        \"gender\": null,\n        \"sports\": [],\n        \"friends\": null\n    },\n    \"rating\": 4.8,\n    \"description\": \"Good golf course in excellent condition also really good practice facilities.\",\n    \"reviewDate\": null\n}"
+				}
+			]
+		}
+	]
+}
