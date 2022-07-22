@@ -46,7 +46,7 @@ const InputText = (props) => {
     let Sock = new SockJS(`${api_url}/webSocket`);
     stompClient = over(Sock);
     stompClient.connect({},onConnected, onError);
-  }, [messageObj]);
+  }, []);
 
 
   async function submit(data) {

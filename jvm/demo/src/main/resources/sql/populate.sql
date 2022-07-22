@@ -1435,3 +1435,32 @@ INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
 commit;
+
+
+
+
+                SELECT
+                    post.id as p_id,
+                    user_profile.userid as u_userid,
+                    post.description as p_description,
+                    post.postDate as p_postDate,
+                    post.likes as p_likes,
+                    user_profile.firstname as u_firstname,
+                    user_profile.lastname as u_lastname
+                    FROM FRIENDS  JOIN POST ON  Friends.friendId = Post.userId
+                    JOIN user_profile on Friends.friendId = user_profile.userId
+                    Where friends.userId = 1
+                    ORDER BY p_postDate DESC
+                    UNION
+                    SELECT
+                    post.id as p_id,
+                    user_profile.userid as u_userid,
+                    post.description as p_description,
+                    post.postDate as p_postDate,
+                    post.likes as p_likes,
+                    user_profile.firstname as u_firstname,
+                    user_profile.lastname as u_lastname
+                    FROM USER_PROFILE JOIN POST ON  USER_PROFILE.userId = Post.userId
+                    Where USER_PROFILE.userId = 2
+                    ORDER BY p_postDate DESC
+                    LIMIT 10 OFFSET 0

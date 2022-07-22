@@ -49,7 +49,7 @@ const CreatePost = (props) => {
                     <label htmlFor="file-upload" className="custom-file-upload">
                         <img id='postImg' src={require('./images/1200px-Antu_insert-image.svg.png')}></img>
                     </label>
-                    <input id="file-upload" type="file" accept="image/*" {...register('pictures')} multiple/>                    
+                    <input id="file-upload" type="file" accept="image/*"  multiple/>                    
                     <button type={'submit'} id='sendPost' ><IoSend></IoSend></button>
                 </div>
             </form>

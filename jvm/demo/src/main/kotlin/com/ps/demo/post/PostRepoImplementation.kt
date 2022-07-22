@@ -28,14 +28,25 @@ class PostRepoImplementation (var jdbi: Jdbi) {
                     "post.postDate as p_postDate, " +
                     "post.likes as p_likes, " +
                     "user_profile.firstname as u_firstname, " +
-                    "user_profile.lastname as u_lastname, " +
-                    "user_profile.profilepic as u_profilepic " +
+                    "user_profile.lastname as u_lastname " +
                     "FROM FRIENDS  JOIN POST ON  Friends.friendId = Post.userId  JOIN user_profile on Friends.friendId = user_profile.userId " +
                     "Where friends.userId = ? " +
-                    "ORDER BY postDate DESC " +
-                    "LIMIT 10 OFFSET ?")
+                    "UNION " +
+                    "SELECT " +
+                    "post.id as p_id," +
+                    "user_profile.userid as u_userid," +
+                    "post.description as p_description, " +
+                    "post.postDate as p_postDate, " +
+                    "post.likes as p_likes, " +
+                    "user_profile.firstname as u_firstname, " +
+                    "user_profile.lastname as u_lastname " +
+                    "FROM USER_PROFILE JOIN POST ON  USER_PROFILE.userId = Post.userId " +
+                    "Where USER_PROFILE.userId = ? " +
+                    "ORDER BY p_postDate DESC " +
+                    "LIMIT ? OFFSET 0")
                 .bind(0,userId)
-                .bind(1,page*10)
+                .bind(1,userId)
+                .bind(2,page*10 + 10)
                 .registerRowMapper(factory(User::class.java, "u"))
                 .registerRowMapper(factory(Post::class.java, "p"))
                 .reduceRows(linkedMapOf()) { map: LinkedHashMap<Int, Post?>, rowView: RowView ->

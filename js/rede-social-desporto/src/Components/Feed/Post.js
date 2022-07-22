@@ -54,8 +54,7 @@ const Post = (props) => {
           const email = user.email.split("@")[0]
           const req =  await fetch(`${api_url}/user/post?page=${page}&email=${email}`,options);
           const resp = await req.json();
-          const newPostArray = postArray.concat(resp)
-          setPost(newPostArray);
+          setPost(resp);
         } catch (err) {
           setError(err);
           //console.log(err);
