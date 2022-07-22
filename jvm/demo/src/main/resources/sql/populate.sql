@@ -225,64 +225,64 @@ VALUES ('R. dos Pescadores campo Basquetebol',15,true);
 /* USER_PROFILE */
 --1)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Marco','Duarte','Lisboa','24/07/2000','projeto.seminario2022@gmail.com',false,'male');
+VALUES ('Marco','Duarte','Lisboa','2000-07-24','projeto.seminario2022@gmail.com',false,'male');
 --2)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Joana','Gomes','Porto','24/08/1997','joanaG@gmail.com',true,'female');
+VALUES ('Joana','Gomes','Porto','1997-08-24','joanaG@gmail.com',true,'female');
 --3)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Ricardo','Mendes','Lisboa','29/07/2002','rmmendes@gmail.com',true,'male');
+VALUES ('Ricardo','Mendes','Lisboa','2002-07-29','rmmendes@gmail.com',true,'male');
 --4)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Jorge','Brito','Lisboa','16/11/2000','britoJ@gmail.com',true,'male');
+VALUES ('Jorge','Brito','Lisboa','2000-11-16','britoJ@gmail.com',true,'male');
 --5)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Maria','Duarte','Coimbra','11/07/2001','maria_duarte@gmail.com',false,'female');
+VALUES ('Maria','Duarte','Coimbra','2001-07-11','maria_duarte@gmail.com',false,'female');
 --6)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Marcus','North','Braga','24/07/2001','NorthMarcus@gmail.com',false,'male');
+VALUES ('Marcus','North','Braga','2001-07-24','NorthMarcus@gmail.com',false,'male');
 --7)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Esha','Roberts','Aveiro','24/08/1997','ersha@gmail.com',true,'female');
+VALUES ('Esha','Roberts','Aveiro','1997-08-24','ersha@gmail.com',true,'female');
 --8)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Phillip','Stevens','Bragança','29/07/2002','phillipSs@gmail.com',true,'male');
+VALUES ('Phillip','Stevens','Bragança','2002-07-29','phillipSs@gmail.com',true,'male');
 --9)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Abigale','Becker','Lisboa','16/11/2000','abigaleBecker@gmail.com',true,'female');
+VALUES ('Abigale','Becker','Lisboa','2000-11-16','abigaleBecker@gmail.com',true,'female');
 --10)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Claude','Andrews','Lisboa','16/11/2000','cAndrews@gmail.com',true,'male');
+VALUES ('Claude','Andrews','Lisboa','2000-11-16','cAndrews@gmail.com',true,'male');
 --11)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Cristina','Veloso','Braga','24/07/2001','CrisVeloso@gmail.com',false,'female');
+VALUES ('Cristina','Veloso','Braga','2001-07-24','CrisVeloso@gmail.com',false,'female');
 --12)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Gustavo','Raposo','Aveiro','24/08/1997','gusravoRaposo@gmail.com',true,'male');
+VALUES ('Gustavo','Raposo','Aveiro','1997-08-24','gusravoRaposo@gmail.com',true,'male');
 --13)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Edgar','Vieira','Bragança','29/07/2002','VieiraEr@gmail.com',true,'male');
+VALUES ('Edgar','Vieira','Bragança','2002-07-29','VieiraEr@gmail.com',true,'male');
 --14)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Flavia','Chaves','Lisboa','16/11/2000','chavesFlavia@gmail.com',true,'female');
+VALUES ('Flavia','Chaves','Lisboa','2000-11-16','chavesFlavia@gmail.com',true,'female');
 --15)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Eliana','Nunes','Lisboa','16/11/2000','Lnunes@gmail.com',true,'female');
+VALUES ('Eliana','Nunes','Lisboa','2000-11-16','Lnunes@gmail.com',true,'female');
 --16)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Jorge','Inácio','Braga','24/07/2001','jInacio@gmail.com',false,'male');
+VALUES ('Jorge','Inácio','Braga','2001-07-24','jInacio@gmail.com',false,'male');
 --17)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('João','Vale','Aveiro','24/08/1997','ValeJoao@gmail.com',true,'male');
+VALUES ('João','Vale','Aveiro','1997-08-24','ValeJoao@gmail.com',true,'male');
 --18)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Joana','Palmeira','Bragança','29/07/2002','joana@gmail.com',true,'female');
+VALUES ('Joana','Palmeira','Bragança','2002-07-29','joana@gmail.com',true,'female');
 --19)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Jacinto','Pessoa','Lisboa','16/11/2000','PessoaJ@gmail.com',true,'male');
+VALUES ('Jacinto','Pessoa','Lisboa','2000-11-16','PessoaJ@gmail.com',true,'male');
 --20)
 INSERT INTO USER_PROFILE(firstName,lastName,city,birthdate,email,available,gender)
-VALUES ('Jeferson','Nunes','Lisboa','16/11/2000','jefersonNunes@gmail.com',true,'male');
+VALUES ('Jeferson','Nunes','Lisboa','2000-11-16','jefersonNunes@gmail.com',true,'male');
 
 /* FRIENDS */
 --1)
@@ -350,79 +350,79 @@ VALUES (20,1);
 /* PRIVATE_MESSAGE */
 --1)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (1,2,'Message','23/05/2019 11:24:55');
+VALUES (1,2,'Message','2019-05-23 11:24:55');
 --2)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (1,3,'Message','23/05/2019 11:24:55');
+VALUES (1,3,'Message','2019-05-23 11:24:55');
 --3)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (2,5,'Message','23/05/2019 11:24:55');
+VALUES (2,5,'Message','2019-05-23 11:24:55');
 --4)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (5,2,'Message','23/05/2019 11:24:55');
+VALUES (5,2,'Message','2019-05-23 11:24:55');
 --5)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message1','23/05/2019 11:24:55');
+VALUES (4,1,'Message1','2019-05-23 11:24:55');
 --6)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message2','23/05/2019 11:24:55');
+VALUES (4,1,'Message2','2019-05-23 11:24:55');
 --7)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message3','23/05/2019 11:24:55');
+VALUES (4,1,'Message3','2019-05-23 11:24:55');
 --8)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message4','23/05/2019 11:24:55');
+VALUES (4,1,'Message4','2019-05-23 11:24:55');
 --9)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message5','23/05/2019 11:24:55');
+VALUES (4,1,'Message5','2019-05-23 11:24:55');
 --10)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message6','23/05/2019 11:24:55');
+VALUES (4,1,'Message6','2019-05-23 11:24:55');
 --11)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message7','23/05/2019 11:24:55');
+VALUES (4,1,'Message7','2019-05-23 11:24:55');
 --12)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message8','23/05/2019 11:24:55');
+VALUES (4,1,'Message8','2019-05-23 11:24:55');
 --13)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message9','23/05/2019 11:24:55');
+VALUES (4,1,'Message9','2019-05-23 11:24:55');
 --14)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message10','23/05/2019 11:24:55');
+VALUES (4,1,'Message10','2019-05-23 11:24:55');
 --15)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message11','23/05/2019 11:24:55');
+VALUES (4,1,'Message11','2019-05-23 11:24:55');
 --16)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message12','23/05/2019 11:24:55');
+VALUES (4,1,'Message12','2019-05-23 11:24:55');
 --17)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message13','23/05/2019 11:24:55');
+VALUES (4,1,'Message13','2019-05-23 11:24:55');
 --18)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message14','23/05/2019 11:24:55');
+VALUES (4,1,'Message14','2019-05-23 11:24:55');
 --19)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message15','23/05/2019 11:24:55');
+VALUES (4,1,'Message15','2019-05-23 11:24:55');
 --20)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message16','23/05/2019 11:24:55');
+VALUES (4,1,'Message16','2019-05-23 11:24:55');
 --21)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message17','23/05/2019 11:24:55');
+VALUES (4,1,'Message17','2019-05-23 11:24:55');
 --22)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message18','23/05/2019 11:24:55');
+VALUES (4,1,'Message18','2019-05-23 11:24:55');
 --23)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message19','23/05/2019 11:24:55');
+VALUES (4,1,'Message19','2019-05-23 11:24:55');
 --24)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message20','23/05/2019 11:24:55');
+VALUES (4,1,'Message20','2019-05-23 11:24:55');
 --25)
 INSERT INTO PRIVATE_MESSAGE(senderId,receiverId,message,date)
-VALUES (4,1,'Message21','23/05/2019 11:24:55');
+VALUES (4,1,'Message21','2019-05-23 11:24:55');
 
 /* USER_GROUP */
 --1)
@@ -463,19 +463,19 @@ VALUES (4,3);
 /* GROUP_MESSAGE */
 --1)
 INSERT INTO GROUP_MESSAGE(groupId,senderId,messageDate,message)
-VALUES (1,2,'23/05/2019 11:24:43','Group Message');
+VALUES (1,2,'2019-05-23 11:24:43','Group Message');
 --2)
 INSERT INTO GROUP_MESSAGE(groupId,senderId,messageDate,message)
-VALUES (2,3,'23/05/2019 11:24:55','Group Message');
+VALUES (2,3,'2019-05-23 11:24:55','Group Message');
 --3)
 INSERT INTO GROUP_MESSAGE(groupId,senderId,messageDate,message)
-VALUES (2,2,'23/05/2019 11:24:59','Group Message');
+VALUES (2,2,'2019-05-23 11:24:59','Group Message');
 --4)
 INSERT INTO GROUP_MESSAGE(groupId,senderId,messageDate,message)
-VALUES (3,4,'23/05/2019 11:24:11','Group Message');
+VALUES (3,4,'2019-05-23 11:24:11','Group Message');
 --5)
 INSERT INTO GROUP_MESSAGE(groupId,senderId,messageDate,message)
-VALUES (2,2,'23/05/2019 11:24:05','Group Message');
+VALUES (2,2,'2019-05-23 11:24:05','Group Message');
 
 
 /* SPORTS */
@@ -589,60 +589,60 @@ VALUES (5,6);
 /* EVENT */
 --1)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (1,5,'23/05/2023 11:00:00','25/05/2023 18:00:00','event',4,'Description','Summary',8,1,true);
+VALUES (1,5,'2023-05-23 11:00:00','2023-05-25 18:00:00','event',4,'Description','Summary',8,1,true);
 --2)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (2,5,'23/05/2023 11:00:00','25/05/2023 18:00:00','event',4,'Description','Summary',8,1,true);
+VALUES (2,5,'2023-05-23 11:00:00','2023-05-25 18:00:00','event',4,'Description','Summary',8,1,true);
 --3)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (5,1,'30/06/2023 10:00:00','02/07/2023 15:00:00','event',3,'Description','Summary',16,3,true);
+VALUES (5,1,'2023-06-30 10:00:00','2023-07-02 15:00:00','event',3,'Description','Summary',16,3,true);
 --4)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (5,1,'30/06/2023 10:00:00','02/07/2023 15:00:00','event',3,'Description','Summary',16,3,true);
+VALUES (5,1,'2023-06-30 10:00:00','2023-07-02 15:00:00','event',3,'Description','Summary',16,3,true);
 --5)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (4,3,'15/08/2023 11:24:43','16/08/2023 11:24:43','event',2,'Description','Summary',8,2,true);
+VALUES (4,3,'2023-08-15 11:24:43','2023-08-16 11:24:43','event',2,'Description','Summary',8,2,true);
 --6)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (6,'10/09/2022 08:00:00','10/09/2022 19:00:00','V Ordem Mérito - Cat A',6,'5ª Competição da Ordem de Mérito para a categoria A','5ª Competição da Ordem de Mérito para a categoria A',8,2,true);
+VALUES (6,'2022-09-10 08:00:00','2022-09-10 19:00:00','V Ordem Mérito - Cat A',6,'5ª Competição da Ordem de Mérito para a categoria A','5ª Competição da Ordem de Mérito para a categoria A',8,2,true);
 --7)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (6,'01/10/2022 08:00:00','05/10/2022 17:00:00','Taça FPG 2022',6,'A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.','Taça Federação Portuguesa de Golf',32,2,true);
+VALUES (6,'2022-10-01 08:00:00','2022-10-05 17:00:00','Taça FPG 2022',6,'A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.','Taça Federação Portuguesa de Golf',32,2,true);
 --8)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (7,'01/08/2022 08:00:00','03/08/2022 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+VALUES (7,'2022-08-01 08:00:00','2022-08-03 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
 O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
 'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',40,3,true);
 --9)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (7,'15/08/2022 08:00:00','16/08/2022 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+VALUES (7,'2022-08-15 08:00:00','2022-08-16 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
 O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
 'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',30,3,true);
 --10)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (8,'23/09/2022 08:00:00','24/08/2022 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
+VALUES (8,'2022-09-23 08:00:00','2022-08-24 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
 --11)
 INSERT INTO EVENT(fieldId,compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (4,3,'15/08/2023 11:24:43','16/08/2023 11:24:43','event',2,'Description','Summary',8,2,true);
+VALUES (4,3,'2023-08-15 11:24:43','2023-08-16 11:24:43','event',2,'Description','Summary',8,2,true);
 --12)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (6,'10/09/2022 08:00:00','10/09/2022 19:00:00','V Ordem Mérito - Cat A',6,'5ª Competição da Ordem de Mérito para a categoria A','5ª Competição da Ordem de Mérito para a categoria A',8,2,true);
+VALUES (6,'2022-09-10 08:00:00','2022-09-10 19:00:00','V Ordem Mérito - Cat A',6,'5ª Competição da Ordem de Mérito para a categoria A','5ª Competição da Ordem de Mérito para a categoria A',8,2,true);
 --13)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (6,'01/10/2022 08:00:00','05/10/2022 17:00:00','Taça FPG 2022',6,'A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.','Taça Federação Portuguesa de Golf',32,2,true);
+VALUES (6,'2022-10-01 08:00:00','2022-10-05 17:00:00','Taça FPG 2022',6,'A Taça Federação Portuguesa de Golf 2022 terá início a dia um de outubro sendo previsto o encerramento para o dia 5 deste mês.','Taça Federação Portuguesa de Golf',32,2,true);
 --14)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (7,'01/08/2022 08:00:00','03/08/2022 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+VALUES (7,'2022-08-01 08:00:00','2022-08-03 17:00:00','Algarve Surfing Cup',7,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
 O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
 'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',40,3,true);
 --15)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (7,'15/08/2022 08:00:00','16/08/2022 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
+VALUES (7,'2022-08-15 08:00:00','2022-08-16 17:00:00','Algarve Surfing Cup',10,'A Praia da Rocha, no concelho de Portimão, prepara-se para receber o campeonato “Algarve Surfing Cup”, com o intuito de juntar todos os clubes de surf do Algarve e fomentar a união e o convívio entre as principais entidades que desenvolvem o surf na nossa região. A prova será disputada em 3 modalidades: SURF, LONGBOARD e BODYBOARD, sendo que as categorias da modalidade SURF e BODYBOARD serão sub12, sub16, Open, Masters (+40) e Feminino. Já para a modalidade LONGBOARD, as categorias são Feminino e Open.
 O evento conta com a presença de clubes de Surf do Algarve como Lagos Surf Clube (ASSL), Albufeira Surf Clube (A.S.C), Algarve Surf Clube (ASC), Associação Dinamika (AD), Clube Surf de Aljezur (CS ALJ), Clube Naval de Portimão (CNPTM), Clube de Surf de Faro (CSF), Iate Clube Marina de Portimão (ICMP), Lagos Ocean Sports Clube (LOSC), Associação de Bodyboard de Sagres e Portimão Surf Clube (PTMSC).',
 'A Praia da Rocha, prepara-se para receber o campeonato Algarve Surfing Cup.',30,3,true);
 --16)
 INSERT INTO EVENT(compoundId,startDate,plannedfinishDate,name,sportId,description,summary,limitParticipants,creatorId,active)
-VALUES (8,'23/09/2022 08:00:00','24/08/2022 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
+VALUES (8,'2022-09-23 08:00:00','2022-08-24 20:00:00','Monthly Padle weekend',4,'Competição mensal de Padel de Portimão.','Competição mensal de Padel de Portimão. O evento irá decorrer das 08:00 de sábado até às 18:00 de domingo, estando previsto um jantar de encerramento com início às 21:30.',8,1,true);
 
 
 /* EVENT_PARTICIPANT */
@@ -695,171 +695,171 @@ VALUES (1,14);
 /* POST */
 --1)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (1,'Post 1','22/06/2021 12:24:59',4);
+VALUES (1,'Post 1','2021-06-22 12:24:59',4);
 --2)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post 2','22/06/2021 22:09:11',2);
+VALUES (2,'Post 2','2021-06-22 22:09:11',2);
 --3)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (5,'Post 3','24/06/2021 14:11:50',5);
+VALUES (5,'Post 3','2021-06-24 14:11:50',5);
 --4)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post 4','25/06/2021 12:24:59',11);
+VALUES (2,'Post 4','2021-06-25 12:24:59',11);
 --5)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (4,'Post 5','25/06/2021 12:30:59',9);
+VALUES (4,'Post 5','2021-06-25 12:30:59',9);
 --6)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (7,'Post 6','30/06/2021 20:24:59',4);
+VALUES (7,'Post 6','2021-06-30 20:24:59',4);
 --7)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (9,'Post 7','01/07/2021 22:09:11',2);
+VALUES (9,'Post 7','2021-07-01 22:09:11',2);
 --8)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (7,'Post 8','04/07/2021 08:11:50',5);
+VALUES (7,'Post 8','2021-07-04 08:11:50',5);
 --9)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (8,'Post 9','04/07/2021 12:24:59',11);
+VALUES (8,'Post 9','2021-07-04 12:24:59',11);
 --10)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 10','04/07/2021 17:30:59',9);
+VALUES (10,'Post 10','2021-07-04 17:30:59',9);
 --11)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (7,'Post 11','04/07/2021 23:24:59',4);
+VALUES (7,'Post 11','2021-07-04 23:24:59',4);
 --12)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post 12','05/07/2021 22:09:11',2);
+VALUES (2,'Post 12','2021-07-05 22:09:11',2);
 --13)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 13','05/07/2021 23:40:50',5);
+VALUES (10,'Post 13','2021-07-05 23:40:50',5);
 --14)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (11,'Post 14','07/07/2021 12:24:59',11);
+VALUES (11,'Post 14','2021-07-07 12:24:59',11);
 --15)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (9,'Post 15','07/07/2021 12:30:59',9);
+VALUES (9,'Post 15','2021-07-07 12:30:59',9);
 --16)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 16','04/07/2021 17:30:59',9);
+VALUES (10,'Post 16','2021-07-07 17:30:59',9);
 --17)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (7,'Post 17','04/07/2021 23:24:59',4);
+VALUES (7,'Post 17','2021-07-07 23:24:59',4);
 --18)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post 18','05/07/2021 22:09:11',2);
+VALUES (2,'Post 18','2021-07-08 22:09:11',2);
 --19)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 19','05/07/2021 23:40:50',5);
+VALUES (10,'Post 19','2021-07-08 23:40:50',5);
 --20)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (11,'Post 20','07/07/2021 12:24:59',11);
+VALUES (11,'Post 20','2021-07-08 12:24:59',11);
 --21)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 21','04/07/2021 17:30:59',9);
+VALUES (10,'Post 21','2021-07-09 17:30:59',9);
 --22)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (7,'Post 22','04/07/2021 23:24:59',4);
+VALUES (7,'Post 22','2021-07-09 23:24:59',4);
 --23)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post 23','05/07/2021 22:09:11',2);
+VALUES (2,'Post 23','2021-07-10 22:09:11',2);
 --24)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 24','05/07/2021 23:40:50',5);
+VALUES (10,'Post 24','2021-07-11 23:40:50',5);
 --25)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (11,'Post 25','07/07/2021 12:24:59',11);
+VALUES (11,'Post 25','2021-07-11 12:24:59',11);
 --26)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 26','04/07/2021 17:30:59',9);
+VALUES (10,'Post 26','2021-07-11 17:30:59',9);
 --27)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (7,'Post 27','04/07/2021 23:24:59',4);
+VALUES (7,'Post 27','2021-07-14 23:24:59',4);
 --28)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (2,'Post 28','05/07/2021 22:09:11',2);
+VALUES (2,'Post 28','2021-07-14 22:09:11',2);
 --29)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (10,'Post 29','01/07/2021 23:40:50',5);
+VALUES (10,'Post 29','2021-07-14 23:40:50',5);
 --30)
 INSERT INTO POST(userId,description,postDate,likes)
-VALUES (11,'Post 30','07/07/2021 12:24:59',11);
+VALUES (11,'Post 30','2021-07-14 12:24:59',11);
 
 /* POST_COMMENT */
 --1)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'22/06/2022 12:24:59','Comment 1',4);
+VALUES (2,'2022-06-22 12:24:59','Comment 1',4);
 --2)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'22/07/2022 12:24:59','Comment 2',2);
+VALUES (2,'2022-07-22 12:24:59','Comment 2',2);
 --3)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'23/12/2022 14:11:50','Comment 3',1);
+VALUES (2,'2022-12-23 14:11:50','Comment 3',1);
 --4)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'19/11/2022 12:24:59','Comment 4',5);
+VALUES (2,'2022-11-19 12:24:59','Comment 4',5);
 --5)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'24/12/2022 14:11:50','Comment 5',2);
+VALUES (2,'2022-12-24 14:11:50','Comment 5',2);
 --6)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'02/07/2021 12:24:59','Comment 6',11);
+VALUES (2,'2021-07-02 12:24:59','Comment 6',11);
 --7)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'02/07/2021 12:54:59','Comment 7',10);
+VALUES (2,'2021-07-02 12:54:59','Comment 7',10);
 --8)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'03/07/2021 14:11:50','Comment 8',5);
+VALUES (2,'2021-07-03 14:11:50','Comment 8',5);
 --9)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'06/07/2021 12:24:59','Comment 9',3);
+VALUES (7,'2021-07-06 12:24:59','Comment 9',3);
 --10)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'09/07/2021 14:11:50','Comment 10',1);
+VALUES (7,'2021-07-09 14:11:50','Comment 10',1);
 --11)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'10/07/2021 12:24:59','Comment 11',4);
+VALUES (7,'2021-07-10 12:24:59','Comment 11',4);
 --12)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'10/07/2021 22:24:59','Comment 12',2);
+VALUES (7,'2021-07-10 22:24:59','Comment 12',2);
 --13)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'14/07/2021 09:11:50','Comment 13',9);
+VALUES (7,'2021-07-14 09:11:50','Comment 13',9);
 --14)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'14/07/2021 12:24:59','Comment 14',1);
+VALUES (7,'2021-07-14 12:24:59','Comment 14',1);
 --15)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (7,'14/07/2021 14:11:50','Comment 15',8);
+VALUES (7,'2021-07-14 14:11:50','Comment 15',8);
 --16)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'10/07/2021 12:24:59','Comment 16',4);
+VALUES (2,'2021-07-10 12:24:59','Comment 16',4);
 --17)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'10/07/2021 22:24:59','Comment 17',2);
+VALUES (2,'2021-07-10 22:24:59','Comment 17',2);
 --18)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'14/07/2021 09:11:50','Comment 18',9);
+VALUES (2,'2021-07-14 09:11:50','Comment 18',9);
 --19)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'14/07/2021 12:24:59','Comment 19',1);
+VALUES (2,'2021-07-14 12:24:59','Comment 19',1);
 --20)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'14/07/2021 14:11:50','Comment 20',8);
+VALUES (2,'2021-07-14 14:11:50','Comment 20',8);
 --21)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'10/07/2021 12:24:59','Comment 21',4);
+VALUES (2,'2021-07-10 12:24:59','Comment 21',4);
 --22)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'10/07/2021 22:24:59','Comment 22',2);
+VALUES (2,'2021-07-10 22:24:59','Comment 22',2);
 --23)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'14/07/2021 09:11:50','Comment 23',9);
+VALUES (2,'2021-07-14 09:11:50','Comment 23',9);
 --24)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'14/07/2021 12:24:59','Comment 24',1);
+VALUES (2,'2021-07-14 12:24:59','Comment 24',1);
 --25)
 INSERT INTO POST_COMMENT(postId,commentDate,comment,commentCreatorId)
-VALUES (2,'14/07/2021 14:11:50','Comment 25',8);
+VALUES (2,'2021-07-14 14:11:50','Comment 25',8);
 
 
 /* REVIEW */
@@ -1223,154 +1223,154 @@ VALUES (10,14);
 /* LOOKINGPLAYERS */
 --1)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,3,1,'22/08/2022 12:24:59');
+VALUES (11,3,1,'2022-08-22 12:24:59');
 --2)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,1,'23/08/2022 12:24:59');
+VALUES (8,4,1,'2022-08-23 12:24:59');
 --3)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,4,'24/09/2022 12:24:59');
+VALUES (9,3,4,'2022-09-24 12:24:59');
 --4)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,3,'25/09/2022 12:24:59');
+VALUES (6,6,3,'2022-09-25 12:24:59');
 --5)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,6,2,'26/08/2022 12:24:59');
+VALUES (14,6,2,'2022-08-26 12:24:59');
 --6)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,1,'22/08/2022 12:24:59');
+VALUES (6,6,1,'2022-08-22 12:24:59');
 --7)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,1,'23/08/2022 12:24:59');
+VALUES (8,3,1,'2022-08-23 12:24:59');
 --8)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,4,'24/09/2022 12:24:59');
+VALUES (8,4,4,'2022-09-24 12:24:59');
 --9)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,3,'25/09/2022 12:24:59');
+VALUES (9,3,3,'2022-09-25 12:24:59');
 --10)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,6,2,'26/08/2022 12:24:59');
+VALUES (14,6,2,'2022-08-26 12:24:59');
 --11)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,3,1,'22/08/2022 12:24:59');
+VALUES (11,3,1,'2022-08-22 12:24:59');
 --12)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,4,1,'23/08/2022 12:24:59');
+VALUES (11,4,1,'2022-08-23 12:24:59');
 --13)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,4,'24/09/2022 12:24:59');
+VALUES (8,3,4,'2022-09-24 12:24:59');
 --14)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,3,'25/09/2022 12:24:59');
+VALUES (9,3,3,'2022-09-25 12:24:59');
 --15)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,3,2,'26/08/2022 12:24:59');
+VALUES (11,3,2,'2022-08-26 12:24:59');
 --16)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,6,1,'22/08/2022 12:24:59');
+VALUES (14,6,1,'2022-08-22 12:24:59');
 --17)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,2,1,'23/08/2022 12:24:59');
+VALUES (14,2,1,'2022-08-23 12:24:59');
 --18)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,4,'24/09/2022 12:24:59');
+VALUES (6,6,4,'2022-09-24 12:24:59');
 --19)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,3,'25/09/2022 12:24:59');
+VALUES (8,3,3,'2022-09-25 12:24:59');
 --20)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,2,'26/08/2022 12:24:59');
+VALUES (8,3,2,'2022-08-26 12:24:59');
 --21)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,1,'22/08/2022 12:24:59');
+VALUES (8,4,1,'2022-08-22 12:24:59');
 --22)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,4,1,'23/08/2022 12:24:59');
+VALUES (11,4,1,'2022-08-23 12:24:59');
 --23)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,6,4,'24/09/2022 12:24:59');
+VALUES (14,6,4,'2022-09-24 12:24:59');
 --24)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,3,3,'25/09/2022 12:24:59');
+VALUES (11,3,3,'2022-09-25 12:24:59');
 --25)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,2,2,'26/08/2022 12:24:59');
+VALUES (14,2,2,'2022-08-26 12:24:59');
 --26)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,1,'22/08/2022 12:24:59');
+VALUES (6,6,1,'2022-08-22 12:24:59');
 --27)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,1,'23/08/2022 12:24:59');
+VALUES (8,4,1,'2022-08-23 12:24:59');
 --28)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,4,'24/09/2022 12:24:59');
+VALUES (8,3,4,'2022-09-24 12:24:59');
 --29)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,3,'25/09/2022 12:24:59');
+VALUES (9,3,3,'2022-09-25 12:24:59');
 --30)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,4,2,'26/08/2022 12:24:59');
+VALUES (11,4,2,'2022-08-22 12:24:59');
 --31)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,3,1,'22/08/2022 12:24:59');
+VALUES (11,3,1,'2022-08-22 12:24:59');
 --32)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,2,1,'23/08/2022 12:24:59');
+VALUES (14,2,1,'2022-08-23 12:24:59');
 --33)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,4,'24/09/2022 12:24:59');
+VALUES (8,3,4,'2022-09-24 12:24:59');
 --34)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,3,'25/09/2022 12:24:59');
+VALUES (6,6,3,'2022-09-25 12:24:59');
 --35)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,2,'26/08/2022 12:24:59');
+VALUES (8,4,2,'2022-08-26 12:24:59');
 --36)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,1,'22/08/2022 12:24:59');
+VALUES (9,3,1,'2022-08-22 12:24:59');
 --37)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,2,1,'23/08/2022 12:24:59');
+VALUES (14,2,1,'2022-08-23 12:24:59');
 --38)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,4,4,'24/09/2022 12:24:59');
+VALUES (11,4,4,'2022-09-24 12:24:59');
 --39)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,2,3,'25/09/2022 12:24:59');
+VALUES (14,2,3,'2022-09-25 12:24:59');
 --40)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,2,'26/08/2022 12:24:59');
+VALUES (8,4,2,'2022-08-26 12:24:59');
 --41)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,1,'22/08/2022 12:24:59');
+VALUES (6,6,1,'2022-08-22 12:24:59');
 --42)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,1,'23/08/2022 12:24:59');
+VALUES (9,3,1,'2022-08-23 12:24:59');
 --43)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (9,3,4,'24/09/2022 12:24:59');
+VALUES (9,3,4,'2022-09-24 12:24:59');
 --44)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,4,3,'25/09/2022 12:24:59');
+VALUES (8,4,3,'2022-09-25 12:24:59');
 --45)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,3,2,'26/08/2022 12:24:59');
+VALUES (11,3,2,'2022-08-26 12:24:59');
 --46)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (8,3,1,'22/08/2022 12:24:59');
+VALUES (8,3,1,'2022-08-22 12:24:59');
 --47)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (6,6,1,'23/08/2022 12:24:59');
+VALUES (6,6,1,'2022-08-23 12:24:59');
 --48)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (11,4,4,'24/09/2022 12:24:59');
+VALUES (11,4,4,'2022-09-24 12:24:59');
 --49)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,6,3,'25/09/2022 12:24:59');
+VALUES (14,6,3,'2022-09-25 12:24:59');
 --50)
 INSERT INTO LOOKINGPLAYERS(compoundId,sportId,creatorId,startDateTime)
-VALUES (14,2,2,'26/08/2022 12:24:59');
+VALUES (14,2,2,'2022-08-26 12:24:59');
 
 /* LOOKINGPLAYERS_PARTICIPANTS */
 --1)
@@ -1435,32 +1435,3 @@ INSERT INTO LOOKINGPLAYERS_PARTICIPANTS(lookingId,participantId,state)
 VALUES (40,3,'accepted');
 
 commit;
-
-
-
-
-                SELECT
-                    post.id as p_id,
-                    user_profile.userid as u_userid,
-                    post.description as p_description,
-                    post.postDate as p_postDate,
-                    post.likes as p_likes,
-                    user_profile.firstname as u_firstname,
-                    user_profile.lastname as u_lastname
-                    FROM FRIENDS  JOIN POST ON  Friends.friendId = Post.userId
-                    JOIN user_profile on Friends.friendId = user_profile.userId
-                    Where friends.userId = 1
-                    ORDER BY p_postDate DESC
-                    UNION
-                    SELECT
-                    post.id as p_id,
-                    user_profile.userid as u_userid,
-                    post.description as p_description,
-                    post.postDate as p_postDate,
-                    post.likes as p_likes,
-                    user_profile.firstname as u_firstname,
-                    user_profile.lastname as u_lastname
-                    FROM USER_PROFILE JOIN POST ON  USER_PROFILE.userId = Post.userId
-                    Where USER_PROFILE.userId = 2
-                    ORDER BY p_postDate DESC
-                    LIMIT 10 OFFSET 0
