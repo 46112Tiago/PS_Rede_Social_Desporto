@@ -11,7 +11,7 @@ import java.util.*
 
 @RestController
 @RequestMapping
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class FieldController(val fieldService: FieldService) {
 
     /******************************************  GET  ******************************************/

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Friends.css'
 import ProfileCards from '../ProfileSearch/ProfileCards';
-import { user } from '../../Model/Model';
+import { api_url, user } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import Paging from '../Paging/Paging';
 
@@ -36,7 +36,7 @@ const FriendsPending = (props) => {
             mode: 'cors',
       };
         const email = user.email.split("@")[0]
-        const req =  await fetch(`http://localhost:8080/user/friend/request?page=${page}&email=${email}`,options);
+        const req =  await fetch(`${api_url}/user/friend/request?page=${page}&email=${email}`,options);
         const resp = await req.json();
         if(resp.length < limit){
           setForward(false)

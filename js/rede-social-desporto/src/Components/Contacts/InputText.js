@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { message } from '../../Model/Model';
+import { api_url, message } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import './ConversationIdle.css'
 import {over} from 'stompjs';
@@ -43,7 +43,7 @@ const InputText = (props) => {
     }
 
   useEffect(() => {
-    let Sock = new SockJS('http://localhost:8080/webSocket');
+    let Sock = new SockJS(`${api_url}/webSocket`);
     stompClient = over(Sock);
     stompClient.connect({},onConnected, onError);
   }, [messageObj]);
@@ -62,12 +62,12 @@ const InputText = (props) => {
     }
     const email = user.email.split("@")[0]
     if(props.sendTo == "group"){
-      const resp = await fetch(`http://localhost:8080/user/group/${props.groupId}/message?email=${email}`,options);
+      const resp = await fetch(`${api_url}/user/group/${props.groupId}/message?email=${email}`,options);
       const res = await resp.json()
       sendPrivateValue(data)
       props.messageResp(res)
     }else{
-      const resp = await fetch(`http://localhost:8080/user/friend/${props.friendName}/message?email=${email}`,options);
+      const resp = await fetch(`${api_url}/user/friend/${props.friendName}/message?email=${email}`,options);
       const res = await resp.json()
       sendPrivateValue(data)
       props.messageResp(res)

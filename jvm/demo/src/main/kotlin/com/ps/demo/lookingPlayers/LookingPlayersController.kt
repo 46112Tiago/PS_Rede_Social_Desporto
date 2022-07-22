@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class LookingPlayersController(val lookingPlayersService: LookingPlayersService,val userService: UserService) {
 
     /******************************************  POST  ******************************************/

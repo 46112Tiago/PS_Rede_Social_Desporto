@@ -1,7 +1,7 @@
 import React from "react";
 import  './ReviewModal.css'
 import Makereview from "../MakeReview/MakeReview";
-import {review} from '../../../../Model/Model'
+import {api_url, review} from '../../../../Model/Model'
 import { useAuth0 } from "@auth0/auth0-react";
 import PagingText from "../../../Paging/PagingText";
 
@@ -49,14 +49,14 @@ const ReviewModal = (props) => {
                 mode: 'cors',
           };
             if(end){
-              const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review/${newReview}`,options);
+              const req =  await fetch(`${api_url}/compound/${window.localStorage.getItem("compound_id")}/review/${newReview}`,options);
               const resp = await req.json();
               const newReviewArray = reviewArray.concat(resp)
               setReview(newReviewArray);
               return    
             }
             if(!newReviewChange){
-              const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/review?page=${page}`,options);
+              const req =  await fetch(`${api_url}/compound/${window.localStorage.getItem("compound_id")}/review?page=${page}`,options);
               const resp = await req.json();
               if(resp.length%5 == 0 && resp.length > 0)
               setPaging(<PagingText page={page} setNewPage={setNewPage}/>)

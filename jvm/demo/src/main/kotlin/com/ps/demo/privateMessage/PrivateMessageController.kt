@@ -23,7 +23,7 @@ import java.security.Principal
 
 @RestController
 @RequestMapping
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class PrivateMessageController(val privateMessageService: PrivateMessageService, val userService: UserService) {
 
 

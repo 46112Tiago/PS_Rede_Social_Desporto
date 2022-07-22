@@ -16,7 +16,7 @@ import javax.websocket.server.PathParam
 
 @RestController
 @RequestMapping
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class EventController (val eventService: EventsService, val userService: UserService) {
 
     /******************************************  GET  ******************************************/

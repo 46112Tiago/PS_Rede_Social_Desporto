@@ -12,7 +12,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class UserController (val userService: UserService) {
 
     /******************************************  GET  ******************************************/

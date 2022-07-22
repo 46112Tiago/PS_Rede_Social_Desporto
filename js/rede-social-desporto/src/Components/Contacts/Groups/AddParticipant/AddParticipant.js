@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import './AddParticipant.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../../Model/Model';
 
 const AddParticipant = (props) => {
 
@@ -27,7 +28,7 @@ const AddParticipant = (props) => {
             mode: 'cors',
         };
         const email = user.email.split("@")[0]
-        const req =  await fetch(`http://localhost:8080/user/group/${props.groupId}/participant?email=${email}`,options);
+        const req =  await fetch(`${api_url}/user/group/${props.groupId}/participant?email=${email}`,options);
         const resp = await req.json();
         setFriends(resp);
       } catch (err) {
@@ -57,7 +58,7 @@ const AddParticipant = (props) => {
         body:JSON.stringify(data.friends)
     };
 
-    const response = await fetch(`http://localhost:8080/group/${props.groupId}/participant`, options)
+    const response = await fetch(`${api_url}/group/${props.groupId}/participant`, options)
     const resp = await response.json()
     setNewParticipants(resp)
 

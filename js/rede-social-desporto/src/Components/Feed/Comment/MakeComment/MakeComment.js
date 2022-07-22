@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import './MakeComment.css'
-import { comment } from '../../../../Model/Model';
+import { api_url, comment } from '../../../../Model/Model';
 import {IoSend} from 'react-icons/io5'
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -35,7 +35,7 @@ const MakeComment = (props) => {
         body:JSON.stringify(data)
     };
     const email = user.email.split("@")[0]
-    const response = await fetch(`http://localhost:8080/user/post/${props.postId}/comment?email=${email}`, options)
+    const response = await fetch(`${api_url}/user/post/${props.postId}/comment?email=${email}`, options)
     const resp = await response.json()
     props.newComment(resp)
 }

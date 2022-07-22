@@ -2,6 +2,7 @@ import React from 'react';
 import './DeleteAccount.css'
 import {AiFillDelete} from 'react-icons/ai'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../Model/Model';
 
 const DeleteAccount = () => {
 
@@ -23,7 +24,7 @@ const DeleteAccount = () => {
                   headers: myHeaders,
                   mode: 'cors',
               };
-                const response = await fetch(`http://localhost:8080/user?email=${user.email}`, deleteMethod);
+                const response = await fetch(`${api_url}/user?email=${user.email}`, deleteMethod);
                 logout({ returnTo: window.location.origin })
               } catch (error) {
                 console.log('Error: ' + error);

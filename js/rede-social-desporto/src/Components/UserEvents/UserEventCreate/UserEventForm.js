@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { event } from "../../../Model/Model"
+import { api_url, event } from "../../../Model/Model"
 import { useAuth0 } from "@auth0/auth0-react";
 import './UserEventForm.css'
 import SelectCompound from '../../Looking/SearchPlayer/SelectCompound/SelectCompound';
@@ -60,7 +60,7 @@ const UserEventForm = (props) => {
         body:JSON.stringify(data)
     };
     const email = user.email.split("@")[0]
-    const response = await fetch(`http://localhost:8080/event?email=${email}`, options)
+    const response = await fetch(`${api_url}/event?email=${email}`, options)
     const resp = await response.json()
     props.created(resp)
     window.location.href = "#"

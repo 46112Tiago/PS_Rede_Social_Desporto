@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Navigate.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../../../Model/Model';
 
 const Participate = (props) => {
 
@@ -17,7 +18,7 @@ const Participate = (props) => {
                 mode: 'cors',
             };
             const email = user.email.split("@")[0]
-            const response = await fetch(`http://localhost:8080/lookingPlayers/${props.lookingId}/participant?email=${email}`, options);
+            const response = await fetch(`${api_url}/lookingPlayers/${props.lookingId}/participant?email=${email}`, options);
         } catch (error) {
             console.log('Error: ' + error);
         }

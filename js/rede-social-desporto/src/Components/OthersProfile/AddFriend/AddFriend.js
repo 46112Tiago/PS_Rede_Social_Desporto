@@ -1,6 +1,7 @@
 import React from "react";
 import '../OthersProfile.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from "../../../Model/Model";
 
 const AddFriend = (props) => {
 
@@ -19,7 +20,7 @@ const AddFriend = (props) => {
         mode: 'cors',
   };
     const email = user.email.split("@")[0]
-    const response = fetch(`http://localhost:8080/user/friend/${props.friendName}?email=${email}`, options)
+    const response = fetch(`${api_url}/user/friend/${props.friendName}?email=${email}`, options)
     props.request(props.friendName)
 }
 

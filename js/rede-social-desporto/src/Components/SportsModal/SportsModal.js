@@ -1,7 +1,7 @@
 import React from "react";
 import './SportsModal.css'
 import {MdSportsTennis} from 'react-icons/md'
-import {sport} from "../../Model/Model"
+import {api_url, sport} from "../../Model/Model"
 import { useAuth0 } from "@auth0/auth0-react";
 import CreateSportsList from "./CreateSportsList";
 
@@ -33,7 +33,7 @@ const email = props.otherProfile ? window.location.href.split('/')[4] : user.ema
             headers: myHeaders,
             mode: 'cors',
         };
-        const req =  await fetch(`http://localhost:8080/user/sports?email=${email}`,options);
+        const req =  await fetch(`${api_url}/user/sports?email=${email}`,options);
         const resp = await req.json();
         setSport(resp);
         

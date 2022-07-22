@@ -1,6 +1,6 @@
 import React from "react";
 import  '../../Review/ReviewModal/ReviewModal.css'
-import {schedule} from '../../../../Model/Model'
+import {api_url, schedule} from '../../../../Model/Model'
 
 const ScheduleModal = () => {
 
@@ -24,7 +24,7 @@ const ScheduleModal = () => {
               mode: 'cors',
             };
 
-            const req =  await fetch(`http://localhost:8080/schedule/compound/${window.localStorage.getItem("compound_id")}`,options);
+            const req =  await fetch(`${api_url}/schedule/compound/${window.localStorage.getItem("compound_id")}`,options);
             const resp = await req.json();
             setSchedule(resp);
             if(resp[0].optionDescription)

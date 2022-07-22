@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/compound/{compoundId}")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class ReviewController(val reviewService: ReviewService, val userService: UserService) {
 
     /******************************************  GET  ******************************************/

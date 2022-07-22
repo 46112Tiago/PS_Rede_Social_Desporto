@@ -1,7 +1,7 @@
 import React from "react";
 import  './CommentModal.css'
 import MakeComment from "../MakeComment/MakeComment";
-import {comment} from '../../../../Model/Model'
+import {api_url, comment} from '../../../../Model/Model'
 import { useAuth0 } from "@auth0/auth0-react";
 import {RiArrowDownSFill} from 'react-icons/ri'
 import PagingText from "../../../Paging/PagingText";
@@ -43,14 +43,14 @@ const CommentModal = (props) => {
                 mode: 'cors',
           };
           if(end){
-            const req =  await fetch(`http://localhost:8080/user/post/${props.postId}/comment/${newComment}`,options);
+            const req =  await fetch(`${api_url}/user/post/${props.postId}/comment/${newComment}`,options);
             const resp = await req.json();
             const newCommentArray = commentArray.concat(resp)
             setComment(newCommentArray);
             return    
           }
           if(!newCommentChange){
-            const req =  await fetch(`http://localhost:8080/user/post/${props.postId}/comment?page=${page}`,options);
+            const req =  await fetch(`${api_url}/user/post/${props.postId}/comment?page=${page}`,options);
             const resp = await req.json();
             if(resp.length%5 == 0 && resp.length > 0)
               setPaging(<PagingText page={page} setNewPage={setNewPage}/>)

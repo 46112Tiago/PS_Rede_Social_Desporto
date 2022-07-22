@@ -1,7 +1,7 @@
 import React from "react";
 import './EventModal.css'
 import './EventCard.css'
-import {event} from '../../Model/Model'
+import {api_url, event} from '../../Model/Model'
 
 const EventModal = (props) => {
 
@@ -21,7 +21,7 @@ const EventModal = (props) => {
             method: "GET",
             mode: 'cors',
           };
-          const req =  await fetch(`http://localhost:8080/event/${props.eventId}`,options);
+          const req =  await fetch(`${api_url}/event/${props.eventId}`,options);
           const resp = await req.json();
           setDescription(resp);
           setCoordinate({

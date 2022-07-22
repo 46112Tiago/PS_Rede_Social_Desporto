@@ -1,6 +1,6 @@
 import React from "react";
 import  '../../Review/ReviewModal/ReviewModal.css'
-import {materials,} from '../../../../Model/Model'
+import {api_url, materials,} from '../../../../Model/Model'
 
 const MaterialModal = () => {
 
@@ -20,7 +20,7 @@ const MaterialModal = () => {
               mode: 'cors',
             };
 
-            const req =  await fetch(`http://localhost:8080/material/compound/${window.localStorage.getItem("compound_id")}`,options);
+            const req =  await fetch(`${api_url}/material/compound/${window.localStorage.getItem("compound_id")}`,options);
             const resp = await req.json();
             setMaterial(resp);
           } catch (err) {

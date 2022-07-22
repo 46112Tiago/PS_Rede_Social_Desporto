@@ -2,6 +2,7 @@ import React from 'react';
 import './SeeParticipant.css'
 import DeleteParticipant from '../DeleteParticipant/DeleteParticipant';
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../../Model/Model';
 
 const SeeParticipant = (props) => {
 
@@ -28,7 +29,7 @@ const SeeParticipant = (props) => {
             headers: myHeaders,
             mode: 'cors',
         };
-        const req =  await fetch(`http://localhost:8080/group/${props.groupId}/participant`,options);
+        const req =  await fetch(`${api_url}/group/${props.groupId}/participant`,options);
         const resp = await req.json();
         setParticipants(resp);
       } catch (err) {

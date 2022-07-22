@@ -1,6 +1,7 @@
 import { Marker } from '@react-google-maps/api';
 import React from 'react'
 import { verifyNewMarkers } from '../../../../GoogleMaps/Geocoding';
+import { api_url } from '../../../../Model/Model';
 import "./MapLooking.css";
 
 const MapContainerLooking = (props) => { 
@@ -67,7 +68,7 @@ const MapContainerLooking = (props) => {
         var zoom = map.getZoom();
         var center = map.getCenter().toJSON();
         setZoom(zoom);
-        const req =  await fetch(`http://localhost:8080/compound/sport/${props.sportId}?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+        const req =  await fetch(`${api_url}/compound/sport/${props.sportId}?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
         const resp = await req.json();
         if(resp.length == 0) {
           if(markersArray.length > 0){ 
@@ -86,7 +87,7 @@ const MapContainerLooking = (props) => {
         var center = map.getCenter().toJSON();
         var zoom = map.getZoom();
         setCenter(center);
-        const req =  await fetch(`http://localhost:8080/compound/sport/${props.sportId}?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+        const req =  await fetch(`${api_url}/compound/sport/${props.sportId}?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
         const resp = await req.json();
         if(resp.length == 0) {
           if(markersArray.length > 0){

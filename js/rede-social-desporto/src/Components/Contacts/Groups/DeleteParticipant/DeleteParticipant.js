@@ -2,6 +2,7 @@ import React from 'react';
 import './DeleteParticipant.css'
 import {AiFillDelete} from 'react-icons/ai'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../../Model/Model';
 
 const DeleteParticipant = (props) => {
 
@@ -24,7 +25,7 @@ const DeleteParticipant = (props) => {
               mode: 'cors',
               headers: myHeaders 
             };
-            const response = await fetch(`http://localhost:8080/group/${props.groupId}/participant/${props.participantName}`, options);
+            const response = await fetch(`${api_url}/group/${props.groupId}/participant/${props.participantName}`, options);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);

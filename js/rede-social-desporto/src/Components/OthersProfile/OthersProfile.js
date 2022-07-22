@@ -3,7 +3,7 @@ import './OthersProfile.css'
 import {FaCity} from 'react-icons/fa'
 import SportsModal from "../SportsModal/SportsModal";
 import AddFriend from "./AddFriend/AddFriend";
-import { user as importUser }  from "../../Model/Model";
+import { api_url, user as importUser }  from "../../Model/Model";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const OthersProfile = (props) => {
@@ -33,7 +33,7 @@ const friendName = window.location.href.split('/')[4].split("#")[0]
               mode: 'cors',
         };
           const email = user.email.split("@")[0]
-          const req =  await fetch(`http://localhost:8080/user/profile/${friendName}?email=${email}`,options);
+          const req =  await fetch(`${api_url}/user/profile/${friendName}?email=${email}`,options);
           const resp = await req.json();
           setUser(resp);
           

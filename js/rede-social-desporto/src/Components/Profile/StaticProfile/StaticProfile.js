@@ -9,6 +9,7 @@ import {MdEmojiEvents} from 'react-icons/md'
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from 'react-router-dom';
 import { convertHexToImage } from '../../../Functions/Functions';
+import { api_url } from '../../../Model/Model';
 
 
 const StaticProfile = () => {
@@ -42,7 +43,7 @@ const StaticProfile = () => {
             mode: 'cors',
         };
         const email = user.email.split('@')[0]
-        const req =  await fetch(`http://localhost:8080/user/info?email=${email}`,options);
+        const req =  await fetch(`${api_url}/user/info?email=${email}`,options);
         const resp = await req.json();
         if(resp.profilepic){
           const byteArray = convertHexToImage(resp.profilepic)

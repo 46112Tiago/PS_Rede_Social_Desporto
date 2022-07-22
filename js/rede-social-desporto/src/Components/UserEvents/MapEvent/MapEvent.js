@@ -2,7 +2,6 @@ import React from 'react'
 import '../../Looking/SearchPlayer/MapLooking/MapLooking.css'
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import '../../Map/Map.css'
-import MapContainerLooking from '../../Looking/SearchPlayer/MapLooking/MapContainerLooking';
 import MapContainerEvent from './MapContainerEvent';
 
 const MapEvent = (props) => {

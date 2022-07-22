@@ -2,7 +2,7 @@ import React from 'react';
 import './Events.css'
 import EventCard from './EventCard';
 import Paging from '../Paging/Paging';
-import { event } from '../../Model/Model';
+import { api_url, event } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Events = () => {
@@ -43,9 +43,9 @@ const Events = () => {
               mode: 'cors',
             };
             const email = user.email.split("@")[0]
-            req =  await fetch(`http://localhost:8080/user/event?page=${page}&email=${email}`,options);
+            req =  await fetch(`${api_url}/user/event?page=${page}&email=${email}`,options);
           }else{
-            req =  await fetch(`http://localhost:8080/event?page=${page}`);
+            req =  await fetch(`${api_url}/event?page=${page}`);
           }           
           resp = await req.json();
           if(resp.length < limit){

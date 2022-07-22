@@ -23,7 +23,7 @@ const CompoundMarkerModal = () => {
               mode: 'cors',
             };
 
-            const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}`,options);
+            const req =  await fetch(`${api_url}/compound/${window.localStorage.getItem("compound_id")}`,options);
             const resp = await req.json();
             setCompound(resp);
           } catch (err) {

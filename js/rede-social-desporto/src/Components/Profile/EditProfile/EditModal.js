@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import './EditModal.css'
 import {MdEdit} from 'react-icons/md'
 import { useAuth0 } from "@auth0/auth0-react";
-import { sport } from '../../../Model/Model';
+import { api_url, sport } from '../../../Model/Model';
 import AddSportUser from './AddSportUser/AddSportUser';
 import { converttoSportsArray } from '../../../Functions/Functions';
 import { sportArrayId } from './AddSportUser/AddSportUser';
@@ -31,7 +31,7 @@ const EditModal = (props) => {
         body:JSON.stringify(data)
     };
     const email = user.email.split("@")[0]
-    const response = await fetch(`http://localhost:8080/user?email=${email}`, options)
+    const response = await fetch(`${api_url}/user?email=${email}`, options)
     const resp = await response.json()
     setEdited(resp)
     props.edit(response)

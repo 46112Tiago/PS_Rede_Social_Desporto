@@ -30,6 +30,7 @@ SOFTWARE.
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { api_url } from '../../Model/Model';
 
 const ChooseAuthPath = () => {
   
@@ -78,7 +79,7 @@ https://github.com/auth0/auth0-react/
                     headers: {authorization: `Bearer ${token}`}
                   };
                   
-                  const response = await fetch(`http://localhost:8080/user?email=${user.email}`,options);
+                  const response = await fetch(`${api_url}/user?email=${user.email}`,options);
                   if(response.status != 200){
                     navigate("/signUp");
                   }

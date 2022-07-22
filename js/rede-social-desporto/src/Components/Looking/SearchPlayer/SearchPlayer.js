@@ -7,6 +7,7 @@ import SelectCompound from './SelectCompound/SelectCompound';
 import MapLooking from './MapLooking/MapLooking';
 import SearchCompound from './SearchCompound/SearchCompound';
 import Marker from '../../Map/MapComponent/Marker/Marker';
+import { api_url } from '../../../Model/Model';
 
 const SearchPlayer = () => {
 
@@ -49,7 +50,7 @@ const SearchPlayer = () => {
             body:JSON.stringify(data)
         };
         const email = user.email.split("@")[0]
-        const response = fetch(`http://localhost:8080/lookingPlayers?email=${email}`, options)
+        const response = fetch(`${api_url}/lookingPlayers?email=${email}`, options)
   }
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { materials } from '../../../../Model/Model';
+import { api_url, materials } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import { filterMaterials } from '../../../../Functions/Functions';
 
@@ -25,7 +25,7 @@ const Materials = (props) => {
               method: 'GET',
               headers: {authorization: `Bearer ${token}`}
             };
-            const req =  await fetch("http://localhost:8080/material",options);
+            const req =  await fetch(`${api_url}/material`,options);
             const resp = await req.json();
             setMaterials(resp);
         } catch (err) {

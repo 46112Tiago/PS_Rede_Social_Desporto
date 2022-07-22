@@ -1,6 +1,5 @@
 import React from 'react';
 import { compound } from '../../../../Model/Model';
-import { useAuth0 } from "@auth0/auth0-react";
 import '../SearchPlayer.css'
 
 const SelectCompound = (props) => {
@@ -14,7 +13,6 @@ const SelectCompound = (props) => {
     const [error, setError] = React.useState();
     const [compoundArray, setCompound] = React.useState([compound]);
     const [sport, setSport] = React.useState(0)
-    const {getAccessTokenSilently} = useAuth0();
 
       React.useEffect(() => {
 

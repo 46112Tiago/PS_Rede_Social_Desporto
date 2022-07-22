@@ -1,6 +1,7 @@
 import React from 'react';
 import '../EventCard.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../Model/Model';
 
 const ParticipateEvent = (props) => {
 
@@ -16,7 +17,7 @@ const ParticipateEvent = (props) => {
       mode: 'cors',
     };
     const email = user.email.split("@")[0]
-    const response = await fetch(`http://localhost:8080/user/event/${props.eventId}?email=${email}`, options)
+    const response = await fetch(`${api_url}/user/event/${props.eventId}?email=${email}`, options)
     if(response.status==200){
       props.participate(props.eventId)
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../../Model/Model';
 
 const DeleteGroup = (props) => {
   const {getAccessTokenSilently,user} = useAuth0();
@@ -15,7 +16,7 @@ const DeleteGroup = (props) => {
         headers: myHeaders 
     };
     const email = user.email.split("@")[0]
-    const response = await fetch(`http://localhost:8080/user/group/${props.groupId}?email=${email}`, options)
+    const response = await fetch(`${api_url}/user/group/${props.groupId}?email=${email}`, options)
     if(response.ok)
       props.delete(props.groupId)
 }

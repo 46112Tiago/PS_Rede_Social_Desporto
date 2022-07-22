@@ -2,6 +2,7 @@ import React from 'react'
 import "./MapComponent.css";
 import Marker from './Marker/Marker';
 import { verifyNewMarkers } from '../../../GoogleMaps/Geocoding';
+import { api_url } from '../../../Model/Model';
 
 export var mapGlobal;
 
@@ -63,7 +64,7 @@ const MapComponent = (props) => {
           var zoom = map.getZoom();
           var center = map.getCenter().toJSON();
           setZoom(zoom);
-          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+          const req =  await fetch(`${api_url}/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
           const resp = await req.json();
           if(resp.length == 0) {
             if(markersArray.length > 0) setMarkers(resp)
@@ -77,7 +78,7 @@ const MapComponent = (props) => {
           var center = map.getCenter().toJSON();
           var zoom = map.getZoom();
           setCenter(center);
-          const req =  await fetch(`http://localhost:8080/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
+          const req =  await fetch(`${api_url}/compound/location?zoom=${zoom}&centerLat=${center.lat}&centerLng=${center.lng}`,options);
           const resp = await req.json();
           if(resp.length == 0) {
             if(markersArray.length > 0) setMarkers(resp)

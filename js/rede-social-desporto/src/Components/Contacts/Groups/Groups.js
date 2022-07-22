@@ -5,7 +5,7 @@ import { FaUser, FaUsers } from 'react-icons/fa';
 import GroupModal from '../CreateGroup/GroupModal';
 import Account from '../Account';
 import ConversationIdle from '../ConversationIdle';
-import { group } from '../../../Model/Model';
+import { api_url, group } from '../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import ConversationStart from '../ConversationStart';
 import ParticipantModal from './ParticipantModal/ParticipantModal';
@@ -69,7 +69,7 @@ const Groups = () => {
                 mode: 'cors',
             };
             const email = user.email.split("@")[0]
-            const req =  await fetch(`http://localhost:8080/user/group?email=${email}`,options);
+            const req =  await fetch(`${api_url}/user/group?email=${email}`,options);
             const resp = await req.json();
             /*Check if the loged in user has the same id as the owner of the group*/
             //owner = resp.owner.userId == userId ? true : false

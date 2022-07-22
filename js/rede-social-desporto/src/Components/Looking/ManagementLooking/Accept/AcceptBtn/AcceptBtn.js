@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Accept.css'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../../../Model/Model';
 
 const AcceptBtn = (props) => {
 
@@ -17,7 +18,7 @@ const AcceptBtn = (props) => {
                 mode: 'cors',
             };
             const email = user.email.split("@")[0]
-            const response = await fetch(`http://localhost:8080/lookingPlayers/${props.lookingId}/confirm?email=${email}`, options);
+            const response = await fetch(`${api_url}/lookingPlayers/${props.lookingId}/confirm?email=${email}`, options);
         } catch (error) {
             console.log('Error: ' + error);
         }

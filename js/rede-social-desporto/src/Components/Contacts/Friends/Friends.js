@@ -7,6 +7,7 @@ import ConversationIdle from '../ConversationIdle';
 import { useAuth0 } from "@auth0/auth0-react";
 import ConversationStart from '../ConversationStart';
 import { Link } from 'react-router-dom';
+import { api_url } from '../../../Model/Model';
 
 const FriendsMessage = () => {
   
@@ -48,7 +49,7 @@ const FriendsMessage = () => {
                 mode: 'cors',
             };
           const email = user.email.split("@")[0]
-          const req =  await fetch(`http://localhost:8080/user/friends?email=${email}`,options);
+          const req =  await fetch(`${api_url}/user/friends?email=${email}`,options);
           const resp = await req.json();
           setUser(resp);
         }

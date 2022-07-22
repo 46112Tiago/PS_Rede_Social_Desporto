@@ -16,7 +16,7 @@ const Cancel = (props) => {
                 headers: myHeaders,
                 mode: 'cors',
             };
-            const response = await fetch(`http://localhost:8080/lookingPlayers/${props.lookingId}`, options);
+            const response = await fetch(`${api_url}/lookingPlayers/${props.lookingId}`, options);
         } catch (error) {
             console.log('Error: ' + error);
         }

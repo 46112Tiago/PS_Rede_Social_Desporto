@@ -67,7 +67,7 @@ const CompoundModal = (props) => {
               body:JSON.stringify(compoundObj)
           };
       
-          const response = fetch('http://localhost:8080/compound', options)
+          const response = fetch(`${api_url}/compound`, options)
           window.location.href = "#"
       }
 

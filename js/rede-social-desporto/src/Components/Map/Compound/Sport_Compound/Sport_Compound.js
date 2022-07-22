@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { sport } from '../../../../Model/Model';
+import { api_url, sport } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import { filterSports } from '../../../../Functions/Functions';
 
@@ -24,7 +24,7 @@ const Sport_Compound = (props) => {
               method: 'GET',
               headers: {authorization: `Bearer ${token}`}
             };
-            const req =  await fetch("http://localhost:8080/sports",options);
+            const req =  await fetch(`${api_url}/sports`,options);
             const resp = await req.json();
             setSports(resp);
         } catch (err) {

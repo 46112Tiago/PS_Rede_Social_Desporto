@@ -11,7 +11,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/compound")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class CompoundController(val compoundService: CompoundService) {
 
 

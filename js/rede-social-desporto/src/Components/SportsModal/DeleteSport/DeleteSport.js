@@ -2,6 +2,7 @@ import React from 'react';
 import './DeleteSport.css'
 import {AiFillDelete} from 'react-icons/ai'
 import { useAuth0 } from "@auth0/auth0-react";
+import { api_url } from '../../../Model/Model';
 
 const DeleteSport = (props) => {
 
@@ -23,7 +24,7 @@ const DeleteSport = (props) => {
               mode: 'cors',
             };
             const email = user.email.split("@")[0]
-            const response = await fetch(`http://localhost:8080/user/sports/${props.sportId}?email=${email}`, options);
+            const response = await fetch(`${api_url}/user/sports/${props.sportId}?email=${email}`, options);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);

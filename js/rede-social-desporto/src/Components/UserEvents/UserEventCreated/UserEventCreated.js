@@ -2,7 +2,7 @@ import React from 'react';
 import '../UserEvent.css'
 import UserEventCard from '../UserEventCard';
 import UserCreateEvent from '../UserEventCreate/UserCreateEvent';
-import { event } from '../../../Model/Model';
+import { api_url, event } from '../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import Paging from '../../Paging/Paging';
 
@@ -44,7 +44,7 @@ const UserEventCreated = () => {
             mode: 'cors',
           };
           const email = user.email.split('@')[0]
-          const req =  await fetch(`http://localhost:8080/user/event/created?page=${page}&email=${email}`,options);
+          const req =  await fetch(`${api_url}/user/event/created?page=${page}&email=${email}`,options);
           const resp = await req.json();
           if(resp.length < limit){
             setForward(false)

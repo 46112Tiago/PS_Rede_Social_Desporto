@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/schedule")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("\${cors}")
 class ScheduleController(val scheduleService: ScheduleService) {
 
     /******************************************  GET  ******************************************/

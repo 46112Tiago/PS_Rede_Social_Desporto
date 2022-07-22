@@ -1,5 +1,5 @@
 import React from 'react';
-import { sport } from '../../../../Model/Model';
+import { api_url, sport } from '../../../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import '../SearchPlayer.css'
 
@@ -28,7 +28,7 @@ const SelectSport = (props) => {
               headers: myHeaders,
               mode: 'cors',
           };
-          const req =  await fetch("http://localhost:8080/sports",options);
+          const req =  await fetch(`${api_url}/sports`,options);
           const resp = await req.json();
           setSport(resp);
           

@@ -2,7 +2,7 @@ import React from 'react';
 import './Post.css'
 import CreatePost from './CreatePost/CreatePost';
 import PostTemplate from './PostTemplate/PostTemplate';
-import { post } from '../../Model/Model';
+import { api_url, post } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Post = (props) => {
@@ -52,7 +52,7 @@ const Post = (props) => {
                 mode: 'cors',
           };
           const email = user.email.split("@")[0]
-          const req =  await fetch(`http://localhost:8080/user/post?page=${page}&email=${email}`,options);
+          const req =  await fetch(`${api_url}/user/post?page=${page}&email=${email}`,options);
           const resp = await req.json();
           const newPostArray = postArray.concat(resp)
           setPost(newPostArray);

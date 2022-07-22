@@ -3,7 +3,7 @@ import './ProfileSearch.css'
 import ProfileCards from './ProfileCards';
 import SearchBar from '../SearchBar/SearchBar'
 import Paging from '../Paging/Paging'
-import { user } from '../../Model/Model';
+import { api_url, user } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const ProfileSearch = () =>  {
@@ -44,7 +44,7 @@ const ProfileSearch = () =>  {
             headers: myHeaders,
             mode: 'cors',
       };
-        const req =  await fetch(`http://localhost:8080/user/search?page=${page}&name=${nameV.name}`,options);
+        const req =  await fetch(`${api_url}/user/search?page=${page}&name=${nameV.name}`,options);
         const resp = await req.json();
         if(resp.length < limit){
           setForward(false)

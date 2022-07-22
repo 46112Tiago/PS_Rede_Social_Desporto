@@ -6,6 +6,7 @@ import {CgProfile} from 'react-icons/cg'
 import {AiOutlinePlusCircle} from 'react-icons/ai'
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import { api_url } from '../../Model/Model';
 
 
 const CreateUser = () => {
@@ -53,7 +54,7 @@ const CreateUser = () => {
         mode: 'cors',
         body:JSON.stringify(data)
     };
-    const response = await fetch('http://localhost:8080/user', options)
+    const response = await fetch(`${api_url}/user`, options)
     const responseJson = await response.json()
     window.name = responseJson
     if(response.status == 200){

@@ -1,6 +1,6 @@
 import React from "react";
 import  '../../Review/ReviewModal/ReviewModal.css'
-import {field} from '../../../../Model/Model'
+import {api_url, field} from '../../../../Model/Model'
 
 const FieldModal = () => {
 
@@ -23,7 +23,7 @@ const FieldModal = () => {
               mode: 'cors',
             };
 
-            const req =  await fetch(`http://localhost:8080/compound/${window.localStorage.getItem("compound_id")}/field`,options);
+            const req =  await fetch(`${api_url}/compound/${window.localStorage.getItem("compound_id")}/field`,options);
             const resp = await req.json();
             setField(resp);
           } catch (err) {

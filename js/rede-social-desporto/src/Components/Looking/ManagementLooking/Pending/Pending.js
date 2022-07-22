@@ -1,7 +1,7 @@
 import React from 'react';
 import './Pending.css'
 import { useAuth0 } from "@auth0/auth0-react";
-import { lookingPlayers } from '../../../../Model/Model';
+import { api_url, lookingPlayers } from '../../../../Model/Model';
 import Paging from '../../../Paging/Paging';
 
 
@@ -34,7 +34,7 @@ const Pending = (props) => {
                   mode: 'cors',
             };
               const email = user.email.split("@")[0]
-              const req =  await fetch(`http://localhost:8080/lookingPlayers?state=pending&page=${page}&email=${email}`,options);
+              const req =  await fetch(`${api_url}/lookingPlayers?state=pending&page=${page}&email=${email}`,options);
               const resp = await req.json();
               
               if(resp.length < limit){

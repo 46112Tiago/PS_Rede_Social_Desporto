@@ -1,7 +1,7 @@
 import React from 'react';
 import './Accept.css'
 import { useAuth0 } from "@auth0/auth0-react";
-import { lookingPlayers, user } from '../../../../Model/Model';
+import { api_url, lookingPlayers, user } from '../../../../Model/Model';
 import Paging from '../../../Paging/Paging';
 import AcceptBtn from './AcceptBtn/AcceptBtn';
 
@@ -33,7 +33,7 @@ const Accept = (props) => {
                   mode: 'cors',
             };
               const email = user.email.split("@")[0]
-              const req =  await fetch(`http://localhost:8080/lookingPlayers/accept?page=${page}&email=${email}`,options);
+              const req =  await fetch(`${api_url}/lookingPlayers/accept?page=${page}&email=${email}`,options);
               const resp = await req.json();
               if(resp.length < limit){
                 setForward(false)

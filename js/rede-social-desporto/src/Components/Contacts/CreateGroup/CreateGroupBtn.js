@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { group } from "../../../Model/Model"
+import { api_url, group } from "../../../Model/Model"
 import { useAuth0 } from "@auth0/auth0-react";
 import './CreateGroupBtn.css'
 
@@ -32,7 +32,7 @@ const CreateGroupBtn = (props) => {
         body:JSON.stringify(data)
     };
     const email = user.email.split("@")[0]
-    const response = await fetch(`http://localhost:8080/user/group?email=${email}`, options)
+    const response = await fetch(`${api_url}/user/group?email=${email}`, options)
     const responseJson = await  response.json()
     window.location.href = "#"
     props.created(responseJson)

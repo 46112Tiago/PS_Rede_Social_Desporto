@@ -2,7 +2,7 @@ import './ConversationIdle.css'
 import FriendMsg from './Messages/FriendMsg';
 import OwnMsg from './Messages/OwnMsg';
 import InputText from './InputText';
-import { message } from '../../Model/Model';
+import { api_url, message } from '../../Model/Model';
 import { useAuth0 } from "@auth0/auth0-react";
 import DropDownGroup from './Groups/DropDownGroup';
 import React, { useState } from 'react';
@@ -82,7 +82,7 @@ const ConversationIdle = (props) => {
             setPage(0)
             setScroll(0)
             setGroupId(props.groupId)
-            req = await fetch(`http://localhost:8080/user/group/${props.groupId}/message?email=${email}`,options);
+            req = await fetch(`${api_url}/user/group/${props.groupId}/message?email=${email}`,options);
             const resp = await req.json();
             setMessage(resp)
             return
@@ -90,16 +90,16 @@ const ConversationIdle = (props) => {
           } else if(props.friendName != undefined && props.friendName != friendId) {
             setScroll(0)
             setFriendId(props.friendName)
-            req = await fetch(`http://localhost:8080/user/message/${props.friendName}?page=${0}&email=${email}`,options);
+            req = await fetch(`${api_url}/user/message/${props.friendName}?page=${0}&email=${email}`,options);
             const resp = await req.json();
             setPage(1)
             setMessage(resp)
             return
           } 
           if(props.messageType == "group")
-            req = await fetch(`http://localhost:8080/user/group/${props.groupId}/message?email=${email}`,options);
+            req = await fetch(`${api_url}/user/group/${props.groupId}/message?email=${email}`,options);
           else
-            req = await fetch(`http://localhost:8080/user/message/${props.friendName}?page=${page}&email=${email}`,options);
+            req = await fetch(`${api_url}/user/message/${props.friendName}?page=${page}&email=${email}`,options);
           
           const resp = await req.json();
           setMessage(messageArray.concat(resp))  

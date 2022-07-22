@@ -1,4 +1,5 @@
 import React from 'react';
+import { api_url } from '../../Model/Model';
 import './EventDelete.css'
 
 const EventDelete = () => {
@@ -15,7 +16,7 @@ const EventDelete = () => {
     const makeRequest = async () => {
 
         try {
-            const response = await fetch('http://localhost:8080/field/8', deleteMethod);
+            const response = await fetch(`${api_url}/field/8`, deleteMethod);
             if (!response.ok) {
               const message = 'Error with Status Code: ' + response.status;
               throw new Error(message);

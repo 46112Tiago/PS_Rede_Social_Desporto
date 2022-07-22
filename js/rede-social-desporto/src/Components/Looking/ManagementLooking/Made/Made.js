@@ -1,7 +1,7 @@
 import React from 'react';
 import './Made.css'
 import { useAuth0 } from "@auth0/auth0-react";
-import { lookingPlayers } from '../../../../Model/Model';
+import { api_url, lookingPlayers } from '../../../../Model/Model';
 import Paging from '../../../Paging/Paging';
 import Cancel from './Cancel/Cancel';
 
@@ -32,7 +32,7 @@ const Made = (props) => {
               mode: 'cors',
         };
           const email = user.email.split("@")[0]
-          const req =  await fetch(`http://localhost:8080/lookingPlayers/creator?page=${page}&email=${email}`,options);
+          const req =  await fetch(`${api_url}/lookingPlayers/creator?page=${page}&email=${email}`,options);
           const resp = await req.json();
           if(resp.length < limit){
             setForward(false)

@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useAuth0 } from "@auth0/auth0-react";
 import './FieldSuggestion.css'
+import { api_url } from '../../../../Model/Model';
 
 const FieldSuggestion = (props) => {
 
@@ -50,7 +51,7 @@ const FieldSuggestion = (props) => {
             mode: 'cors',
             body:JSON.stringify(data)
         };
-        const response = await fetch('http://localhost:8080/field', options)
+        const response = await fetch(`${api_url}/field`, options)
     }
 
       return (
